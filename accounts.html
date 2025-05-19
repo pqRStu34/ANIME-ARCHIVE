@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Account Login</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .is-hidden {
+            display: none !important;
+        }
+
+        .centered {
+            max-width: 400px;
+            margin: 40px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="auth-container" class="centered box">
+        <div class="tabs is-toggle is-fullwidth">
+            <ul>
+                <li id="tab-signin" class="is-active"><a>Sign In</a></li>
+                <li id="tab-signup"><a>Sign Up</a></li>
+            </ul>
+        </div>
+        <form id="signin-form">
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control has-icons-left">
+                    <input class="input" type="email" id="signin-email" required>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Password</label>
+                <div class="control has-icons-left">
+                    <input class="input" type="password" id="signin-password" required>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                </div>
+            </div>
+            <button class="button is-primary is-fullwidth" type="submit">Sign In</button>
+        </form>
+        <form id="signup-form" class="is-hidden">
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control has-icons-left">
+                    <input class="input" type="email" id="signup-email" required>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Password</label>
+                <div class="control has-icons-left">
+                    <input class="input" type="password" id="signup-password" required>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                </div>
+            </div>
+            <button class="button is-link is-fullwidth" type="submit">Sign Up</button>
+        </form>
+        <p id="auth-message" class="has-text-danger mt-3"></p>
+    </div>
+
+    <div id="dashboard" class="centered box is-hidden">
+        <h2 class="title is-4">Welcome, <span id="user-email"></span>!</h2>
+        <button id="logout-btn" class="button is-danger is-fullwidth">Log Out</button>
+    </div>
+
+    <script>
+
+        // Tab toggle logic
+        const tabSignin = document.getElementById('tab-signin');
+        const tabSignup = document.getElementById('tab-signup');
+        const signinForm = document.getElementById('signin-form');
+        const signupForm = document.getElementById('signup-form');
+        const authMessage = document.getElementById('auth-message');
+        const authContainer = document.getElementById('auth-container');
+        const dashboard = document.getElementById('dashboard');
+        const userEmailSpan = document.getElementById('user-email');
+        const logoutBtn = document.getElementById('logout-btn');
+
+        tabSignin.addEventListener('click', () => {
+            tabSignin.classList.add('is-active');
+            tabSignup.classList.remove('is-active');
+            signinForm.classList.remove('is-hidden');
+            signupForm.classList.add('is-hidden');
+            authMessage.textContent = '';
+        });
+
+        tabSignup.addEventListener('click', () => {
+            tabSignup.classList.add('is-active');
+            tabSignin.classList.remove('is-active');
+            signupForm.classList.remove('is-hidden');
+            signinForm.classList.add('is-hidden');
+            authMessage.textContent = '';
+        });
+
+
+
+        signinForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const email = document.getElementById('signin-email').value.trim();
+            const password = document.getElementById('signin-password').value;
+
+            const res = await fetch('/api/auth', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'signin', email, password })
+            });
+            const data = await res.json();
+            if (data.success) {
+                showDashboard(email);
+            } else {
+                authMessage.textContent = data.message || 'Invalid email or password.';
+            }
+        });
+
+        signupForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const email = document.getElementById('signup-email').value.trim();
+            const password = document.getElementById('signup-password').value;
+
+            const res = await fetch('/api/auth', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'signup', email, password })
+            });
+            const data = await res.json();
+            if (data.success) {
+                showDashboard(email);
+            } else {
+                authMessage.textContent = data.message || 'Signup failed.';
+            }
+        });
+
+
+        function showDashboard(email) {
+            authContainer.classList.add('is-hidden');
+            dashboard.classList.remove('is-hidden');
+            userEmailSpan.textContent = email;
+            authMessage.textContent = '';
+        }
+
+        logoutBtn.addEventListener('click', function () {
+            dashboard.classList.add('is-hidden');
+            authContainer.classList.remove('is-hidden');
+            signinForm.reset();
+            signupForm.reset();
+            tabSignin.click();
+        });
+    </script>
+</body>
+
+</html>
