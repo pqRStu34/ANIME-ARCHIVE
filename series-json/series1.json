@@ -30,7 +30,7 @@
           "dubs": [
             {
               "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fotherside-picnic-e-1-1080p-english%2FOtherside_Picnic-E1-1080p.mp4",
-              "type": "application/x-mpegURL",
+              "type": "video/mp4",
               "quality": "1080p"
             },
             {
