@@ -459,6 +459,39 @@
             }
         }
 
+        // Add rotate button to Plyr controls
+        function addRotateButton() {
+            const controls = document.querySelector('.plyr__controls');
+            if (!controls || document.querySelector('.plyr__control--rotate')) return;
+
+            const rotateBtn = document.createElement('button');
+            rotateBtn.type = 'button';
+            rotateBtn.className = 'plyr__control plyr__control--rotate';
+            rotateBtn.title = "Rotate Video";
+            rotateBtn.setAttribute('aria-label', 'Rotate Video');
+            // SVG rotate icon (FontAwesome style)
+            rotateBtn.innerHTML = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2v4a1 1 0 0 0 2 0V3.41A9 9 0 1 1 3 12a1 1 0 1 0-2 0A11 11 0 1 0 12 1v1z" fill="currentColor"/>
+                <path d="M12 2l3 3-3 3V2z" fill="currentColor"/>
+            </svg>`;
+
+            let rotation = 0;
+            rotateBtn.onclick = () => {
+                rotation = (rotation + 90) % 360;
+                const video = document.getElementById('player');
+                video.style.transform = `rotate(${rotation}deg)`;
+                video.style.transition = 'transform 0.2s';
+            };
+
+            // Insert before fullscreen button if present, else at end
+            const fullscreenBtn = controls.querySelector('.plyr__control[data-plyr="fullscreen"]');
+            if (fullscreenBtn) {
+                controls.insertBefore(rotateBtn, fullscreenBtn);
+            } else {
+                controls.appendChild(rotateBtn);
+            }
+        }
+
         // Play ad before video
         function playAdThenVideo() {
             if (plyrPlayer && plyrPlayer.ads) {
@@ -507,9 +540,18 @@
                 settings: ['quality', 'speed'],
                 i18n: { quality: 'Quality' }
             });
-            plyrPlayer.on('ready', addCustomSkipButtons);
-            plyrPlayer.on('controlshidden', addCustomSkipButtons);
-            plyrPlayer.on('controlsshown', addCustomSkipButtons);
+            plyrPlayer.on('ready', () => {
+                addCustomSkipButtons();
+                addRotateButton();
+            });
+            plyrPlayer.on('controlshidden', () => {
+                addCustomSkipButtons();
+                addRotateButton();
+            });
+            plyrPlayer.on('controlsshown', () => {
+                addCustomSkipButtons();
+                addRotateButton();
+            });
             plyrPlayer.on('beforeplay', event => {
                 if (plyrPlayer.ads) plyrPlayer.ads.play();
             });
