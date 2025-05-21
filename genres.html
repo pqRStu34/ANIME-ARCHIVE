@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genres - Anime Streaming Testsite</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
+    <style>
+        .card.navbar-sticky {
+            border-radius: 8px;
+            margin: 10px;
+            overflow: hidden;
+        }
+
+        .navbar-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: box-shadow 0.2s;
+        }
+
+        .navbar-sticky:hover {
+            box-shadow: 0 2px 16px #209cee, 0 0 25px #ffffff;
+        }
+
+        .genre-card,
+        .year-card {
+            border-radius: 12px;
+            box-shadow: 0 0 8px #ffffff;
+            margin-bottom: 1.5rem;
+            padding: 1.2rem 1rem;
+        }
+
+        .genre-card .icon,
+        .year-card .icon {
+            color: #209cee;
+            margin-right: 0.5em;
+        }
+
+        .tag.is-genre,
+        .tag.is-year {
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .tag.is-genre.selected,
+        .tag.is-year.selected {
+            background: #23d160 !important;
+            color: #fff !important;
+        }
+
+        .tag.is-genre.discarded {
+            background: #ff3860 !important;
+            color: #fff !important;
+        }
+
+        .tag.is-year.selected {
+            background: #209cee !important;
+            color: #fff !important;
+        }
+
+        .advanced-search-card {
+            border-radius: 12px;
+            box-shadow: 0 0 8px #209cee;
+            margin-bottom: 2rem;
+            padding: 1.5rem 1rem;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+            overflow: hidden;
+            max-height: 1000px;
+            opacity: 1;
+        }
+
+        .advanced-search-card.collapsed {
+            max-height: 0;
+            opacity: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .advanced-search-btn {
+            background: #23d160;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5em 1.5em;
+            font-weight: 700;
+            margin-top: 1em;
+            box-shadow: 0 0 8px #23d160;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .advanced-search-btn,
+        .advanced-search-btn.is-success {
+            background: #23d160 !important;
+            color: #fff !important;
+        }
+
+        .advanced-search-btn:hover {
+            background: #209cee !important;
+            color: #fff !important;
+        }
+
+        .adv-search-toggle {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #209cee;
+            margin-bottom: 1rem;
+            transition: color 0.2s;
+        }
+
+        .adv-search-toggle .icon {
+            margin-right: 0.5em;
+            display: flex;
+            align-items: center;
+        }
+
+        .adv-search-toggle .hamburger {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            display: inline-block;
+            margin-right: 0.5em;
+        }
+
+        .adv-search-toggle .bar {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: #209cee;
+            border-radius: 2px;
+            opacity: 1;
+            left: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .adv-search-toggle .bar1 {
+            top: 4px;
+        }
+
+        .adv-search-toggle .bar2 {
+            top: 10px;
+        }
+
+        .adv-search-toggle .bar3 {
+            top: 16px;
+        }
+
+        .adv-search-toggle.open .bar1 {
+            transform: rotate(45deg);
+            top: 10px;
+        }
+
+        .adv-search-toggle.open .bar2 {
+            opacity: 0;
+        }
+
+        .adv-search-toggle.open .bar3 {
+            transform: rotate(-45deg);
+            top: 10px;
+        }
+
+        .search-results {
+            margin-top: 2rem;
+        }
+
+        .search-results .card {
+            border-radius: 10px;
+            margin-bottom: 1em;
+            box-shadow: 0 0 8px #209cee;
+        }
+
+        .is-skeleton {
+            background: #e0e0e0;
+            animation: skeleton-loading 1.5s infinite;
+        }
+
+        @keyframes skeleton-loading {
+            0% {
+                background-color: #e0e0e0;
+            }
+
+            50% {
+                background-color: #f0f0f0;
+            }
+
+            100% {
+                background-color: #e0e0e0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+
+    <div class="card navbar-sticky">
+        <nav class="navbar is-info">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="accounts.html">
+                    <span class="icon is-medium">
+                        <i class="fa-solid fas fa-2x fa-circle-user"></i>
+                    </span>
+                </a>
+                <a role="button" class="navbar-burger" data-target="navbarMenu" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="index.html">home</a>
+                    <a class="navbar-item is-disabled" href="#" tabindex="-1" aria-disabled="true"
+                        style="pointer-events:none;opacity:0.5;">Series</a>
+                    <a class="navbar-item is-disabled" href="#" tabindex="-1" aria-disabled="true"
+                        style="pointer-events:none;opacity:0.5;">Movies</a>
+                    <a class="navbar-item" href="genres.html">Genres</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+    <section class="section is-medium">
+        <div class="container">
+            <!-- Advanced Search Hamburger Toggle -->
+            <div id="adv-search-toggle" class="adv-search-toggle">
+                <span class="hamburger">
+                    <span class="bar bar1"></span>
+                    <span class="bar bar2"></span>
+                    <span class="bar bar3"></span>
+                </span>
+                <span>
+                    <i class="fas fa-search"></i>
+                    Advanced Search
+                </span>
+            </div>
+            <div id="advanced-search-card" class="advanced-search-card collapsed">
+                <div class="field">
+                    <label class="label has-text-info">Select Genres</label>
+                    <div id="adv-genre-tags" class="tags"></div>
+                </div>
+                <div class="field">
+                    <label class="label has-text-info">Select Year</label>
+                    <div id="adv-year-tags" class="tags"></div>
+                </div>
+                <button id="advanced-search-btn" class="advanced-search-btn is-success">Search</button>
+            </div>
+            <!-- Skeleton for Advanced Search -->
+            <div id="adv-search-skeleton" class="advanced-search-card" style="display:none;">
+                <div class="skeleton is-skeleton" style="height:2em;width:60%;margin:0.5em 0;"></div>
+                <div class="skeleton is-skeleton" style="height:2em;width:40%;margin:0.5em 0;"></div>
+                <div class="skeleton is-skeleton" style="height:2em;width:80%;margin:0.5em 0;"></div>
+            </div>
+
+            <!-- Genre Tags Card -->
+            <div class="genre-card card">
+                <h2 class="title is-6 mb-2">
+                    <span class="icon"><i class="fas fa-tags"></i></span>
+                    Genres
+                </h2>
+                <div id="genre-tags" class="tags"></div>
+                <!-- Skeleton for Genre Tags -->
+                <div id="genre-tags-skeleton">
+                    <span class="tag is-genre is-skeleton" style="width:4em;height:2em;"></span>
+                    <span class="tag is-genre is-skeleton" style="width:4em;height:2em;"></span>
+                    <span class="tag is-genre is-skeleton" style="width:4em;height:2em;"></span>
+                </div>
+            </div>
+
+            <!-- Year Tags Card -->
+            <div class="year-card card">
+                <h2 class="title is-6 mb-2">
+                    <span class="icon"><i class="fas fa-calendar-alt"></i></span>
+                    Years
+                </h2>
+                <div id="year-tags" class="tags"></div>
+                <!-- Skeleton for Year Tags -->
+                <div id="year-tags-skeleton">
+                    <span class="tag is-year is-skeleton" style="width:3em;height:2em;"></span>
+                    <span class="tag is-year is-skeleton" style="width:3em;height:2em;"></span>
+                </div>
+            </div>
+
+            <!-- Search Results -->
+            <div id="search-results" class="search-results"></div>
+            <!-- Skeleton for Search Results -->
+            <div id="search-results-skeleton" class="search-results">
+                <div class="card is-skeleton" style="height:4em;margin-bottom:1em;"></div>
+                <div class="card is-skeleton" style="height:4em;margin-bottom:1em;"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const genres = [
+            "Romance", "Comedy", "Action", "Adventure", "Drama", "Fantasy", "Sci-Fi", "Slice of Life", "Horror", "Mystery", "Supernatural", "Sports", "Thriller", "Historical"
+        ];
+        const years = [
+            "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015"
+        ];
+
+        let seriesList = [];
+        let activeGenre = null;
+        let activeYear = null;
+
+        const genreTags = document.getElementById('genre-tags');
+        const genreTagsSkeleton = document.getElementById('genre-tags-skeleton');
+        const yearTags = document.getElementById('year-tags');
+        const yearTagsSkeleton = document.getElementById('year-tags-skeleton');
+        const advSearchCard = document.getElementById('advanced-search-card');
+        const advSearchSkeleton = document.getElementById('adv-search-skeleton');
+        const searchResults = document.getElementById('search-results');
+        const searchResultsSkeleton = document.getElementById('search-results-skeleton');
+
+        // Show skeletons initially
+        genreTags.style.display = 'none';
+        genreTagsSkeleton.style.display = '';
+        yearTags.style.display = 'none';
+        yearTagsSkeleton.style.display = '';
+        advSearchCard.style.display = 'none';
+        advSearchSkeleton.style.display = '';
+        searchResults.style.display = 'none';
+        searchResultsSkeleton.style.display = '';
+
+        fetch('serieslist.json')
+            .then(res => res.json())
+            .then(list => {
+                seriesList = list;
+                // Hide skeletons, show real UI
+                genreTagsSkeleton.style.display = 'none';
+                genreTags.style.display = '';
+                yearTagsSkeleton.style.display = 'none';
+                yearTags.style.display = '';
+                advSearchSkeleton.style.display = 'none';
+                advSearchCard.style.display = '';
+                searchResultsSkeleton.style.display = 'none';
+                searchResults.style.display = '';
+                renderTags('genre-tags', genres, 'is-genre', onGenreTagClick);
+                renderTags('year-tags', years, 'is-year', onYearTagClick);
+                renderTags('adv-genre-tags', genres, 'is-genre', toggleAdvGenre);
+                renderTags('adv-year-tags', years, 'is-year', toggleAdvYear);
+                renderResults([]); // Show nothing by default
+            });
+
+        // --- Genre/Year tag click for quick filter (toggle) ---
+        function onGenreTagClick(tag, el) {
+            // Reset year selection
+            activeYear = null;
+            document.querySelectorAll('#year-tags .tag').forEach(e => e.classList.remove('selected'));
+            // Toggle genre selection
+            if (activeGenre === tag) {
+                activeGenre = null;
+                el.classList.remove('selected');
+                renderResults([]); // Show nothing if nothing selected
+            } else {
+                activeGenre = tag;
+                document.querySelectorAll('#genre-tags .tag').forEach(e => e.classList.remove('selected'));
+                el.classList.add('selected');
+                renderResults(seriesList.filter(s => Array.isArray(s.genres) && s.genres.includes(tag)));
+            }
+        }
+        function onYearTagClick(tag, el) {
+            // Reset genre selection
+            activeGenre = null;
+            document.querySelectorAll('#genre-tags .tag').forEach(e => e.classList.remove('selected'));
+            // Toggle year selection
+            if (activeYear === tag) {
+                activeYear = null;
+                el.classList.remove('selected');
+                renderResults([]); // Show nothing if nothing selected
+            } else {
+                activeYear = tag;
+                document.querySelectorAll('#year-tags .tag').forEach(e => e.classList.remove('selected'));
+                el.classList.add('selected');
+                renderResults(seriesList.filter(s => s.year === tag));
+            }
+        }
+
+        // --- Advanced search state ---
+        let advSelectedGenres = {};
+        let advSelectedYear = null;
+
+        // --- Advanced search genre tag: click toggles between selected, discarded, and neutral ---
+        function toggleAdvGenre(tag, el) {
+            if (!advSelectedGenres[tag]) {
+                advSelectedGenres[tag] = 'selected';
+                el.classList.add('selected');
+                el.classList.remove('discarded');
+            } else if (advSelectedGenres[tag] === 'selected') {
+                advSelectedGenres[tag] = 'discarded';
+                el.classList.remove('selected');
+                el.classList.add('discarded');
+            } else {
+                delete advSelectedGenres[tag];
+                el.classList.remove('selected', 'discarded');
+            }
+        }
+
+        // --- Advanced search year tag: toggle select/unselect ---
+        function toggleAdvYear(tag, el) {
+            if (advSelectedYear === tag) {
+                advSelectedYear = null;
+                el.classList.remove('selected');
+            } else {
+                advSelectedYear = tag;
+                document.querySelectorAll('#adv-year-tags .tag').forEach(e => e.classList.remove('selected'));
+                el.classList.add('selected');
+            }
+        }
+
+        // --- Render tags utility ---
+        function renderTags(containerId, tagList, tagClass, selectCallback) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            tagList.forEach(tag => {
+                const el = document.createElement('span');
+                el.className = `tag ${tagClass}`;
+                el.textContent = tag;
+                el.addEventListener('click', () => selectCallback(tag, el));
+                container.appendChild(el);
+            });
+        }
+
+        // --- Advanced Search Hamburger Toggle ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const advToggle = document.getElementById('adv-search-toggle');
+            const advCard = document.getElementById('advanced-search-card');
+            let advOpen = false;
+            advToggle.addEventListener('click', () => {
+                advOpen = !advOpen;
+                advCard.classList.toggle('collapsed', !advOpen);
+                advToggle.classList.toggle('open', advOpen);
+            });
+
+            document.getElementById('advanced-search-btn').addEventListener('click', () => {
+                // If nothing selected, show nothing
+                if (
+                    Object.keys(advSelectedGenres).length === 0 &&
+                    !advSelectedYear
+                ) {
+                    renderResults([]);
+                    return;
+                }
+                let results = seriesList.filter(series => {
+                    // Genres: include if all selected genres are present, and none of the discarded genres are present
+                    let genreOk = true;
+                    const selected = Object.entries(advSelectedGenres).filter(([_, v]) => v === 'selected').map(([k]) => k);
+                    const discarded = Object.entries(advSelectedGenres).filter(([_, v]) => v === 'discarded').map(([k]) => k);
+                    if (selected.length && (!series.genres || !selected.every(g => series.genres.includes(g)))) genreOk = false;
+                    if (discarded.length && series.genres && discarded.some(g => series.genres.includes(g))) genreOk = false;
+                    // Year
+                    let yearOk = !advSelectedYear || series.year === advSelectedYear;
+                    return genreOk && yearOk;
+                });
+                if (!results.length) {
+                    showAdvNoResultsMessage();
+                }
+                renderResults(results);
+            });
+
+            // Show "No series found..." message for 2 seconds (advanced search only)
+            function showAdvNoResultsMessage() {
+                let msg = document.createElement('div');
+                msg.className = 'notification is-danger has-text-centered';
+                msg.textContent = 'No series found for selected filters.';
+                msg.style.position = 'fixed';
+                msg.style.top = '20px';
+                msg.style.left = '50%';
+                msg.style.transform = 'translateX(-50%)';
+                msg.style.zIndex = '9999';
+                document.body.appendChild(msg);
+                setTimeout(() => {
+                    msg.remove();
+                }, 2000);
+            }
+        });
+
+        // --- Render results ---
+        function renderResults(results) {
+            const container = document.getElementById('search-results');
+            if (!results.length) {
+                container.innerHTML = '';
+                return;
+            }
+            container.innerHTML = results.map(series => `
+                <div class="card">
+                    <div class="columns is-mobile is-vcentered">
+                        <div class="column is-narrow">
+                            <figure class="image is-64x64" style="margin:0.5em;">
+                                <img src="${series.poster}" alt="${series.title}" style="border-radius:8px;">
+                            </figure>
+                        </div>
+                        <div class="column">
+                            <a href="${series.infoPage}" class="title is-6" style="color:#209cee;">${series.title}</a>
+                            <div>
+                                ${(series.genres || []).map(g => `<span class="tag is-genre">${g}</span>`).join('')}
+                                <span class="tag is-year">${series.year || ''}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- Navbar burger for mobile ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const navbarBurgers = Array.from(document.querySelectorAll('.navbar-burger'));
+            navbarBurgers.forEach(el => {
+                el.addEventListener('click', () => {
+                    const target = el.dataset.target;
+                    const $target = document.getElementById(target);
+                    el.classList.toggle('is-active');
+                    $target.classList.toggle('is-active');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

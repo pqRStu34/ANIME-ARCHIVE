@@ -1,0 +1,557 @@
+{
+  "season": "Season 1",
+  "episodes": [
+    {
+      "title": "Episode 1",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb1.jpg",
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode1-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode1-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode1-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode1-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode1-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode1-en.vtt"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/13062bbb4607d5ea11811586cb663e61a85a8c8cd8989a2e075a3a7a275bd1ae/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/09/e6875ab7b9ab251afc4021001c6108acddca767954cd637cde681afcf2d222aa/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode1-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 2",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb2.jpg",
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode2-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode2-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode2-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode2-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode2-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode2-en.vtt"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/08/b6a84be106eda9f017d355fef1c17d3c1e46bf557d064587ad7eb61a5bda045b/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/3aeffc36b2219e5472a76c845bb95f548f340fd1592a7850ad2330452d883bf1/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode2-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 3",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb3.jpg",
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode3-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode3-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode3-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode3-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode3-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode3-en.vtt"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/14/7d33921a980c0e8d1d11058362b4586d8ea51b48ce449e5a7fb3b6774a6cbae7/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/d8fbfa50fdddcb806b74410af3730a4ec7645ff79451e6d4229af43fe5801621/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode3-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 4",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb4.jpg",
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode4-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode4-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode4-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode4-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode4-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode4-en.vtt"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/08/4214dc2879d57d18478c949525f03887ec47119d2e66abaf9b60d6f48818bcae/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/08/61076546a49aabf5662a9de3266ca0fbb4a3ed3cc929d82ad6aac73e8230c139/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode4-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 5",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb5.jpg",
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode5-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode5-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode5-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode5-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode5-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode5-en.vtt"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/08/2ac36b272fbd786adc11b9e7742bdda1f66a13e52c54f28d3dee132bfbbf2b63/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/07/c083c38d2a808a696957d214b1aa0d36ca764ccf57ebdda83da5a6f76cf62b68/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode5-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 6",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb6.jpg",
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode6-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode6-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode6-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode6-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode6-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode6-en.vtt"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://vault-02.padorupado.ru/stream/02/01/7a8ccac3c9cba9790fae3b9ce385752f0ff1be3a32024c7125299aaa7e4f20cb/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-03.padorupado.ru/stream/03/08/d5749e1f5325e1195be10904601e9be2afcaf066a266955971b736261b190f01/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode6-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 7",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb7.jpg",
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode7-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode7-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode7-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode7-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode7-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode7-en.vtt"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/08/bd44d7ed0168105d3ccac081915898af15f8d1bf78324a0ecb18c87dff3c0dcb/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/09/1f2978e7827711ac2f1582b7d85475b28ca5116fba9b4d576835d2e116ce6db9/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode7-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 8",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb8.jpg",
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode8-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode8-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode8-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode8-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode8-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode8-en.vtt"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/07/c4bb89e1e8af1b5c1e36afc13b68718ee7ed76ab1df53126a3b6ff1459056e79/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/08/c2b1dc1f1f21735a4603e938f0b0b77ec8a94aa3090b265b8d906d7ea2f9ef4e/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode8-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 9",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb9.jpg",
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode9-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode9-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode9-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode9-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode9-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode9-en.vtt"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/08/eec54f41b72eac53c3d8beb9423c61ee366e2d118c26dfd00c99cc9da4eb4d1f/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/7f0fa75e9e6bf51210d98b7be4beac9dcbdea367eedabefd97c7e1123c2a1837/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode9-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 10",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb10.jpg",
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode10-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode10-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode10-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode10-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode10-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode10-en.vtt"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/09/39eb1c3f282520233e6d60dd5f8d3ecfb3cbaedb1880eef21e2438a1d54c613c/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/09/37b0a5679e7a77aa45a2a1abad6408f21e2fbe8bd556d097cad70de35625f659/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode10-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 11",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb11.jpg",
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode11-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode11-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode11-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode11-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode11-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode11-en.vtt"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/08/60d42eb01c5707e87cebe48aa6f3621d147781430d90b431e77b0a59a3c4f4a7/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/06/bde48b9e7dac22fd35aea7c8ff9cdc8984cf9dd9b968a772c6b8ed3dc0096cdb/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode11-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 12",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb12.jpg",
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode12-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode12-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode12-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode12-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode12-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode12-en.vtt"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/09/74f99d8b9d365f50e778a637ada7d1e97028497f71d9dfa6c97971f8f275aba1/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/06/fa695e91e67ffc9aa5c51f3060b8cb90323bf1b7dafc9b879be6cb6b1c42d451/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode12-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

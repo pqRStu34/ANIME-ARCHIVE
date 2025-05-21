@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Adachi to Shimamura</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
+    <style>
+        .series-card-box {
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .series-bg-img {
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            object-fit: cover;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .series-bg-fade {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 40%, #181818 90%);
+            z-index: 1;
+        }
+
+        .series-content {
+            position: relative;
+            z-index: 2;
+            padding: 2.2rem 1.2rem 1.2rem 1.2rem;
+            color: #00d9ff;
+        }
+
+        .bookmark-top {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 3;
+        }
+
+        .bookmark-btn-top {
+            background: none;
+            border: none;
+            color: #ff3860;
+            font-size: 2em;
+            transition: color 0.2s;
+            padding: 0;
+        }
+
+        .bookmark-btn-top.is-success {
+            color: #23d160;
+        }
+
+        .bookmark-btn-top.is-danger {
+            color: #ff3860;
+        }
+
+        .views-top {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 0.3em;
+            background: rgb(53, 53, 53);
+            padding: 0.3em 0.7em;
+            border-radius: 1em;
+        }
+
+        .views-top .info-tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .views-top .info-tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            text-align: left;
+            border-radius: 6px;
+            padding: 1.5em;
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            right: 110%;
+            left: auto;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.2s, right 0.2s;
+            font-size: 0.9em;
+            white-space: normal;
+        }
+
+        .views-top .info-tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            right: 120%;
+        }
+
+        .mb-2 {
+            margin-bottom: 0.75rem !important;
+        }
+
+        .watch-btn {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .tag.is-genre,
+        .tag.is-year {
+            margin-right: 0.3em;
+            margin-bottom: 0.2em;
+            background: #101214;
+            color: #7afff0;
+            border: 1px solid #7afff0;
+            font-size: 0.85em;
+            padding: 0.2em 0.7em;
+            border-radius: 0.7em;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.18s, color 0.18s, border 0.18s;
+        }
+
+        .tag.is-genre:hover,
+        .tag.is-year:hover {
+            background: #209cee;
+            color: #fff;
+            border-color: #209cee;
+        }
+
+        .info-tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .info-tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            text-align: left;
+            border-radius: 6px;
+            padding: 0.5em;
+            position: absolute;
+            z-index: 10;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.2s;
+            font-size: 0.9em;
+        }
+
+        .info-tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .rating-stars {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        .rating-stars .star {
+            color: #ffd700;
+            transition: color 0.2s;
+        }
+
+        .rating-stars .star.inactive {
+            color: #b5b5b5;
+        }
+
+        .has-text-primary {
+            color: #209cee !important;
+        }
+
+        .notify-popup {
+            position: fixed;
+            left: 50%;
+            top: 2.5rem;
+            transform: translateX(-50%);
+            z-index: 9999;
+            min-width: 220px;
+            max-width: 90vw;
+            box-shadow: 0 4px 24px #209cee55;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s, top 0.3s;
+        }
+
+        .notify-popup.active {
+            opacity: 1;
+            pointer-events: auto;
+            top: 4.5rem;
+        }
+
+        .desc-card {
+            max-width: 400px;
+            margin: 1.5rem auto 0 auto;
+            border-radius: 14px;
+            padding: 1.2rem 1.1rem;
+        }
+
+        .is-skeleton {
+            background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+
+        @keyframes skeleton-loading {
+            0% {
+                background-position: 100% 0;
+            }
+            100% {
+                background-position: 0 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="notify" class="notification is-warning is-light notify-popup"></div>
+    <section class="section">
+        <div class="container">
+            <!-- Skeleton for Series Card -->
+            <div id="series-card-skeleton" class="series-card-box box is-skeleton" style="height:480px;margin-bottom:1.5em;"></div>
+            <!-- Skeleton for Description -->
+            <div id="desc-card-skeleton" class="desc-card box is-skeleton" style="height:120px;"></div>
+            <div id="series-card-content" style="display:none;">
+                <div class="series-card-box box">
+                    <img src="https://archive.org/download/adachi-and-shimamura_202503/cover2.jpg" alt="Your Name"
+                        id="series-img" class="series-bg-img">
+                    <div class="series-bg-fade"></div>
+                    <button id="bookmark-btn-top" class="bookmark-btn-top bookmark-top" title="Bookmark">
+                        <i class="fas fa-bookmark"></i>
+                    </button>
+                    <div class="views-top">
+                        <span class="icon is-small has-text-warning">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                        <span id="views-count">0</span>
+                        <span class="info-tooltip">
+                            <i class="fas fa-info-circle has-text-info"></i>
+                            <span class="tooltip-text">
+                                Views are counted only once per user, after clicking "Watch" while logged in.
+                            </span>
+                        </span>
+                    </div>
+                    <div class="series-content has-text-centered">
+                        <h1 class="title is-4 mt-2">Adachi to Shimamura</h1>
+                        <div class="mb-2">
+                            <span class="tag is-genre">Romance</span>
+                            <span class="tag is-genre">Drama</span>
+                            <span class="tag is-genre">Yuri</span>
+                            <span class="tag is-year">2020</span>
+                        </div>
+                        <button id="watch-now-btn" class="button is-success is-large watch-btn">
+                            <span class="icon"><i class="fas fa-play"></i></span>
+                            <span>Watch</span>
+                        </button>
+                        <div class="mb-2">
+                            <div class="rating-stars" id="rating-stars"></div>
+                            <span id="rating-value" class="ml-2 has-text-primary">0.0</span>
+                            <span class="is-size-7">/ 5</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="desc-card">
+                    <h2 class="title is-6 mb-2">Description</h2>
+                    <p>
+                        <!-- Add your series description here -->
+                        Somewhere in the school at noon, one might hear the sound of two girls playing table tennis together
+                        as they wait for time to pass by.
+
+                        As if by fate, two students—Sakura Adachi and Hougetsu Shimamura—stumble upon each other on the
+                        second floor of the school gymnasium. As they gradually foster a budding friendship, their feelings
+                        for one another only become more ambiguous. Growing closer by the day, the two must learn to
+                        navigate their contrasting personalities as well as determine the depth of their affection for each
+                        other.
+
+                        The nature of this relationship gradually shifts when one of them starts to develop feelings beyond
+                        the boundaries of a platonic relationship. Even so, Adachi and Shimamura must realize if forming a
+                        bond stronger than friendship will bring them closer or tear them apart.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        let isLoggedIn = false; // Set to true if user is logged in
+        let isBookmarked = false;
+
+        document.getElementById('watch-now-btn').addEventListener('click', function () {
+            if (!isLoggedIn) {
+                showNotify("Please log in to watch and count your view.");
+                return;
+            }
+            let views = parseInt(localStorage.getItem('adachi_to_shimamura_viewed') || "0", 10);
+            if (!views) {
+                document.getElementById('views-count').textContent = "1";
+                localStorage.setItem('adachi_to_shimamura_viewed', "1");
+                // TODO: send view to backend
+            }
+            window.location.href = "/video.html?series=series-json/series2";
+        });
+
+        function bookmarkHandler() {
+            if (!isLoggedIn) {
+                showNotify("Please log in to bookmark this series.");
+                return;
+            }
+            isBookmarked = !isBookmarked;
+            updateBookmarkIcon();
+            showNotify(isBookmarked ? "Bookmarked!" : "Bookmark removed.");
+        }
+        function updateBookmarkIcon() {
+            const btn = document.getElementById('bookmark-btn-top');
+            btn.classList.remove('is-success', 'is-danger');
+            btn.classList.add(isBookmarked ? 'is-success' : 'is-danger');
+        }
+        document.getElementById('bookmark-btn-top').addEventListener('click', bookmarkHandler);
+
+        const ratingStars = document.getElementById('rating-stars');
+        let userRating = 0;
+        let avgRating = 0.0;
+        let ratingCount = 0;
+
+        function renderStars(rating) {
+            ratingStars.innerHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const star = document.createElement('span');
+                star.className = 'star' + (i <= rating ? '' : ' inactive');
+                star.innerHTML = '<i class="fas fa-star"></i>';
+                star.dataset.value = i;
+                star.addEventListener('mouseenter', () => highlightStars(i));
+                star.addEventListener('mouseleave', () => highlightStars(userRating));
+                star.addEventListener('click', () => setRating(i));
+                ratingStars.appendChild(star);
+            }
+        }
+        function highlightStars(rating) {
+            Array.from(ratingStars.children).forEach((star, idx) => {
+                star.classList.toggle('inactive', idx + 1 > rating);
+            });
+        }
+        function setRating(rating) {
+            if (!isLoggedIn) {
+                showNotify("Please log in to rate this series.");
+                return;
+            }
+            userRating = rating;
+            avgRating = ((avgRating * ratingCount + rating) / (ratingCount + 1)).toFixed(1);
+            ratingCount++;
+            document.getElementById('rating-value').textContent = avgRating;
+            highlightStars(userRating);
+            showNotify("Thank you for rating!");
+        }
+
+        function showNotify(msg) {
+            const n = document.getElementById('notify');
+            n.textContent = msg;
+            n.classList.add('active');
+            setTimeout(() => n.classList.remove('active'), 2500);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Hide skeletons, show real content
+            document.getElementById('series-card-skeleton').style.display = 'none';
+            document.getElementById('desc-card-skeleton').style.display = 'none';
+            document.getElementById('series-card-content').style.display = '';
+            let views = parseInt(localStorage.getItem('adachi_to_shimamura_viewed') || "0", 10);
+            document.getElementById('views-count').textContent = views ? "1" : "0";
+            renderStars(userRating);
+            document.getElementById('rating-value').textContent = avgRating.toFixed(1);
+            // Placeholder image fallback
+            const img = document.getElementById('series-img');
+            img.onerror = function () {
+                img.src = "https://bulma.io/images/placeholders/480x640.png";
+            };
+            updateBookmarkIcon();
+        });
+    </script>
+</body>
+
+</html>

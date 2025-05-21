@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Episode 1: The Meeting",
+    "servers": [
+      {
+        "name": "Main Server",
+        "subs": [
+          {
+            "src": "https://archive.org/download/adachi-and-shimamura_202503/episode1.mp4",
+            "type": "video/mp4",
+            "quality": "1080p"
+          }
+        ],
+        "dubs": []
+      }
+    ]
+  },
+  {
+    "title": "Episode 2: Growing Closer",
+    "servers": [
+      {
+        "name": "Main Server",
+        "subs": [
+          {
+            "src": "https://archive.org/download/adachi-and-shimamura_202503/episode2.mp4",
+            "type": "video/mp4",
+            "quality": "1080p"
+          }
+        ],
+        "dubs": []
+      }
+    ]
+  }
+]
