@@ -245,7 +245,7 @@
             <div id="desc-card-skeleton" class="desc-card box is-skeleton" style="height:120px;"></div>
             <div id="series-card-content" style="display:none;">
                 <div class="series-card-box box">
-                    <img src="https://archive.org/download/adachi-and-shimamura_202503/cover2.jpg" alt="Your Name"
+                    <img src="https://archive.org/download/adachi-and-shimamura_202503/cover2.jpg" alt="Adachi to Shimamura"
                         id="series-img" class="series-bg-img">
                     <div class="series-bg-fade"></div>
                     <button id="bookmark-btn-top" class="bookmark-btn-top bookmark-top" title="Bookmark">
@@ -285,7 +285,6 @@
                 <div class="desc-card">
                     <h2 class="title is-6 mb-2">Description</h2>
                     <p>
-                        <!-- Add your series description here -->
                         Somewhere in the school at noon, one might hear the sound of two girls playing table tennis together
                         as they wait for time to pass by.
 
@@ -307,15 +306,12 @@
         let isLoggedIn = false; // Set to true if user is logged in
         let isBookmarked = false;
 
-        document.getElementById('watch-now-btn').addEventListener('click', function () {
-            if (!isLoggedIn) {
-                showNotify("Please log in to watch and count your view.");
-                return;
-            }
-            let views = parseInt(localStorage.getItem('adachi_to_shimamura_viewed') || "0", 10);
+        // --- Watch Now ---
+        document.getElementById('watch-now-btn').addEventListener('click', function() {
+            let views = parseInt(localStorage.getItem('otherside_picnic_viewed') || "0", 10);
             if (!views) {
                 document.getElementById('views-count').textContent = "1";
-                localStorage.setItem('adachi_to_shimamura_viewed', "1");
+                localStorage.setItem('otherside_picnic_viewed', "1");
                 // TODO: send view to backend
             }
             window.location.href = "/video.html?series=series-json/series2";
