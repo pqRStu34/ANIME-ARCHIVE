@@ -292,16 +292,6 @@
                         </span>
                     </div>
                 </div>
-                <!-- Skeleton for Search Bar -->
-                <div id="search-bar-skeleton" class="field has-addons mb-5"
-                    style="max-width:400px;margin:0 auto;display:none;">
-                    <div class="control has-icons-left is-expanded">
-                        <span class="input is-skeleton" style="height:2.5em;width:100%;"></span>
-                        <span class="icon is-left">
-                            <i class="fas fa-search"></i>
-                        </span>
-                    </div>
-                </div>
                 <!-- Prediction Dropdown -->
                 <div id="search-predictions" class="box neon-predictions"
                     style="display:none; position:absolute; z-index:10; max-width:400px; left:0; right:0; margin:0 auto;">
@@ -375,14 +365,12 @@
             // --- Skeleton loader logic ---
             const grid = document.getElementById('series-grid');
             const searchBar = document.getElementById('series-search').parentElement.parentElement;
-            const searchBarSkeleton = document.getElementById('search-bar-skeleton');
             const predictionsBox = document.getElementById('search-predictions');
             const predictionsSkeleton = document.getElementById('predictions-skeleton');
 
             // Show skeletons initially
             grid.style.display = 'none';
-            searchBar.style.display = 'none';
-            searchBarSkeleton.style.display = '';
+            searchBar.style.display = '';
             predictionsBox.style.display = 'none';
             predictionsSkeleton.style.display = 'none';
 
@@ -393,14 +381,12 @@
                 .then(seriesList => {
                     allSeries = seriesList;
                     grid.style.display = '';
-                    searchBarSkeleton.style.display = 'none';
                     searchBar.style.display = '';
                     renderSeriesGrid(seriesList);
                 })
                 .catch(() => {
                     grid.style.display = '';
                     grid.innerHTML = '<div class="has-text-centered has-text-danger">Could not load series list.</div>';
-                    searchBarSkeleton.style.display = 'none';
                     searchBar.style.display = '';
                 });
 
