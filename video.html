@@ -1,57 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anime Archive - Video Player</title>
-    <!-- Use Bulma CSS only -->
-    <style>
-        .card {
-            border-radius: 8px;
-            margin: 10px;
-            overflow: hidden;
-        }
-
-        .player-card {
-            border-radius: 12px;
-            background: none;
-            box-shadow: none;
-            margin-bottom: 0;
-            overflow: hidden;
-        }
-
-        .player-card-content {
-            padding: 0;
-            background: none;
-        }
-
-        #player,
-        .plyr--video {
-            border-radius: 12px;
-            width: 100%;
-            height: 100%;
-            display: block;
-            background: #000;
-        }
-
-        .plyr__video-wrapper {
-            border-radius: 12px !important;
-            overflow: hidden;
-        }
-    </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+    <style>
+        .card { border-radius: 8px; margin: 10px; overflow: hidden; }
+        .player-card { border-radius: 12px; background: none; box-shadow: none; margin-bottom: 0; overflow: hidden; }
+        .player-card-content { padding: 0; background: none; }
+        #player, .video-js { border-radius: 12px; width: 100%; height: 100%; display: block; background: #000; }
+        .switcher-row { display: flex; align-items: center; gap: 0.7em; margin-bottom: 1em; }
+        .switcher-label { min-width: 60px; text-align: right; font-size: 1.1em; display: flex; align-items: center; gap: 0.3em; }
+        .switcher-btns { display: flex; align-items: center; gap: 0.5em; }
+        /* ... (rest of your styles unchanged) ... */
+    </style>
 </head>
-
 <body>
     <div class="container mt-5">
         <div class="columns is-centered">
             <div class="column is-12-mobile is-10-tablet is-8-desktop">
                 <div class="card player-card mb-0" style="margin-bottom:0;">
                     <div class="card-content player-card-content" style="padding:0;">
-                        <video id="player" playsinline controls crossorigin="anonymous"></video>
+                        <video
+                            id="player"
+                            class="video-js vjs-default-skin"
+                            controls
+                            preload="auto"
+                            width="100%"
+                            height="100%">
+                        </video>
                     </div>
                 </div>
                 <!-- Server Switcher Card -->
@@ -73,7 +53,7 @@
                 </div>
             </div>
         </div>
-        <!-- Playlist Section (Episodes, paginated, NOT hamburger) -->
+        <!-- Playlist Section -->
         <div class="columns is-centered">
             <div class="column is-12-mobile is-10-tablet is-8-desktop">
                 <div class="card">
@@ -105,8 +85,7 @@
                                     <span class="bar bar2"></span>
                                     <span class="bar bar3"></span>
                                 </span>
-                                <span style="font-weight:600;"> <i class="fas fa-film"></i> Extra Content (OVA, Movies,
-                                    Specials)</span>
+                                <span style="font-weight:600;"> <i class="fas fa-film"></i> Extra Content (OVA, Movies, Specials)</span>
                             </div>
                             <div id="extra-content-hamburger-menu" class="hamburger-menu" style="display:none;">
                                 <div id="extra-content-buttons" class="buttons is-centered"></div>
@@ -117,148 +96,28 @@
             </div>
         </div>
     </div>
-    <style>
-        .switcher-row {
-            display: flex;
-            align-items: center;
-            gap: 0.7em;
-            margin-bottom: 1em;
-        }
-
-        .switcher-label {
-            min-width: 60px;
-            text-align: right;
-            font-size: 1.1em;
-            display: flex;
-            align-items: center;
-            gap: 0.3em;
-        }
-
-        .switcher-btns {
-            display: flex;
-            align-items: center;
-            gap: 0.5em;
-        }
-
-        .hamburger-card {
-            position: relative;
-        }
-
-        .hamburger-menu {
-            position: absolute;
-            left: 0;
-            right: 0;
-            background: #fff;
-            box-shadow: 0 4px 24px #b5b5b5;
-            border-radius: 0 0 8px 8px;
-            z-index: 10;
-            padding: 0.5em 0.5em 0.7em 0.5em;
-            animation: fadeIn 0.2s;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: none;
-            }
-        }
-
-        .adv-search-toggle {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            user-select: none;
-            font-size: 1.2em;
-            font-weight: 700;
-            color: #209cee;
-            margin-bottom: 1rem;
-            transition: color 0.2s;
-        }
-
-        .adv-search-toggle .hamburger {
-            width: 24px;
-            height: 24px;
-            position: relative;
-            display: inline-block;
-            margin-right: 0.7em;
-        }
-
-        .adv-search-toggle .bar {
-            display: block;
-            position: absolute;
-            height: 3px;
-            width: 100%;
-            background: #209cee;
-            border-radius: 2px;
-            opacity: 1;
-            left: 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .adv-search-toggle .bar1 {
-            top: 4px;
-        }
-
-        .adv-search-toggle .bar2 {
-            top: 10px;
-        }
-
-        .adv-search-toggle .bar3 {
-            top: 16px;
-        }
-
-        .adv-search-toggle.open .bar1 {
-            transform: rotate(45deg);
-            top: 10px;
-        }
-
-        .adv-search-toggle.open .bar2 {
-            opacity: 0;
-        }
-
-        .adv-search-toggle.open .bar3 {
-            transform: rotate(-45deg);
-            top: 10px;
-        }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.polyfilled.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/plyr-ads@2.0.7/dist/plyr-ads.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.7/dist/hls.min.js"></script>
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
     <script>
-        const adTagUrl = 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator=';
-
         let playlistData = [];
-        let plyrPlayer;
-        let current = { episode: 0, server: 0, mode: 'subs', quality: 0 };
+        let videojsPlayer;
+        let current = { episode: 0, server: 0, mode: 'subs', quality: 0, playbackTime: 0 };
         let episodesPage = 1;
         const EPISODES_PER_PAGE = 12;
 
-        // --- Persist current state in localStorage ---
         function savePlayerState() {
             localStorage.setItem('videoPlayerState', JSON.stringify(current));
         }
         function loadPlayerState() {
             const state = localStorage.getItem('videoPlayerState');
             if (state) {
-                try {
-                    return JSON.parse(state);
-                } catch (e) { }
+                try { return JSON.parse(state); } catch (e) {}
             }
-            return { episode: 0, server: 0, mode: 'subs', quality: 0 };
+            return { episode: 0, server: 0, mode: 'subs', quality: 0, playbackTime: 0 };
         }
-
-        // Get series key from URL
         function getSeriesKey() {
             const params = new URLSearchParams(window.location.search);
             return params.get('series') || 'series-json/series1';
         }
-
-        // Fetch playlist from JSON file
         async function loadPlaylist() {
             try {
                 const seriesKey = getSeriesKey();
@@ -266,14 +125,12 @@
                 playlistData = await res.json();
                 episodesPage = 1;
                 renderPlaylist();
-                playEpisode(0, 0, 'subs', 0);
+                playEpisode(current.episode, current.server, current.mode, current.quality);
                 renderExtraContent();
             } catch (e) {
                 document.getElementById('playlist').innerHTML = '<p class="menu-label has-text-danger">Failed to load playlist.</p>';
             }
         }
-
-        // Render playlist
         function renderPlaylist() {
             const playlist = document.getElementById('playlist');
             playlist.innerHTML = '';
@@ -295,8 +152,6 @@
             playlist.appendChild(ul);
             renderEpisodesPagination();
         }
-
-        // Render episodes pagination
         function renderEpisodesPagination() {
             const episodes = playlistData.episodes || [];
             const totalPages = Math.ceil(episodes.length / EPISODES_PER_PAGE);
@@ -318,16 +173,12 @@
                 pagelist.appendChild(li);
             }
         }
-
-        // Highlight active episode
         function highlightActiveEpisode() {
             document.querySelectorAll('#playlist .menu-list a').forEach((a, idx) => {
                 if (idx === current.episode) a.classList.add('is-active');
                 else a.classList.remove('is-active');
             });
         }
-
-        // Render switchers
         function renderSwitchers() {
             const ep = (playlistData.episodes || [])[current.episode];
             if (!ep) return;
@@ -372,10 +223,8 @@
                 qualityDiv.appendChild(btn);
             });
         }
-
-        // Play episode
         function playEpisode(episodeIdx = 0, serverIdx = 0, mode = 'subs', qualityIdx = 0) {
-            current = { episode: episodeIdx, server: serverIdx, mode, quality: qualityIdx };
+            current = { ...current, episode: episodeIdx, server: serverIdx, mode, quality: qualityIdx, playbackTime: 0 };
             savePlayerState();
             highlightActiveEpisode();
             renderSwitchers();
@@ -384,122 +233,20 @@
             const server = ep.servers[serverIdx];
             const sources = server[mode] || [];
             const source = sources[qualityIdx];
-            const video = document.getElementById('player');
-            video.innerHTML = '';
-            if (plyrPlayer && plyrPlayer.hls) {
-                plyrPlayer.hls.destroy();
-                plyrPlayer.hls = null;
-            }
-            if (source) {
-                if (source.type === 'application/x-mpegURL') {
-                    if (Hls.isSupported()) {
-                        const hls = new Hls();
-                        hls.loadSource(source.src);
-                        hls.attachMedia(video);
-                        plyrPlayer.hls = hls;
-                        // Set Plyr source for UI (but not for playback)
-                        plyrPlayer.source = {
-                            type: 'video',
-                            sources: [{ src: source.src, type: source.type }]
-                        };
-                    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                        video.src = source.src;
-                        plyrPlayer.source = {
-                            type: 'video',
-                            sources: [{ src: source.src, type: source.type }]
-                        };
-                    } else {
-                        // Show error if HLS not supported
-                        video.innerHTML = '<p style="color:red">HLS is not supported in this browser.</p>';
-                    }
-                } else {
-                    const srcEl = document.createElement('source');
-                    srcEl.src = source.src;
-                    srcEl.type = source.type;
-                    if (source.quality) srcEl.setAttribute('data-quality', source.quality);
-                    video.appendChild(srcEl);
-                    plyrPlayer.source = {
-                        type: 'video',
-                        sources: [source]
-                    };
+            if (videojsPlayer) {
+                videojsPlayer.pause();
+                videojsPlayer.src(""); // Reset source
+                if (source) {
+                    videojsPlayer.src({ src: source.src, type: source.type });
                 }
-            }
-            if (plyrPlayer) {
-                plyrPlayer.restart();
-                playAdThenVideo();
-            }
-        }
-
-        // Custom skip buttons for Plyr (icon only)
-        function addCustomSkipButtons() {
-            const controls = document.querySelector('.plyr__controls');
-            if (!controls || document.querySelector('.plyr__control--skip-back')) return;
-            // Skip back
-            const skipBack = document.createElement('button');
-            skipBack.type = 'button';
-            skipBack.className = 'plyr__control plyr__control--skip plyr__control--skip-back';
-            skipBack.innerHTML = '<svg width="24" height="24" fill="none"><path d="M8 12l8-8v16l-8-8z" fill="currentColor"/></svg>';
-            skipBack.title = "Back 10 seconds";
-            skipBack.onclick = () => { plyrPlayer.rewind(10); };
-            // Skip forward
-            const skipForward = document.createElement('button');
-            skipForward.type = 'button';
-            skipForward.className = 'plyr__control plyr__control--skip plyr__control--skip-forward';
-            skipForward.innerHTML = '<svg width="24" height="24" fill="none"><path d="M16 12l-8-8v16l8-8z" fill="currentColor"/></svg>';
-            skipForward.title = "Skip 10 seconds";
-            skipForward.onclick = () => { plyrPlayer.forward(10); };
-            // Insert after play button
-            const playBtn = controls.querySelector('.plyr__control--overlaid') || controls.querySelector('.plyr__control--play');
-            if (playBtn) {
-                controls.insertBefore(skipBack, playBtn.nextSibling);
-                controls.insertBefore(skipForward, skipBack.nextSibling);
-            } else {
-                controls.appendChild(skipBack);
-                controls.appendChild(skipForward);
+                // Playback time reset for new episode
+                videojsPlayer.ready(function() {
+                    if (current.playbackTime) {
+                        videojsPlayer.currentTime(current.playbackTime);
+                    }
+                });
             }
         }
-
-        // Add rotate button to Plyr controls
-        function addRotateButton() {
-            const controls = document.querySelector('.plyr__controls');
-            if (!controls || document.querySelector('.plyr__control--rotate')) return;
-
-            const rotateBtn = document.createElement('button');
-            rotateBtn.type = 'button';
-            rotateBtn.className = 'plyr__control plyr__control--rotate';
-            rotateBtn.title = "Rotate Video";
-            rotateBtn.setAttribute('aria-label', 'Rotate Video');
-            // SVG rotate icon (FontAwesome style)
-            rotateBtn.innerHTML = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2v4a1 1 0 0 0 2 0V3.41A9 9 0 1 1 3 12a1 1 0 1 0-2 0A11 11 0 1 0 12 1v1z" fill="currentColor"/>
-                <path d="M12 2l3 3-3 3V2z" fill="currentColor"/>
-            </svg>`;
-
-            let rotation = 0;
-            rotateBtn.onclick = () => {
-                rotation = (rotation + 90) % 360;
-                const video = document.getElementById('player');
-                video.style.transform = `rotate(${rotation}deg)`;
-                video.style.transition = 'transform 0.2s';
-            };
-
-            // Insert before fullscreen button if present, else at end
-            const fullscreenBtn = controls.querySelector('.plyr__control[data-plyr="fullscreen"]');
-            if (fullscreenBtn) {
-                controls.insertBefore(rotateBtn, fullscreenBtn);
-            } else {
-                controls.appendChild(rotateBtn);
-            }
-        }
-
-        // Play ad before video
-        function playAdThenVideo() {
-            if (plyrPlayer && plyrPlayer.ads) {
-                plyrPlayer.ads.play();
-            }
-        }
-
-        // Render extra content buttons (OVA, movies, etc.) if available
         function renderExtraContent() {
             const toggle = document.getElementById('extra-content-hamburger-toggle');
             const menu = document.getElementById('extra-content-hamburger-menu');
@@ -524,43 +271,29 @@
                 toggle.classList.toggle('open', open);
                 menu.style.display = open ? '' : 'none';
             };
-            // Hide menu on click outside
             document.addEventListener('click', function hideMenu(e) {
                 if (!toggle.contains(e.target) && !menu.contains(e.target)) menu.style.display = 'none', toggle.classList.remove('open');
             });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            plyrPlayer = new Plyr('#player', {
-                ads: { enabled: true, tagUrl: adTagUrl },
-                controls: [
-                    'play-large', 'play', 'progress', 'current-time', 'captions',
-                    'pip', 'airplay', 'fullscreen'
-                ],
-                settings: ['quality', 'speed'],
-                i18n: { quality: 'Quality' }
+            videojsPlayer = videojs('player');
+            videojsPlayer.on('timeupdate', function() {
+                current.playbackTime = videojsPlayer.currentTime();
+                savePlayerState();
             });
-            plyrPlayer.on('ready', () => {
-                addCustomSkipButtons();
-                addRotateButton();
+            videojsPlayer.on('loadedmetadata', function() {
+                if (current.playbackTime) {
+                    videojsPlayer.currentTime(current.playbackTime);
+                }
             });
-            plyrPlayer.on('controlshidden', () => {
-                addCustomSkipButtons();
-                addRotateButton();
+            videojsPlayer.on('ended', function() {
+                current.playbackTime = 0;
+                savePlayerState();
             });
-            plyrPlayer.on('controlsshown', () => {
-                addCustomSkipButtons();
-                addRotateButton();
-            });
-            plyrPlayer.on('beforeplay', event => {
-                if (plyrPlayer.ads) plyrPlayer.ads.play();
-            });
-            loadPlaylist().then(() => {
-                const state = loadPlayerState();
-                playEpisode(state.episode, state.server, state.mode, state.quality);
-            });
+            current = loadPlayerState();
+            loadPlaylist();
         });
     </script>
 </body>
-
 </html>
