@@ -4,170 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Anime Archive - Video Player</title>
-    <!-- Use Bulma CSS only -->
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <!-- Video.js CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/video.js@8.10.0/dist/video-js.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/videojs-ima@1.10.1/dist/videojs.ima.min.css"
+      rel="stylesheet"
+    />
     <style>
-      .card {
-        border-radius: 8px;
-        margin: 10px;
-        overflow: hidden;
-      }
-
-      .player-card {
-        border-radius: 12px;
-        background: none;
-        box-shadow: none;
-        margin-bottom: 0;
-        overflow: hidden;
-      }
-
-      .player-card-content {
-        padding: 0;
-        background: none;
-      }
-
-      #player,
-      .plyr--video {
+      .video-js {
         border-radius: 12px;
         width: 100%;
-        height: 100%;
-        display: block;
         background: #000;
       }
 
-      .plyr__video-wrapper {
-        border-radius: 12px !important;
-        overflow: hidden;
+      .vjs-control:focus {
+        outline: 2px solid #0dcaf0;
       }
 
-      .button.is-focused {
-        background-color: rgba(0, 255, 255, 0.18) !important;
-        box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.18);
-        color: #209cee !important;
-      }
-    </style>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"
-    />
-  </head>
-
-  <body>
-    <div class="container mt-5">
-      <div class="columns is-centered">
-        <div class="column is-12-mobile is-10-tablet is-8-desktop">
-          <div class="card player-card mb-0" style="margin-bottom: 0">
-            <div class="card-content player-card-content" style="padding: 0">
-              <video
-                id="player"
-                playsinline
-                controls
-                crossorigin="anonymous"
-              ></video>
-            </div>
-          </div>
-          <!-- Server Switcher Card -->
-          <div id="switcher-card" class="card mt-4 mb-4">
-            <div class="card-content">
-              <div class="field mb-3 switcher-row">
-                <span class="switcher-label"
-                  ><i class="fas fa-server fa-lg"></i
-                ></span>
-                <div id="server-switcher" class="switcher-btns"></div>
-              </div>
-              <div class="field mb-3 switcher-row">
-                <span class="switcher-label"
-                  ><i class="fa-solid fa-file-audio fa-lg"></i
-                ></span>
-                <div id="mode-switcher" class="switcher-btns"></div>
-              </div>
-              <div class="field mb-1 switcher-row">
-                <span class="switcher-label"
-                  ><i class="fa-solid fa-film fa-lg"></i
-                ></span>
-                <div id="quality-switcher" class="switcher-btns"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Playlist Section (Episodes, paginated, NOT hamburger) -->
-      <div class="columns is-centered">
-        <div class="column is-12-mobile is-10-tablet is-8-desktop">
-          <div class="card">
-            <div class="card-content" style="padding: 0.5em 1em">
-              <div class="mb-2" style="font-weight: 600">EPISODES</div>
-              <div id="playlist" class="menu"></div>
-              <nav
-                class="pagination is-centered mt-3"
-                role="navigation"
-                aria-label="pagination"
-              >
-                <a
-                  class="pagination-previous"
-                  id="episodes-prev"
-                  title="Previous"
-                >
-                  <span class="icon"><i class="fas fa-chevron-left"></i></span>
-                </a>
-                <a class="pagination-next" id="episodes-next" title="Next">
-                  <span class="icon"><i class="fas fa-chevron-right"></i></span>
-                </a>
-                <ul class="pagination-list" id="episodes-pagination"></ul>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Extra Content Section (OVA, Movies, etc.) as Hamburger/Collapsible -->
-      <div
-        class="columns is-centered"
-        id="extra-content-row"
-        style="display: none"
-      >
-        <div class="column is-12-mobile is-10-tablet is-8-desktop">
-          <div class="card">
-            <div class="card-content" style="padding: 0.5em 1em">
-              <div id="extra-content-hamburger" class="hamburger-card">
-                <div
-                  id="extra-content-hamburger-toggle"
-                  class="adv-search-toggle"
-                  style="margin-bottom: 0"
-                >
-                  <span class="hamburger">
-                    <span class="bar bar1"></span>
-                    <span class="bar bar2"></span>
-                    <span class="bar bar3"></span>
-                  </span>
-                  <span style="font-weight: 600">
-                    <i class="fas fa-film"></i> Extra Content (OVA, Movies,
-                    Specials)</span
-                  >
-                </div>
-                <div
-                  id="extra-content-hamburger-menu"
-                  class="hamburger-menu"
-                  style="display: none"
-                >
-                  <div
-                    id="extra-content-buttons"
-                    class="buttons is-centered"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <style>
       .switcher-row {
         display: flex;
         align-items: center;
@@ -225,7 +92,7 @@
         user-select: none;
         font-size: 1.2em;
         font-weight: 700;
-        color: #209cee;
+        color: #0dcaf0;
         margin-bottom: 1rem;
         transition: color 0.2s;
       }
@@ -243,7 +110,7 @@
         position: absolute;
         height: 3px;
         width: 100%;
-        background: #209cee;
+        background: #0dcaf0;
         border-radius: 2px;
         opacity: 1;
         left: 0;
@@ -276,15 +143,140 @@
         top: 10px;
       }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.polyfilled.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/plyr-ads@2.0.7/dist/plyr-ads.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.7/dist/hls.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+          <div class="card mb-0 border-0 bg-transparent">
+            <div class="card-body p-0 bg-transparent">
+              <!-- Video.js Player -->
+              <video
+                id="player"
+                class="video-js vjs-big-play-centered"
+                controls
+                preload="auto"
+                crossorigin="anonymous"
+                playsinline
+                width="100%"
+                height="100%"
+              ></video>
+            </div>
+          </div>
+          <!-- Server Switcher Card -->
+          <div id="switcher-card" class="card mt-4 mb-4">
+            <div class="card-body">
+              <div class="mb-3 switcher-row">
+                <span class="switcher-label">
+                  <i class="bi bi-hdd-network-fill"></i>
+                </span>
+                <div id="server-switcher" class="switcher-btns"></div>
+              </div>
+              <div class="mb-3 switcher-row">
+                <span class="switcher-label">
+                  <i class="bi bi-file-earmark-music-fill"></i>
+                </span>
+                <div id="mode-switcher" class="switcher-btns"></div>
+              </div>
+              <div class="mb-1 switcher-row">
+                <span class="switcher-label">
+                  <i class="bi bi-film"></i>
+                </span>
+                <div id="quality-switcher" class="switcher-btns"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Playlist Section (Episodes, paginated, NOT hamburger) -->
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+          <div class="card">
+            <div class="card-body" style="padding: 0.5em 1em">
+              <div class="mb-2 fw-semibold">EPISODES</div>
+              <div id="playlist" class="list-group"></div>
+              <nav
+                class="d-flex justify-content-center mt-3"
+                aria-label="pagination"
+              >
+                <button
+                  class="btn btn-outline-secondary btn-sm me-2"
+                  id="episodes-prev"
+                  title="Previous"
+                >
+                  <i class="bi bi-chevron-left"></i>
+                </button>
+                <ul class="pagination mb-0" id="episodes-pagination"></ul>
+                <button
+                  class="btn btn-outline-secondary btn-sm ms-2"
+                  id="episodes-next"
+                  title="Next"
+                >
+                  <i class="bi bi-chevron-right"></i>
+                </button>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Extra Content Section (OVA, Movies, etc.) as Hamburger/Collapsible -->
+      <div
+        class="row justify-content-center"
+        id="extra-content-row"
+        style="display: none"
+      >
+        <div class="col-12 col-md-10 col-lg-8">
+          <div class="card">
+            <div class="card-body" style="padding: 0.5em 1em">
+              <div id="extra-content-hamburger" class="hamburger-card">
+                <div
+                  id="extra-content-hamburger-toggle"
+                  class="adv-search-toggle"
+                  style="margin-bottom: 0"
+                >
+                  <span class="hamburger">
+                    <span class="bar bar1"></span>
+                    <span class="bar bar2"></span>
+                    <span class="bar bar3"></span>
+                  </span>
+                  <span class="fw-semibold"
+                    ><i class="bi bi-film"></i> Extra Content (OVA, Movies,
+                    Specials)</span
+                  >
+                </div>
+                <div
+                  id="extra-content-hamburger-menu"
+                  class="hamburger-menu"
+                  style="display: none"
+                >
+                  <div
+                    id="extra-content-buttons"
+                    class="d-flex justify-content-center flex-wrap gap-2"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Video.js -->
+    <script src="https://cdn.jsdelivr.net/npm/video.js@8.10.0/dist/video.min.js"></script>
+    <!-- Video.js HLS (videojs-http-streaming is built-in for v8+) -->
+    <!-- Video.js IMA Ads -->
+    <script src="https://cdn.jsdelivr.net/npm/videojs-ima@1.10.1/dist/videojs.ima.min.js"></script>
     <script>
       const adTagUrl =
         "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator=";
 
       let playlistData = [];
-      let plyrPlayer;
+      let videojsPlayer;
       let current = { episode: 0, server: 0, mode: "subs", quality: 0 };
       let episodesPage = 1;
       const EPISODES_PER_PAGE = 12;
@@ -321,7 +313,7 @@
           renderExtraContent();
         } catch (e) {
           document.getElementById("playlist").innerHTML =
-            '<p class="menu-label has-text-danger">Failed to load playlist.</p>';
+            '<p class="text-danger">Failed to load playlist.</p>';
         }
       }
 
@@ -333,20 +325,18 @@
         const start = (episodesPage - 1) * EPISODES_PER_PAGE;
         const end = start + EPISODES_PER_PAGE;
         const pageEpisodes = episodes.slice(start, end);
-        const ul = document.createElement("ul");
-        ul.className = "menu-list";
         pageEpisodes.forEach((ep, idx) => {
-          const li = document.createElement("li");
-          const a = document.createElement("a");
+          const a = document.createElement("button");
+          a.type = "button";
+          a.className =
+            "list-group-item list-group-item-action" +
+            (start + idx === current.episode ? " active" : "");
           a.textContent = ep.title;
-          a.className = start + idx === current.episode ? "is-active" : "";
           a.onclick = () => {
             playEpisode(start + idx, 0, "subs", 0);
           };
-          li.appendChild(a);
-          ul.appendChild(li);
+          playlist.appendChild(a);
         });
-        playlist.appendChild(ul);
         renderEpisodesPagination();
       }
 
@@ -374,9 +364,9 @@
         pagelist.innerHTML = "";
         for (let i = 1; i <= totalPages; i++) {
           const li = document.createElement("li");
-          const a = document.createElement("a");
-          a.className =
-            "pagination-link" + (i === episodesPage ? " is-current" : "");
+          li.className = "page-item" + (i === episodesPage ? " active" : "");
+          const a = document.createElement("button");
+          a.className = "page-link";
           a.textContent = i;
           a.onclick = () => {
             episodesPage = i;
@@ -390,10 +380,11 @@
       // Highlight active episode
       function highlightActiveEpisode() {
         document
-          .querySelectorAll("#playlist .menu-list a")
+          .querySelectorAll("#playlist .list-group-item")
           .forEach((a, idx) => {
-            if (idx === current.episode) a.classList.add("is-active");
-            else a.classList.remove("is-active");
+            if (idx === current.episode % EPISODES_PER_PAGE)
+              a.classList.add("active");
+            else a.classList.remove("active");
           });
       }
 
@@ -407,7 +398,10 @@
         ep.servers.forEach((srv, i) => {
           const btn = document.createElement("button");
           btn.className =
-            "button is-small" + (i === current.server ? " is-info" : "");
+            "btn btn-sm" +
+            (i === current.server
+              ? " btn-info text-white"
+              : " btn-outline-info");
           btn.textContent = srv.name;
           btn.onclick = () => playEpisode(current.episode, i, current.mode, 0);
           serverDiv.appendChild(btn);
@@ -424,8 +418,9 @@
         // SUB button
         const subBtn = document.createElement("button");
         subBtn.className =
-          "button is-success is-outlined" +
-          (current.mode === "subs" ? " is-focused" : "");
+          "btn btn-success btn-sm" +
+          (current.mode === "subs" ? " active" : "") +
+          (hasSubs ? "" : " disabled");
         subBtn.textContent = "SUB";
         subBtn.disabled = !hasSubs;
         subBtn.onclick = () =>
@@ -434,8 +429,9 @@
         // DUB button
         const dubBtn = document.createElement("button");
         dubBtn.className =
-          "button is-success is-outlined" +
-          (current.mode === "dubs" ? " is-focused" : "");
+          "btn btn-success btn-sm" +
+          (current.mode === "dubs" ? " active" : "") +
+          (hasDubs ? "" : " disabled");
         dubBtn.textContent = "DUB";
         dubBtn.disabled = !hasDubs;
         dubBtn.onclick = () =>
@@ -448,7 +444,10 @@
         qualities.forEach((q, i) => {
           const btn = document.createElement("button");
           btn.className =
-            "button is-small" + (i === current.quality ? " is-info" : "");
+            "btn btn-sm" +
+            (i === current.quality
+              ? " btn-info text-white"
+              : " btn-outline-info");
           btn.textContent = q.quality || `Q${i + 1}`;
           btn.onclick = () =>
             playEpisode(current.episode, current.server, current.mode, i);
@@ -478,206 +477,38 @@
         const sources = server[mode] || [];
         const source = sources[qualityIdx];
         const video = document.getElementById("player");
-        video.innerHTML = "";
-        if (plyrPlayer && plyrPlayer.hls) {
-          plyrPlayer.hls.destroy();
-          plyrPlayer.hls = null;
+
+        // Dispose previous player if exists
+        if (videojsPlayer) {
+          videojsPlayer.ima &&
+            videojsPlayer.ima.reset &&
+            videojsPlayer.ima.reset();
+          videojsPlayer.dispose();
         }
+
+        // Prepare sources for video.js
+        let videoSources = [];
         if (source) {
-          if (source.type === "application/x-mpegURL") {
-            if (Hls.isSupported()) {
-              const hls = new Hls();
-              hls.loadSource(source.src);
-              hls.attachMedia(video);
-              plyrPlayer.hls = hls;
-              // Set Plyr source for UI (but not for playback)
-              plyrPlayer.source = {
-                type: "video",
-                sources: [{ src: source.src, type: source.type }],
-              };
-            } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-              video.src = source.src;
-              plyrPlayer.source = {
-                type: "video",
-                sources: [{ src: source.src, type: source.type }],
-              };
-            } else {
-              // Show error if HLS not supported
-              video.innerHTML =
-                '<p style="color:red">HLS is not supported in this browser.</p>';
-            }
-          } else {
-            const srcEl = document.createElement("source");
-            srcEl.src = source.src;
-            srcEl.type = source.type;
-            if (source.quality)
-              srcEl.setAttribute("data-quality", source.quality);
-            video.appendChild(srcEl);
-            plyrPlayer.source = {
-              type: "video",
-              sources: [source],
-            };
-          }
+          videoSources.push({
+            src: source.src,
+            type: source.type,
+          });
         }
-        if (plyrPlayer) {
-          plyrPlayer.restart();
-          playAdThenVideo();
-        }
-      }
 
-      // Custom skip buttons for Plyr (icon only)
-      function addCustomSkipButtons() {
-        const controls = document.querySelector(".plyr__controls");
-        if (!controls || document.querySelector(".plyr__control--skip-back"))
-          return;
-        // Skip back
-        const skipBack = document.createElement("button");
-        skipBack.type = "button";
-        skipBack.className =
-          "plyr__control plyr__control--skip plyr__control--skip-back";
-        skipBack.innerHTML =
-          '<svg width="24" height="24" fill="none"><path d="M8 12l8-8v16l-8-8z" fill="currentColor"/></svg>';
-        skipBack.title = "Back 10 seconds";
-        skipBack.onclick = () => {
-          plyrPlayer.rewind(10);
-        };
-        // Skip forward
-        const skipForward = document.createElement("button");
-        skipForward.type = "button";
-        skipForward.className =
-          "plyr__control plyr__control--skip plyr__control--skip-forward";
-        skipForward.innerHTML =
-          '<svg width="24" height="24" fill="none"><path d="M16 12l-8-8v16l8-8z" fill="currentColor"/></svg>';
-        skipForward.title = "Skip 10 seconds";
-        skipForward.onclick = () => {
-          plyrPlayer.forward(10);
-        };
-        // Insert after play button
-        const playBtn =
-          controls.querySelector(".plyr__control--overlaid") ||
-          controls.querySelector(".plyr__control--play");
-        if (playBtn) {
-          controls.insertBefore(skipBack, playBtn.nextSibling);
-          controls.insertBefore(skipForward, skipBack.nextSibling);
-        } else {
-          controls.appendChild(skipBack);
-          controls.appendChild(skipForward);
-        }
-      }
+        // Init video.js
+        videojsPlayer = videojs(video, {
+          controls: true,
+          autoplay: false,
+          preload: "auto",
+          sources: videoSources,
+          fluid: true,
+        });
 
-      // Add rotate button to Plyr controls
-      function addRotateButton() {
-        const controls = document.querySelector(".plyr__controls");
-        if (!controls || document.querySelector(".plyr__control--rotate"))
-          return;
+        // IMA Ads plugin
+        videojsPlayer.ima({
+          id: "player",
+          adTagUrl: adTagUrl,
+          debug: false,
+        });
 
-        const rotateBtn = document.createElement("button");
-        rotateBtn.type = "button";
-        rotateBtn.className = "plyr__control plyr__control--rotate";
-        rotateBtn.title = "Rotate Video";
-        rotateBtn.setAttribute("aria-label", "Rotate Video");
-        // SVG rotate icon (FontAwesome style)
-        rotateBtn.innerHTML = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2v4a1 1 0 0 0 2 0V3.41A9 9 0 1 1 3 12a1 1 0 1 0-2 0A11 11 0 1 0 12 1v1z" fill="currentColor"/>
-                <path d="M12 2l3 3-3 3V2z" fill="currentColor"/>
-            </svg>`;
-
-        let rotation = 0;
-        rotateBtn.onclick = () => {
-          rotation = (rotation + 90) % 360;
-          const video = document.getElementById("player");
-          video.style.transform = `rotate(${rotation}deg)`;
-          video.style.transition = "transform 0.2s";
-        };
-
-        // Insert before fullscreen button if present, else at end
-        const fullscreenBtn = controls.querySelector(
-          '.plyr__control[data-plyr="fullscreen"]'
-        );
-        if (fullscreenBtn) {
-          controls.insertBefore(rotateBtn, fullscreenBtn);
-        } else {
-          controls.appendChild(rotateBtn);
-        }
-      }
-
-      // Play ad before video
-      function playAdThenVideo() {
-        if (plyrPlayer && plyrPlayer.ads) {
-          plyrPlayer.ads.play();
-        }
-      }
-
-      // Render extra content buttons (OVA, movies, etc.) if available
-      function renderExtraContent() {
-        const toggle = document.getElementById(
-          "extra-content-hamburger-toggle"
-        );
-        const menu = document.getElementById("extra-content-hamburger-menu");
-        const btnsDiv = document.getElementById("extra-content-buttons");
-        btnsDiv.innerHTML = "";
-        let extra = playlistData.extraContent || [];
-        if (!Array.isArray(extra) || extra.length === 0) {
-          menu.style.display = "none";
-          return;
-        }
-        extra.forEach((item) => {
-          const btn = document.createElement("a");
-          btn.className = "button is-info is-light";
-          btn.textContent = item.label;
-          btn.href = item.link;
-          btn.target = "_blank";
-          btnsDiv.appendChild(btn);
-        });
-        let open = false;
-        toggle.onclick = function () {
-          open = !open;
-          toggle.classList.toggle("open", open);
-          menu.style.display = open ? "" : "none";
-        };
-        // Hide menu on click outside
-        document.addEventListener("click", function hideMenu(e) {
-          if (!toggle.contains(e.target) && !menu.contains(e.target))
-            (menu.style.display = "none"), toggle.classList.remove("open");
-        });
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        plyrPlayer = new Plyr("#player", {
-          ads: { enabled: true, tagUrl: adTagUrl },
-          controls: [
-            "play-large",
-            "play",
-            "progress",
-            "current-time",
-            "captions",
-            "pip",
-            "airplay",
-            "fullscreen",
-          ],
-          settings: ["quality", "speed"],
-          i18n: { quality: "Quality" },
-        });
-        plyrPlayer.on("ready", () => {
-          addCustomSkipButtons();
-          addRotateButton();
-        });
-        plyrPlayer.on("controlshidden", () => {
-          addCustomSkipButtons();
-          addRotateButton();
-        });
-        plyrPlayer.on("controlsshown", () => {
-          addCustomSkipButtons();
-          addRotateButton();
-        });
-        plyrPlayer.on("beforeplay", (event) => {
-          if (plyrPlayer.ads) plyrPlayer.ads.play();
-        });
-        loadPlaylist().then(() => {
-          const state = loadPlayerState();
-          playEpisode(state.episode, state.server, state.mode, state.quality);
-        });
-      });
-    </script>
-  </body>
-</html>
+        // Play ad
