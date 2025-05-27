@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -95,83 +94,9 @@
                 ></span>
                 <div id="quality-switcher" class="switcher-btns"></div>
               </div>
-=======
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anime Archive - Video Player</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
-    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
-    <style>
-        .card { border-radius: 8px; margin: 10px; overflow: hidden; }
-        .player-card { border-radius: 12px; background: none; box-shadow: none; margin-bottom: 0; overflow: hidden; }
-        .player-card-content { padding: 0; background: none; }
-        #player, .video-js { border-radius: 12px; width: 100%; height: 100%; display: block; background: #000; }
-        .switcher-row { display: flex; align-items: center; gap: 0.7em; margin-bottom: 1em; }
-        .switcher-label { min-width: 60px; text-align: right; font-size: 1.1em; display: flex; align-items: center; gap: 0.3em; }
-        .switcher-btns { display: flex; align-items: center; gap: 0.5em; }
-        /* ... (rest of your styles unchanged) ... */
-    </style>
-</head>
-<body>
-    <div class="container mt-5">
-        <div class="columns is-centered">
-            <div class="column is-12-mobile is-10-tablet is-8-desktop">
-                <div class="card player-card mb-0" style="margin-bottom:0;">
-                    <div class="card-content player-card-content" style="padding:0;">
-                        <video
-                            id="player"
-                            class="video-js vjs-default-skin"
-                            controls
-                            preload="auto"
-                            width="100%"
-                            height="100%">
-                        </video>
-                    </div>
-                </div>
-                <!-- Server Switcher Card -->
-                <div id="switcher-card" class="card mt-4 mb-4">
-                    <div class="card-content">
-                        <div class="field mb-3 switcher-row">
-                            <span class="switcher-label"><i class="fas fa-server fa-lg"></i></span>
-                            <div id="server-switcher" class="switcher-btns"></div>
-                        </div>
-                        <div class="field mb-3 switcher-row">
-                            <span class="switcher-label"><i class="fa-solid fa-file-audio fa-lg"></i></span>
-                            <div id="mode-switcher" class="switcher-btns"></div>
-                        </div>
-                        <div class="field mb-1 switcher-row">
-                            <span class="switcher-label"><i class="fa-solid fa-film fa-lg"></i></span>
-                            <div id="quality-switcher" class="switcher-btns"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Playlist Section -->
-        <div class="columns is-centered">
-            <div class="column is-12-mobile is-10-tablet is-8-desktop">
-                <div class="card">
-                    <div class="card-content" style="padding: 0.5em 1em;">
-                        <div class="mb-2" style="font-weight:600;">EPISODES</div>
-                        <div id="playlist" class="menu"></div>
-                        <nav class="pagination is-centered mt-3" role="navigation" aria-label="pagination">
-                            <a class="pagination-previous" id="episodes-prev" title="Previous">
-                                <span class="icon"><i class="fas fa-chevron-left"></i></span>
-                            </a>
-                            <a class="pagination-next" id="episodes-next" title="Next">
-                                <span class="icon"><i class="fas fa-chevron-right"></i></span>
-                            </a>
-                            <ul class="pagination-list" id="episodes-pagination"></ul>
-                        </nav>
-                    </div>
-                </div>
->>>>>>> 68553b41c16bcf46ee2c001ba88f1120cfa23a69
             </div>
           </div>
         </div>
-<<<<<<< HEAD
       </div>
       <!-- Playlist Section (Episodes, paginated, NOT hamburger) -->
       <div class="columns is-centered">
@@ -197,28 +122,6 @@
                 </a>
                 <ul class="pagination-list" id="episodes-pagination"></ul>
               </nav>
-=======
-        <!-- Extra Content Section (OVA, Movies, etc.) as Hamburger/Collapsible -->
-        <div class="columns is-centered" id="extra-content-row" style="display:none;">
-            <div class="column is-12-mobile is-10-tablet is-8-desktop">
-                <div class="card">
-                    <div class="card-content" style="padding: 0.5em 1em;">
-                        <div id="extra-content-hamburger" class="hamburger-card">
-                            <div id="extra-content-hamburger-toggle" class="adv-search-toggle" style="margin-bottom:0;">
-                                <span class="hamburger">
-                                    <span class="bar bar1"></span>
-                                    <span class="bar bar2"></span>
-                                    <span class="bar bar3"></span>
-                                </span>
-                                <span style="font-weight:600;"> <i class="fas fa-film"></i> Extra Content (OVA, Movies, Specials)</span>
-                            </div>
-                            <div id="extra-content-hamburger-menu" class="hamburger-menu" style="display:none;">
-                                <div id="extra-content-buttons" class="buttons is-centered"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
->>>>>>> 68553b41c16bcf46ee2c001ba88f1120cfa23a69
             </div>
           </div>
         </div>
@@ -264,7 +167,6 @@
         </div>
       </div>
     </div>
-<<<<<<< HEAD
     <style>
       .switcher-row {
         display: flex;
@@ -779,206 +681,3 @@
     </script>
   </body>
 </html>
-=======
-    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
-    <script>
-        let playlistData = [];
-        let videojsPlayer;
-        let current = { episode: 0, server: 0, mode: 'subs', quality: 0, playbackTime: 0 };
-        let episodesPage = 1;
-        const EPISODES_PER_PAGE = 12;
-
-        function savePlayerState() {
-            localStorage.setItem('videoPlayerState', JSON.stringify(current));
-        }
-        function loadPlayerState() {
-            const state = localStorage.getItem('videoPlayerState');
-            if (state) {
-                try { return JSON.parse(state); } catch (e) {}
-            }
-            return { episode: 0, server: 0, mode: 'subs', quality: 0, playbackTime: 0 };
-        }
-        function getSeriesKey() {
-            const params = new URLSearchParams(window.location.search);
-            return params.get('series') || 'series-json/series1';
-        }
-        async function loadPlaylist() {
-            try {
-                const seriesKey = getSeriesKey();
-                const res = await fetch(seriesKey + '.json');
-                playlistData = await res.json();
-                episodesPage = 1;
-                renderPlaylist();
-                playEpisode(current.episode, current.server, current.mode, current.quality);
-                renderExtraContent();
-            } catch (e) {
-                document.getElementById('playlist').innerHTML = '<p class="menu-label has-text-danger">Failed to load playlist.</p>';
-            }
-        }
-        function renderPlaylist() {
-            const playlist = document.getElementById('playlist');
-            playlist.innerHTML = '';
-            const episodes = playlistData.episodes || [];
-            const start = (episodesPage - 1) * EPISODES_PER_PAGE;
-            const end = start + EPISODES_PER_PAGE;
-            const pageEpisodes = episodes.slice(start, end);
-            const ul = document.createElement('ul');
-            ul.className = 'menu-list';
-            pageEpisodes.forEach((ep, idx) => {
-                const li = document.createElement('li');
-                const a = document.createElement('a');
-                a.textContent = ep.title;
-                a.className = (start + idx === current.episode ? 'is-active' : '');
-                a.onclick = () => { playEpisode(start + idx, 0, 'subs', 0); };
-                li.appendChild(a);
-                ul.appendChild(li);
-            });
-            playlist.appendChild(ul);
-            renderEpisodesPagination();
-        }
-        function renderEpisodesPagination() {
-            const episodes = playlistData.episodes || [];
-            const totalPages = Math.ceil(episodes.length / EPISODES_PER_PAGE);
-            const prev = document.getElementById('episodes-prev');
-            const next = document.getElementById('episodes-next');
-            const pagelist = document.getElementById('episodes-pagination');
-            prev.disabled = episodesPage === 1;
-            next.disabled = episodesPage === totalPages;
-            prev.onclick = () => { if (episodesPage > 1) { episodesPage--; renderPlaylist(); } };
-            next.onclick = () => { if (episodesPage < totalPages) { episodesPage++; renderPlaylist(); } };
-            pagelist.innerHTML = '';
-            for (let i = 1; i <= totalPages; i++) {
-                const li = document.createElement('li');
-                const a = document.createElement('a');
-                a.className = 'pagination-link' + (i === episodesPage ? ' is-current' : '');
-                a.textContent = i;
-                a.onclick = () => { episodesPage = i; renderPlaylist(); };
-                li.appendChild(a);
-                pagelist.appendChild(li);
-            }
-        }
-        function highlightActiveEpisode() {
-            document.querySelectorAll('#playlist .menu-list a').forEach((a, idx) => {
-                if (idx === current.episode) a.classList.add('is-active');
-                else a.classList.remove('is-active');
-            });
-        }
-        function renderSwitchers() {
-            const ep = (playlistData.episodes || [])[current.episode];
-            if (!ep) return;
-            // Server Switcher
-            const serverDiv = document.getElementById('server-switcher');
-            serverDiv.innerHTML = '';
-            ep.servers.forEach((srv, i) => {
-                const btn = document.createElement('button');
-                btn.className = 'button is-small' + (i === current.server ? ' is-info' : '');
-                btn.textContent = srv.name;
-                btn.onclick = () => playEpisode(current.episode, i, current.mode, 0);
-                serverDiv.appendChild(btn);
-            });
-            // Mode Switcher (SUB/DUB)
-            const modeDiv = document.getElementById('mode-switcher');
-            modeDiv.innerHTML = '';
-            const hasSubs = ep.servers[current.server].subs && ep.servers[current.server].subs.length > 0;
-            const hasDubs = ep.servers[current.server].dubs && ep.servers[current.server].dubs.length > 0;
-            // SUB button
-            const subBtn = document.createElement('button');
-            subBtn.className = 'button is-success is-outlined' + (current.mode === 'subs' ? ' is-focused' : '');
-            subBtn.textContent = 'SUB';
-            subBtn.disabled = !hasSubs;
-            subBtn.onclick = () => hasSubs && playEpisode(current.episode, current.server, 'subs', 0);
-            modeDiv.appendChild(subBtn);
-            // DUB button
-            const dubBtn = document.createElement('button');
-            dubBtn.className = 'button is-danger is-outlined' + (current.mode === 'dubs' ? ' is-focused' : '');
-            dubBtn.textContent = 'DUB';
-            dubBtn.disabled = !hasDubs;
-            dubBtn.onclick = () => hasDubs && playEpisode(current.episode, current.server, 'dubs', 0);
-            modeDiv.appendChild(dubBtn);
-            // Quality Switcher
-            const qualityDiv = document.getElementById('quality-switcher');
-            qualityDiv.innerHTML = '';
-            const qualities = ep.servers[current.server][current.mode] || [];
-            qualities.forEach((q, i) => {
-                const btn = document.createElement('button');
-                btn.className = 'button is-small' + (i === current.quality ? ' is-info' : '');
-                btn.textContent = q.quality || `Q${i + 1}`;
-                btn.onclick = () => playEpisode(current.episode, current.server, current.mode, i);
-                qualityDiv.appendChild(btn);
-            });
-        }
-        function playEpisode(episodeIdx = 0, serverIdx = 0, mode = 'subs', qualityIdx = 0) {
-            current = { ...current, episode: episodeIdx, server: serverIdx, mode, quality: qualityIdx, playbackTime: 0 };
-            savePlayerState();
-            highlightActiveEpisode();
-            renderSwitchers();
-            const ep = (playlistData.episodes || [])[episodeIdx];
-            if (!ep) return;
-            const server = ep.servers[serverIdx];
-            const sources = server[mode] || [];
-            const source = sources[qualityIdx];
-            if (videojsPlayer) {
-                videojsPlayer.pause();
-                videojsPlayer.src(""); // Reset source
-                if (source) {
-                    videojsPlayer.src({ src: source.src, type: source.type });
-                }
-                // Playback time reset for new episode
-                videojsPlayer.ready(function() {
-                    if (current.playbackTime) {
-                        videojsPlayer.currentTime(current.playbackTime);
-                    }
-                });
-            }
-        }
-        function renderExtraContent() {
-            const toggle = document.getElementById('extra-content-hamburger-toggle');
-            const menu = document.getElementById('extra-content-hamburger-menu');
-            const btnsDiv = document.getElementById('extra-content-buttons');
-            btnsDiv.innerHTML = '';
-            let extra = playlistData.extraContent || [];
-            if (!Array.isArray(extra) || extra.length === 0) {
-                menu.style.display = 'none';
-                return;
-            }
-            extra.forEach(item => {
-                const btn = document.createElement('a');
-                btn.className = 'button is-info is-light';
-                btn.textContent = item.label;
-                btn.href = item.link;
-                btn.target = '_blank';
-                btnsDiv.appendChild(btn);
-            });
-            let open = false;
-            toggle.onclick = function () {
-                open = !open;
-                toggle.classList.toggle('open', open);
-                menu.style.display = open ? '' : 'none';
-            };
-            document.addEventListener('click', function hideMenu(e) {
-                if (!toggle.contains(e.target) && !menu.contains(e.target)) menu.style.display = 'none', toggle.classList.remove('open');
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            videojsPlayer = videojs('player');
-            videojsPlayer.on('timeupdate', function() {
-                current.playbackTime = videojsPlayer.currentTime();
-                savePlayerState();
-            });
-            videojsPlayer.on('loadedmetadata', function() {
-                if (current.playbackTime) {
-                    videojsPlayer.currentTime(current.playbackTime);
-                }
-            });
-            videojsPlayer.on('ended', function() {
-                current.playbackTime = 0;
-                savePlayerState();
-            });
-            current = loadPlayerState();
-            loadPlaylist();
-        });
-    </script>
-</body>
-</html>
->>>>>>> 68553b41c16bcf46ee2c001ba88f1120cfa23a69
