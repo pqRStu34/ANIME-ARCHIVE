@@ -1,555 +1,669 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Watch your favorite anime online for free. Subbed and Dubbed anime streaming with no registration.">
-    <link rel="icon" type="image/png" href="weblogo.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Watch your favorite anime online for free. Subbed and Dubbed anime streaming with no registration."
+    />
+    <link rel="icon" type="image/png" href="weblogo.png" />
     <title>Anime Streaming Testsite</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"
+    />
     <style>
-        .card {
-            border-radius: 8px;
-            margin: 10px;
-            /* Adds some space around the edges */
-            overflow: hidden;
-        }
+      .card {
+        border-radius: 8px;
+        margin: 10px;
+        /* Adds some space around the edges */
+        overflow: hidden;
+      }
 
-        .series-card {
-            width: 110px;
-            min-width: 110px;
-            max-width: 110px;
-            height: 190px;
-            min-height: 190px;
-            max-height: 190px;
-            margin: 0 auto;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            transition: box-shadow 0.2s, transform 0.2s;
-            overflow: hidden;
-            border-radius: 12px;
-            position: relative;
-        }
+      .series-card {
+        width: 110px;
+        min-width: 110px;
+        max-width: 110px;
+        height: 160px;
+        min-height: 160px;
+        max-height: 160px;
+        margin: 0 auto;
+        box-shadow: none;
+        background: none;
+        border-radius: 12px;
+        padding: 0;
+        overflow: visible;
+        position: relative;
+      }
 
-        .series-card:hover {
-            box-shadow: 0 0 16px 4px #7afff0, 0 4px 24px rgba(0, 0, 0, 0.18);
-            transform: scale(1.07);
-            z-index: 2;
-        }
+      .series-card:hover {
+        box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.08),
+          0 4px 24px rgba(0, 0, 0, 0.18);
+        transform: scale(1.07);
+        z-index: 2;
+      }
 
-        .marquee {
-            width: 100%;
-            height: 30px;
-            overflow: hidden;
-            position: relative;
-        }
+      .card.series-card .card-image {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        background: none;
+        box-shadow: none;
+        border-radius: 12px;
+        padding: 0;
+      }
 
-        .marquee span {
-            display: inline-block;
-            white-space: nowrap;
-            animation: marquee 4s linear infinite;
-            font-size: 1rem;
-            padding-left: 0;
-        }
+      .series-card .card-image figure.image {
+        height: 100%;
+        width: 100%;
+        border: 2px solid #abb1bf;
+        box-sizing: border-box;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+        margin: 0;
+        background: none;
+      }
 
-        @keyframes marquee {
-            0% {
-                transform: translateX(100%);
-            }
+      .series-card .series-title-hover {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 19, 16, 0.547);
+        color: #fff;
+        font-size: 0.98em;
+        font-weight: 600;
+        padding: 0.5em 0.2em;
+        text-align: center;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        z-index: 3;
+        pointer-events: none;
+      }
 
-            100% {
-                transform: translateX(-100%);
-            }
-        }
+      .card.series-card:hover .series-title-hover {
+        display: block;
+      }
 
-        .series-card .card-content {
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
-        }
+      .card.series-card .card-content {
+        display: none;
+      }
 
-        /* Hide marquee animation if text fits */
-        .marquee span {
-            max-width: 100%;
-        }
+      /* Hide marquee animation if text fits */
+      .marquee span {
+        max-width: 100%;
+      }
 
+      .series-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-auto-rows: 210px;
+        gap: 8px;
+        justify-items: center;
+      }
+
+      @media (max-width: 900px) {
         .series-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-auto-rows: 210px;
-            gap: 8px;
-            justify-items: center;
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .series-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      .neon-footer {
+        transition: box-shadow 0.2s;
+      }
+
+      .neon-footer:hover {
+        box-shadow: 0 0 16px #7afff0, 0 0 32px #b4f9fe;
+      }
+
+      .neon-text {
+        color: #7afff0;
+        text-shadow: none;
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: text-shadow 0.2s, color 0.2s;
+      }
+
+      .neon-footer:hover .neon-text {
+        text-shadow: 0 0 8px #7afff0, 0 0 16px #b4f9fe;
+      }
+
+      .neon-icon {
+        color: #7afff0;
+        margin: 0 12px;
+        transition: color 0.2s, text-shadow 0.2s;
+      }
+
+      .neon-icon:hover {
+        color: #fff;
+        text-shadow: 0 0 16px #7afff0, 0 0 32px #b4f9fe;
+      }
+
+      .neon-input {
+        color: #7afff0;
+        font-weight: 500;
+        box-shadow: none;
+        transition: border-color 0.2s, box-shadow 0.2s, color 0.2s;
+      }
+
+      .neon-input:focus,
+      .neon-input:hover {
+        border-color: #7afff0;
+        box-shadow: 0 0 8px #7afff0;
+        color: #b4f9fe;
+      }
+
+      .neon-predictions {
+        border: 2px solid #7afff0;
+        box-shadow: 0 0 16px #7afff0;
+        border-radius: 8px;
+        padding: 0.5em 0;
+        margin-top: -1.5em;
+      }
+
+      .neon-predictions .prediction-item {
+        padding: 0.5em 1em;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+
+      .neon-predictions .prediction-item:hover,
+      .neon-predictions .prediction-item.active {
+        color: #abeef3;
+      }
+
+      .navbar-sticky {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        transition: none;
+        box-shadow: none;
+      }
+
+      .navbar-sticky:hover {
+        box-shadow: none;
+      }
+
+      .is-skeleton {
+        background: #e0e0e0;
+        animation: skeleton-loading 1.5s infinite;
+      }
+
+      @keyframes skeleton-loading {
+        0% {
+          background-color: #e0e0e0;
         }
 
-        @media (max-width: 900px) {
-            .series-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        50% {
+          background-color: #f0f0f0;
         }
 
-        @media (max-width: 600px) {
-            .series-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        100% {
+          background-color: #e0e0e0;
+        }
+      }
+
+      body.cookie-blur {
+        overflow: hidden;
+      }
+
+      .modal.is-active {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-card {
+        animation: popIn 0.35s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      }
+
+      @keyframes popIn {
+        0% {
+          transform: scale(0.7);
+          opacity: 0;
         }
 
-        .neon-footer {
-            transition: box-shadow 0.2s;
+        80% {
+          transform: scale(1.05);
+          opacity: 1;
         }
 
-        .neon-footer:hover {
-            box-shadow: 0 0 16px #7afff0, 0 0 32px #b4f9fe;
+        100% {
+          transform: scale(1);
+          opacity: 1;
         }
+      }
 
-        .neon-text {
-            color: #7afff0;
-            text-shadow: none;
-            font-weight: 600;
-            letter-spacing: 1px;
-            transition: text-shadow 0.2s, color 0.2s;
-        }
+      .modal-background {
+        background: rgba(245, 245, 245, 0.7);
+        backdrop-filter: blur(4px);
+      }
 
-        .neon-footer:hover .neon-text {
-            text-shadow: 0 0 8px #7afff0, 0 0 16px #b4f9fe;
-        }
+      /* --- Remove all neon/glow effects --- */
+      /* .neon-footer, .neon-footer:hover, .neon-text, .neon-footer:hover .neon-text, .neon-icon, .neon-icon:hover, .neon-input, .neon-input:focus, .neon-input:hover, .neon-predictions, .series-card:hover */
+      .neon-footer,
+      .neon-footer:hover,
+      .neon-text,
+      .neon-footer:hover .neon-text,
+      .neon-icon,
+      .neon-icon:hover,
+      .neon-input,
+      .neon-input:focus,
+      .neon-input:hover,
+      .neon-predictions,
+      .series-card:hover {
+        box-shadow: none !important;
+        text-shadow: none !important;
+        color: inherit !important;
+        border-color: #dbdbdb !important;
+        background: inherit !important;
+      }
 
-        .neon-icon {
-            color: #7afff0;
-            margin: 0 12px;
-            transition: color 0.2s, text-shadow 0.2s;
-        }
+      .neon-text {
+        color: inherit !important;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
 
-        .neon-icon:hover {
-            color: #fff;
-            text-shadow: 0 0 16px #7afff0, 0 0 32px #b4f9fe;
-        }
+      .neon-icon {
+        color: inherit !important;
+      }
 
-        .neon-input {
-            color: #7afff0;
-            font-weight: 500;
-            box-shadow: none;
-            transition: border-color 0.2s, box-shadow 0.2s, color 0.2s;
-        }
+      .neon-input {
+        color: inherit !important;
+      }
 
-        .neon-input:focus,
-        .neon-input:hover {
-            border-color: #7afff0;
-            box-shadow: 0 0 8px #7afff0;
-            color: #b4f9fe;
-        }
+      .neon-predictions {
+        border: 1px solid #dbdbdb !important;
+        box-shadow: none !important;
+      }
 
-        .neon-predictions {
-            border: 2px solid #7afff0;
-            box-shadow: 0 0 16px #7afff0;
-            border-radius: 8px;
-            padding: 0.5em 0;
-            margin-top: -1.5em;
-        }
-
-        .neon-predictions .prediction-item {
-            padding: 0.5em 1em;
-            cursor: pointer;
-            transition: background 0.15s;
-        }
-
-        .neon-predictions .prediction-item:hover,
-        .neon-predictions .prediction-item.active {
-            color: #abeef3;
-        }
-
-        .navbar-sticky {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            transition: box-shadow 0.2s;
-        }
-
-        .navbar-sticky:hover {
-            box-shadow: 0 2px 16px #7afff0, 0 0 32px #b4f9fe;
-        }
-
-        .is-skeleton {
-            background: #e0e0e0;
-            animation: skeleton-loading 1.5s infinite;
-        }
-
-        @keyframes skeleton-loading {
-            0% {
-                background-color: #e0e0e0;
-            }
-
-            50% {
-                background-color: #f0f0f0;
-            }
-
-            100% {
-                background-color: #e0e0e0;
-            }
-        }
-
-        body.cookie-blur {
-            overflow: hidden;
-        }
-
-        .modal.is-active {
-            display: flex !important;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-card {
-            animation: popIn 0.35s cubic-bezier(.68, -0.55, .27, 1.55);
-        }
-
-        @keyframes popIn {
-            0% {
-                transform: scale(0.7);
-                opacity: 0;
-            }
-
-            80% {
-                transform: scale(1.05);
-                opacity: 1;
-            }
-
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .modal-background {
-            background: rgba(245, 245, 245, 0.7);
-            backdrop-filter: blur(4px);
-        }
+      .card.series-card .card-image figure.image {
+        border: 2px solid #abb1bf;
+        box-sizing: border-box;
+        border-radius: 10px;
+        overflow: hidden;
+      }
     </style>
-</head>
 
-<body>
-    <!-- Cookie Consent Modal -->
-    <div id="cookie-consent-modal" class="modal" style="display:none;">
-        <div class="modal-background" style="backdrop-filter: blur(4px);"></div>
-        <div class="modal-card" style="max-width: 420px; margin: 0 auto;">
-            <header class="modal-card-head has-background-info-light">
-                <p class="modal-card-title has-text-info-dark"><i class="fa-solid fa-cookie-bite"></i> Privacy & Cookies
-                </p>
-            </header>
-            <section class="modal-card-body has-text-centered">
-                <p class="mb-4">This site uses cookies and may show ads from third parties (e.g., Google AdSense) to
-                    support free streaming. By using this site, you agree to our <a href="privacy.html"
-                        target="_blank">Privacy Policy</a>.</p>
-                <button id="cookie-consent-accept" class="button is-info is-medium">Accept & Continue</button>
-            </section>
-        </div>
-    </div>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5403590533015775"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <!-- Navbar and Main Content Start -->
     <div id="main-content">
-        <!-- Navbar -->
-        <div class="card navbar-sticky">
-            <nav class="navbar is-primary">
-                <div class="navbar-brand">
-                    <a class="navbar-item" href="/accounts.html">
-                        <span class="icon is-medium">
-                            <i class="fa-solid fas fa-2x fa-circle-user"></i>
-                        </span>
-                    </a>
-                    <a role="button" class="navbar-burger" data-target="navbarMenu" aria-label="menu"
-                        aria-expanded="false">
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                    </a>
-
-                </div>
-                <div id="navbarMenu" class="navbar-menu">
-                    <div class="navbar-start">
-                        <a class="navbar-item" href="index.html">home</a>
-                        <a class="navbar-item is-disabled" href="#" tabindex="-1" aria-disabled="true"
-                            style="pointer-events:none;opacity:0.5;">Series</a>
-                        <a class="navbar-item is-disabled" href="#" tabindex="-1" aria-disabled="true"
-                            style="pointer-events:none;opacity:0.5;">Movies</a>
-                        <a class="navbar-item" href="genres.html">Genres</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <section class="section is-medium">
-            <div class="container">
-                <!-- Search Bar -->
-                <div class="field has-addons mb-5" style="max-width:400px;margin:0 auto;">
-                    <div class="control has-icons-left is-expanded">
-                        <input id="series-search" class="input neon-input" type="text" placeholder="Search series...">
-                        <span class="icon is-left">
-                            <i class="fas fa-search"></i>
-                        </span>
-                    </div>
-                </div>
-                <!-- Prediction Dropdown -->
-                <div id="search-predictions" class="box neon-predictions"
-                    style="display:none; position:absolute; z-index:10; max-width:400px; left:0; right:0; margin:0 auto;">
-                </div>
-                <!-- Skeleton for Predictions -->
-                <div id="predictions-skeleton" class="box neon-predictions"
-                    style="display:none; position:absolute; z-index:10; max-width:400px; left:0; right:0; margin:0 auto;">
-                    <div class="skeleton is-skeleton" style="height:1.5em;width:90%;margin:0.3em auto;"></div>
-                    <div class="skeleton is-skeleton" style="height:1.5em;width:80%;margin:0.3em auto;"></div>
-                    <div class="skeleton is-skeleton" style="height:1.5em;width:70%;margin:0.3em auto;"></div>
-                </div>
-                <div id="series-grid" class="series-grid">
-                    <!-- Cards will be injected here by JS -->
-                </div>
+      <!-- Navbar -->
+      <div class="card navbar-sticky">
+        <nav class="navbar is-primary">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="/accounts.html">
+              <span class="icon is-medium">
+                <i class="fa-solid fas fa-2x fa-circle-user"></i>
+              </span>
+            </a>
+            <a
+              role="button"
+              class="navbar-burger"
+              data-target="navbarMenu"
+              aria-label="menu"
+              aria-expanded="false"
+            >
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+          <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-start">
+              <a class="navbar-item" href="index.html">home</a>
+              <a
+                class="navbar-item is-disabled"
+                href="#"
+                tabindex="-1"
+                aria-disabled="true"
+                style="pointer-events: none; opacity: 0.5"
+                >Series</a
+              >
+              <a
+                class="navbar-item is-disabled"
+                href="#"
+                tabindex="-1"
+                aria-disabled="true"
+                style="pointer-events: none; opacity: 0.5"
+                >Movies</a
+              >
+              <a class="navbar-item" href="genres.html">Genres</a>
             </div>
-        </section>
-
-
-        <div class="card">
-            <footer class="footer neon-footer">
-                <div class="content has-text-centered">
-                    <div class="mb-2">
-                        <a href="https://x.com/pqRStu34" target="_blank" class="neon-icon" title="X (Twitter)">
-                            <i class="fa-brands fa-x-twitter fa-2x"></i>
-                        </a>
-                        <a href="https://t.me/+BLX8lxcyiixjYmE9" target="_blank" class="neon-icon" title="Telegram">
-                            <i class="fa-brands fa-telegram fa-2x"></i>
-                        </a>
-                    </div>
-                    <p class="neon-text" style="font-size:1.1rem;">
-                        Anime Streaming Testsite &copy; 2024<br>
-                        <span style="font-size:0.95em;">Watch anime in HD, subbed & dubbed, no registration
-                            required.</span>
-                    </p>
-                    <p style="font-size:0.9em;">
-                        Built with <span class="has-text-info">Bulma</span> &amp; <span
-                            class="has-text-primary">FontAwesome</span>
-                    </p>
-                    <!-- Disclaimer Start -->
-                    <div style="margin-top:1.5em; font-size:0.78em; color:#888; font-style:italic;">
-                        <strong>Disclaimer:</strong> This website is a personal project for learning and sharing
-                        purposes only. It does not use any paid tools, paid plans, or even a custom domain. All assets
-                        and resources used here are free for public use. No content is promoted or monetized, and no
-                        copyright infringement is intended. Due to limited resources, high traffic may cause the site to
-                        crash. This site is not affiliated with or endorsed by any anime studios or licensors.
-                    </div>
-                    <!-- Disclaimer End -->
-                    <!-- Privacy Policy & Cookie Consent Start -->
-                    <div class="mt-4">
-                        <a href="privacy.html" target="_blank" class="has-text-link">Privacy Policy</a>
-                    </div>
-                    <!-- Privacy Policy & Cookie Consent End -->
-                </div>
-            </footer>
+          </div>
+        </nav>
+      </div>
+      <section class="section is-medium">
+        <div class="container">
+          <!-- Search Bar -->
+          <div
+            class="field has-addons mb-5"
+            style="max-width: 400px; margin: 0 auto"
+          >
+            <div class="control has-icons-left is-expanded">
+              <input
+                id="series-search"
+                class="input neon-input"
+                type="text"
+                placeholder="Search series..."
+              />
+              <span class="icon is-left">
+                <i class="fas fa-search"></i>
+              </span>
+            </div>
+          </div>
+          <!-- Prediction Dropdown -->
+          <div
+            id="search-predictions"
+            class="box neon-predictions"
+            style="
+              display: none;
+              position: absolute;
+              z-index: 10;
+              max-width: 400px;
+              left: 0;
+              right: 0;
+              margin: 0 auto;
+            "
+          ></div>
+          <!-- Skeleton for Predictions -->
+          <div
+            id="predictions-skeleton"
+            class="box neon-predictions"
+            style="
+              display: none;
+              position: absolute;
+              z-index: 10;
+              max-width: 400px;
+              left: 0;
+              right: 0;
+              margin: 0 auto;
+            "
+          >
+            <div
+              class="skeleton is-skeleton"
+              style="height: 1.5em; width: 90%; margin: 0.3em auto"
+            ></div>
+            <div
+              class="skeleton is-skeleton"
+              style="height: 1.5em; width: 80%; margin: 0.3em auto"
+            ></div>
+            <div
+              class="skeleton is-skeleton"
+              style="height: 1.5em; width: 70%; margin: 0.3em auto"
+            ></div>
+          </div>
+          <div id="series-grid" class="series-grid">
+            <!-- Cards will be injected here by JS -->
+          </div>
         </div>
+      </section>
+
+      <div class="card">
+        <footer class="footer neon-footer">
+          <div class="content has-text-centered">
+            <div class="mb-2">
+              <a
+                href="https://x.com/pqRStu34"
+                target="_blank"
+                class="neon-icon"
+                title="X (Twitter)"
+              >
+                <i class="fa-brands fa-x-twitter fa-2x"></i>
+              </a>
+              <a
+                href="https://t.me/+BLX8lxcyiixjYmE9"
+                target="_blank"
+                class="neon-icon"
+                title="Telegram"
+              >
+                <i class="fa-brands fa-telegram fa-2x"></i>
+              </a>
+            </div>
+            <p class="neon-text" style="font-size: 1.1rem">
+              Anime Streaming Testsite &copy; 2024<br />
+              <span style="font-size: 0.95em"
+                >Watch anime in HD, subbed & dubbed, no registration
+                required.</span
+              >
+            </p>
+            <p style="font-size: 0.9em">
+              Built with <span class="has-text-info">Bulma</span> &amp;
+              <span class="has-text-primary">FontAwesome</span>
+            </p>
+            <!-- Disclaimer Start -->
+            <div
+              style="
+                margin-top: 1.5em;
+                font-size: 0.78em;
+                color: #888;
+                font-style: italic;
+              "
+            >
+              <strong>Disclaimer:</strong> This website is a personal project
+              for learning and sharing purposes only. It does not use any paid
+              tools, paid plans, or even a custom domain. All assets and
+              resources used here are free for public use. No content is
+              promoted or monetized, and no copyright infringement is intended.
+              Due to limited resources, high traffic may cause the site to
+              crash. This site is not affiliated with or endorsed by any anime
+              studios or licensors.
+            </div>
+            <!-- Disclaimer End -->
+            <!-- Privacy Policy & Cookie Consent Start -->
+            <div class="mt-4">
+              <a href="privacy.html" class="has-text-link">Privacy Policy</a>
+            </div>
+            <!-- Privacy Policy & Cookie Consent End -->
+          </div>
+        </footer>
+      </div>
     </div>
 
     <script>
-        // Simple navbar toggle
-        document.addEventListener('DOMContentLoaded', () => {
-            const navbarBurgers = Array.from(document.querySelectorAll('.navbar-burger'));
-            navbarBurgers.forEach(el => {
-                el.addEventListener('click', () => {
-                    const target = el.dataset.target;
-                    const $target = document.getElementById(target);
-                    el.classList.toggle('is-active');
-                    $target.classList.toggle('is-active');
-                });
-            });
-
-            // --- Skeleton loader logic ---
-            const grid = document.getElementById('series-grid');
-            const searchBar = document.getElementById('series-search').parentElement.parentElement;
-            const predictionsBox = document.getElementById('search-predictions');
-            const predictionsSkeleton = document.getElementById('predictions-skeleton');
-
-            // Show skeletons initially
-            grid.style.display = 'none';
-            searchBar.style.display = '';
-            predictionsBox.style.display = 'none';
-            predictionsSkeleton.style.display = 'none';
-
-            let allSeries = [];
-
-            fetch('serieslist.json')
-                .then(res => res.json())
-                .then(seriesList => {
-                    allSeries = seriesList;
-                    grid.style.display = '';
-                    searchBar.style.display = '';
-                    renderSeriesGrid(seriesList);
-                })
-                .catch(() => {
-                    grid.style.display = '';
-                    grid.innerHTML = '<div class="has-text-centered has-text-danger">Could not load series list.</div>';
-                    searchBar.style.display = '';
-                });
-
-            function renderSeriesGrid(seriesList) {
-                grid.innerHTML = '';
-                seriesList.forEach(series => {
-                    const card = document.createElement('a');
-                    card.href = series.infoPage;
-                    card.style.display = "block";
-                    card.innerHTML = `
-                        <div class="card series-card">
-                            <div class="card-image" style="height: 140px; position:relative;">
-                                <figure class="image is-4by5" style="height: 100%; width: 100%;">
-                                    <span class="img-skeleton is-skeleton" style="position:absolute;top:0;left:0;width:100%;height:100%;"></span>
-                                    <img src="${series.poster}" alt="${series.title}" style="object-fit:cover; height:100%; width:100%; display:none;">
-                                </figure>
-                            </div>
-                            <div class="card-content p-2" style="height: 38px; overflow: hidden;">
-                                <div class="marquee">
-                                    <span>${series.title}</span>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    const img = card.querySelector('img');
-                    const skeleton = card.querySelector('.img-skeleton');
-                    img.addEventListener('load', () => {
-                        skeleton.style.display = 'none';
-                        img.style.display = '';
-                    });
-                    img.addEventListener('error', () => {
-                        skeleton.style.display = 'none';
-                        img.style.display = '';
-                        img.src = "https://bulma.io/images/placeholders/480x640.png";
-                    });
-                    grid.appendChild(card);
-                });
-            }
-
-            // --- Search Bar with Prediction ---
-            const searchInput = document.getElementById('series-search');
-
-            searchInput.addEventListener('input', function () {
-                const val = this.value.trim().toLowerCase();
-                if (!val) {
-                    predictionsBox.style.display = 'none';
-                    predictionsSkeleton.style.display = 'none';
-                    renderSeriesGrid(allSeries);
-                    return;
-                }
-                // Show skeleton while searching
-                predictionsBox.style.display = 'none';
-                predictionsSkeleton.style.display = '';
-                setTimeout(() => {
-                    const matches = allSeries.filter(s => s.title.toLowerCase().includes(val));
-                    if (matches.length) {
-                        predictionsBox.innerHTML = matches.map((s, i) =>
-                            `<div class="prediction-item" data-index="${i}">${s.title}</div>`
-                        ).join('');
-                        predictionsBox.style.display = 'block';
-                        predictionsSkeleton.style.display = 'none';
-                    } else {
-                        predictionsBox.innerHTML = '<div class="prediction-item">No matches found</div>';
-                        predictionsBox.style.display = 'block';
-                        predictionsSkeleton.style.display = 'none';
-                    }
-                    renderSeriesGrid(matches);
-                }, 300); // Simulate async search
-            });
-
-            // Click on prediction
-            predictionsBox.addEventListener('click', function (e) {
-                if (e.target.classList.contains('prediction-item')) {
-                    const text = e.target.textContent;
-                    searchInput.value = text;
-                    predictionsBox.style.display = 'none';
-                    const match = allSeries.filter(s => s.title === text);
-                    renderSeriesGrid(match);
-                }
-            });
-
-            // Hide predictions on blur (with delay for click)
-            searchInput.addEventListener('blur', () => setTimeout(() => predictionsBox.style.display = 'none', 150));
-            searchInput.addEventListener('focus', function () {
-                if (this.value.trim()) predictionsBox.style.display = 'block';
-            });
-
-            // --- Login State UI Update ---
-            function updateLoginUI() {
-                // Assume login state is stored as localStorage.isLoggedIn = "true"
-                const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-                window.isLoggedIn = isLoggedIn; // Expose globally if needed
-
-                // Enable/disable UI elements based on login state
-                document.querySelectorAll('.watch-btn, .bookmark-btn, .rating-btn').forEach(btn => {
-                    if (isLoggedIn) {
-                        btn.disabled = false;
-                        btn.classList.remove('is-disabled');
-                        // Hide login-required message if present
-                        const loginMsg = btn.parentElement.querySelector('.login-required');
-                        if (loginMsg) loginMsg.style.display = 'none';
-                    } else {
-                        btn.disabled = true;
-                        btn.classList.add('is-disabled');
-                        // Show login-required message if present
-                        const loginMsg = btn.parentElement.querySelector('.login-required');
-                        if (loginMsg) loginMsg.style.display = '';
-                    }
-                });
-            }
-
-            // Call on page load
-            updateLoginUI();
-
-            // Optionally, listen for login/logout events and update UI
-            window.addEventListener('storage', (e) => {
-                if (e.key === 'isLoggedIn') updateLoginUI();
-            });
-
-            // --- Cookie Consent Modal ---
-            (function () {
-                const modal = document.getElementById('cookie-consent-modal');
-                const acceptBtn = document.getElementById('cookie-consent-accept');
-                const mainContent = document.getElementById('main-content');
-                function showModal() {
-                    modal.classList.add('is-active');
-                    modal.style.display = 'flex';
-                    document.body.classList.add('cookie-blur');
-                    if (mainContent) mainContent.style.display = 'none';
-                }
-                function hideModal() {
-                    modal.classList.remove('is-active');
-                    modal.style.display = 'none';
-                    document.body.classList.remove('cookie-blur');
-                    if (mainContent) mainContent.style.display = '';
-                }
-                if (!localStorage.getItem('cookieConsent')) {
-                    showModal();
-                    // Block navigation by intercepting all link clicks
-                    document.addEventListener('click', function (e) {
-                        if (modal.classList.contains('is-active')) {
-                            let el = e.target;
-                            while (el && el.tagName !== 'A') el = el.parentElement;
-                            if (el && el.tagName === 'A') {
-                                e.preventDefault();
-                            }
-                        }
-                    }, true);
-                    // Block keyboard navigation (address bar cannot be blocked, but page content is hidden)
-                    window.addEventListener('keydown', function (e) {
-                        if (modal.classList.contains('is-active')) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                        }
-                    }, true);
-                }
-                acceptBtn && acceptBtn.addEventListener('click', function () {
-                    localStorage.setItem('cookieConsent', 'true');
-                    hideModal();
-                });
-            })();
+      // Simple navbar toggle
+      document.addEventListener("DOMContentLoaded", () => {
+        const navbarBurgers = Array.from(
+          document.querySelectorAll(".navbar-burger")
+        );
+        navbarBurgers.forEach((el) => {
+          el.addEventListener("click", () => {
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+            el.classList.toggle("is-active");
+            $target.classList.toggle("is-active");
+          });
         });
-    </script>
-</body>
 
+        // --- Skeleton loader logic ---
+        const grid = document.getElementById("series-grid");
+        const searchBar =
+          document.getElementById("series-search").parentElement.parentElement;
+        const predictionsBox = document.getElementById("search-predictions");
+        const predictionsSkeleton = document.getElementById(
+          "predictions-skeleton"
+        );
+
+        // Show skeletons initially
+        grid.style.display = "none";
+        searchBar.style.display = "";
+        predictionsBox.style.display = "none";
+        predictionsSkeleton.style.display = "none";
+
+        let allSeries = [];
+
+        fetch("serieslist.json")
+          .then((res) => res.json())
+          .then((seriesList) => {
+            allSeries = seriesList;
+            grid.style.display = "";
+            searchBar.style.display = "";
+            renderSeriesGrid(seriesList);
+          })
+          .catch(() => {
+            grid.style.display = "";
+            grid.innerHTML =
+              '<div class="has-text-centered has-text-danger">Could not load series list.</div>';
+            searchBar.style.display = "";
+          });
+
+        function renderSeriesGrid(seriesList) {
+          grid.innerHTML = "";
+          seriesList.forEach((series) => {
+            const card = document.createElement("a");
+            card.href = series.infoPage;
+            card.style.display = "block";
+            card.innerHTML = `
+  <div class="card series-card">
+    <div class="card-image" style="height: 140px; position:relative;">
+      <figure class="image is-4by5" style="height: 100%; width: 100%;">
+        <span class="img-skeleton is-skeleton" style="position:absolute;top:0;left:0;width:100%;height:100%;"></span>
+        <img src="${series.poster}" alt="${series.title}" style="object-fit:cover; height:100%; width:100%; display:none;">
+        <div class="series-title-hover">${series.title}</div>
+      </figure>
+    </div>
+  </div>
+`;
+            const img = card.querySelector("img");
+            const skeleton = card.querySelector(".img-skeleton");
+            img.addEventListener("load", () => {
+              skeleton.style.display = "none";
+              img.style.display = "";
+            });
+            img.addEventListener("error", () => {
+              skeleton.style.display = "none";
+              img.style.display = "";
+              img.src = "https://bulma.io/images/placeholders/480x640.png";
+            });
+            grid.appendChild(card);
+          });
+        }
+
+        // --- Search Bar with Prediction ---
+        const searchInput = document.getElementById("series-search");
+
+        searchInput.addEventListener("input", function () {
+          const val = this.value.trim().toLowerCase();
+          if (!val) {
+            predictionsBox.style.display = "none";
+            predictionsSkeleton.style.display = "none";
+            renderSeriesGrid(allSeries);
+            return;
+          }
+          // Show skeleton while searching
+          predictionsBox.style.display = "none";
+          predictionsSkeleton.style.display = "";
+          setTimeout(() => {
+            const matches = allSeries.filter((s) =>
+              s.title.toLowerCase().includes(val)
+            );
+            if (matches.length) {
+              predictionsBox.innerHTML = matches
+                .map(
+                  (s, i) =>
+                    `<div class="prediction-item" data-index="${i}">${s.title}</div>`
+                )
+                .join("");
+              predictionsBox.style.display = "block";
+              predictionsSkeleton.style.display = "none";
+            } else {
+              predictionsBox.innerHTML =
+                '<div class="prediction-item">No matches found</div>';
+              predictionsBox.style.display = "block";
+              predictionsSkeleton.style.display = "none";
+            }
+            renderSeriesGrid(matches);
+          }, 300); // Simulate async search
+        });
+
+        // Click on prediction
+        predictionsBox.addEventListener("click", function (e) {
+          if (e.target.classList.contains("prediction-item")) {
+            const text = e.target.textContent;
+            searchInput.value = text;
+            predictionsBox.style.display = "none";
+            const match = allSeries.filter((s) => s.title === text);
+            renderSeriesGrid(match);
+          }
+        });
+
+        // Hide predictions on blur (with delay for click)
+        searchInput.addEventListener("blur", () =>
+          setTimeout(() => (predictionsBox.style.display = "none"), 150)
+        );
+        searchInput.addEventListener("focus", function () {
+          if (this.value.trim()) predictionsBox.style.display = "block";
+        });
+
+        // --- Login State UI Update ---
+        function updateLoginUI() {
+          // Assume login state is stored as localStorage.isLoggedIn = "true"
+          const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+          window.isLoggedIn = isLoggedIn; // Expose globally if needed
+
+          // Enable/disable UI elements based on login state
+          document
+            .querySelectorAll(".watch-btn, .bookmark-btn, .rating-btn")
+            .forEach((btn) => {
+              if (isLoggedIn) {
+                btn.disabled = false;
+                btn.classList.remove("is-disabled");
+                // Hide login-required message if present
+                const loginMsg =
+                  btn.parentElement.querySelector(".login-required");
+                if (loginMsg) loginMsg.style.display = "none";
+              } else {
+                btn.disabled = true;
+                btn.classList.add("is-disabled");
+                // Show login-required message if present
+                const loginMsg =
+                  btn.parentElement.querySelector(".login-required");
+                if (loginMsg) loginMsg.style.display = "";
+              }
+            });
+        }
+
+        // Call on page load
+        updateLoginUI();
+
+        // Optionally, listen for login/logout events and update UI
+        window.addEventListener("storage", (e) => {
+          if (e.key === "isLoggedIn") updateLoginUI();
+        });
+      });
+    </script>
+  </body>
 </html>
