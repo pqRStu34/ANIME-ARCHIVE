@@ -512,3 +512,68 @@
         });
 
         // Play ad
+      }
+      // Load state and playlist on page load
+      window.addEventListener("DOMContentLoaded", () => {
+        current = loadPlayerState();
+        loadPlaylist();
+      });
+
+      // Hamburger for extra content
+      function renderExtraContent() {
+        const extra = playlistData.extra || [];
+        const row = document.getElementById("extra-content-row");
+        if (extra.length === 0) {
+          row.style.display = "none";
+          return;
+        }
+        row.style.display = "";
+        const btnsDiv = document.getElementById("extra-content-buttons");
+        btnsDiv.innerHTML = "";
+        extra.forEach((item, idx) => {
+          const btn = document.createElement("button");
+          btn.className = "btn btn-outline-info btn-sm";
+          btn.textContent = item.title;
+          btn.onclick = () => {
+            // Play extra content (assume same structure as episodes)
+            playExtraContent(idx);
+          };
+          btnsDiv.appendChild(btn);
+        });
+      }
+
+      function playExtraContent(idx) {
+        const extra = playlistData.extra || [];
+        const item = extra[idx];
+        if (!item) return;
+        // For simplicity, use first server, subs, first quality
+        playEpisode(0, 0, "subs", 0);
+        // Replace video source with extra content
+        if (videojsPlayer) {
+          videojsPlayer.src({
+            src: item.src,
+            type: item.type,
+          });
+          videojsPlayer.play();
+        }
+      }
+
+      // Hamburger toggle logic
+      const hamburgerToggle = document.getElementById(
+        "extra-content-hamburger-toggle"
+      );
+      const hamburgerMenu = document.getElementById(
+        "extra-content-hamburger-menu"
+      );
+      hamburgerToggle &&
+        hamburgerToggle.addEventListener("click", function () {
+          this.classList.toggle("open");
+          if (hamburgerMenu.style.display === "none") {
+            hamburgerMenu.style.display = "";
+          } else {
+            hamburgerMenu.style.display = "none";
+          }
+        });
+    </script>
+  </body>
+</html>
