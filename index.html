@@ -543,20 +543,19 @@
         function renderSeriesGrid(seriesList) {
           grid.innerHTML = "";
           seriesList.forEach((series) => {
-            const card = document.createElement("a");
-            card.href = series.infoPage;
-            card.style.display = "block";
+            const card = document.createElement("div");
+            card.className = "card series-card";
             card.innerHTML = `
-  <div class="card series-card">
     <div class="card-image" style="height: 140px; position:relative;">
-      <figure class="image is-4by5" style="height: 100%; width: 100%;">
-        <span class="img-skeleton is-skeleton" style="position:absolute;top:0;left:0;width:100%;height:100%;"></span>
-        <img src="${series.poster}" alt="${series.title}" style="object-fit:cover; height:100%; width:100%; display:none;">
-        <div class="series-title-hover">${series.title}</div>
-      </figure>
+      <a href="${series.infoPage}" style="display:block; height:100%; width:100%;">
+        <figure class="image is-4by5" style="height: 100%; width: 100%;">
+          <span class="img-skeleton is-skeleton" style="position:absolute;top:0;left:0;width:100%;height:100%;"></span>
+          <img src="${series.poster}" alt="${series.title}" style="object-fit:cover; height:100%; width:100%; display:none;">
+          <div class="series-title-hover">${series.title}</div>
+        </figure>
+      </a>
     </div>
-  </div>
-`;
+  `;
             const img = card.querySelector("img");
             const skeleton = card.querySelector(".img-skeleton");
             img.addEventListener("load", () => {

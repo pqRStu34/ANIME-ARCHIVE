@@ -44,6 +44,17 @@
               "quality": "480p"
             }
           ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/08/f3bca22e866665a10e6eb8310ac7fb6eca1acd4280f46e83a4030a301e38da90/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
         }
       ]
     },
@@ -76,7 +87,7 @@
           "dubs": [
             {
               "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fotherside-picnic-e-1-1080p-english%2FOtherside_Picnic-E2-1080p.mp4",
-              "type": "application/x-mpegURL",
+              "type": "video/mp4",
               "quality": "1080p"
             },
             {
@@ -90,6 +101,17 @@
               "quality": "480p"
             }
           ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/f0054e45e915d6f134a8375ad2f78885c7b1b77795d168d5e97c22facc4fa5dd/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
         }
       ]
     },
@@ -122,7 +144,7 @@
           "dubs": [
             {
               "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fotherside-picnic-e-1-1080p-english%2FOtherside_Picnic-E3-1080p.mp4",
-              "type": "application/x-mpegURL",
+              "type": "video/mp4",
               "quality": "1080p"
             },
             {
@@ -136,6 +158,17 @@
               "quality": "480p"
             }
           ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/09/6d47d68b9edfecd220ed61615d11f8765b886f7c54b5840e421053ad75cfbb90/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
         }
       ]
     },
@@ -168,7 +201,7 @@
           "dubs": [
             {
               "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fotherside-picnic-e-1-1080p-english%2FOtherside_Picnic-E4-1080p.mp4",
-              "type": "application/x-mpegURL",
+              "type": "video/mp4",
               "quality": "1080p"
             },
             {
@@ -182,6 +215,17 @@
               "quality": "480p"
             }
           ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/cc2b84c3f1cb1bc355c9f54f264a3ea9427e64d6d269772cccb3ff28704cdfc4/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
         }
       ]
     },
@@ -214,7 +258,7 @@
           "dubs": [
             {
               "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fotherside-picnic-e-1-1080p-english%2FOtherside_Picnic-E5-1080p.mp4",
-              "type": "application/x-mpegURL",
+              "type": "video/mp4",
               "quality": "1080p"
             },
             {
@@ -228,6 +272,17 @@
               "quality": "480p"
             }
           ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/ffed200be32052af92bcff4becb79bbda6e9c63f0b60196d7f08678b8de4eb23/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
         }
       ]
     },
@@ -260,7 +315,7 @@
           "dubs": [
             {
               "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fotherside-picnic-e-1-1080p-english%2FOtherside_Picnic-E6-1080p.mp4",
-              "type": "application/x-mpegURL",
+              "type": "video/mp4",
               "quality": "1080p"
             },
             {
@@ -274,6 +329,17 @@
               "quality": "480p"
             }
           ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-02.padorupado.ru/stream/02/12/88f2b3c89b81d3a5c7b0075d93daf754296abd694ec3f71230f0a80cd9b75615/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
         }
       ]
     },
@@ -320,6 +386,17 @@
               "quality": "480p"
             }
           ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/07/2c808cbceb975054fb063b46e51e5f6ab3d1c36367191886df6c546fd08bf2cd/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
         }
       ]
     },
@@ -366,6 +443,17 @@
               "quality": "480p"
             }
           ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/4eb4ba61a509119d59c5738ff999b77ee07592f695278a6e51e82b19a92de932/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
         }
       ]
     },
@@ -412,6 +500,17 @@
               "quality": "480p"
             }
           ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/09/692a30cf19f23834090cd6576095ed26aeaf0c1c962b01c7387a7240b7720f96/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
         }
       ]
     },
@@ -458,6 +557,17 @@
               "quality": "480p"
             }
           ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/4eb4ba61a509119d59c5738ff999b77ee07592f695278a6e51e82b19a92de932/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
         }
       ]
     },
@@ -504,6 +614,17 @@
               "quality": "480p"
             }
           ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/06/3fd84613bfb4f3e92389daac4e7f7d1e0c627c56ca423334d2d4b93008a64e30/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
         }
       ]
     },
