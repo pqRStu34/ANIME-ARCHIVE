@@ -404,7 +404,7 @@
       let playlistData = [];
       let current = { episode: 0, server: 0, mode: "subs", quality: 0 };
       let episodesPage = 1;
-      const EPISODES_PER_PAGE = 12;
+      const EPISODES_PER_PAGE = 100;
 
       // --- Persist current state in localStorage ---
       function savePlayerState() {
@@ -570,20 +570,54 @@
         dubBtn.onclick = () =>
           hasDubs && playEpisode(current.episode, current.server, "dubs", 0);
         modeDiv.appendChild(dubBtn);
+        // Captions ON/OFF toggle button (icon only)
+        const captionsBtn = document.createElement("button");
+        captionsBtn.className = "btn btn-subdub btn-sm ms-2";
+        captionsBtn.title = window.captionsEnabled
+          ? "Hide Subtitles"
+          : "Show Subtitles";
+        captionsBtn.innerHTML = window.captionsEnabled
+          ? '<i class="bi bi-cc-circle-fill"></i>'
+          : '<i class="bi bi-cc-circle"></i>';
+        captionsBtn.onclick = () => {
+          window.captionsEnabled = !window.captionsEnabled;
+          setCaptions(window.captionsEnabled);
+          renderSwitchers();
+        };
+        modeDiv.appendChild(captionsBtn);
         // Quality Switcher
         const qualityDiv = document.getElementById("quality-switcher");
         qualityDiv.innerHTML = "";
+        // Define standard qualities (removed 360p)
+        const standardQualities = ["480p", "720p", "1080p"];
         const qualities = ep.servers[current.server][current.mode] || [];
+        // Map available qualities for quick lookup (only if src is non-empty)
+        const availableQualities = {};
         qualities.forEach((q, i) => {
+          if (q.src && q.src.trim() !== "") {
+            availableQualities[q.quality] = i;
+          }
+        });
+        standardQualities.forEach((qLabel, i) => {
+          const isAvailable = availableQualities.hasOwnProperty(qLabel);
           const btn = document.createElement("button");
           btn.className =
             "btn btn-sm" +
-            (i === current.quality
+            (isAvailable && availableQualities[qLabel] === current.quality
               ? " btn-info text-white"
               : " btn-outline-info");
-          btn.textContent = q.quality || `Q${i + 1}`;
-          btn.onclick = () =>
-            playEpisode(current.episode, current.server, current.mode, i);
+          btn.textContent = qLabel;
+          btn.disabled = !isAvailable;
+          btn.onclick = () => {
+            if (isAvailable) {
+              playEpisode(
+                current.episode,
+                current.server,
+                current.mode,
+                availableQualities[qLabel]
+              );
+            }
+          };
           qualityDiv.appendChild(btn);
         });
       }
@@ -611,6 +645,8 @@
         const source = sources[qualityIdx];
         const video = document.getElementById("player");
 
+        // Remove previous ended event
+        video.onended = null;
         // Set video source
         if (source) {
           if (source.type === "application/x-mpegURL") {
@@ -621,18 +657,33 @@
               hls.on(Hls.Events.MANIFEST_PARSED, function () {
                 video.play();
               });
+              // Auto play next episode for HLS
+              hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+                video.onended = () => playNextEpisode();
+              });
             } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
               video.src = source.src;
               video.addEventListener("loadedmetadata", function () {
                 video.play();
               });
+              video.onended = () => playNextEpisode();
             }
           } else {
             video.src = source.src;
             video.type = source.type;
             video.load();
             video.play();
+            video.onended = () => playNextEpisode();
           }
+        }
+        // Set captions state after loading video
+        setTimeout(() => setCaptions(window.captionsEnabled), 200);
+      }
+      // Auto play next episode
+      function playNextEpisode() {
+        const episodes = playlistData.episodes || [];
+        if (current.episode + 1 < episodes.length) {
+          playEpisode(current.episode + 1, 0, "subs", 0);
         }
       }
       // Load state and playlist on page load
@@ -708,6 +759,14 @@
             hamburgerMenu.style.display = "none";
           }
         });
+      // Add this helper function after renderSwitchers
+      function setCaptions(enabled) {
+        const video = document.getElementById("player");
+        const tracks = video.textTracks;
+        for (let i = 0; i < tracks.length; i++) {
+          tracks[i].mode = enabled ? "showing" : "hidden";
+        }
+      }
     </script>
   </body>
 </html>

@@ -1,13 +1,27 @@
 [
   {
     "title": "Otherside Picnic",
-    "poster": "https://pub-dc9026ec65ed47a8a182790ca6d39937.r2.dev/O/Otherside_Picnic-thumb.jpg",
+    "poster": "https://cdn.myanimelist.net/images/anime/1655/106320l.jpg",
     "infoPage": "seriesinfo/series1.html"
   },
   {
     "title": "Adachi to Shimamura",
-    "poster": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fadachi-and-shimamura_202503%2Fcover1_thumb.jpg",
+    "poster": "https://cdn.myanimelist.net/images/anime/1649/109056l.jpg",
     "infoPage": "seriesinfo/series2.html"
+  },
+  {
+    "title": "Hinako Note",
+    "poster": "https://cdn.myanimelist.net/images/anime/2/84858l.jpg",
+    "infoPage": "seriesinfo/series3.html"
+  },
+  {
+    "title": "I'm in Love with the Villainess",
+    "poster": "https://cdn.myanimelist.net/images/anime/1531/137711l.jpg",
+    "infoPage": "seriesinfo/series4.html"
+  },
+  {
+    "title": "Gushing over Magical Girls",
+    "poster": "https://cdn.myanimelist.net/images/anime/1883/136772l.jpg",
+    "infoPage": "seriesinfo/series5.html"
   }
-  
 ]

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Hinako Note</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css" />
+  <style>
+    .series-card-box {
+      position: relative;
+      max-width: 400px;
+      margin: 0 auto;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .series-bg-img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+    }
+
+    .series-bg-fade {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      background: linear-gradient(to bottom,
+          rgba(0, 0, 0, 0.2) 40%,
+          #181818 90%);
+      z-index: 1;
+    }
+
+    .series-content {
+      position: relative;
+      z-index: 2;
+      padding: 2.2rem 1.2rem 1.2rem 1.2rem;
+      color: #00d9ff;
+    }
+
+    .mb-2 {
+      margin-bottom: 0.75rem !important;
+    }
+
+    .watch-btn {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .tag.is-genre,
+    .tag.is-year {
+      margin-right: 0.3em;
+      margin-bottom: 0.2em;
+      background: #101214;
+      color: #7afff0;
+      border: 1px solid #7afff0;
+      font-size: 0.85em;
+      padding: 0.2em 0.7em;
+      border-radius: 0.7em;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.18s, color 0.18s, border 0.18s;
+    }
+
+    .tag.is-genre:hover,
+    .tag.is-year:hover {
+      background: #209cee;
+      color: #fff;
+      border-color: #209cee;
+    }
+
+    .has-text-primary {
+      color: #209cee !important;
+    }
+
+    .desc-card {
+      max-width: 400px;
+      margin: 1.5rem auto 0 auto;
+      border-radius: 14px;
+      padding: 1.2rem 1.1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      <div id="series-card-content">
+        <div class="series-card-box box">
+          <img src="https://cdn.myanimelist.net/images/anime/2/84858l.jpg" alt="Hinako Note" id="series-img"
+            class="series-bg-img" />
+          <div class="series-bg-fade"></div>
+          <div class="series-content has-text-centered">
+            <h1 class="title is-4 mt-2">Hinako Note</h1>
+            <div class="mb-2">
+              <span class="tag is-genre">Slice of Life</span>
+              <span class="tag is-genre">Comedy</span>
+              <span class="tag is-year">2017</span>
+            </div>
+            <button id="watch-now-btn" class="button is-success is-large watch-btn">
+              <span class="icon"><i class="fas fa-play"></i></span>
+              <span>Watch</span>
+            </button>
+          </div>
+        </div>
+        <div class="desc-card">
+          <h2 class="title is-6 mb-2">Description</h2>
+          <p>
+            <a href="https://myanimelist.net/character/145981/Hinako_Sakuragi" target="_blank">Hinako Sakuragi</a>, a
+            shy and soft-spoken girl who has trouble talking to people,
+            moves from the countryside to Tokyo to attend high school and join
+            the theater club. Hoping to overcome her social anxiety, she stays
+            at Hitotose Manor, a boarding house where she meets several unique
+            residents. Among them are the energetic and supportive
+            <a href="https://myanimelist.net/character/145982/Kuina_Natsukawa" target="_blank">Kuina Natsukawa</a>, the
+            mature and reliable
+            <a href="https://myanimelist.net/character/145983/Mayuki_Hiiragi" target="_blank">Mayuki Hiiragi</a>, and
+            the calm landlady
+            <a href="https://myanimelist.net/character/145984/Chiaki_Hagino" target="_blank">Chiaki Hagino</a>.
+            Together, they embark on a journey of self-discovery,
+            friendship, and fun-filled stage performances.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    document
+      .getElementById("watch-now-btn")
+      .addEventListener("click", function () {
+        window.location.href = "/video.html?series=series-json/series3";
+      });
+  </script>
+</body>
+
+</html>

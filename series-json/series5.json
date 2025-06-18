@@ -1,0 +1,275 @@
+{
+  "season": "Season 1",
+  "episodes": [
+    {
+      "title": "Episode 1: Awakening of the Villainess",
+      "thumbnail": "https://bulma.io/images/placeholders/480x640.png",
+      "subtitles": [
+        {
+          "lang": "en",
+          "label": "English",
+          "src": "https://archive.org/download/mahou-shoujo-ni-akogarete/season1_subtitles/Gushing_over_Magical_Girls_Uncensored-E1-1080p-English.vtt"
+        }
+      ],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/mahou-shoujo-ni-akogarete/Gushing_over_Magical_Girls_Uncensored-E1-1080p.ia.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 2: The Temptation of Power",
+      "thumbnail": "https://bulma.io/images/placeholders/480x640.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 3: Confronting the Past",
+      "thumbnail": "https://bulma.io/images/placeholders/480x640.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 4: The First Battle",
+      "thumbnail": "https://bulma.io/images/placeholders/480x640.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 5: Allies and Enemies",
+      "thumbnail": "https://bulma.io/images/placeholders/480x640.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 6: The Power Within",
+      "thumbnail": "https://bulma.io/images/placeholders/480x640.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 7: The Fall of a Hero",
+      "thumbnail": "https://bulma.io/images/placeholders/480x640.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 8: The Mask of Deception",
+      "thumbnail": "https://bulma.io/images/placeholders/480x640.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 9: The Truth Revealed",
+      "thumbnail": "https://bulma.io/images/placeholders/480x640.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 10: The Ultimate Sacrifice",
+      "thumbnail": "https://bulma.io/images/placeholders/480x640.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 11: The Final Showdown",
+      "thumbnail": "https://bulma.io/images/placeholders/480x640.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 12: A New Beginning",
+      "thumbnail": "https://bulma.io/images/placeholders/480x640.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 13: Finale of Obsession",
+      "thumbnail": "https://bulma.io/images/placeholders/480x640.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    }
+  ]
+}

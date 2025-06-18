@@ -584,25 +584,23 @@
           window.isLoggedIn = isLoggedIn; // Expose globally if needed
 
           // Enable/disable UI elements based on login state
-          document
-            .querySelectorAll(".watch-btn, .bookmark-btn, .rating-btn")
-            .forEach((btn) => {
-              if (isLoggedIn) {
-                btn.disabled = false;
-                btn.classList.remove("is-disabled");
-                // Hide login-required message if present
-                const loginMsg =
-                  btn.parentElement.querySelector(".login-required");
-                if (loginMsg) loginMsg.style.display = "none";
-              } else {
-                btn.disabled = true;
-                btn.classList.add("is-disabled");
-                // Show login-required message if present
-                const loginMsg =
-                  btn.parentElement.querySelector(".login-required");
-                if (loginMsg) loginMsg.style.display = "";
-              }
-            });
+          document.querySelectorAll(".watch-btn").forEach((btn) => {
+            if (isLoggedIn) {
+              btn.disabled = false;
+              btn.classList.remove("is-disabled");
+              // Hide login-required message if present
+              const loginMsg =
+                btn.parentElement.querySelector(".login-required");
+              if (loginMsg) loginMsg.style.display = "none";
+            } else {
+              btn.disabled = true;
+              btn.classList.add("is-disabled");
+              // Show login-required message if present
+              const loginMsg =
+                btn.parentElement.querySelector(".login-required");
+              if (loginMsg) loginMsg.style.display = "block";
+            }
+          });
         }
 
         // Call on page load

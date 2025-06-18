@@ -1,0 +1,449 @@
+{
+  "season": "Season 1",
+  "episodes": [
+    {
+      "title": "Episode 1: Welcome to the Theatre",
+      "thumbnail": "https://archive.org/download/hinako_note/thumbnails/episode-1-thumbnail.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fhinako_note%2FHinako_Note_Ep-1_1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 2: The Bookstore Girl",
+      "thumbnail": "https://archive.org/download/hinako_note/thumbnails/episode-2-thumbnail.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fhinako_note%2FHinako_Note_Ep-2_1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 3: The Little Bird Girl",
+      "thumbnail": "https://archive.org/download/hinako_note/thumbnails/episode-3-thumbnail.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fhinako_note%2FHinako_Note_Ep-3_1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 4: The Library and the Stage",
+      "thumbnail": "https://archive.org/download/hinako_note/thumbnails/episode-4-thumbnail.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fhinako_note%2FHinako_Note_Ep-4_1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 5: The Rainy Day",
+      "thumbnail": "https://archive.org/download/hinako_note/thumbnails/episode-5-thumbnail.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fhinako_note%2FHinako_Note_Ep-5_1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 6: The Summer Festival",
+      "thumbnail": "https://archive.org/download/hinako_note/thumbnails/episode-6-thumbnail.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fhinako_note%2FHinako_Note_Ep-6_1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 7: The School Play",
+      "thumbnail": "https://archive.org/download/hinako_note/thumbnails/episode-7-thumbnail.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fhinako_note%2FHinako_Note_Ep-7_1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 8: The Cultural Festival",
+      "thumbnail": "https://archive.org/download/hinako_note/thumbnails/episode-8-thumbnail.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fhinako_note%2FHinako_Note_Ep-8_1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 9: The Summer Camp",
+      "thumbnail": "https://archive.org/download/hinako_note/thumbnails/episode-9-thumbnail.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fhinako_note%2FHinako_Note_Ep-9_1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 10: The Christmas Play",
+      "thumbnail": "https://archive.org/download/hinako_note/thumbnails/episode-10-thumbnail.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fhinako_note%2FHinako_Note_Ep-10_1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 11: The Final Rehearsal",
+      "thumbnail": "https://archive.org/download/hinako_note/thumbnails/episode-11-thumbnail.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fhinako_note%2FHinako_Note_Ep-11_1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 12: Our Stage, Our Story",
+      "thumbnail": "https://archive.org/download/hinako_note/thumbnails/episode-12-thumbnail.png",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fhinako_note%2FHinako_Note_Ep-12_1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    }
+  ]
+}

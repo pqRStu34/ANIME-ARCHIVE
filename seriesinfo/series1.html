@@ -1,448 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Otherside Picnic</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Bulma CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"
-    />
-    <style>
-      .series-card-box {
-        position: relative;
-        max-width: 400px;
-        margin: 0 auto;
-        border-radius: 18px;
-        overflow: hidden;
-      }
-      .series-bg-img {
-        width: 100%;
-        height: 100%;
-        min-height: 420px;
-        object-fit: cover;
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 0;
-      }
-      .series-bg-fade {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0;
-        background: linear-gradient(
-          to bottom,
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Otherside Picnic</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Bulma CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css" />
+  <style>
+    /* Removed bookmark, rating, and views styles */
+    .series-card-box {
+      position: relative;
+      max-width: 400px;
+      margin: 0 auto;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .series-bg-img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+    }
+
+    .series-bg-fade {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      background: linear-gradient(to bottom,
           rgba(38, 38, 38, 0.2) 40%,
-          #292929 90%
-        );
-        z-index: 1;
-      }
-      .series-content {
-        position: relative;
-        z-index: 2;
-        padding: 2.2rem 1.2rem 1.2rem 1.2rem;
-        color: #00d9ff;
-      }
-      .bookmark-top {
-        position: absolute;
-        top: 1rem;
-        left: 1rem;
-        z-index: 3;
-      }
-      .bookmark-btn-top {
-        background: none;
-        border: none;
-        color: #ff3860;
-        font-size: 2em;
-        transition: color 0.2s;
-        padding: 0;
-      }
-      .bookmark-btn-top.is-success {
-        color: #23d160;
-      }
-      .bookmark-btn-top.is-danger {
-        color: #ff3860;
-      }
-      .views-top {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        z-index: 3;
-        display: flex;
-        align-items: center;
-        gap: 0.3em;
-        background: rgba(0, 0, 0, 0.236);
-        padding: 0.3em 0.7em;
-        border-radius: 1em;
-      }
-      .views-top .info-tooltip {
-        position: relative;
-        display: inline-block;
-      }
-      .views-top .info-tooltip .tooltip-text {
-        visibility: hidden;
-        width: 200px;
-        text-align: left;
-        border-radius: 6px;
-        padding: 1.5em;
-        position: absolute;
-        z-index: 10;
-        top: 50%;
-        right: 110%;
-        left: auto;
-        transform: translateY(-50%);
-        opacity: 0;
-        transition: opacity 0.2s, right 0.2s;
-        font-size: 0.9em;
-        white-space: normal;
-      }
-      .views-top .info-tooltip:hover .tooltip-text {
-        visibility: visible;
-        opacity: 1;
-        right: 120%;
-      }
-      .mb-2 {
-        margin-bottom: 0.75rem !important;
-      }
-      .watch-btn {
-        width: 100%;
-        margin-bottom: 1rem;
-      }
-      .tag.is-genre,
-      .tag.is-year {
-        margin-right: 0.3em;
-        margin-bottom: 0.2em;
-        background: #101214;
-        color: #7afff0;
-        border: 1px solid #7afff0;
-        font-size: 0.85em;
-        padding: 0.2em 0.7em;
-        border-radius: 0.7em;
-        cursor: pointer;
-        user-select: none;
-        transition: background 0.18s, color 0.18s, border 0.18s;
-      }
-      .tag.is-genre:hover,
-      .tag.is-year:hover {
-        background: #209cee;
-        color: #fff;
-        border-color: #209cee;
-      }
-      .info-tooltip {
-        position: relative;
-        display: inline-block;
-      }
-      .info-tooltip .tooltip-text {
-        visibility: hidden;
-        width: 200px;
-        text-align: left;
-        border-radius: 6px;
-        padding: 0.5em;
-        position: absolute;
-        z-index: 10;
-        bottom: 125%;
-        left: 50%;
-        transform: translateX(-50%);
-        opacity: 0;
-        transition: opacity 0.2s;
-        font-size: 0.9em;
-      }
-      .info-tooltip:hover .tooltip-text {
-        visibility: visible;
-        opacity: 1;
-      }
-      .rating-stars {
-        display: inline-flex;
-        align-items: center;
-        gap: 2px;
-        font-size: 1.5em;
-        cursor: pointer;
-      }
-      .rating-stars .star {
-        color: #ffd700;
-        transition: color 0.2s;
-      }
-      .rating-stars .star.inactive {
-        color: #b5b5b5;
-      }
-      .has-text-primary {
-        color: #209cee !important;
-      }
-      /* Notification popup */
-      .notify-popup {
-        position: fixed;
-        left: 50%;
-        top: 2.5rem;
-        transform: translateX(-50%);
-        z-index: 9999;
-        min-width: 220px;
-        max-width: 90vw;
-        box-shadow: 0 4px 24px #209cee55;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s, top 0.3s;
-      }
-      .notify-popup.active {
-        opacity: 1;
-        pointer-events: auto;
-        top: 4.5rem;
-      }
-      .desc-card {
-        max-width: 400px;
-        margin: 1.5rem auto 0 auto;
-        border-radius: 14px;
-        padding: 1.2rem 1.1rem;
-      }
-      .is-skeleton {
-        background: linear-gradient(
-          90deg,
+          #292929 90%);
+      z-index: 1;
+    }
+
+    .series-content {
+      position: relative;
+      z-index: 2;
+      padding: 2.2rem 1.2rem 1.2rem 1.2rem;
+      color: #00d9ff;
+    }
+
+    .mb-2 {
+      margin-bottom: 0.75rem !important;
+    }
+
+    .watch-btn {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .tag.is-genre,
+    .tag.is-year {
+      margin-right: 0.3em;
+      margin-bottom: 0.2em;
+      background: #101214;
+      color: #7afff0;
+      border: 1px solid #7afff0;
+      font-size: 0.85em;
+      padding: 0.2em 0.7em;
+      border-radius: 0.7em;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.18s, color 0.18s, border 0.18s;
+    }
+
+    .tag.is-genre:hover,
+    .tag.is-year:hover {
+      background: #209cee;
+      color: #fff;
+      border-color: #209cee;
+    }
+
+    .info-tooltip {
+      position: relative;
+      display: inline-block;
+    }
+
+    .info-tooltip .tooltip-text {
+      visibility: hidden;
+      width: 200px;
+      text-align: left;
+      border-radius: 6px;
+      padding: 0.5em;
+      position: absolute;
+      z-index: 10;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      font-size: 0.9em;
+    }
+
+    .info-tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .has-text-primary {
+      color: #209cee !important;
+    }
+
+    /* Notification popup */
+    .notify-popup {
+      position: fixed;
+      left: 50%;
+      top: 2.5rem;
+      transform: translateX(-50%);
+      z-index: 9999;
+      min-width: 220px;
+      max-width: 90vw;
+      box-shadow: 0 4px 24px #209cee55;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, top 0.3s;
+    }
+
+    .notify-popup.active {
+      opacity: 1;
+      pointer-events: auto;
+      top: 4.5rem;
+    }
+
+    .desc-card {
+      max-width: 400px;
+      margin: 1.5rem auto 0 auto;
+      border-radius: 14px;
+      padding: 1.2rem 1.1rem;
+    }
+
+    .is-skeleton {
+      background: linear-gradient(90deg,
           #e0e0e0 25%,
           #f0f0f0 50%,
-          #e0e0e0 75%
-        );
-        background-size: 200% 100%;
-        animation: skeleton-loading 1.5s infinite;
+          #e0e0e0 75%);
+      background-size: 200% 100%;
+      animation: skeleton-loading 1.5s infinite;
+    }
+
+    @keyframes skeleton-loading {
+      0% {
+        background-position: 100% 0;
       }
-      @keyframes skeleton-loading {
-        0% {
-          background-position: 100% 0;
-        }
-        100% {
-          background-position: 0 0;
-        }
+
+      100% {
+        background-position: 0 0;
       }
-    </style>
-  </head>
-  <body>
-    <!-- ...existing code for navbar if needed... -->
-    <div
-      id="notify"
-      class="notification is-warning is-light notify-popup"
-    ></div>
-    <section class="section">
-      <div class="container">
-        <!-- Skeleton for Series Card -->
-        <div
-          id="series-card-skeleton"
-          class="series-card-box box is-skeleton"
-          style="height: 480px; margin-bottom: 1.5em"
-        ></div>
-        <!-- Skeleton for Description -->
-        <div
-          id="desc-card-skeleton"
-          class="desc-card box is-skeleton"
-          style="height: 120px"
-        ></div>
-        <div id="series-card-content" style="display: none">
-          <div class="series-card-box box">
-            <img
-              src="https://pub-dc9026ec65ed47a8a182790ca6d39937.r2.dev/O/Otherside_Picnic-cover.jpg"
-              alt="Amazing Adventure"
-              id="series-img"
-              class="series-bg-img"
-            />
-            <div class="series-bg-fade"></div>
-            <button
-              id="bookmark-btn-top"
-              class="bookmark-btn-top bookmark-top"
-              title="Bookmark"
-            >
-              <i class="fas fa-bookmark"></i>
-            </button>
-            <div class="series-content has-text-centered">
-              <h1 class="title is-4 mt-2">Otherside Picnic</h1>
-              <div class="mb-2">
-                <span class="tag is-genre" data-genre="Action">Action</span>
-                <span class="tag is-genre" data-genre="Adventure"
-                  >Adventure</span
-                >
-                <span class="tag is-genre" data-genre="Yuri">Yuri</span>
-                <span class="tag is-genre" data-genre="Supernatural"
-                  >Supernatural</span
-                >
-                <span class="tag is-year" data-year="2023">2023</span>
-              </div>
-              <!-- Watch Now Button -->
-              <button
-                id="watch-now-btn"
-                class="button is-success is-large watch-btn"
-              >
-                <span class="icon"><i class="fas fa-play"></i></span>
-                <span>Watch</span>
-              </button>
-              <!-- Rating -->
-              <div class="mb-2">
-                <div class="rating-stars" id="rating-stars"></div>
-                <span id="rating-value" class="ml-2 has-text-primary">0.0</span>
-              </div>
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ...existing code for navbar if needed... -->
+  <div id="notify" class="notification is-warning is-light notify-popup"></div>
+  <section class="section">
+    <div class="container">
+      <!-- Skeleton for Series Card -->
+      <div id="series-card-skeleton" class="series-card-box box is-skeleton"
+        style="height: 480px; margin-bottom: 1.5em"></div>
+      <!-- Skeleton for Description -->
+      <div id="desc-card-skeleton" class="desc-card box is-skeleton" style="height: 120px"></div>
+      <div id="series-card-content" style="display: none">
+        <div class="series-card-box box">
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1601/110081l.jpg?_gl=1*iv3h50*_gcl_au*MTUyMTI4NzY5OC4xNzQ3MDU0MTg1*_ga*NDA0MzE2NzU0LjE3NDcwNTQxMzQ.*_ga_26FEP9527K*czE3NTAyODE4MzMkbzIyJGcxJHQxNzUwMjg0MDY5JGoxNSRsMCRoMA.."
+            alt="Amazing Adventure" id="series-img" class="series-bg-img" />
+          <div class="series-bg-fade"></div>
+          <!-- Removed bookmark button -->
+          <!-- Removed views-top -->
+          <div class="series-content has-text-centered">
+            <h1 class="title is-4 mt-2">Otherside Picnic</h1>
+            <div class="mb-2">
+              <span class="tag is-genre" data-genre="Action">Action</span>
+              <span class="tag is-genre" data-genre="Adventure">Adventure</span>
+              <span class="tag is-genre" data-genre="Yuri">Yuri</span>
+              <span class="tag is-genre" data-genre="Supernatural">Supernatural</span>
+              <span class="tag is-year" data-year="2023">2023</span>
             </div>
-          </div>
-          <div class="desc-card">
-            <h2 class="title is-6 mb-2">Description</h2>
-            <p>
-              <!-- Add your series description here -->
-              The "Otherworld" is a vast and dangerous realm hidden from the
-              knowledge of the common folk. It is also home to many creatures
-              that threaten any human who dare visit it. To witness its desolate
-              yet oddly absorbing environment, one must search for portals that
-              could reside anywhere, from secret elevators to shrine entrances.
-              After a fateful encounter with a horrendous Otherworld denizen,
-              Sorawo Kamikoshi ponders whether to keep going or give up in life.
-              Meanwhile, Toriko Nishina scours the Otherworld in hopes of
-              finding her friend Satsuki, who she believes is lost somewhere
-              within the realm. When the two cross paths, friendship blossoms.
-              In order to acquire as much information about this obscure
-              dimension, the two travel back and forth from the real world to
-              the other. Sorawo and Toriko's bodies are soon influenced by the
-              Otherworld, preparing them for the many horrors to come as both of
-              them try to fulfill their goals.
-            </p>
+            <!-- Watch Now Button -->
+            <button id="watch-now-btn" class="button is-success is-large watch-btn">
+              <span class="icon"><i class="fas fa-play"></i></span>
+              <span>Watch</span>
+            </button>
+            <!-- Removed rating stars -->
           </div>
         </div>
+        <div class="desc-card">
+          <h2 class="title is-6 mb-2">Description</h2>
+          <p>
+            <!-- Add your series description here -->
+            The "Otherworld" is a vast and dangerous realm hidden from the
+            knowledge of the common folk. It is also home to many creatures
+            that threaten any human who dare visit it. To witness its desolate
+            yet oddly absorbing environment, one must search for portals that
+            could reside anywhere, from secret elevators to shrine entrances.
+            After a fateful encounter with a horrendous Otherworld denizen,
+            Sorawo Kamikoshi ponders whether to keep going or give up in life.
+            Meanwhile, Toriko Nishina scours the Otherworld in hopes of
+            finding her friend Satsuki, who she believes is lost somewhere
+            within the realm. When the two cross paths, friendship blossoms.
+            In order to acquire as much information about this obscure
+            dimension, the two travel back and forth from the real world to
+            the other. Sorawo and Toriko's bodies are soon influenced by the
+            Otherworld, preparing them for the many horrors to come as both of
+            them try to fulfill their goals.
+          </p>
+        </div>
       </div>
-    </section>
-    <script>
-      // Simulate login state (replace with real auth check)
-      let isLoggedIn = false; // Set to true if user is logged in
-      let isBookmarked = false;
-
-      // --- Watch Now ---
-      document
-        .getElementById("watch-now-btn")
-        .addEventListener("click", function () {
-          let views = parseInt(
-            localStorage.getItem("otherside_picnic_viewed") || "0",
-            10
-          );
-          if (!views) {
-            document.getElementById("views-count").textContent = "1";
-            localStorage.setItem("otherside_picnic_viewed", "1");
-            // TODO: send view to backend
+    </div>
+  </section>
+  <script>
+    // Simulate login state (replace with real auth check)
+    let isLoggedIn = false; // Set to true if user is logged in
+    // Removed isBookmarked, rating, and views logic
+    // --- Watch Now ---
+    document
+      .getElementById("watch-now-btn")
+      .addEventListener("click", function () {
+        window.location.href = "/video.html?series=series-json/series1";
+      });
+    // Removed bookmark, rating, and views handlers
+    function showNotify(msg) {
+      const n = document.getElementById("notify");
+      n.textContent = msg;
+      n.classList.add("active");
+      setTimeout(() => n.classList.remove("active"), 2500);
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      // Hide skeletons, show real content
+      document.getElementById("series-card-skeleton").style.display = "none";
+      document.getElementById("desc-card-skeleton").style.display = "none";
+      document.getElementById("series-card-content").style.display = "";
+      // Removed views, rating, and bookmark DOM updates
+      // Placeholder image fallback
+      const img = document.getElementById("series-img");
+      img.onerror = function () {
+        img.src = "https://bulma.io/images/placeholders/480x640.png";
+      };
+      // Genre tag click handler
+      document.querySelectorAll(".tag.is-genre").forEach((tag) => {
+        tag.addEventListener("click", function () {
+          const genre = this.getAttribute("data-genre");
+          if (genre) {
+            window.location.href = `/index.html?genre=${encodeURIComponent(
+              genre
+            )}`;
           }
-          window.location.href = "/video.html?series=series-json/series1";
-        });
-
-      // --- Bookmark (top only) ---
-      function bookmarkHandler() {
-        if (!isLoggedIn) {
-          showNotify("Please log in to bookmark this series.");
-          return;
-        }
-        isBookmarked = !isBookmarked;
-        updateBookmarkIcon();
-        showNotify(isBookmarked ? "Bookmarked!" : "Bookmark removed.");
-      }
-      function updateBookmarkIcon() {
-        const btn = document.getElementById("bookmark-btn-top");
-        btn.classList.remove("is-success", "is-danger");
-        btn.classList.add(isBookmarked ? "is-success" : "is-danger");
-      }
-      document
-        .getElementById("bookmark-btn-top")
-        .addEventListener("click", bookmarkHandler);
-
-      // --- Rating Stars ---
-      const ratingStars = document.getElementById("rating-stars");
-      let userRating = 0;
-      let avgRating = 0.0;
-      let ratingCount = 0;
-
-      function renderStars(rating) {
-        ratingStars.innerHTML = "";
-        for (let i = 1; i <= 5; i++) {
-          const star = document.createElement("span");
-          star.className = "star" + (i <= rating ? "" : " inactive");
-          star.innerHTML = '<i class="fas fa-star"></i>';
-          star.dataset.value = i;
-          star.addEventListener("mouseenter", () => highlightStars(i));
-          star.addEventListener("mouseleave", () => highlightStars(userRating));
-          star.addEventListener("click", () => setRating(i));
-          ratingStars.appendChild(star);
-        }
-      }
-      function highlightStars(rating) {
-        Array.from(ratingStars.children).forEach((star, idx) => {
-          star.classList.toggle("inactive", idx + 1 > rating);
-        });
-      }
-      function setRating(rating) {
-        if (!isLoggedIn) {
-          showNotify("Please log in to rate this series.");
-          return;
-        }
-        userRating = rating;
-        // TODO: send rating to backend and update avgRating/ratingCount
-        avgRating = (
-          (avgRating * ratingCount + rating) /
-          (ratingCount + 1)
-        ).toFixed(1);
-        ratingCount++;
-        document.getElementById("rating-value").textContent = avgRating;
-        highlightStars(userRating);
-        showNotify("Thank you for rating!");
-      }
-
-      function showNotify(msg) {
-        const n = document.getElementById("notify");
-        n.textContent = msg;
-        n.classList.add("active");
-        setTimeout(() => n.classList.remove("active"), 2500);
-      }
-
-      document.addEventListener("DOMContentLoaded", function () {
-        // Hide skeletons, show real content
-        document.getElementById("series-card-skeleton").style.display = "none";
-        document.getElementById("desc-card-skeleton").style.display = "none";
-        document.getElementById("series-card-content").style.display = "";
-        let views = parseInt(
-          localStorage.getItem("amazing_adventure_viewed") || "0",
-          10
-        );
-        document.getElementById("views-count").textContent = views ? "1" : "0";
-        renderStars(userRating);
-        document.getElementById("rating-value").textContent =
-          avgRating.toFixed(1);
-        // Placeholder image fallback
-        const img = document.getElementById("series-img");
-        img.onerror = function () {
-          img.src = "https://bulma.io/images/placeholders/480x640.png";
-        };
-        updateBookmarkIcon();
-
-        // Remove views and info icon
-        const viewsTop = document.querySelector(".views-top");
-        if (viewsTop) viewsTop.remove();
-        // Remove the / 5 text after rating value
-        const ratingValue = document.getElementById("rating-value");
-        if (
-          ratingValue &&
-          ratingValue.nextElementSibling &&
-          ratingValue.nextElementSibling.classList.contains("is-size-7")
-        ) {
-          ratingValue.nextElementSibling.remove();
-        }
-        // Genre tag click handler
-        document.querySelectorAll(".tag.is-genre").forEach((tag) => {
-          tag.addEventListener("click", function () {
-            const genre = this.getAttribute("data-genre");
-            if (genre) {
-              window.location.href = `/index.html?genre=${encodeURIComponent(
-                genre
-              )}`;
-            }
-          });
         });
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
+
 </html>

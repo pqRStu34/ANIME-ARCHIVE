@@ -1,0 +1,407 @@
+{
+  "season": "Season 1",
+  "title": "I'm in Love with the Villainess",
+  "id": "series4",
+  "description": "Ordinary office worker Rei Oohashi is reborn as the protagonist of her favorite otome game, Revolution. To her delight, the first person to greet her is also her favorite character, Claire Francois—the main antagonist of the story! Now, instead of pursuing the male leads, Rei sets her sights on Claire, determined to romance the villainess herself.",
+  "genres": ["Romance", "Comedy", "Fantasy", "Yuri"],
+  "year": 2023,
+  "image": "villainess.jpg",
+  "episodes": [
+    {
+      "title": "Episode 1: I'm in Love with the Villainess",
+      "thumbnail": "https://placehold.co/300x169?text=Ep1",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 2: I'm in Love with the Villainess",
+      "thumbnail": "https://placehold.co/300x169?text=Ep2",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 3: I'm in Love with the Villainess",
+      "thumbnail": "https://placehold.co/300x169?text=Ep3",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 4: I'm in Love with the Villainess",
+      "thumbnail": "https://placehold.co/300x169?text=Ep4",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 5: I'm in Love with the Villainess",
+      "thumbnail": "https://placehold.co/300x169?text=Ep5",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 6: I'm in Love with the Villainess",
+      "thumbnail": "https://placehold.co/300x169?text=Ep6",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 7: I'm in Love with the Villainess",
+      "thumbnail": "https://placehold.co/300x169?text=Ep7",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 8: I'm in Love with the Villainess",
+      "thumbnail": "https://placehold.co/300x169?text=Ep8",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 9: I'm in Love with the Villainess",
+      "thumbnail": "https://placehold.co/300x169?text=Ep9",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 10: I'm in Love with the Villainess",
+      "thumbnail": "https://placehold.co/300x169?text=Ep10",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 11: I'm in Love with the Villainess",
+      "thumbnail": "https://placehold.co/300x169?text=Ep11",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Episode 12: I'm in Love with the Villainess",
+      "thumbnail": "https://placehold.co/300x169?text=Ep12",
+      "subtitles": [{ "lang": "en", "label": "English", "src": "" }],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ],
+          "dubs": [
+            { "src": "", "type": "video/mp4", "quality": "1080p" },
+            { "src": "", "type": "video/mp4", "quality": "720p" },
+            { "src": "", "type": "video/mp4", "quality": "480p" }
+          ]
+        }
+      ]
+    }
+  ]
+}
