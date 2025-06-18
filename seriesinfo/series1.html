@@ -259,27 +259,18 @@
             >
               <i class="fas fa-bookmark"></i>
             </button>
-            <div class="views-top">
-              <span class="icon is-small has-text-warning">
-                <i class="fas fa-eye"></i>
-              </span>
-              <span id="views-count">0</span>
-              <span class="info-tooltip">
-                <i class="fas fa-info-circle has-text-info"></i>
-                <span class="tooltip-text">
-                  Views are counted only once per user, after clicking "Watch"
-                  while logged in.
-                </span>
-              </span>
-            </div>
             <div class="series-content has-text-centered">
               <h1 class="title is-4 mt-2">Otherside Picnic</h1>
               <div class="mb-2">
-                <span class="tag is-genre">Action</span>
-                <span class="tag is-genre">Adventure</span>
-                <span class="tag is-genre">Yuri</span>
-                <span class="tag is-genre">Supernatural</span>
-                <span class="tag is-year">2023</span>
+                <span class="tag is-genre" data-genre="Action">Action</span>
+                <span class="tag is-genre" data-genre="Adventure"
+                  >Adventure</span
+                >
+                <span class="tag is-genre" data-genre="Yuri">Yuri</span>
+                <span class="tag is-genre" data-genre="Supernatural"
+                  >Supernatural</span
+                >
+                <span class="tag is-year" data-year="2023">2023</span>
               </div>
               <!-- Watch Now Button -->
               <button
@@ -293,7 +284,6 @@
               <div class="mb-2">
                 <div class="rating-stars" id="rating-stars"></div>
                 <span id="rating-value" class="ml-2 has-text-primary">0.0</span>
-                <span class="is-size-7">/ 5</span>
               </div>
             </div>
           </div>
@@ -428,6 +418,30 @@
           img.src = "https://bulma.io/images/placeholders/480x640.png";
         };
         updateBookmarkIcon();
+
+        // Remove views and info icon
+        const viewsTop = document.querySelector(".views-top");
+        if (viewsTop) viewsTop.remove();
+        // Remove the / 5 text after rating value
+        const ratingValue = document.getElementById("rating-value");
+        if (
+          ratingValue &&
+          ratingValue.nextElementSibling &&
+          ratingValue.nextElementSibling.classList.contains("is-size-7")
+        ) {
+          ratingValue.nextElementSibling.remove();
+        }
+        // Genre tag click handler
+        document.querySelectorAll(".tag.is-genre").forEach((tag) => {
+          tag.addEventListener("click", function () {
+            const genre = this.getAttribute("data-genre");
+            if (genre) {
+              window.location.href = `/index.html?genre=${encodeURIComponent(
+                genre
+              )}`;
+            }
+          });
+        });
       });
     </script>
   </body>

@@ -15,11 +15,6 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
-    <!-- Plyr CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.css"
-    />
     <style>
       body {
         background: #14161a !important;
@@ -241,40 +236,41 @@
         color: #00fff0;
       }
 
-      /* Plyr settings menu dropdown direction */
-      .plyr__menu {
+      /* Video.js settings menu dropdown direction */
+      .vjs-menu {
         top: 100% !important;
         bottom: auto !important;
       }
-      /* Plyr theme: change blue to cyan, but do NOT affect play/pause icons */
-      .plyr--full-ui input[type="range"]::-webkit-slider-thumb,
-      .plyr--full-ui .plyr__progress--played,
-      .plyr--full-ui .plyr__volume--display {
+      /* Video.js theme: change blue to cyan, but do NOT affect play/pause icons */
+      .vjs-default-skin .vjs-slider-thumb,
+      .vjs-default-skin .vjs-play-progress,
+      .vjs-default-skin .vjs-volume-panel .vjs-mute,
+      .vjs-default-skin .vjs-volume-panel .vjs-volume-level {
         background: #00fff0 !important;
         color: #00fff0 !important;
         border-color: #00fff0 !important;
       }
-      .plyr--full-ui .plyr__control.plyr__tab-focus,
-      .plyr--full-ui .plyr__control:hover,
-      .plyr--full-ui .plyr__control[aria-expanded="true"] {
+      .vjs-default-skin .vjs-control.vjs-tab-focus,
+      .vjs-default-skin .vjs-control:hover,
+      .vjs-default-skin .vjs-control[aria-expanded="true"] {
         background: #00d1b2 !important;
         color: #fff !important;
       }
-      .plyr--full-ui .plyr__menu__container {
+      .vjs-default-skin .vjs-menu {
         border-color: #00fff0 !important;
       }
-      .plyr--full-ui .plyr__menu__container .plyr__control--active {
+      .vjs-default-skin .vjs-menu .vjs-control.vjs-control-active {
         color: #00fff0 !important;
       }
-      .plyr--full-ui .plyr__caption {
+      .vjs-default-skin .vjs-caption {
         background: rgba(0, 255, 240, 0.15) !important;
         color: #00fff0 !important;
         text-shadow: 0 0 8px #00fff0;
       }
       /* Do NOT color play/pause icons */
-      .plyr--full-ui .plyr__control--overlaid,
-      .plyr--full-ui .plyr__control[data-plyr="play"],
-      .plyr--full-ui .plyr__control[data-plyr="pause"] {
+      .vjs-default-skin .vjs-control.vjs-control-overlaid,
+      .vjs-default-skin .vjs-control[data-plyr="play"],
+      .vjs-default-skin .vjs-control[data-plyr="pause"] {
         background: #23252a !important;
         color: #fff !important;
         border-color: #23252a !important;
@@ -288,15 +284,15 @@
         <div class="col-12 col-md-10 col-lg-8">
           <div class="card mb-0 border-0 bg-transparent">
             <div class="card-body p-0 bg-transparent">
-              <!-- Plyr Player -->
+              <!-- Video.js Player -->
               <video
                 id="player"
-                class="plyr"
                 controls
                 crossorigin="anonymous"
                 playsinline
                 width="100%"
                 height="100%"
+                style="border-radius: 12px; background: #14161a; width: 100%"
               ></video>
             </div>
           </div>
@@ -402,13 +398,10 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
       crossorigin="anonymous"
     ></script>
-    <!-- Plyr JS -->
-    <script src="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.polyfilled.min.js"></script>
     <!-- hls.js for HLS support in browsers without native HLS -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.7/dist/hls.min.js"></script>
     <script>
       let playlistData = [];
-      let plyrPlayer;
       let current = { episode: 0, server: 0, mode: "subs", quality: 0 };
       let episodesPage = 1;
       const EPISODES_PER_PAGE = 12;
@@ -618,11 +611,6 @@
         const source = sources[qualityIdx];
         const video = document.getElementById("player");
 
-        // Dispose previous Plyr instance if exists
-        if (plyrPlayer) {
-          plyrPlayer.destroy();
-        }
-
         // Set video source
         if (source) {
           if (source.type === "application/x-mpegURL") {
@@ -646,22 +634,6 @@
             video.play();
           }
         }
-
-        // Init Plyr
-        plyrPlayer = new Plyr(video, {
-          controls: [
-            "play-large",
-            "play",
-            "progress",
-            "current-time",
-            "mute",
-            /*'volume',*/ "captions",
-            "settings",
-            "fullscreen",
-          ],
-          settings: ["captions", "quality", "speed"],
-          captions: { active: true, update: true, language: "auto" },
-        });
       }
       // Load state and playlist on page load
       window.addEventListener("DOMContentLoaded", () => {
@@ -698,7 +670,6 @@
         if (!item) return;
         playEpisode(0, 0, "subs", 0);
         const video = document.getElementById("player");
-        if (plyrPlayer) plyrPlayer.destroy();
         if (item.type === "application/x-mpegURL") {
           if (Hls.isSupported()) {
             const hls = new Hls();
@@ -719,20 +690,6 @@
           video.load();
           video.play();
         }
-        plyrPlayer = new Plyr(video, {
-          controls: [
-            "play-large",
-            "play",
-            "progress",
-            "current-time",
-            "mute",
-            /*'volume',*/ "captions",
-            "settings",
-            "fullscreen",
-          ],
-          settings: ["captions", "quality", "speed"],
-          captions: { active: true, update: true, language: "auto" },
-        });
       }
 
       // Hamburger toggle logic

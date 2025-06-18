@@ -45,7 +45,7 @@
         max-height: 160px;
         margin: 0 auto;
         box-shadow: none;
-        background: none;
+        background: rgba(245, 245, 245, 0.85); /* translucent background */
         border-radius: 12px;
         padding: 0;
         overflow: visible;
@@ -208,25 +208,6 @@
         box-shadow: none;
       }
 
-      .is-skeleton {
-        background: #e0e0e0;
-        animation: skeleton-loading 1.5s infinite;
-      }
-
-      @keyframes skeleton-loading {
-        0% {
-          background-color: #e0e0e0;
-        }
-
-        50% {
-          background-color: #f0f0f0;
-        }
-
-        100% {
-          background-color: #e0e0e0;
-        }
-      }
-
       body.cookie-blur {
         overflow: hidden;
       }
@@ -307,6 +288,10 @@
         box-sizing: border-box;
         border-radius: 10px;
         overflow: hidden;
+      }
+
+      .search-result {
+        background: rgba(245, 245, 245, 0.85) !important;
       }
     </style>
 
@@ -399,33 +384,6 @@
               margin: 0 auto;
             "
           ></div>
-          <!-- Skeleton for Predictions -->
-          <div
-            id="predictions-skeleton"
-            class="box neon-predictions"
-            style="
-              display: none;
-              position: absolute;
-              z-index: 10;
-              max-width: 400px;
-              left: 0;
-              right: 0;
-              margin: 0 auto;
-            "
-          >
-            <div
-              class="skeleton is-skeleton"
-              style="height: 1.5em; width: 90%; margin: 0.3em auto"
-            ></div>
-            <div
-              class="skeleton is-skeleton"
-              style="height: 1.5em; width: 80%; margin: 0.3em auto"
-            ></div>
-            <div
-              class="skeleton is-skeleton"
-              style="height: 1.5em; width: 70%; margin: 0.3em auto"
-            ></div>
-          </div>
           <div id="series-grid" class="series-grid">
             <!-- Cards will be injected here by JS -->
           </div>
@@ -460,10 +418,6 @@
                 required.</span
               >
             </p>
-            <p style="font-size: 0.9em">
-              Built with <span class="has-text-info">Bulma</span> &amp;
-              <span class="has-text-primary">FontAwesome</span>
-            </p>
             <!-- Disclaimer Start -->
             <div
               style="
@@ -474,20 +428,14 @@
               "
             >
               <strong>Disclaimer:</strong> This website is a personal project
-              for learning and sharing purposes only. It does not use any paid
-              tools, paid plans, or even a custom domain. All assets and
-              resources used here are free for public use. No content is
-              promoted or monetized, and no copyright infringement is intended.
-              Due to limited resources, high traffic may cause the site to
-              crash. This site is not affiliated with or endorsed by any anime
-              studios or licensors.
+              for sharing purposes only. It does not use any paid tools, paid
+              plans, or even a custom domain. All assets and resources used here
+              are free for public use. No content is promoted or monetized, and
+              no copyright infringement is intended. Due to limited resources,
+              high traffic may cause the site to crash. This site is not
+              affiliated with or endorsed by any anime studios or licensors.
             </div>
             <!-- Disclaimer End -->
-            <!-- Privacy Policy & Cookie Consent Start -->
-            <div class="mt-4">
-              <a href="privacy.html" class="has-text-link">Privacy Policy</a>
-            </div>
-            <!-- Privacy Policy & Cookie Consent End -->
           </div>
         </footer>
       </div>
@@ -509,19 +457,20 @@
         });
 
         // --- Skeleton loader logic ---
+        // Remove all skeleton loader logic
         const grid = document.getElementById("series-grid");
         const searchBar =
           document.getElementById("series-search").parentElement.parentElement;
         const predictionsBox = document.getElementById("search-predictions");
-        const predictionsSkeleton = document.getElementById(
-          "predictions-skeleton"
-        );
+        // const predictionsSkeleton = document.getElementById(
+        //   "predictions-skeleton"
+        // );
 
-        // Show skeletons initially
+        // Show grid and search bar initially
         grid.style.display = "none";
         searchBar.style.display = "";
         predictionsBox.style.display = "none";
-        predictionsSkeleton.style.display = "none";
+        // predictionsSkeleton.style.display = "none";
 
         let allSeries = [];
 
@@ -544,13 +493,13 @@
           grid.innerHTML = "";
           seriesList.forEach((series) => {
             const card = document.createElement("div");
-            card.className = "card series-card";
+            card.className = "card series-card search-result";
             card.innerHTML = `
     <div class="card-image" style="height: 140px; position:relative;">
       <a href="${series.infoPage}" style="display:block; height:100%; width:100%;">
         <figure class="image is-4by5" style="height: 100%; width: 100%;">
           <span class="img-skeleton is-skeleton" style="position:absolute;top:0;left:0;width:100%;height:100%;"></span>
-          <img src="${series.poster}" alt="${series.title}" style="object-fit:cover; height:100%; width:100%; display:none;">
+          <img src="${series.poster}" alt="${series.title}" style="object-fit:cover; height:100%; width:100%; display:none; border-radius:10px; overflow:hidden;">
           <div class="series-title-hover">${series.title}</div>
         </figure>
       </a>
@@ -578,13 +527,13 @@
           const val = this.value.trim().toLowerCase();
           if (!val) {
             predictionsBox.style.display = "none";
-            predictionsSkeleton.style.display = "none";
+            // predictionsSkeleton.style.display = "none";
             renderSeriesGrid(allSeries);
             return;
           }
-          // Show skeleton while searching
+          // No skeleton while searching
           predictionsBox.style.display = "none";
-          predictionsSkeleton.style.display = "";
+          // predictionsSkeleton.style.display = "";
           setTimeout(() => {
             const matches = allSeries.filter((s) =>
               s.title.toLowerCase().includes(val)
@@ -597,14 +546,15 @@
                 )
                 .join("");
               predictionsBox.style.display = "block";
-              predictionsSkeleton.style.display = "none";
+              // predictionsSkeleton.style.display = "none";
+              renderSeriesGrid(matches);
             } else {
               predictionsBox.innerHTML =
                 '<div class="prediction-item">No matches found</div>';
               predictionsBox.style.display = "block";
-              predictionsSkeleton.style.display = "none";
+              // predictionsSkeleton.style.display = "none";
+              renderSeriesGrid([]); // Show empty grid if no matches
             }
-            renderSeriesGrid(matches);
           }, 300); // Simulate async search
         });
 
