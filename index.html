@@ -14,54 +14,87 @@
     href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" />
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css" />
   <style>
-    .card {
-      border-radius: 8px;
-      margin: 10px;
-      /* Adds some space around the edges */
-      overflow: hidden;
+    body {
+      background: #14161a !important;
+    }
+
+    .navbar.custom-navbar {
+      background-color: #00d1b2 !important;
+    }
+
+    .navbar.custom-navbar .navbar-brand,
+    .navbar.custom-navbar .navbar-nav .nav-link,
+    .navbar.custom-navbar .navbar-toggler,
+    .navbar.custom-navbar .fa,
+    .navbar.custom-navbar .fas,
+    .navbar.custom-navbar .fa-solid,
+    .navbar.custom-navbar .fa-2x {
+      color: #14161a !important;
+    }
+
+    .navbar.custom-navbar .navbar-toggler-icon {
+      background-image: none !important;
+      border: none !important;
+      width: 1.5em;
+      height: 1.5em;
+      position: relative;
+    }
+
+    .navbar.custom-navbar .navbar-toggler-icon::before,
+    .navbar.custom-navbar .navbar-toggler-icon::after,
+    .navbar.custom-navbar .navbar-toggler-icon span {
+      content: '';
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: #14161a;
+      margin: 0.3em 0;
+      border-radius: 2px;
+      transition: none;
+    }
+
+    .navbar.custom-navbar .navbar-toggler-icon span {
+      margin: 0.3em 0;
+    }
+
+    .navbar.custom-navbar .navbar-toggler:focus,
+    .navbar.custom-navbar .navbar-toggler:active {
+      outline: none;
+      box-shadow: none;
+      background: none;
     }
 
     .series-card {
-      width: 110px;
-      min-width: 110px;
-      max-width: 110px;
-      height: 160px;
-      min-height: 160px;
-      max-height: 160px;
+      padding: 0;
       margin: 0 auto;
       box-shadow: none;
-      background: rgba(245, 245, 245, 0.85);
-      /* translucent background */
-      border-radius: 12px;
-      padding: 0;
+      background: none;
+      border-radius: 0;
+      width: auto;
+      height: auto;
+      min-width: unset;
+      max-width: unset;
+      min-height: unset;
+      max-height: unset;
       overflow: visible;
       position: relative;
+      display: inline-block;
+      border: none !important;
     }
 
-    .series-card:hover {
-      box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.08),
-        0 4px 24px rgba(0, 0, 0, 0.18);
-      transform: scale(1.07);
-      z-index: 2;
-    }
-
-    .card.series-card .card-image {
-      height: 100%;
-      width: 100%;
-      position: relative;
-      background: none;
-      box-shadow: none;
-      border-radius: 12px;
-      padding: 0;
+    .search-result {
+      background: rgba(245, 245, 245, 0.85) !important;
+      border: none !important;
     }
 
     .series-card .card-image figure.image {
-      height: 100%;
-      width: 100%;
+      height: 160px;
+      width: 110px;
       border: 2px solid #abb1bf;
       box-sizing: border-box;
       border-radius: 10px;
@@ -89,23 +122,14 @@
       pointer-events: none;
     }
 
-    .card.series-card:hover .series-title-hover {
+    .series-card:hover .series-title-hover {
       display: block;
-    }
-
-    .card.series-card .card-content {
-      display: none;
-    }
-
-    /* Hide marquee animation if text fits */
-    .marquee span {
-      max-width: 100%;
     }
 
     .series-grid {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      grid-auto-rows: 210px;
+      grid-auto-rows: min-content;
       gap: 8px;
       justify-items: center;
     }
@@ -122,234 +146,171 @@
       }
     }
 
-    .neon-footer {
-      transition: box-shadow 0.2s;
+    .footer {
+      background: #16181d !important;
     }
 
-    .neon-footer:hover {
-      box-shadow: 0 0 16px #7afff0, 0 0 32px #b4f9fe;
-    }
-
-    .neon-text {
-      color: #7afff0;
-      text-shadow: none;
-      font-weight: 600;
-      letter-spacing: 1px;
-      transition: text-shadow 0.2s, color 0.2s;
-    }
-
-    .neon-footer:hover .neon-text {
-      text-shadow: 0 0 8px #7afff0, 0 0 16px #b4f9fe;
-    }
-
-    .neon-icon {
-      color: #7afff0;
-      margin: 0 12px;
-      transition: color 0.2s, text-shadow 0.2s;
-    }
-
-    .neon-icon:hover {
-      color: #fff;
-      text-shadow: 0 0 16px #7afff0, 0 0 32px #b4f9fe;
-    }
-
-    .neon-input {
-      color: #7afff0;
-      font-weight: 500;
-      box-shadow: none;
-      transition: border-color 0.2s, box-shadow 0.2s, color 0.2s;
-    }
-
-    .neon-input:focus,
-    .neon-input:hover {
-      border-color: #7afff0;
-      box-shadow: 0 0 8px #7afff0;
-      color: #b4f9fe;
-    }
-
-    .neon-predictions {
-      border: 2px solid #7afff0;
-      box-shadow: 0 0 16px #7afff0;
-      border-radius: 8px;
-      padding: 0.5em 0;
-      margin-top: -1.5em;
-    }
-
-    .neon-predictions .prediction-item {
-      padding: 0.5em 1em;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-
-    .neon-predictions .prediction-item:hover,
-    .neon-predictions .prediction-item.active {
-      color: #abeef3;
-    }
-
-    .navbar-sticky {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      transition: none;
-      box-shadow: none;
-    }
-
-    .navbar-sticky:hover {
-      box-shadow: none;
-    }
-
-    body.cookie-blur {
-      overflow: hidden;
-    }
-
-    .modal.is-active {
-      display: flex !important;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal-card {
-      animation: popIn 0.35s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    }
-
-    @keyframes popIn {
-      0% {
-        transform: scale(0.7);
-        opacity: 0;
-      }
-
-      80% {
-        transform: scale(1.05);
-        opacity: 1;
-      }
-
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    .modal-background {
-      background: rgba(245, 245, 245, 0.7);
-      backdrop-filter: blur(4px);
-    }
-
-    /* --- Remove all neon/glow effects --- */
-    /* .neon-footer, .neon-footer:hover, .neon-text, .neon-footer:hover .neon-text, .neon-icon, .neon-icon:hover, .neon-input, .neon-input:focus, .neon-input:hover, .neon-predictions, .series-card:hover */
-    .neon-footer,
-    .neon-footer:hover,
     .neon-text,
-    .neon-footer:hover .neon-text,
-    .neon-icon,
-    .neon-icon:hover,
-    .neon-input,
-    .neon-input:focus,
-    .neon-input:hover,
-    .neon-predictions,
-    .series-card:hover {
-      box-shadow: none !important;
-      text-shadow: none !important;
-      color: inherit !important;
-      border-color: #dbdbdb !important;
-      background: inherit !important;
+    .footer .neon-icon {
+      color: #e3e6ee !important;
     }
 
-    .neon-text {
-      color: inherit !important;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-
-    .neon-icon {
-      color: inherit !important;
-    }
-
-    .neon-input {
-      color: inherit !important;
-    }
-
-    .neon-predictions {
-      border: 1px solid #dbdbdb !important;
-      box-shadow: none !important;
-    }
-
-    .card.series-card .card-image figure.image {
-      border: 2px solid #abb1bf;
-      box-sizing: border-box;
-      border-radius: 10px;
-      overflow: hidden;
+    .footer .disclaimer-text {
+      color: #b0b3bb !important;
     }
 
     .search-result {
       background: rgba(245, 245, 245, 0.85) !important;
     }
-  </style>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5403590533015775"
-    crossorigin="anonymous"></script>
+    .neon-input {
+      background: #1f2229 !important;
+      color: #fff !important;
+      box-shadow: none !important;
+      border: none !important;
+      border-right: none !important;
+      transition: none;
+    }
+
+    .input-group-text {
+      background: #1f2229 !important;
+      border: none !important;
+      border-left: none !important;
+      color: #425277 !important;
+    }
+
+    .neon-input:focus,
+    .neon-input:hover {
+      border-color: #86b7fe !important;
+      box-shadow: none !important;
+      color: #fff !important;
+    }
+
+    .dropdown-menu .dropdown-item:hover,
+    .dropdown-menu .dropdown-item:focus {
+      background: rgba(255, 255, 255, 0.12) !important;
+      color: #fff !important;
+    }
+
+    .series-card .card-image,
+    .series-card .card-image figure.image,
+    .series-card .img-skeleton {
+      background: #14161a !important;
+    }
+
+    /* Add/override for search prediction dropdown */
+    #search-predictions {
+      background: #1f2229 !important;
+      color: #fff !important;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+      border: 1px solid #425277;
+      overflow: hidden;
+      padding: 0.25rem 0.5rem;
+      margin-top: 0.4rem;
+      margin-left: 0.2rem;
+      margin-right: 0.2rem;
+      min-width: 220px;
+      max-width: 100vw;
+    }
+
+    @media (max-width: 600px) {
+      #search-predictions {
+        left: 8px !important;
+        right: 8px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: auto !important;
+        max-width: calc(100vw - 16px) !important;
+      }
+    }
+
+    .prediction-item {
+      background: #1f2229 !important;
+      color: #fff !important;
+      border-bottom: 1px solid #23262c;
+      transition: background 0.15s;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .prediction-item:last-child {
+      border-bottom: none;
+    }
+
+    .prediction-item.active,
+    .prediction-item:hover {
+      background: #23262c !important;
+      color: #fff !important;
+    }
+  </style>
 </head>
 
 <body>
-  <!-- Navbar and Main Content Start -->
   <div id="main-content">
-    <!-- Navbar -->
-    <div class="card navbar-sticky">
-      <nav class="navbar is-primary">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="/accounts.html">
-            <span class="icon is-medium">
-              <i class="fa-solid fas fa-2x fa-circle-user"></i>
-            </span>
-          </a>
-          <a role="button" class="navbar-burger" data-target="navbarMenu" aria-label="menu" aria-expanded="false">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
+    <nav class="navbar custom-navbar navbar-expand-lg sticky-top shadow-sm rounded-3 mt-3 mx-2"
+      style="border-radius: 1rem !important;">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="/accounts.html">
+          <span class="icon is-medium">
+            <i class="fa-solid fas fa-2x fa-circle-user"></i>
+          </span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+          aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"><span></span></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="series.html">Series</a></li>
+            <li class="nav-item"><a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Movies</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="genres.html">Genres</a></li>
+          </ul>
         </div>
-        <div id="navbarMenu" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item" href="index.html">home</a>
-            <a class="navbar-item is-disabled" href="#" tabindex="-1" aria-disabled="true"
-              style="pointer-events: none; opacity: 0.5">Series</a>
-            <a class="navbar-item is-disabled" href="#" tabindex="-1" aria-disabled="true"
-              style="pointer-events: none; opacity: 0.5">Movies</a>
-            <a class="navbar-item" href="genres.html">Genres</a>
-          </div>
-        </div>
-      </nav>
-    </div>
-    <section class="section is-medium">
+      </div>
+    </nav>
+    <section class="py-5">
       <div class="container">
-        <!-- Search Bar -->
-        <div class="field has-addons mb-5" style="max-width: 400px; margin: 0 auto">
-          <div class="control has-icons-left is-expanded">
-            <input id="series-search" class="input neon-input" type="text" placeholder="Search series..." />
-            <span class="icon is-left">
-              <i class="fas fa-search"></i>
-            </span>
+        <div class="row justify-content-center mb-4">
+          <div class="col-12 col-md-8 col-lg-5 d-flex align-items-center">
+            <div class="input-group flex-grow-1">
+              <span class="input-group-text"><i class="fas fa-search"></i></span>
+              <input id="series-search" class="form-control neon-input border-start-0" type="text"
+                placeholder="Search series..." />
+            </div>
+            <div class="ms-2 dropdown">
+              <button class="btn btn-sm" id="sortDropdownBtn" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false" style="background:#1f2229; color:#fff; border:2px solid #425277;">
+                <i class="fas fa-sort-alpha-down"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="sortDropdownBtn"
+                style="background:#1f2229; color:#fff; min-width: 140px;">
+                <li><a class="dropdown-item sort-option text-white" href="#" data-sort="newest">Newest</a></li>
+                <li><a class="dropdown-item sort-option text-white" href="#" data-sort="oldest">Oldest</a></li>
+                <li><a class="dropdown-item sort-option text-white" href="#" data-sort="updated">Latest Updated</a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider" style="border-color:#425277;">
+                </li>
+                <li><a class="dropdown-item sort-option text-white" href="#" data-sort="az">A to Z</a></li>
+                <li><a class="dropdown-item sort-option text-white" href="#" data-sort="za">Z to A</a></li>
+              </ul>
+            </div>
           </div>
         </div>
-        <!-- Prediction Dropdown -->
-        <div id="search-predictions" class="box neon-predictions" style="
-              display: none;
-              position: absolute;
-              z-index: 10;
-              max-width: 400px;
-              left: 0;
-              right: 0;
-              margin: 0 auto;
-            "></div>
+        <div id="search-predictions" class="neon-predictions position-absolute w-100"
+          style="display: none; max-width: 400px; left: 0; right: 0; margin: 0 auto; z-index: 10;"></div>
         <div id="series-grid" class="series-grid">
           <!-- Cards will be injected here by JS -->
         </div>
+        <nav id="pagination-nav" aria-label="Series pagination" class="d-flex justify-content-center mt-4"></nav>
       </div>
     </section>
-
-    <div class="card">
-      <footer class="footer neon-footer">
-        <div class="content has-text-centered">
+    <footer class="footer neon-footer mt-4" style="border-top: none !important;">
+      <div class="container">
+        <div class="content text-center py-4">
           <div class="mb-2">
             <a href="https://x.com/pqRStu34" target="_blank" class="neon-icon" title="X (Twitter)">
               <i class="fa-brands fa-x-twitter fa-2x"></i>
@@ -360,30 +321,20 @@
           </div>
           <p class="neon-text" style="font-size: 1.1rem">
             Anime Streaming Testsite &copy; 2024<br />
-            <span style="font-size: 0.95em">Watch anime in HD, subbed & dubbed, no registration
-              required.</span>
+            <span style="font-size: 0.95em">Watch anime in HD, subbed & dubbed, no registration required.</span>
           </p>
-          <!-- Disclaimer Start -->
-          <div style="
-                margin-top: 1.5em;
-                font-size: 0.78em;
-                color: #888;
-                font-style: italic;
-              ">
-            <strong>Disclaimer:</strong> This website is a personal project
-            for sharing purposes only. It does not use any paid tools, paid
-            plans, or even a custom domain. All assets and resources used here
-            are free for public use. No content is promoted or monetized, and
-            no copyright infringement is intended. Due to limited resources,
-            high traffic may cause the site to crash. This site is not
-            affiliated with or endorsed by any anime studios or licensors.
+          <div class="disclaimer-text" style="margin-top: 1.5em; font-size: 0.78em; font-style: italic;">
+            <strong>Disclaimer:</strong> This website is a personal project for sharing purposes only. It does not use
+            any paid tools, paid plans, or even a custom domain. All assets and resources used here are free for
+            public use. No content is promoted or monetized, and no copyright infringement is intended. Due to
+            limited resources, high traffic may cause the site to crash. This site is not affiliated with or
+            endorsed by any anime studios or licensors.
           </div>
-          <!-- Disclaimer End -->
         </div>
-      </footer>
-    </div>
+      </div>
+    </footer>
   </div>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     // Simple navbar toggle
     document.addEventListener("DOMContentLoaded", () => {
@@ -404,7 +355,6 @@
       const grid = document.getElementById("series-grid");
       const searchBar =
         document.getElementById("series-search").parentElement.parentElement;
-      const predictionsBox = document.getElementById("search-predictions");
       // const predictionsSkeleton = document.getElementById(
       //   "predictions-skeleton"
       // );
@@ -412,7 +362,6 @@
       // Show grid and search bar initially
       grid.style.display = "none";
       searchBar.style.display = "";
-      predictionsBox.style.display = "none";
       // predictionsSkeleton.style.display = "none";
 
       let allSeries = [];
@@ -432,22 +381,77 @@
           searchBar.style.display = "";
         });
 
+      // --- Search, Sort, Pagination, and Prediction Logic ---
+      const searchInput = document.getElementById("series-search");
+      const sortDropdownBtn = document.getElementById("sortDropdownBtn");
+      const sortOptions = document.querySelectorAll(".sort-option");
+      const predictionsBox = document.getElementById("search-predictions");
+      const paginationNav = document.getElementById("pagination-nav");
+
+      let filteredSeries = [];
+      let currentPage = 1;
+      let pageSize = 12;
+      let currentSort = "az";
+      let searchTerm = "";
+      let predictionIndex = -1;
+
+      function debounce(fn, delay) {
+        let timer;
+        return function (...args) {
+          clearTimeout(timer);
+          timer = setTimeout(() => fn.apply(this, args), delay);
+        };
+      }
+
+      function sortSeries(list, sortType) {
+        const arr = [...list];
+        switch (sortType) {
+          case "az":
+            arr.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+          case "za":
+            arr.sort((a, b) => b.title.localeCompare(a.title));
+            break;
+          case "newest":
+            arr.sort((a, b) => (b.year || 0) - (a.year || 0));
+            break;
+          case "oldest":
+            arr.sort((a, b) => (a.year || 0) - (b.year || 0));
+            break;
+          case "updated":
+            arr.sort((a, b) => (b.updated || 0) - (a.updated || 0));
+            break;
+          default:
+            break;
+        }
+        return arr;
+      }
+
+      function paginate(list, page, size) {
+        const start = (page - 1) * size;
+        return list.slice(start, start + size);
+      }
+
       function renderSeriesGrid(seriesList) {
         grid.innerHTML = "";
+        if (!seriesList.length) {
+          grid.innerHTML = '<div class="text-center text-danger w-100">No series found.</div>';
+          return;
+        }
         seriesList.forEach((series) => {
           const card = document.createElement("div");
           card.className = "card series-card search-result";
           card.innerHTML = `
-    <div class="card-image" style="height: 140px; position:relative;">
-      <a href="${series.infoPage}" style="display:block; height:100%; width:100%;">
-        <figure class="image is-4by5" style="height: 100%; width: 100%;">
-          <span class="img-skeleton is-skeleton" style="position:absolute;top:0;left:0;width:100%;height:100%;"></span>
-          <img src="${series.poster}" alt="${series.title}" style="object-fit:cover; height:100%; width:100%; display:none; border-radius:10px; overflow:hidden;">
-          <div class="series-title-hover">${series.title}</div>
-        </figure>
-      </a>
-    </div>
-  `;
+      <div class="card-image" style="height: 140px; position:relative;">
+        <a href="${series.infoPage}" style="display:block; height:100%; width:100%;">
+          <figure class="image is-4by5" style="height: 100%; width: 100%;">
+            <span class="img-skeleton is-skeleton" style="position:absolute;top:0;left:0;width:100%;height:100%;"></span>
+            <img src="${series.poster}" alt="${series.title}" style="object-fit:cover; height:100%; width:100%; display:none; border-radius:10px; overflow:hidden;">
+            <div class="series-title-hover">${series.title}</div>
+          </figure>
+        </a>
+      </div>
+    `;
           const img = card.querySelector("img");
           const skeleton = card.querySelector(".img-skeleton");
           img.addEventListener("load", () => {
@@ -463,96 +467,151 @@
         });
       }
 
-      // --- Search Bar with Prediction ---
-      const searchInput = document.getElementById("series-search");
-
-      searchInput.addEventListener("input", function () {
-        const val = this.value.trim().toLowerCase();
-        if (!val) {
-          predictionsBox.style.display = "none";
-          // predictionsSkeleton.style.display = "none";
-          renderSeriesGrid(allSeries);
+      function renderPagination(total, page, size) {
+        const pageCount = Math.ceil(total / size);
+        if (pageCount <= 1) {
+          paginationNav.innerHTML = "";
           return;
         }
-        // No skeleton while searching
-        predictionsBox.style.display = "none";
-        // predictionsSkeleton.style.display = "";
-        setTimeout(() => {
-          const matches = allSeries.filter((s) =>
-            s.title.toLowerCase().includes(val)
-          );
-          if (matches.length) {
-            predictionsBox.innerHTML = matches
-              .map(
-                (s, i) =>
-                  `<div class="prediction-item" data-index="${i}">${s.title}</div>`
-              )
-              .join("");
-            predictionsBox.style.display = "block";
-            // predictionsSkeleton.style.display = "none";
-            renderSeriesGrid(matches);
-          } else {
-            predictionsBox.innerHTML =
-              '<div class="prediction-item">No matches found</div>';
-            predictionsBox.style.display = "block";
-            // predictionsSkeleton.style.display = "none";
-            renderSeriesGrid([]); // Show empty grid if no matches
+        let html = `<ul class="pagination">`;
+        html += `<li class="page-item${page === 1 ? ' disabled' : ''}"><a class="page-link" href="#" data-page="${page - 1}">&laquo;</a></li>`;
+        for (let i = 1; i <= pageCount; i++) {
+          html += `<li class="page-item${i === page ? ' active' : ''}"><a class="page-link" href="#" data-page="${i}">${i}</a></li>`;
+        }
+        html += `<li class="page-item${page === pageCount ? ' disabled' : ''}"><a class="page-link" href="#" data-page="${page + 1}">&raquo;</a></li>`;
+        html += `</ul>`;
+        paginationNav.innerHTML = html;
+      }
+
+      function updateGridAndPagination() {
+        let list = filteredSeries.length ? filteredSeries : allSeries;
+        list = sortSeries(list, currentSort);
+        const paged = paginate(list, currentPage, pageSize);
+        renderSeriesGrid(paged);
+        renderPagination(list.length, currentPage, pageSize);
+      }
+
+      function updatePredictions(val) {
+        if (!val) {
+          predictionsBox.style.display = "none";
+          predictionsBox.innerHTML = "";
+          predictionIndex = -1;
+          return;
+        }
+        const matches = allSeries.filter((s) => s.title.toLowerCase().includes(val));
+        if (matches.length) {
+          predictionsBox.innerHTML = matches
+            .slice(0, 8)
+            .map(
+              (s, i) =>
+                `<div class="prediction-item px-3 py-2${i === predictionIndex ? ' active' : ''}" data-index="${i}" style="cursor:pointer;">${s.title}</div>`
+            )
+            .join("");
+          predictionsBox.style.display = "block";
+        } else {
+          predictionsBox.innerHTML = '<div class="prediction-item px-3 py-2">No matches found</div>';
+          predictionsBox.style.display = "block";
+        }
+      }
+
+      const handleSearchInput = debounce(function (e) {
+        searchTerm = searchInput.value.trim().toLowerCase();
+        predictionIndex = -1;
+        if (!searchTerm) {
+          filteredSeries = [];
+          predictionsBox.style.display = "none";
+          currentPage = 1;
+          updateGridAndPagination();
+          return;
+        }
+        filteredSeries = allSeries.filter((s) => s.title.toLowerCase().includes(searchTerm));
+        currentPage = 1;
+        updateGridAndPagination();
+        updatePredictions(searchTerm);
+      }, 200);
+
+      searchInput.addEventListener("input", handleSearchInput);
+
+      searchInput.addEventListener("keydown", function (e) {
+        const items = Array.from(predictionsBox.querySelectorAll(".prediction-item"));
+        if (!items.length || predictionsBox.style.display === "none") return;
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          predictionIndex = (predictionIndex + 1) % items.length;
+          updatePredictions(searchInput.value.trim().toLowerCase());
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          predictionIndex = (predictionIndex - 1 + items.length) % items.length;
+          updatePredictions(searchInput.value.trim().toLowerCase());
+        } else if (e.key === "Enter") {
+          e.preventDefault();
+          if (predictionIndex >= 0 && predictionIndex < items.length) {
+            const text = items[predictionIndex].textContent;
+            searchInput.value = text;
+            searchTerm = text.toLowerCase();
+            filteredSeries = allSeries.filter((s) => s.title.toLowerCase() === searchTerm);
+            currentPage = 1;
+            updateGridAndPagination();
+            predictionsBox.style.display = "none";
           }
-        }, 300); // Simulate async search
+        } else if (e.key === "Escape") {
+          predictionsBox.style.display = "none";
+          predictionIndex = -1;
+        }
       });
 
-      // Click on prediction
-      predictionsBox.addEventListener("click", function (e) {
+      predictionsBox.addEventListener("mousedown", function (e) {
         if (e.target.classList.contains("prediction-item")) {
           const text = e.target.textContent;
           searchInput.value = text;
+          searchTerm = text.toLowerCase();
+          filteredSeries = allSeries.filter((s) => s.title.toLowerCase() === searchTerm);
+          currentPage = 1;
+          updateGridAndPagination();
           predictionsBox.style.display = "none";
-          const match = allSeries.filter((s) => s.title === text);
-          renderSeriesGrid(match);
         }
       });
 
-      // Hide predictions on blur (with delay for click)
-      searchInput.addEventListener("blur", () =>
-        setTimeout(() => (predictionsBox.style.display = "none"), 150)
-      );
+      searchInput.addEventListener("blur", () => setTimeout(() => (predictionsBox.style.display = "none"), 150));
       searchInput.addEventListener("focus", function () {
-        if (this.value.trim()) predictionsBox.style.display = "block";
+        if (this.value.trim()) {
+          predictionIndex = -1;
+          updatePredictions(this.value.trim().toLowerCase());
+        }
       });
 
-      // --- Login State UI Update ---
-      function updateLoginUI() {
-        // Assume login state is stored as localStorage.isLoggedIn = "true"
-        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-        window.isLoggedIn = isLoggedIn; // Expose globally if needed
-
-        // Enable/disable UI elements based on login state
-        document.querySelectorAll(".watch-btn").forEach((btn) => {
-          if (isLoggedIn) {
-            btn.disabled = false;
-            btn.classList.remove("is-disabled");
-            // Hide login-required message if present
-            const loginMsg =
-              btn.parentElement.querySelector(".login-required");
-            if (loginMsg) loginMsg.style.display = "none";
-          } else {
-            btn.disabled = true;
-            btn.classList.add("is-disabled");
-            // Show login-required message if present
-            const loginMsg =
-              btn.parentElement.querySelector(".login-required");
-            if (loginMsg) loginMsg.style.display = "block";
+      paginationNav.addEventListener("click", function (e) {
+        if (e.target.classList.contains("page-link")) {
+          e.preventDefault();
+          const page = parseInt(e.target.getAttribute("data-page"));
+          if (!isNaN(page)) {
+            currentPage = page;
+            updateGridAndPagination();
           }
-        });
-      }
-
-      // Call on page load
-      updateLoginUI();
-
-      // Optionally, listen for login/logout events and update UI
-      window.addEventListener("storage", (e) => {
-        if (e.key === "isLoggedIn") updateLoginUI();
+        }
       });
+
+      sortOptions.forEach((opt) => {
+        opt.addEventListener("click", function (e) {
+          e.preventDefault();
+          currentSort = this.getAttribute("data-sort");
+          updateGridAndPagination();
+        });
+      });
+
+      fetch("serieslist.json")
+        .then((res) => res.json())
+        .then((seriesList) => {
+          allSeries = seriesList;
+          filteredSeries = [];
+          currentPage = 1;
+          updateGridAndPagination();
+        })
+        .catch(() => {
+          grid.innerHTML =
+            '<div class="has-text-centered has-text-danger">Could not load series list.</div>';
+          searchBar.style.display = "";
+        });
     });
   </script>
 </body>
