@@ -1,0 +1,10 @@
+{
+  "id": 10,
+  "title": "Anime Series 10",
+  "poster": "series-json/series10-poster.jpg",
+  "infoPage": "seriesinfo/series10.html",
+  "genres": ["Fantasy"],
+  "year": 2025,
+  "description": "This is a placeholder description for Anime Series 10. Add your own summary and details here.",
+  "updated": 20250605
+}

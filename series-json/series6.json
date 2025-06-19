@@ -1,0 +1,10 @@
+{
+  "id": 6,
+  "title": "Anime Series 6",
+  "poster": "series-json/series6-poster.jpg",
+  "infoPage": "seriesinfo/series6.html",
+  "genres": ["Action"],
+  "year": 2025,
+  "description": "This is a placeholder description for Anime Series 6. Add your own summary and details here.",
+  "updated": 20250601
+}

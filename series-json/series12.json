@@ -1,0 +1,10 @@
+{
+  "id": 12,
+  "title": "Anime Series 12",
+  "poster": "series-json/series12-poster.jpg",
+  "infoPage": "seriesinfo/series12.html",
+  "genres": ["Slice of Life"],
+  "year": 2025,
+  "description": "This is a placeholder description for Anime Series 12. Add your own summary and details here.",
+  "updated": 20250607
+}

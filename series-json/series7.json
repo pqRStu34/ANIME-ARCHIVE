@@ -1,0 +1,10 @@
+{
+  "id": 7,
+  "title": "Anime Series 7",
+  "poster": "series-json/series7-poster.jpg",
+  "infoPage": "seriesinfo/series7.html",
+  "genres": ["Adventure"],
+  "year": 2025,
+  "description": "This is a placeholder description for Anime Series 7. Add your own summary and details here.",
+  "updated": 20250602
+}

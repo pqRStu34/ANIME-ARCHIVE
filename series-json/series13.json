@@ -1,0 +1,10 @@
+{
+  "id": 13,
+  "title": "Anime Series 13",
+  "poster": "series-json/series13-poster.jpg",
+  "infoPage": "seriesinfo/series13.html",
+  "genres": ["Mystery"],
+  "year": 2025,
+  "description": "This is a placeholder description for Anime Series 13. Add your own summary and details here.",
+  "updated": 20250608
+}

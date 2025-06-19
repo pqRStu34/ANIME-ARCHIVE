@@ -132,17 +132,22 @@
       grid-auto-rows: min-content;
       gap: 8px;
       justify-items: center;
+      min-width: 700px;
+      overflow-x: auto;
+      max-width: 100%;
     }
 
     @media (max-width: 900px) {
       .series-grid {
         grid-template-columns: repeat(3, 1fr);
+        min-width: 350px;
       }
     }
 
     @media (max-width: 600px) {
       .series-grid {
         grid-template-columns: repeat(2, 1fr);
+        min-width: 220px;
       }
     }
 
@@ -242,6 +247,47 @@
     .prediction-item:hover {
       background: #23262c !important;
       color: #fff !important;
+    }
+
+    /* Pagination dark theme */
+    .pagination {
+      --bs-pagination-bg: #1f2229;
+      --bs-pagination-border-color: #425277;
+      --bs-pagination-color: #fff;
+      --bs-pagination-hover-bg: #23262c;
+      --bs-pagination-hover-color: #00d1b2;
+      --bs-pagination-active-bg: #00d1b2;
+      --bs-pagination-active-border-color: #00d1b2;
+      --bs-pagination-active-color: #14161a;
+      --bs-pagination-disabled-bg: #23262c;
+      --bs-pagination-disabled-color: #888;
+      --bs-pagination-focus-box-shadow: none;
+    }
+
+    .pagination .page-link {
+      background: var(--bs-pagination-bg) !important;
+      color: var(--bs-pagination-color) !important;
+      border: 1px solid var(--bs-pagination-border-color) !important;
+      border-radius: 0.4rem !important;
+      margin: 0 2px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .pagination .page-link:hover {
+      background: var(--bs-pagination-hover-bg) !important;
+      color: var(--bs-pagination-hover-color) !important;
+    }
+
+    .pagination .page-item.active .page-link {
+      background: var(--bs-pagination-active-bg) !important;
+      color: var(--bs-pagination-active-color) !important;
+      border-color: var(--bs-pagination-active-border-color) !important;
+    }
+
+    .pagination .page-item.disabled .page-link {
+      background: var(--bs-pagination-disabled-bg) !important;
+      color: var(--bs-pagination-disabled-color) !important;
+      border-color: var(--bs-pagination-border-color) !important;
     }
   </style>
 </head>
@@ -600,16 +646,19 @@
       });
 
       fetch("serieslist.json")
-        .then((res) => res.json())
+        .then((res) => {
+          if (!res.ok) throw new Error('Network response was not ok');
+          return res.json();
+        })
         .then((seriesList) => {
           allSeries = seriesList;
           filteredSeries = [];
           currentPage = 1;
           updateGridAndPagination();
         })
-        .catch(() => {
+        .catch((err) => {
           grid.innerHTML =
-            '<div class="has-text-centered has-text-danger">Could not load series list.</div>';
+            '<div class="has-text-centered has-text-danger">Could not load series list.<br>' + err + '</div>';
           searchBar.style.display = "";
         });
     });

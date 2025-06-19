@@ -1,0 +1,10 @@
+{
+  "id": 9,
+  "title": "Anime Series 9",
+  "poster": "series-json/series9-poster.jpg",
+  "infoPage": "seriesinfo/series9.html",
+  "genres": ["Drama"],
+  "year": 2025,
+  "description": "This is a placeholder description for Anime Series 9. Add your own summary and details here.",
+  "updated": 20250604
+}
