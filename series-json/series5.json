@@ -8,7 +8,7 @@
         {
           "lang": "en",
           "label": "English",
-          "src": "https://archive.org/download/mahou-shoujo-ni-akogarete/season1_subtitles/Gushing_over_Magical_Girls_Uncensored-E1-1080p-English.vtt"
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fmahou-shoujo-ni-akogarete%2Fseason1_subtitles%2FGushing_over_Magical_Girls_Uncensored-E1-1080p-English.vtt"
         }
       ],
       "servers": [
@@ -16,7 +16,7 @@
           "name": "Main Server",
           "subs": [
             {
-              "src": "https://archive.org/download/mahou-shoujo-ni-akogarete/Gushing_over_Magical_Girls_Uncensored-E1-1080p.ia.mp4",
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fmahou-shoujo-ni-akogarete%2Fs1_1080p_sub%2FGushing_over_Magical_Girls_Uncensored-E1-1080p.mp4",
               "type": "video/mp4",
               "quality": "1080p"
             },

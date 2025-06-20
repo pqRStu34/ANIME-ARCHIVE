@@ -1,772 +1,783 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Anime Archive - Video Player</title>
-    <!-- Bootstrap 5 CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      crossorigin="anonymous"
-    />
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    />
-    <style>
-      body {
-        background: #14161a !important;
-      }
 
-      .card,
-      .card-body {
-        background: #16181d !important;
-        border-color: #23252a !important;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anime Archive - Video Player</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+    crossorigin="anonymous" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+  <style>
+    body {
+      background: #14161a !important;
+    }
 
-      .video-js {
-        border-radius: 12px;
-        width: 100%;
-        background: #14161a;
-      }
+    .card,
+    .card-body {
+      background: #16181d !important;
+      border-color: #23252a !important;
+    }
 
-      .vjs-control:focus {
-        outline: 2px solid #6678ff;
-      }
+    .video-js {
+      border-radius: 12px;
+      width: 100%;
+      background: #14161a;
+    }
 
-      .switcher-label i,
-      .fw-semibold i,
-      .bi {
-        color: #6678ff !important;
-      }
+    .vjs-control:focus {
+      outline: 2px solid #6678ff;
+    }
 
-      .adv-search-toggle {
-        color: #6678ff;
-      }
+    .switcher-label i,
+    .fw-semibold i,
+    .bi {
+      color: #6678ff !important;
+    }
 
-      .adv-search-toggle .bar {
-        background: #6678ff;
-      }
+    .adv-search-toggle {
+      color: #6678ff;
+    }
 
-      .btn-info,
-      .btn-outline-info,
-      .btn-info.text-white {
-        background-color: #6678ff !important;
-        border-color: #6678ff !important;
-        color: #fff !important;
-      }
+    .adv-search-toggle .bar {
+      background: #6678ff;
+    }
 
-      .btn-outline-info {
-        background: transparent !important;
-        color: #6678ff !important;
-      }
+    .btn-info,
+    .btn-outline-info,
+    .btn-info.text-white {
+      background-color: #6678ff !important;
+      border-color: #6678ff !important;
+      color: #fff !important;
+    }
 
-      .btn-outline-info:hover,
-      .btn-outline-info:focus {
-        background: #6678ff !important;
-        color: #fff !important;
-        border-color: #6678ff !important;
-      }
+    .btn-outline-info {
+      background: transparent !important;
+      color: #6678ff !important;
+    }
 
-      .page-link {
-        color: #6678ff !important;
-      }
+    .btn-outline-info:hover,
+    .btn-outline-info:focus {
+      background: #6678ff !important;
+      color: #fff !important;
+      border-color: #6678ff !important;
+    }
 
-      .page-item.active .page-link {
-        background-color: #6678ff !important;
-        border-color: #6678ff !important;
-        color: #fff !important;
-      }
+    .page-link {
+      color: #6678ff !important;
+    }
 
-      .switcher-row {
-        display: flex;
-        align-items: center;
-        gap: 0.7em;
-        margin-bottom: 1em;
-      }
+    .page-item.active .page-link {
+      background-color: #6678ff !important;
+      border-color: #6678ff !important;
+      color: #fff !important;
+    }
 
-      .switcher-label {
-        min-width: 60px;
-        text-align: right;
-        font-size: 1.1em;
-        display: flex;
-        align-items: center;
-        gap: 0.3em;
-      }
+    .switcher-row {
+      display: flex;
+      align-items: center;
+      gap: 0.7em;
+      margin-bottom: 1em;
+    }
 
-      .switcher-btns {
-        display: flex;
-        align-items: center;
-        gap: 0.5em;
-      }
+    .switcher-label {
+      min-width: 60px;
+      text-align: right;
+      font-size: 1.1em;
+      display: flex;
+      align-items: center;
+      gap: 0.3em;
+    }
 
-      .hamburger-card {
-        position: relative;
-      }
+    .switcher-btns {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
 
-      .hamburger-menu {
-        position: absolute;
-        left: 0;
-        right: 0;
-        background: #fff;
-        box-shadow: 0 4px 24px #b5b5b5;
-        border-radius: 0 0 8px 8px;
-        z-index: 10;
-        padding: 0.5em 0.5em 0.7em 0.5em;
-        animation: fadeIn 0.2s;
-      }
+    .hamburger-card {
+      position: relative;
+    }
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(-10px);
-        }
+    .hamburger-menu {
+      position: absolute;
+      left: 0;
+      right: 0;
+      background: #fff;
+      box-shadow: 0 4px 24px #b5b5b5;
+      border-radius: 0 0 8px 8px;
+      z-index: 10;
+      padding: 0.5em 0.5em 0.7em 0.5em;
+      animation: fadeIn 0.2s;
+    }
 
-        to {
-          opacity: 1;
-          transform: none;
-        }
-      }
-
-      .adv-search-toggle {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        user-select: none;
-        font-size: 1.2em;
-        font-weight: 700;
-        color: #0dcaf0;
-        margin-bottom: 1rem;
-        transition: color 0.2s;
-      }
-
-      .adv-search-toggle .hamburger {
-        width: 24px;
-        height: 24px;
-        position: relative;
-        display: inline-block;
-        margin-right: 0.7em;
-      }
-
-      .adv-search-toggle .bar {
-        display: block;
-        position: absolute;
-        height: 3px;
-        width: 100%;
-        background: #0dcaf0;
-        border-radius: 2px;
-        opacity: 1;
-        left: 0;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .adv-search-toggle .bar1 {
-        top: 4px;
-      }
-
-      .adv-search-toggle .bar2 {
-        top: 10px;
-      }
-
-      .adv-search-toggle .bar3 {
-        top: 16px;
-      }
-
-      .adv-search-toggle.open .bar1 {
-        transform: rotate(45deg);
-        top: 10px;
-      }
-
-      .adv-search-toggle.open .bar2 {
+    @keyframes fadeIn {
+      from {
         opacity: 0;
+        transform: translateY(-10px);
       }
 
-      .adv-search-toggle.open .bar3 {
-        transform: rotate(-45deg);
-        top: 10px;
+      to {
+        opacity: 1;
+        transform: none;
       }
+    }
 
-      .btn-subdub {
-        border: 2px solid #ff6685;
-        background: transparent;
-        color: #ff6685;
-        transition: background 0.2s, color 0.2s;
-      }
-      .btn-subdub.active,
-      .btn-subdub:active {
-        background: #ff6685;
-        color: #fff;
-        border-color: #ff6685;
-      }
-      .btn-subdub:hover:not(:disabled) {
-        background: rgba(255, 102, 133, 0.15);
-        color: #ff6685;
-        border-color: #ff6685;
-      }
+    .adv-search-toggle {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #0dcaf0;
+      margin-bottom: 1rem;
+      transition: color 0.2s;
+    }
 
-      #playlist.list-group {
-        background: #16181d;
-        border-radius: 8px;
-      }
-      #playlist .list-group-item {
-        background: #16181d;
-        color: #fff;
-        border: 1px solid #23252a;
-        transition: background 0.2s, color 0.2s;
-      }
-      #playlist .list-group-item.active,
-      #playlist .list-group-item:active {
-        background: #23252a;
-        color: #ff6685;
-        border-color: #ff6685;
-      }
-      #playlist .list-group-item:hover:not(.active) {
-        background: #23252a;
-        color: #6678ff;
-      }
+    .adv-search-toggle .hamburger {
+      width: 24px;
+      height: 24px;
+      position: relative;
+      display: inline-block;
+      margin-right: 0.7em;
+    }
 
-      .fw-semibold {
-        color: #00d1b2;
-        transition: text-shadow 0.2s, color 0.2s;
-      }
-      .fw-semibold:hover {
-        text-shadow: 0 0 8px #00d1b2, 0 0 16px #00d1b2;
-        color: #00fff0;
-      }
+    .adv-search-toggle .bar {
+      display: block;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background: #0dcaf0;
+      border-radius: 2px;
+      opacity: 1;
+      left: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-      /* Video.js settings menu dropdown direction */
-      .vjs-menu {
-        top: 100% !important;
-        bottom: auto !important;
-      }
-      /* Video.js theme: change blue to cyan, but do NOT affect play/pause icons */
-      .vjs-default-skin .vjs-slider-thumb,
-      .vjs-default-skin .vjs-play-progress,
-      .vjs-default-skin .vjs-volume-panel .vjs-mute,
-      .vjs-default-skin .vjs-volume-panel .vjs-volume-level {
-        background: #00fff0 !important;
-        color: #00fff0 !important;
-        border-color: #00fff0 !important;
-      }
-      .vjs-default-skin .vjs-control.vjs-tab-focus,
-      .vjs-default-skin .vjs-control:hover,
-      .vjs-default-skin .vjs-control[aria-expanded="true"] {
-        background: #00d1b2 !important;
-        color: #fff !important;
-      }
-      .vjs-default-skin .vjs-menu {
-        border-color: #00fff0 !important;
-      }
-      .vjs-default-skin .vjs-menu .vjs-control.vjs-control-active {
-        color: #00fff0 !important;
-      }
-      .vjs-default-skin .vjs-caption {
-        background: rgba(0, 255, 240, 0.15) !important;
-        color: #00fff0 !important;
-        text-shadow: 0 0 8px #00fff0;
-      }
-      /* Do NOT color play/pause icons */
-      .vjs-default-skin .vjs-control.vjs-control-overlaid,
-      .vjs-default-skin .vjs-control[data-plyr="play"],
-      .vjs-default-skin .vjs-control[data-plyr="pause"] {
-        background: #23252a !important;
-        color: #fff !important;
-        border-color: #23252a !important;
-      }
-    </style>
-  </head>
+    .adv-search-toggle .bar1 {
+      top: 4px;
+    }
 
-  <body>
-    <div class="container mt-5">
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg-8">
-          <div class="card mb-0 border-0 bg-transparent">
-            <div class="card-body p-0 bg-transparent">
-              <!-- Video.js Player -->
-              <video
-                id="player"
-                controls
-                crossorigin="anonymous"
-                playsinline
-                width="100%"
-                height="100%"
-                style="border-radius: 12px; background: #14161a; width: 100%"
-              ></video>
-            </div>
+    .adv-search-toggle .bar2 {
+      top: 10px;
+    }
+
+    .adv-search-toggle .bar3 {
+      top: 16px;
+    }
+
+    .adv-search-toggle.open .bar1 {
+      transform: rotate(45deg);
+      top: 10px;
+    }
+
+    .adv-search-toggle.open .bar2 {
+      opacity: 0;
+    }
+
+    .adv-search-toggle.open .bar3 {
+      transform: rotate(-45deg);
+      top: 10px;
+    }
+
+    .btn-subdub {
+      border: 2px solid #ff6685;
+      background: transparent;
+      color: #ff6685;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-subdub.active,
+    .btn-subdub:active {
+      background: #ff6685;
+      color: #fff;
+      border-color: #ff6685;
+    }
+
+    .btn-subdub:hover:not(:disabled) {
+      background: rgba(255, 102, 133, 0.15);
+      color: #ff6685;
+      border-color: #ff6685;
+    }
+
+    #playlist.list-group {
+      background: #16181d;
+      border-radius: 8px;
+    }
+
+    #playlist .list-group-item {
+      background: #16181d;
+      color: #fff;
+      border: 1px solid #23252a;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    #playlist .list-group-item.active,
+    #playlist .list-group-item:active {
+      background: #23252a;
+      color: #ff6685;
+      border-color: #ff6685;
+    }
+
+    #playlist .list-group-item:hover:not(.active) {
+      background: #23252a;
+      color: #6678ff;
+    }
+
+    .fw-semibold {
+      color: #00d1b2;
+      transition: text-shadow 0.2s, color 0.2s;
+    }
+
+    .fw-semibold:hover {
+      text-shadow: 0 0 8px #00d1b2, 0 0 16px #00d1b2;
+      color: #00fff0;
+    }
+
+    /* Video.js settings menu dropdown direction */
+    .vjs-menu {
+      top: 100% !important;
+      bottom: auto !important;
+    }
+
+    /* Video.js theme: change blue to cyan, but do NOT affect play/pause icons */
+    .vjs-default-skin .vjs-slider-thumb,
+    .vjs-default-skin .vjs-play-progress,
+    .vjs-default-skin .vjs-volume-panel .vjs-mute,
+    .vjs-default-skin .vjs-volume-panel .vjs-volume-level {
+      background: #00fff0 !important;
+      color: #00fff0 !important;
+      border-color: #00fff0 !important;
+    }
+
+    .vjs-default-skin .vjs-control.vjs-tab-focus,
+    .vjs-default-skin .vjs-control:hover,
+    .vjs-default-skin .vjs-control[aria-expanded="true"] {
+      background: #00d1b2 !important;
+      color: #fff !important;
+    }
+
+    .vjs-default-skin .vjs-menu {
+      border-color: #00fff0 !important;
+    }
+
+    .vjs-default-skin .vjs-menu .vjs-control.vjs-control-active {
+      color: #00fff0 !important;
+    }
+
+    .vjs-default-skin .vjs-caption {
+      background: rgba(0, 255, 240, 0.15) !important;
+      color: #00fff0 !important;
+      text-shadow: 0 0 8px #00fff0;
+    }
+
+    /* Do NOT color play/pause icons */
+    .vjs-default-skin .vjs-control.vjs-control-overlaid,
+    .vjs-default-skin .vjs-control[data-plyr="play"],
+    .vjs-default-skin .vjs-control[data-plyr="pause"] {
+      background: #23252a !important;
+      color: #fff !important;
+      border-color: #23252a !important;
+    }
+
+    video::-webkit-media-text-track-display {
+      background: rgba(0, 0, 0, 0.0) !important;
+      /* Remove bottom offset to keep default position */
+    }
+
+    video::cue {
+      background: rgba(0, 0, 0, 0.0) !important;
+      color: #fff !important;
+      text-shadow:
+        -2px -2px 0 #000, 2px -2px 0 #000,
+        -2px 2px 0 #000, 2px 2px 0 #000,
+        0 0 6px rgba(0, 0, 0, 0.5);
+      border-radius: 6px;
+      padding: 0.2em 0.7em;
+      font-size: 1.25em;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8">
+        <div class="card mb-0 border-0 bg-transparent">
+          <div class="card-body p-0 bg-transparent">
+            <!-- Video.js Player -->
+            <video id="player" controls crossorigin="anonymous" playsinline width="100%" height="100%"
+              style="border-radius: 12px; background: #14161a; width: 100%"></video>
           </div>
-          <!-- Server Switcher Card -->
-          <div id="switcher-card" class="card mt-4 mb-4">
-            <div class="card-body">
-              <div class="mb-3 switcher-row">
-                <span class="switcher-label">
-                  <i class="bi bi-hdd-network-fill"></i>
-                </span>
-                <div id="server-switcher" class="switcher-btns"></div>
-              </div>
-              <div class="mb-3 switcher-row">
-                <span class="switcher-label">
-                  <i class="bi bi-file-earmark-music-fill"></i>
-                </span>
-                <div id="mode-switcher" class="switcher-btns"></div>
-              </div>
-              <div class="mb-1 switcher-row">
-                <span class="switcher-label">
-                  <i class="bi bi-film"></i>
-                </span>
-                <div id="quality-switcher" class="switcher-btns"></div>
-              </div>
+        </div>
+        <!-- Server Switcher Card -->
+        <div id="switcher-card" class="card mt-4 mb-4">
+          <div class="card-body">
+            <div class="mb-3 switcher-row">
+              <span class="switcher-label">
+                <i class="bi bi-hdd-network-fill"></i>
+              </span>
+              <div id="server-switcher" class="switcher-btns"></div>
+            </div>
+            <div class="mb-3 switcher-row">
+              <span class="switcher-label">
+                <i class="bi bi-file-earmark-music-fill"></i>
+              </span>
+              <div id="mode-switcher" class="switcher-btns"></div>
+            </div>
+            <div class="mb-1 switcher-row">
+              <span class="switcher-label">
+                <i class="bi bi-film"></i>
+              </span>
+              <div id="quality-switcher" class="switcher-btns"></div>
             </div>
           </div>
         </div>
       </div>
-      <!-- Playlist Section (Episodes, paginated, NOT hamburger) -->
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg-8">
-          <div class="card">
-            <div class="card-body" style="padding: 0.5em 1em">
-              <div class="mb-2 fw-semibold">EPISODES</div>
-              <div id="playlist" class="list-group"></div>
-              <nav
-                class="d-flex justify-content-center mt-3"
-                aria-label="pagination"
-              >
-                <button
-                  class="btn btn-outline-secondary btn-sm me-2"
-                  id="episodes-prev"
-                  title="Previous"
-                >
-                  <i class="bi bi-chevron-left"></i>
-                </button>
-                <ul class="pagination mb-0" id="episodes-pagination"></ul>
-                <button
-                  class="btn btn-outline-secondary btn-sm ms-2"
-                  id="episodes-next"
-                  title="Next"
-                >
-                  <i class="bi bi-chevron-right"></i>
-                </button>
-              </nav>
-            </div>
+    </div>
+    <!-- Playlist Section (Episodes, paginated, NOT hamburger) -->
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8">
+        <div class="card">
+          <div class="card-body" style="padding: 0.5em 1em">
+            <div class="mb-2 fw-semibold">EPISODES</div>
+            <div id="playlist" class="list-group"></div>
+            <nav class="d-flex justify-content-center mt-3" aria-label="pagination">
+              <button class="btn btn-outline-secondary btn-sm me-2" id="episodes-prev" title="Previous">
+                <i class="bi bi-chevron-left"></i>
+              </button>
+              <ul class="pagination mb-0" id="episodes-pagination"></ul>
+              <button class="btn btn-outline-secondary btn-sm ms-2" id="episodes-next" title="Next">
+                <i class="bi bi-chevron-right"></i>
+              </button>
+            </nav>
           </div>
         </div>
       </div>
-      <!-- Extra Content Section (OVA, Movies, etc.) as Hamburger/Collapsible -->
-      <div
-        class="row justify-content-center"
-        id="extra-content-row"
-        style="display: none"
-      >
-        <div class="col-12 col-md-10 col-lg-8">
-          <div class="card">
-            <div class="card-body" style="padding: 0.5em 1em">
-              <div id="extra-content-hamburger" class="hamburger-card">
-                <div
-                  id="extra-content-hamburger-toggle"
-                  class="adv-search-toggle"
-                  style="margin-bottom: 0"
-                >
-                  <span class="hamburger">
-                    <span class="bar bar1"></span>
-                    <span class="bar bar2"></span>
-                    <span class="bar bar3"></span>
-                  </span>
-                  <span class="fw-semibold"
-                    ><i class="bi bi-film"></i> Extra Content (OVA, Movies,
-                    Specials)</span
-                  >
-                </div>
-                <div
-                  id="extra-content-hamburger-menu"
-                  class="hamburger-menu"
-                  style="display: none"
-                >
-                  <div
-                    id="extra-content-buttons"
-                    class="d-flex justify-content-center flex-wrap gap-2"
-                  ></div>
-                </div>
+    </div>
+    <!-- Extra Content Section (OVA, Movies, etc.) as Hamburger/Collapsible -->
+    <div class="row justify-content-center" id="extra-content-row" style="display: none">
+      <div class="col-12 col-md-10 col-lg-8">
+        <div class="card">
+          <div class="card-body" style="padding: 0.5em 1em">
+            <div id="extra-content-hamburger" class="hamburger-card">
+              <div id="extra-content-hamburger-toggle" class="adv-search-toggle" style="margin-bottom: 0">
+                <span class="hamburger">
+                  <span class="bar bar1"></span>
+                  <span class="bar bar2"></span>
+                  <span class="bar bar3"></span>
+                </span>
+                <span class="fw-semibold"><i class="bi bi-film"></i> Extra Content (OVA, Movies,
+                  Specials)</span>
+              </div>
+              <div id="extra-content-hamburger-menu" class="hamburger-menu" style="display: none">
+                <div id="extra-content-buttons" class="d-flex justify-content-center flex-wrap gap-2"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Bootstrap JS -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- hls.js for HLS support in browsers without native HLS -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.7/dist/hls.min.js"></script>
-    <script>
-      let playlistData = [];
-      let current = { episode: 0, server: 0, mode: "subs", quality: 0 };
-      let episodesPage = 1;
-      const EPISODES_PER_PAGE = 100;
+  </div>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <!-- hls.js for HLS support in browsers without native HLS -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.7/dist/hls.min.js"></script>
+  <script>
+    let playlistData = [];
+    let current = { episode: 0, server: 0, mode: "subs", quality: 0 };
+    let episodesPage = 1;
+    const EPISODES_PER_PAGE = 100;
 
-      // --- Persist current state in localStorage ---
-      function savePlayerState() {
-        localStorage.setItem("videoPlayerState", JSON.stringify(current));
-      }
-      function loadPlayerState() {
-        const state = localStorage.getItem("videoPlayerState");
-        if (state) {
-          try {
-            return JSON.parse(state);
-          } catch (e) {}
-        }
-        return { episode: 0, server: 0, mode: "subs", quality: 0 };
-      }
-
-      // Get series key from URL
-      function getSeriesKey() {
-        const params = new URLSearchParams(window.location.search);
-        return params.get("series") || "series-json/series1";
-      }
-
-      // Fetch playlist from JSON file
-      async function loadPlaylist() {
+    // --- Persist current state in localStorage ---
+    function savePlayerState() {
+      localStorage.setItem("videoPlayerState", JSON.stringify(current));
+    }
+    function loadPlayerState() {
+      const state = localStorage.getItem("videoPlayerState");
+      if (state) {
         try {
-          const seriesKey = getSeriesKey();
-          const res = await fetch(seriesKey + ".json");
-          playlistData = await res.json();
-          // Set episodesPage so current.episode is visible
-          const episodes = playlistData.episodes || [];
-          episodesPage =
-            Math.floor((current.episode || 0) / EPISODES_PER_PAGE) + 1;
-          renderPlaylist();
-          playEpisode(
-            current.episode || 0,
-            current.server || 0,
-            current.mode || "subs",
-            current.quality || 0
-          );
-          renderExtraContent();
-        } catch (e) {
-          document.getElementById("playlist").innerHTML =
-            '<p class="text-danger">Failed to load playlist.</p>';
-        }
+          return JSON.parse(state);
+        } catch (e) { }
       }
+      return { episode: 0, server: 0, mode: "subs", quality: 0 };
+    }
 
-      // Render playlist
-      function renderPlaylist() {
-        const playlist = document.getElementById("playlist");
-        playlist.innerHTML = "";
+    // Get series key from URL
+    function getSeriesKey() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("series") || "series-json/series1";
+    }
+
+    // Fetch playlist from JSON file
+    async function loadPlaylist() {
+      try {
+        const seriesKey = getSeriesKey();
+        const res = await fetch(seriesKey + ".json");
+        playlistData = await res.json();
+        // Set episodesPage so current.episode is visible
         const episodes = playlistData.episodes || [];
-        const start = (episodesPage - 1) * EPISODES_PER_PAGE;
-        const end = start + EPISODES_PER_PAGE;
-        const pageEpisodes = episodes.slice(start, end);
-        pageEpisodes.forEach((ep, idx) => {
-          const a = document.createElement("button");
-          a.type = "button";
-          a.className =
-            "list-group-item list-group-item-action" +
-            (start + idx === current.episode ? " active" : "");
-          a.textContent = ep.title;
-          a.onclick = () => {
-            playEpisode(start + idx, 0, "subs", 0);
-          };
-          playlist.appendChild(a);
-        });
-        renderEpisodesPagination();
+        episodesPage =
+          Math.floor((current.episode || 0) / EPISODES_PER_PAGE) + 1;
+        renderPlaylist();
+        playEpisode(
+          current.episode || 0,
+          current.server || 0,
+          current.mode || "subs",
+          current.quality || 0
+        );
+        renderExtraContent();
+      } catch (e) {
+        document.getElementById("playlist").innerHTML =
+          '<p class="text-danger">Failed to load playlist.</p>';
       }
+    }
 
-      // Render episodes pagination
-      function renderEpisodesPagination() {
-        const episodes = playlistData.episodes || [];
-        const totalPages = Math.ceil(episodes.length / EPISODES_PER_PAGE);
-        const prev = document.getElementById("episodes-prev");
-        const next = document.getElementById("episodes-next");
-        const pagelist = document.getElementById("episodes-pagination");
-        prev.disabled = episodesPage === 1;
-        next.disabled = episodesPage === totalPages;
-        prev.onclick = () => {
-          if (episodesPage > 1) {
-            episodesPage--;
-            renderPlaylist();
-          }
+    // Render playlist
+    function renderPlaylist() {
+      const playlist = document.getElementById("playlist");
+      playlist.innerHTML = "";
+      const episodes = playlistData.episodes || [];
+      const start = (episodesPage - 1) * EPISODES_PER_PAGE;
+      const end = start + EPISODES_PER_PAGE;
+      const pageEpisodes = episodes.slice(start, end);
+      pageEpisodes.forEach((ep, idx) => {
+        const a = document.createElement("button");
+        a.type = "button";
+        a.className =
+          "list-group-item list-group-item-action" +
+          (start + idx === current.episode ? " active" : "");
+        a.textContent = ep.title;
+        a.onclick = () => {
+          playEpisode(start + idx, 0, "subs", 0);
         };
-        next.onclick = () => {
-          if (episodesPage < totalPages) {
-            episodesPage++;
-            renderPlaylist();
-          }
-        };
-        pagelist.innerHTML = "";
-        for (let i = 1; i <= totalPages; i++) {
-          const li = document.createElement("li");
-          li.className = "page-item" + (i === episodesPage ? " active" : "");
-          const a = document.createElement("button");
-          a.className = "page-link";
-          a.textContent = i;
-          a.onclick = () => {
-            episodesPage = i;
-            renderPlaylist();
-          };
-          li.appendChild(a);
-          pagelist.appendChild(li);
-        }
-      }
-
-      // Highlight active episode
-      function highlightActiveEpisode() {
-        document
-          .querySelectorAll("#playlist .list-group-item")
-          .forEach((a, idx) => {
-            if (idx === current.episode % EPISODES_PER_PAGE)
-              a.classList.add("active");
-            else a.classList.remove("active");
-          });
-      }
-
-      // Render switchers
-      function renderSwitchers() {
-        const ep = (playlistData.episodes || [])[current.episode];
-        if (!ep) return;
-        // Server Switcher
-        const serverDiv = document.getElementById("server-switcher");
-        serverDiv.innerHTML = "";
-        ep.servers.forEach((srv, i) => {
-          const btn = document.createElement("button");
-          btn.className =
-            "btn btn-sm" +
-            (i === current.server
-              ? " btn-info text-white"
-              : " btn-outline-info");
-          btn.textContent = srv.name;
-          btn.onclick = () => playEpisode(current.episode, i, current.mode, 0);
-          serverDiv.appendChild(btn);
-        });
-        // Mode Switcher (SUB/DUB)
-        const modeDiv = document.getElementById("mode-switcher");
-        modeDiv.innerHTML = "";
-        const hasSubs =
-          ep.servers[current.server].subs &&
-          ep.servers[current.server].subs.length > 0;
-        const hasDubs =
-          ep.servers[current.server].dubs &&
-          ep.servers[current.server].dubs.length > 0;
-        // SUB button
-        const subBtn = document.createElement("button");
-        subBtn.className =
-          "btn btn-subdub btn-sm" +
-          (current.mode === "subs" ? " active" : "") +
-          (hasSubs ? "" : " disabled");
-        subBtn.textContent = "SUB";
-        subBtn.disabled = !hasSubs;
-        subBtn.onclick = () =>
-          hasSubs && playEpisode(current.episode, current.server, "subs", 0);
-        modeDiv.appendChild(subBtn);
-        // DUB button
-        const dubBtn = document.createElement("button");
-        dubBtn.className =
-          "btn btn-subdub btn-sm" +
-          (current.mode === "dubs" ? " active" : "") +
-          (hasDubs ? "" : " disabled");
-        dubBtn.textContent = "DUB";
-        dubBtn.disabled = !hasDubs;
-        dubBtn.onclick = () =>
-          hasDubs && playEpisode(current.episode, current.server, "dubs", 0);
-        modeDiv.appendChild(dubBtn);
-        // Captions ON/OFF toggle button (icon only)
-        const captionsBtn = document.createElement("button");
-        captionsBtn.className = "btn btn-subdub btn-sm ms-2";
-        captionsBtn.title = window.captionsEnabled
-          ? "Hide Subtitles"
-          : "Show Subtitles";
-        captionsBtn.innerHTML = window.captionsEnabled
-          ? '<i class="bi bi-cc-circle-fill"></i>'
-          : '<i class="bi bi-cc-circle"></i>';
-        captionsBtn.onclick = () => {
-          window.captionsEnabled = !window.captionsEnabled;
-          setCaptions(window.captionsEnabled);
-          renderSwitchers();
-        };
-        modeDiv.appendChild(captionsBtn);
-        // Quality Switcher
-        const qualityDiv = document.getElementById("quality-switcher");
-        qualityDiv.innerHTML = "";
-        // Define standard qualities (removed 360p)
-        const standardQualities = ["480p", "720p", "1080p"];
-        const qualities = ep.servers[current.server][current.mode] || [];
-        // Map available qualities for quick lookup (only if src is non-empty)
-        const availableQualities = {};
-        qualities.forEach((q, i) => {
-          if (q.src && q.src.trim() !== "") {
-            availableQualities[q.quality] = i;
-          }
-        });
-        standardQualities.forEach((qLabel, i) => {
-          const isAvailable = availableQualities.hasOwnProperty(qLabel);
-          const btn = document.createElement("button");
-          btn.className =
-            "btn btn-sm" +
-            (isAvailable && availableQualities[qLabel] === current.quality
-              ? " btn-info text-white"
-              : " btn-outline-info");
-          btn.textContent = qLabel;
-          btn.disabled = !isAvailable;
-          btn.onclick = () => {
-            if (isAvailable) {
-              playEpisode(
-                current.episode,
-                current.server,
-                current.mode,
-                availableQualities[qLabel]
-              );
-            }
-          };
-          qualityDiv.appendChild(btn);
-        });
-      }
-
-      // Play episode
-      function playEpisode(
-        episodeIdx = 0,
-        serverIdx = 0,
-        mode = "subs",
-        qualityIdx = 0
-      ) {
-        current = {
-          episode: episodeIdx,
-          server: serverIdx,
-          mode,
-          quality: qualityIdx,
-        };
-        savePlayerState();
-        highlightActiveEpisode();
-        renderSwitchers();
-        const ep = (playlistData.episodes || [])[episodeIdx];
-        if (!ep) return;
-        const server = ep.servers[serverIdx];
-        const sources = server[mode] || [];
-        const source = sources[qualityIdx];
-        const video = document.getElementById("player");
-
-        // Remove previous ended event
-        video.onended = null;
-        // Set video source
-        if (source) {
-          if (source.type === "application/x-mpegURL") {
-            if (Hls.isSupported()) {
-              const hls = new Hls();
-              hls.loadSource(source.src);
-              hls.attachMedia(video);
-              hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                video.play();
-              });
-              // Auto play next episode for HLS
-              hls.on(Hls.Events.MEDIA_ATTACHED, function () {
-                video.onended = () => playNextEpisode();
-              });
-            } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-              video.src = source.src;
-              video.addEventListener("loadedmetadata", function () {
-                video.play();
-              });
-              video.onended = () => playNextEpisode();
-            }
-          } else {
-            video.src = source.src;
-            video.type = source.type;
-            video.load();
-            video.play();
-            video.onended = () => playNextEpisode();
-          }
-        }
-        // Set captions state after loading video
-        setTimeout(() => setCaptions(window.captionsEnabled), 200);
-      }
-      // Auto play next episode
-      function playNextEpisode() {
-        const episodes = playlistData.episodes || [];
-        if (current.episode + 1 < episodes.length) {
-          playEpisode(current.episode + 1, 0, "subs", 0);
-        }
-      }
-      // Load state and playlist on page load
-      window.addEventListener("DOMContentLoaded", () => {
-        current = loadPlayerState();
-        loadPlaylist();
+        playlist.appendChild(a);
       });
+      renderEpisodesPagination();
+    }
 
-      // Hamburger for extra content
-      function renderExtraContent() {
-        const extra = playlistData.extra || [];
-        const row = document.getElementById("extra-content-row");
-        if (extra.length === 0) {
-          row.style.display = "none";
-          return;
+    // Render episodes pagination
+    function renderEpisodesPagination() {
+      const episodes = playlistData.episodes || [];
+      const totalPages = Math.ceil(episodes.length / EPISODES_PER_PAGE);
+      const prev = document.getElementById("episodes-prev");
+      const next = document.getElementById("episodes-next");
+      const pagelist = document.getElementById("episodes-pagination");
+      prev.disabled = episodesPage === 1;
+      next.disabled = episodesPage === totalPages;
+      prev.onclick = () => {
+        if (episodesPage > 1) {
+          episodesPage--;
+          renderPlaylist();
         }
-        row.style.display = "";
-        const btnsDiv = document.getElementById("extra-content-buttons");
-        btnsDiv.innerHTML = "";
-        extra.forEach((item, idx) => {
-          const btn = document.createElement("button");
-          btn.className = "btn btn-outline-info btn-sm";
-          btn.textContent = item.title;
-          btn.onclick = () => {
-            // Play extra content (assume same structure as episodes)
-            playExtraContent(idx);
-          };
-          btnsDiv.appendChild(btn);
+      };
+      next.onclick = () => {
+        if (episodesPage < totalPages) {
+          episodesPage++;
+          renderPlaylist();
+        }
+      };
+      pagelist.innerHTML = "";
+      for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement("li");
+        li.className = "page-item" + (i === episodesPage ? " active" : "");
+        const a = document.createElement("button");
+        a.className = "page-link";
+        a.textContent = i;
+        a.onclick = () => {
+          episodesPage = i;
+          renderPlaylist();
+        };
+        li.appendChild(a);
+        pagelist.appendChild(li);
+      }
+    }
+
+    // Highlight active episode
+    function highlightActiveEpisode() {
+      document
+        .querySelectorAll("#playlist .list-group-item")
+        .forEach((a, idx) => {
+          if (idx === current.episode % EPISODES_PER_PAGE)
+            a.classList.add("active");
+          else a.classList.remove("active");
+        });
+    }
+
+    // Render switchers
+    function renderSwitchers() {
+      const ep = (playlistData.episodes || [])[current.episode];
+      if (!ep) return;
+      // Server Switcher
+      const serverDiv = document.getElementById("server-switcher");
+      serverDiv.innerHTML = "";
+      ep.servers.forEach((srv, i) => {
+        const btn = document.createElement("button");
+        btn.className =
+          "btn btn-sm" +
+          (i === current.server
+            ? " btn-info text-white"
+            : " btn-outline-info");
+        btn.textContent = srv.name;
+        btn.onclick = () => playEpisode(current.episode, i, current.mode, 0);
+        serverDiv.appendChild(btn);
+      });
+      // Mode Switcher (SUB/DUB)
+      const modeDiv = document.getElementById("mode-switcher");
+      modeDiv.innerHTML = "";
+      const hasSubs =
+        ep.servers[current.server].subs &&
+        ep.servers[current.server].subs.length > 0;
+      const hasDubs =
+        ep.servers[current.server].dubs &&
+        ep.servers[current.server].dubs.length > 0;
+      // SUB button
+      const subBtn = document.createElement("button");
+      subBtn.className =
+        "btn btn-subdub btn-sm" +
+        (current.mode === "subs" ? " active" : "") +
+        (hasSubs ? "" : " disabled");
+      subBtn.textContent = "SUB";
+      subBtn.disabled = !hasSubs;
+      subBtn.onclick = () =>
+        hasSubs && playEpisode(current.episode, current.server, "subs", 0);
+      modeDiv.appendChild(subBtn);
+      // DUB button
+      const dubBtn = document.createElement("button");
+      dubBtn.className =
+        "btn btn-subdub btn-sm" +
+        (current.mode === "dubs" ? " active" : "") +
+        (hasDubs ? "" : " disabled");
+      dubBtn.textContent = "DUB";
+      dubBtn.disabled = !hasDubs;
+      dubBtn.onclick = () =>
+        hasDubs && playEpisode(current.episode, current.server, "dubs", 0);
+      modeDiv.appendChild(dubBtn);
+      // Captions ON/OFF toggle button (icon only)
+      const captionsBtn = document.createElement("button");
+      captionsBtn.className = "btn btn-subdub btn-sm ms-2";
+      captionsBtn.title = window.captionsEnabled
+        ? "Hide Subtitles"
+        : "Show Subtitles";
+      captionsBtn.innerHTML = window.captionsEnabled
+        ? '<i class="bi bi-cc-circle-fill"></i>'
+        : '<i class="bi bi-cc-circle"></i>';
+      captionsBtn.onclick = () => {
+        window.captionsEnabled = !window.captionsEnabled;
+        setCaptions(window.captionsEnabled);
+        renderSwitchers();
+      };
+      modeDiv.appendChild(captionsBtn);
+      // Quality Switcher
+      const qualityDiv = document.getElementById("quality-switcher");
+      qualityDiv.innerHTML = "";
+      // Define standard qualities (removed 360p)
+      const standardQualities = ["480p", "720p", "1080p"];
+      const qualities = ep.servers[current.server][current.mode] || [];
+      // Map available qualities for quick lookup (only if src is non-empty)
+      const availableQualities = {};
+      qualities.forEach((q, i) => {
+        if (q.src && q.src.trim() !== "") {
+          availableQualities[q.quality] = i;
+        }
+      });
+      standardQualities.forEach((qLabel, i) => {
+        const isAvailable = availableQualities.hasOwnProperty(qLabel);
+        const btn = document.createElement("button");
+        btn.className =
+          "btn btn-sm" +
+          (isAvailable && availableQualities[qLabel] === current.quality
+            ? " btn-info text-white"
+            : " btn-outline-info");
+        btn.textContent = qLabel;
+        btn.disabled = !isAvailable;
+        btn.onclick = () => {
+          if (isAvailable) {
+            playEpisode(
+              current.episode,
+              current.server,
+              current.mode,
+              availableQualities[qLabel]
+            );
+          }
+        };
+        qualityDiv.appendChild(btn);
+      });
+    }
+
+    // Play episode
+    function playEpisode(
+      episodeIdx = 0,
+      serverIdx = 0,
+      mode = "subs",
+      qualityIdx = 0
+    ) {
+      current = {
+        episode: episodeIdx,
+        server: serverIdx,
+        mode,
+        quality: qualityIdx,
+      };
+      savePlayerState();
+      highlightActiveEpisode();
+      renderSwitchers();
+      const ep = (playlistData.episodes || [])[episodeIdx];
+      if (!ep) return;
+      const server = ep.servers[serverIdx];
+      const sources = server[mode] || [];
+      const source = sources[qualityIdx];
+      const video = document.getElementById("player");
+
+      // Remove previous ended event
+      video.onended = null;
+      // Remove all previous subtitle tracks
+      while (video.firstChild) {
+        if (video.firstChild.tagName === "TRACK") {
+          video.removeChild(video.firstChild);
+        } else {
+          break;
+        }
+      }
+      // Add subtitle tracks from episode data
+      if (ep.subtitles && Array.isArray(ep.subtitles)) {
+        ep.subtitles.forEach((sub) => {
+          if (sub.src && sub.src.trim() !== "") {
+            const track = document.createElement("track");
+            track.kind = "subtitles";
+            track.label = sub.label || sub.lang || "Subtitles";
+            track.srclang = sub.lang || "en";
+            track.src = sub.src;
+            track.default = true;
+            video.appendChild(track);
+          }
         });
       }
-
-      function playExtraContent(idx) {
-        const extra = playlistData.extra || [];
-        const item = extra[idx];
-        if (!item) return;
-        playEpisode(0, 0, "subs", 0);
-        const video = document.getElementById("player");
-        if (item.type === "application/x-mpegURL") {
+      // Set video source
+      if (source) {
+        if (source.type === "application/x-mpegURL") {
           if (Hls.isSupported()) {
             const hls = new Hls();
-            hls.loadSource(item.src);
+            hls.loadSource(source.src);
             hls.attachMedia(video);
             hls.on(Hls.Events.MANIFEST_PARSED, function () {
               video.play();
             });
+            // Auto play next episode for HLS
+            hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+              video.onended = () => playNextEpisode();
+            });
           } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-            video.src = item.src;
+            video.src = source.src;
             video.addEventListener("loadedmetadata", function () {
               video.play();
             });
+            video.onended = () => playNextEpisode();
           }
         } else {
-          video.src = item.src;
-          video.type = item.type;
+          video.src = source.src;
+          video.type = source.type;
           video.load();
           video.play();
+          video.onended = () => playNextEpisode();
         }
       }
+      // Set captions state after loading video
+      setTimeout(() => setCaptions(window.captionsEnabled), 200);
+    }
+    // Auto play next episode
+    function playNextEpisode() {
+      const episodes = playlistData.episodes || [];
+      if (current.episode + 1 < episodes.length) {
+        playEpisode(current.episode + 1, 0, "subs", 0);
+      }
+    }
+    // Load state and playlist on page load
+    window.addEventListener("DOMContentLoaded", () => {
+      current = loadPlayerState();
+      loadPlaylist();
+    });
 
-      // Hamburger toggle logic
-      const hamburgerToggle = document.getElementById(
-        "extra-content-hamburger-toggle"
-      );
-      const hamburgerMenu = document.getElementById(
-        "extra-content-hamburger-menu"
-      );
-      hamburgerToggle &&
-        hamburgerToggle.addEventListener("click", function () {
-          this.classList.toggle("open");
-          if (hamburgerMenu.style.display === "none") {
-            hamburgerMenu.style.display = "";
-          } else {
-            hamburgerMenu.style.display = "none";
-          }
-        });
-      // Add this helper function after renderSwitchers
-      function setCaptions(enabled) {
-        const video = document.getElementById("player");
-        const tracks = video.textTracks;
-        for (let i = 0; i < tracks.length; i++) {
-          tracks[i].mode = enabled ? "showing" : "hidden";
-        }
+    // Hamburger for extra content
+    function renderExtraContent() {
+      const extra = playlistData.extra || [];
+      const row = document.getElementById("extra-content-row");
+      if (extra.length === 0) {
+        row.style.display = "none";
+        return;
       }
-    </script>
-  </body>
+      row.style.display = "";
+      const btnsDiv = document.getElementById("extra-content-buttons");
+      btnsDiv.innerHTML = "";
+      extra.forEach((item, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "btn btn-outline-info btn-sm";
+        btn.textContent = item.title;
+        btn.onclick = () => {
+          // Play extra content (assume same structure as episodes)
+          playExtraContent(idx);
+        };
+        btnsDiv.appendChild(btn);
+      });
+    }
+
+    function playExtraContent(idx) {
+      const extra = playlistData.extra || [];
+      const item = extra[idx];
+      if (!item) return;
+      playEpisode(0, 0, "subs", 0);
+      const video = document.getElementById("player");
+      if (item.type === "application/x-mpegURL") {
+        if (Hls.isSupported()) {
+          const hls = new Hls();
+          hls.loadSource(item.src);
+          hls.attachMedia(video);
+          hls.on(Hls.Events.MANIFEST_PARSED, function () {
+            video.play();
+          });
+        } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+          video.src = item.src;
+          video.addEventListener("loadedmetadata", function () {
+            video.play();
+          });
+        }
+      } else {
+        video.src = item.src;
+        video.type = item.type;
+        video.load();
+        video.play();
+      }
+    }
+
+    // Hamburger toggle logic
+    const hamburgerToggle = document.getElementById(
+      "extra-content-hamburger-toggle"
+    );
+    const hamburgerMenu = document.getElementById(
+      "extra-content-hamburger-menu"
+    );
+    hamburgerToggle &&
+      hamburgerToggle.addEventListener("click", function () {
+        this.classList.toggle("open");
+        if (hamburgerMenu.style.display === "none") {
+          hamburgerMenu.style.display = "";
+        } else {
+          hamburgerMenu.style.display = "none";
+        }
+      });
+    // Add this helper function after renderSwitchers
+    function setCaptions(enabled) {
+      const video = document.getElementById("player");
+      const tracks = video.textTracks;
+      for (let i = 0; i < tracks.length; i++) {
+        tracks[i].mode = enabled ? "showing" : "hidden";
+      }
+    }
+  </script>
+</body>
+
 </html>
