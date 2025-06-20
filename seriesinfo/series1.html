@@ -122,7 +122,7 @@
 
     .anime-section h2 {
       font-size: 1.15rem;
-      color: #ffb6d5;
+      color: #ff6685;
       font-weight: 700;
       margin-bottom: 0.7rem;
     }
@@ -199,7 +199,7 @@
     }
 
     .related-title {
-      color: #ffb6d5;
+      color: #ff6685;
       font-size: 1.2rem;
       font-weight: 700;
       margin-bottom: 1.1rem;
@@ -213,7 +213,7 @@
       overflow-x: auto;
       padding-bottom: 0.5rem;
       scrollbar-width: thin;
-      scrollbar-color: #ffb6d5 #181b20;
+      scrollbar-color: #ff6685 #181b20;
     }
 
     .related-cards::-webkit-scrollbar {
@@ -221,7 +221,7 @@
     }
 
     .related-cards::-webkit-scrollbar-thumb {
-      background: #ffb6d5;
+      background: #ff6685;
       border-radius: 6px;
     }
 
@@ -253,7 +253,7 @@
       top: 6px;
       left: 8px;
       background: #181b20cc;
-      color: #ffb6d5;
+      color: #66d1ff;
       font-size: 0.85em;
       font-weight: 600;
       padding: 2px 8px;
@@ -295,7 +295,7 @@
     }
 
     .characters-title {
-      color: #ffb6d5;
+      color: #ff6685;
       font-size: 1.2rem;
       font-weight: 700;
       margin-bottom: 1.1rem;
@@ -349,6 +349,13 @@
       text-overflow: ellipsis;
       width: 100%;
       max-width: 100vw;
+      text-decoration: none !important;
+      transition: color 0.18s;
+    }
+
+    .character-name:hover {
+      text-decoration: none !important;
+      color: #00d1b2 !important;
     }
 
     .character-role {
@@ -362,6 +369,10 @@
       margin-top: 0.2em;
       display: inline-block;
       align-self: flex-start;
+    }
+
+    .character-role.supporting {
+      color: #ffb70f !important;
     }
 
     #block-overlay {
@@ -429,7 +440,7 @@
 <body>
   <div id="block-overlay"></div>
   <div class="anime-card">
-    <div class="anime-year-badge">2025</div>
+    <div class="anime-year-badge">2021</div>
     <img src="https://cdn.myanimelist.net/images/anime/1377/111097l.jpg" alt="The Beginning After the End Poster"
       class="anime-poster" />
     <div class="anime-title">Otherside Picnic</div>
@@ -554,46 +565,78 @@
       relatedCards.appendChild(card);
     });
     // Dynamically load characters (compact row style)
+    // Add MAL links for each character
     const characters = [
       {
         name: 'Sorawo Kamikoshi',
         img: 'https://cdn.myanimelist.net/images/characters/2/402448.jpg',
-        role: 'Main'
+        role: 'Main',
+        mal: 'https://myanimelist.net/character/170739/Sorawo_Kamikoshi'
       },
       {
         name: 'Toriko Nishina',
         img: 'https://cdn.myanimelist.net/images/characters/16/402449.jpg',
-        role: 'Main'
+        role: 'Main',
+        mal: 'https://myanimelist.net/character/170740/Toriko_Nishina'
       },
       {
         name: 'Kozakura',
         img: 'https://cdn.myanimelist.net/images/characters/8/422433.jpg',
-        role: 'Supporting'
+        role: 'Supporting',
+        mal: 'https://myanimelist.net/character/188012/Kozakura'
       },
       {
         name: 'Akari "Karateka" Seto',
         img: 'https://cdn.myanimelist.net/images/characters/4/422434.jpg',
-        role: 'Supporting'
+        role: 'Supporting',
+        mal: 'https://myanimelist.net/character/188013/Akari_Seto'
       },
       {
         name: 'Satsuki Uruma',
         img: 'https://cdn.myanimelist.net/images/characters/8/461591.jpg',
-        role: 'Supporting'
+        role: 'Supporting',
+        mal: 'https://myanimelist.net/character/188651/Satsuki_Uruma'
       }
     ];
     const charactersList = document.getElementById('characters-list');
-    characters.forEach(character => {
-      const row = document.createElement('div');
-      row.className = 'character-row';
-      row.innerHTML = `
-        <img src="${character.img}" alt="${character.name}" class="character-pic" />
-        <div class="character-info">
-          <span class="character-name">${character.name}</span>
-          <span class="character-role">${character.role}</span>
-        </div>
-      `;
-      charactersList.appendChild(row);
-    });
+    let showAll = false;
+    function renderCharacters() {
+      charactersList.innerHTML = '';
+      const toShow = showAll ? characters : characters.slice(0, 5);
+      toShow.forEach(character => {
+        const row = document.createElement('div');
+        row.className = 'character-row';
+        row.innerHTML = `
+          <img src="${character.img}" alt="${character.name}" class="character-pic" />
+          <div class="character-info">
+            <a href="${character.mal}" class="character-name" target="_blank" rel="noopener noreferrer">${character.name}</a>
+            <span class="character-role${character.role === 'Supporting' ? ' supporting' : ''}">${character.role}</span>
+          </div>
+        `;
+        charactersList.appendChild(row);
+      });
+      // Show more/less button
+      let showMoreBtn = document.getElementById('show-more-characters-btn');
+      if (characters.length > 5) {
+        if (!showMoreBtn) {
+          showMoreBtn = document.createElement('button');
+          showMoreBtn.id = 'show-more-characters-btn';
+          showMoreBtn.className = 'show-more-btn';
+          showMoreBtn.style.display = 'block';
+          showMoreBtn.style.margin = '0.7em auto 0 auto';
+          charactersList.parentNode.appendChild(showMoreBtn);
+        }
+        showMoreBtn.textContent = showAll ? 'Show less' : 'Show more';
+        showMoreBtn.onclick = function () {
+          showAll = !showAll;
+          renderCharacters();
+        };
+        showMoreBtn.style.display = 'block';
+      } else if (showMoreBtn) {
+        showMoreBtn.style.display = 'none';
+      }
+    }
+    renderCharacters();
   </script>
 </body>
 
