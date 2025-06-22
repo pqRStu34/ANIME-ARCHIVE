@@ -388,6 +388,63 @@
       cursor: not-allowed;
     }
 
+    /* Trailer Modal Styles */
+    .trailer-modal-bg {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .trailer-modal-bg.active {
+      display: flex;
+    }
+
+    .trailer-modal-content {
+      position: relative;
+      background: transparent;
+      border-radius: 16px;
+      max-width: 90vw;
+      max-height: 80vh;
+      box-shadow: 0 0 24px #000a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .trailer-modal-content iframe {
+      border-radius: 12px;
+      width: 70vw;
+      height: 40vw;
+      max-width: 720px;
+      max-height: 405px;
+      background: #000;
+    }
+
+    .trailer-modal-close {
+      position: absolute;
+      top: -32px;
+      right: 0;
+      font-size: 2.2rem;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 2;
+      transition: color 0.18s;
+    }
+
+    .trailer-modal-close:hover {
+      color: #ff6685;
+    }
+
     @media (max-width: 600px) {
 
       .anime-card,
@@ -486,6 +543,12 @@
       <!-- Related series will be loaded here dynamically -->
     </div>
   </div>
+  <div id="trailer-modal" class="trailer-modal-bg">
+    <div class="trailer-modal-content">
+      <button class="trailer-modal-close" id="trailer-close-btn" title="Close">&times;</button>
+      <iframe id="trailer-iframe" src="" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+    </div>
+  </div>
   <script>
     // Disable right-click context menu
     function showOverlay() {
@@ -534,10 +597,10 @@
     // Dynamically load related series (placeholder data)
     const relatedSeries = [
       {
-        title: 'Test: OVA',
-        img: 'https://cdn.myanimelist.net/images/anime/4/196844.jpg',
+        title: 'Attack on Titan Season 2',
+        img: 'https://cdn.myanimelist.net/images/anime/4/84177l.jpg',
         link: 'series2.html',
-        year: '2026'
+        year: '2017'
       },
       {
         title: 'Test: Second Season',
@@ -637,6 +700,25 @@
       }
     }
     renderCharacters();
+    // --- Trailer Modal Logic ---
+    const posterImg = document.querySelector('.anime-poster');
+    const trailerModal = document.getElementById('trailer-modal');
+    const trailerIframe = document.getElementById('trailer-iframe');
+    const trailerCloseBtn = document.getElementById('trailer-close-btn');
+    const trailerUrl = 'https://www.youtube.com/embed/r37i6fuajt4?autoplay=1';
+    posterImg.style.cursor = 'pointer';
+    posterImg.addEventListener('click', function () {
+      trailerIframe.src = trailerUrl;
+      trailerModal.classList.add('active');
+    });
+    function closeTrailerModal() {
+      trailerModal.classList.remove('active');
+      trailerIframe.src = '';
+    }
+    trailerCloseBtn.addEventListener('click', closeTrailerModal);
+    trailerModal.addEventListener('click', function (e) {
+      if (e.target === trailerModal) closeTrailerModal();
+    });
   </script>
 </body>
 

@@ -300,6 +300,141 @@
       font-size: 1.25em;
       line-height: 1.4;
     }
+
+    /* Highlight active episode button */
+    .episode-btn.active {
+      box-shadow: 0 0 0 3px #00ff99cc, 0 0 12px 2px #00ff99cc;
+      border-color: #00ff99;
+      background: rgba(0, 255, 153, 0.08);
+      color: #fff;
+      z-index: 2;
+    }
+
+    /* --- Message Card Style --- */
+    .message-card {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      padding: 0.75em 1.25em;
+      background: #16181d;
+      border: 1px solid #23252a;
+      border-radius: 8px;
+      transition: background 0.2s;
+      position: relative;
+      min-width: 0;
+      overflow: visible;
+      cursor: pointer;
+      max-width: 100%;
+    }
+
+    .message-card:hover {
+      background: #1e2126;
+    }
+
+    .message-card .card-body {
+      display: flex;
+      align-items: center;
+      padding: 0;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .message-card img {
+      width: 70px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 1em;
+      flex-shrink: 0;
+    }
+
+    .message-card .content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .message-card .label {
+      font-weight: 600;
+      margin-bottom: 0.25em;
+      color: #6678ff;
+      font-size: 0.95em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    .message-card .title {
+      font-weight: 500;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      font-size: 1.05em;
+    }
+
+    .message-card .btn {
+      align-self: flex-start;
+      margin-top: 0.3em;
+      white-space: nowrap;
+    }
+
+    /* Preview pane for full title and image */
+    .message-card-preview {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: -140px;
+      z-index: 100;
+      background: #23252a;
+      border: 1px solid #00d1b2;
+      border-radius: 10px;
+      box-shadow: 0 4px 24px #000a;
+      padding: 1em;
+      min-width: 260px;
+      max-width: 350px;
+      color: #fff;
+      flex-direction: row;
+      align-items: center;
+      gap: 1em;
+      animation: fadeIn 0.15s;
+    }
+
+    .message-card-preview::after {
+      content: '';
+      position: absolute;
+      left: 32px;
+      bottom: -18px;
+      width: 0;
+      height: 0;
+      border-left: 14px solid transparent;
+      border-right: 14px solid transparent;
+      border-top: 18px solid #23252a;
+      /* Remove filter and border for seamless look */
+      /* No border here, just background color */
+    }
+
+    .message-card-preview::before {
+      content: '';
+      position: absolute;
+      left: 31px;
+      bottom: -21px;
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 21px solid #00d1b2;
+      z-index: -1;
+    }
+
+    .message-card:hover .message-card-preview {
+      display: flex;
+    }
   </style>
 </head>
 
@@ -446,19 +581,160 @@
       const start = (episodesPage - 1) * EPISODES_PER_PAGE;
       const end = start + EPISODES_PER_PAGE;
       const pageEpisodes = episodes.slice(start, end);
-      pageEpisodes.forEach((ep, idx) => {
-        const a = document.createElement("button");
-        a.type = "button";
-        a.className =
-          "list-group-item list-group-item-action" +
-          (start + idx === current.episode ? " active" : "");
-        a.textContent = ep.title;
-        a.onclick = () => {
-          playEpisode(start + idx, 0, "subs", 0);
-        };
-        playlist.appendChild(a);
-      });
+
+      // Create a 5x20 grid for episode numbers (mobile friendly)
+      const grid = document.createElement("div");
+      grid.style.display = "grid";
+      grid.style.gridTemplateColumns = "repeat(5, 1fr)";
+      grid.style.gap = "0.25em";
+
+      for (let i = 0; i < 100; i++) {
+        const epIdx = start + i;
+        const ep = episodes[epIdx];
+        if (!ep) break; // Stop adding boxes if there are no more episodes
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className =
+          "btn btn-outline-info btn-xs p-1 episode-btn" +
+          (epIdx === current.episode ? " active" : "");
+        btn.style.width = "100%";
+        btn.style.height = "2em";
+        btn.style.fontWeight = "bold";
+        btn.style.fontSize = "0.95em";
+        btn.textContent = epIdx + 1;
+        btn.onclick = () => playEpisode(epIdx, 0, "subs", 0);
+        if (epIdx === current.episode) {
+          btn.style.boxShadow = "0 0 0 3px #00ff99cc, 0 0 12px 2px #00ff99cc";
+          btn.style.borderColor = "#00ff99";
+          btn.style.background = "rgba(0,255,153,0.08)";
+          btn.style.color = "#fff";
+          btn.style.zIndex = 2;
+        }
+        grid.appendChild(btn);
+      }
+      playlist.appendChild(grid);
       renderEpisodesPagination();
+
+      // --- Prequel/Sequel Cards ---
+      const container = playlist.parentElement;
+      // Remove old nav/extra cards if present
+      const oldPreq = document.getElementById("prequel-card");
+      if (oldPreq) oldPreq.remove();
+      const oldSeq = document.getElementById("sequel-card");
+      if (oldSeq) oldSeq.remove();
+      const oldExtra = document.getElementById("extra-content-card");
+      if (oldExtra) oldExtra.remove();
+
+      const seriesInfo = playlistData.seriesInfo || {};
+      // Helper for message card layout
+      function createMessageCard({ id, label, poster, title, link, onClick }) {
+        const card = document.createElement("div");
+        card.className = "card mt-3 message-card";
+        if (id) card.id = id;
+        const body = document.createElement("div");
+        body.className = "card-body d-flex align-items-center p-2";
+        // Poster image
+        let img = null;
+        if (poster) {
+          img = document.createElement("img");
+          img.src = poster;
+          img.alt = title || label;
+          body.appendChild(img);
+        }
+        // Content (label, title, button)
+        const content = document.createElement("div");
+        content.className = "content";
+        // Label
+        const labelDiv = document.createElement("div");
+        labelDiv.className = "label";
+        labelDiv.textContent = label;
+        content.appendChild(labelDiv);
+        // Title (truncated)
+        const titleDiv = document.createElement("div");
+        titleDiv.className = "title";
+        titleDiv.textContent = title;
+        content.appendChild(titleDiv);
+        // Button or link (always 'Watch')
+        const btn = document.createElement(link ? "a" : "button");
+        btn.className = "btn btn-outline-info btn-sm mt-1";
+        btn.textContent = "Watch";
+        if (link) {
+          btn.href = link;
+        } else if (onClick) {
+          btn.onclick = onClick;
+        }
+        content.appendChild(btn);
+        body.appendChild(content);
+        // Preview pane (hidden by default, shown on hover)
+        const preview = document.createElement("div");
+        preview.className = "message-card-preview";
+        if (poster) {
+          const previewImg = document.createElement("img");
+          previewImg.src = poster;
+          previewImg.alt = title || label;
+          preview.appendChild(previewImg);
+        }
+        const previewTitle = document.createElement("div");
+        previewTitle.className = "preview-title";
+        previewTitle.textContent = title;
+        preview.appendChild(previewTitle);
+        card.appendChild(body);
+        card.appendChild(preview);
+        // Show preview pane above card on hover
+        card.addEventListener('mouseenter', function () {
+          preview.style.display = 'flex';
+          preview.style.top = '-130px'; // show above the card
+        });
+        card.addEventListener('mouseleave', function () {
+          preview.style.display = 'none';
+        });
+        return card;
+      }
+      // Prequel card
+      if (seriesInfo.prequel) {
+        const preqCard = createMessageCard({
+          id: "prequel-card",
+          label: "PREQUEL",
+          poster: seriesInfo.prequel.poster,
+          title: seriesInfo.prequel.title || "Previous Season",
+          link: `video.html?series=${encodeURIComponent(seriesInfo.prequel.key)}`
+        });
+        container.appendChild(preqCard);
+      }
+      // Sequel card
+      if (seriesInfo.sequel) {
+        const seqCard = createMessageCard({
+          id: "sequel-card",
+          label: "SEQUEL",
+          poster: seriesInfo.sequel.poster,
+          title: seriesInfo.sequel.title || "Next Season",
+          link: `video.html?series=${encodeURIComponent(seriesInfo.sequel.key)}`
+        });
+        container.appendChild(seqCard);
+      }
+      // Extra content (OVA, Side Story, Specials, etc.)
+      if (seriesInfo.extra && Array.isArray(seriesInfo.extra) && seriesInfo.extra.length > 0) {
+        const extraCard = document.createElement("div");
+        extraCard.className = "card mt-3";
+        extraCard.id = "extra-content-card";
+        const extraBody = document.createElement("div");
+        extraBody.className = "card-body d-flex flex-column gap-2";
+        const title = document.createElement("div");
+        title.className = "fw-semibold mb-2";
+        title.textContent = "EXTRA CONTENT";
+        extraBody.appendChild(title);
+        seriesInfo.extra.forEach((item, idx) => {
+          const card = createMessageCard({
+            poster: item.poster,
+            title: item.title,
+            label: item.type ? item.type.toUpperCase() : "EXTRA",
+            onClick: () => playExtraContent(idx)
+          });
+          extraBody.appendChild(card);
+        });
+        extraCard.appendChild(extraBody);
+        container.appendChild(extraCard);
+      }
     }
 
     // Render episodes pagination
