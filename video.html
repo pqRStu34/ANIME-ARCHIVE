@@ -435,10 +435,41 @@
     .message-card:hover .message-card-preview {
       display: flex;
     }
+
+    .btn-subdub.btn-subdub[title],
+    .btn-subdub.btn-subdub[title] i {
+      /* Remove border and background for captions icon button */
+      border: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .btn-subdub.btn-subdub[title] i {
+      font-size: 1.6em !important;
+      vertical-align: middle;
+    }
   </style>
 </head>
 
 <body>
+  <!-- Transparent overlay for safety -->
+  <div id="safety-overlay"
+    style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;pointer-events:none;background:rgba(0,0,0,0.01);">
+  </div>
+  <script>
+    // Disable right-click and long-press
+    document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+    document.addEventListener('mousedown', function (e) {
+      if (e.button === 2) e.preventDefault();
+    });
+    let touchTimer;
+    document.addEventListener('touchstart', function (e) {
+      touchTimer = setTimeout(function () { e.preventDefault(); }, 500);
+    }, { passive: false });
+    document.addEventListener('touchend', function () {
+      clearTimeout(touchTimer);
+    });
+  </script>
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-12 col-md-10 col-lg-8">
@@ -532,9 +563,12 @@
     // --- Persist current state in localStorage ---
     function savePlayerState() {
       localStorage.setItem("videoPlayerState", JSON.stringify(current));
+      localStorage.setItem("captionsEnabled", window.captionsEnabled ? "1" : "0");
     }
     function loadPlayerState() {
       const state = localStorage.getItem("videoPlayerState");
+      let captions = localStorage.getItem("captionsEnabled");
+      window.captionsEnabled = captions === null ? true : captions === "1";
       if (state) {
         try {
           return JSON.parse(state);
@@ -627,7 +661,7 @@
 
       const seriesInfo = playlistData.seriesInfo || {};
       // Helper for message card layout
-      function createMessageCard({ id, label, poster, title, link, onClick }) {
+      function createMessageCard({ id, label, poster, title, link, onClick, noPreview }) {
         const card = document.createElement("div");
         card.className = "card mt-3 message-card";
         if (id) card.id = id;
@@ -665,29 +699,31 @@
         }
         content.appendChild(btn);
         body.appendChild(content);
-        // Preview pane (hidden by default, shown on hover)
-        const preview = document.createElement("div");
-        preview.className = "message-card-preview";
-        if (poster) {
-          const previewImg = document.createElement("img");
-          previewImg.src = poster;
-          previewImg.alt = title || label;
-          preview.appendChild(previewImg);
-        }
-        const previewTitle = document.createElement("div");
-        previewTitle.className = "preview-title";
-        previewTitle.textContent = title;
-        preview.appendChild(previewTitle);
         card.appendChild(body);
-        card.appendChild(preview);
-        // Show preview pane above card on hover
-        card.addEventListener('mouseenter', function () {
-          preview.style.display = 'flex';
-          preview.style.top = '-130px'; // show above the card
-        });
-        card.addEventListener('mouseleave', function () {
-          preview.style.display = 'none';
-        });
+        // Preview pane (hidden by default, shown on hover) - only if noPreview is not set
+        if (!noPreview) {
+          const preview = document.createElement("div");
+          preview.className = "message-card-preview";
+          if (poster) {
+            const previewImg = document.createElement("img");
+            previewImg.src = poster;
+            previewImg.alt = title || label;
+            preview.appendChild(previewImg);
+          }
+          const previewTitle = document.createElement("div");
+          previewTitle.className = "preview-title";
+          previewTitle.textContent = title;
+          preview.appendChild(previewTitle);
+          card.appendChild(preview);
+          // Show preview pane above card on hover
+          card.addEventListener('mouseenter', function () {
+            preview.style.display = 'flex';
+            preview.style.top = '-130px'; // show above the card
+          });
+          card.addEventListener('mouseleave', function () {
+            preview.style.display = 'none';
+          });
+        }
         return card;
       }
       // Prequel card
@@ -697,7 +733,8 @@
           label: "PREQUEL",
           poster: seriesInfo.prequel.poster,
           title: seriesInfo.prequel.title || "Previous Season",
-          link: `video.html?series=${encodeURIComponent(seriesInfo.prequel.key)}`
+          link: `video.html?series=${encodeURIComponent(seriesInfo.prequel.key)}`,
+          noPreview: true
         });
         container.appendChild(preqCard);
       }
@@ -708,7 +745,8 @@
           label: "SEQUEL",
           poster: seriesInfo.sequel.poster,
           title: seriesInfo.sequel.title || "Next Season",
-          link: `video.html?series=${encodeURIComponent(seriesInfo.sequel.key)}`
+          link: `video.html?series=${encodeURIComponent(seriesInfo.sequel.key)}`,
+          noPreview: true
         });
         container.appendChild(seqCard);
       }
@@ -728,7 +766,8 @@
             poster: item.poster,
             title: item.title,
             label: item.type ? item.type.toUpperCase() : "EXTRA",
-            onClick: () => playExtraContent(idx)
+            onClick: () => playExtraContent(idx),
+            noPreview: true
           });
           extraBody.appendChild(card);
         });
@@ -777,11 +816,23 @@
     // Highlight active episode
     function highlightActiveEpisode() {
       document
-        .querySelectorAll("#playlist .list-group-item")
-        .forEach((a, idx) => {
-          if (idx === current.episode % EPISODES_PER_PAGE)
-            a.classList.add("active");
-          else a.classList.remove("active");
+        .querySelectorAll("#playlist .episode-btn")
+        .forEach((btn, idx) => {
+          if (idx === current.episode % EPISODES_PER_PAGE) {
+            btn.classList.add("active");
+            btn.style.boxShadow = "0 0 0 3px #00ff99cc, 0 0 12px 2px #00ff99cc";
+            btn.style.borderColor = "#00ff99";
+            btn.style.background = "rgba(0,255,153,0.08)";
+            btn.style.color = "#fff";
+            btn.style.zIndex = 2;
+          } else {
+            btn.classList.remove("active");
+            btn.style.boxShadow = "";
+            btn.style.borderColor = "";
+            btn.style.background = "";
+            btn.style.color = "";
+            btn.style.zIndex = "";
+          }
         });
     }
 
@@ -792,26 +843,39 @@
       // Server Switcher
       const serverDiv = document.getElementById("server-switcher");
       serverDiv.innerHTML = "";
-      ep.servers.forEach((srv, i) => {
+      // Always show Main Server and Server 2, never disabled
+      const serverNames = ["Main Server", "Server 2"];
+      for (let i = 0; i < 2; i++) {
         const btn = document.createElement("button");
         btn.className =
           "btn btn-sm" +
-          (i === current.server
-            ? " btn-info text-white"
-            : " btn-outline-info");
-        btn.textContent = srv.name;
+          (i === current.server ? " btn-info text-white" : " btn-outline-info");
+        btn.textContent = serverNames[i];
+        btn.disabled = false; // Never disabled
         btn.onclick = () => playEpisode(current.episode, i, current.mode, 0);
         serverDiv.appendChild(btn);
-      });
+      }
+      // Add any additional servers from JSON (if present)
+      for (let i = 2; i < ep.servers.length; i++) {
+        const btn = document.createElement("button");
+        btn.className =
+          "btn btn-sm" +
+          (i === current.server ? " btn-info text-white" : " btn-outline-info");
+        btn.textContent = ep.servers[i].name || `Server ${i + 1}`;
+        // Disable if this server has no sources for this episode
+        const hasSources =
+          (ep.servers[i].subs && ep.servers[i].subs.length > 0) ||
+          (ep.servers[i].dubs && ep.servers[i].dubs.length > 0);
+        btn.disabled = !hasSources;
+        btn.onclick = () => playEpisode(current.episode, i, current.mode, 0);
+        serverDiv.appendChild(btn);
+      }
       // Mode Switcher (SUB/DUB)
       const modeDiv = document.getElementById("mode-switcher");
       modeDiv.innerHTML = "";
-      const hasSubs =
-        ep.servers[current.server].subs &&
-        ep.servers[current.server].subs.length > 0;
-      const hasDubs =
-        ep.servers[current.server].dubs &&
-        ep.servers[current.server].dubs.length > 0;
+      const server = ep.servers[current.server];
+      const hasSubs = server.subs && server.subs.length > 0;
+      const hasDubs = server.dubs && server.dubs.length > 0;
       // SUB button
       const subBtn = document.createElement("button");
       subBtn.className =
@@ -820,8 +884,7 @@
         (hasSubs ? "" : " disabled");
       subBtn.textContent = "SUB";
       subBtn.disabled = !hasSubs;
-      subBtn.onclick = () =>
-        hasSubs && playEpisode(current.episode, current.server, "subs", 0);
+      subBtn.onclick = () => hasSubs && playEpisode(current.episode, current.server, "subs", 0);
       modeDiv.appendChild(subBtn);
       // DUB button
       const dubBtn = document.createElement("button");
@@ -831,8 +894,7 @@
         (hasDubs ? "" : " disabled");
       dubBtn.textContent = "DUB";
       dubBtn.disabled = !hasDubs;
-      dubBtn.onclick = () =>
-        hasDubs && playEpisode(current.episode, current.server, "dubs", 0);
+      dubBtn.onclick = () => hasDubs && playEpisode(current.episode, current.server, "dubs", 0);
       modeDiv.appendChild(dubBtn);
       // Captions ON/OFF toggle button (icon only)
       const captionsBtn = document.createElement("button");
@@ -846,15 +908,16 @@
       captionsBtn.onclick = () => {
         window.captionsEnabled = !window.captionsEnabled;
         setCaptions(window.captionsEnabled);
+        savePlayerState();
         renderSwitchers();
       };
       modeDiv.appendChild(captionsBtn);
       // Quality Switcher
       const qualityDiv = document.getElementById("quality-switcher");
       qualityDiv.innerHTML = "";
-      // Define standard qualities (removed 360p)
+      // Always show 480p, 720p, 1080p
       const standardQualities = ["480p", "720p", "1080p"];
-      const qualities = ep.servers[current.server][current.mode] || [];
+      const qualities = server[current.mode] || [];
       // Map available qualities for quick lookup (only if src is non-empty)
       const availableQualities = {};
       qualities.forEach((q, i) => {
@@ -862,7 +925,7 @@
           availableQualities[q.quality] = i;
         }
       });
-      standardQualities.forEach((qLabel, i) => {
+      standardQualities.forEach((qLabel) => {
         const isAvailable = availableQualities.hasOwnProperty(qLabel);
         const btn = document.createElement("button");
         btn.className =
@@ -976,6 +1039,7 @@
     window.addEventListener("DOMContentLoaded", () => {
       current = loadPlayerState();
       loadPlaylist();
+      setTimeout(() => setCaptions(window.captionsEnabled), 200);
     });
 
     // Hamburger for extra content
