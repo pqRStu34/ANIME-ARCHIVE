@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Shingeki no Kyojin Season 2</title>
+  <title>Shingeki no Kyojin: Ano Hi Kara</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css" />
@@ -160,6 +160,7 @@
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 3;
+      line-clamp: 3;
       -webkit-box-orient: vertical;
       transition: all 0.2s;
     }
@@ -168,6 +169,7 @@
       overflow: visible;
       display: block;
       -webkit-line-clamp: unset;
+      line-clamp: unset;
     }
 
     .show-more-btn {
@@ -497,10 +499,9 @@
 <body>
   <div id="block-overlay"></div>
   <div class="anime-card">
-    <div class="anime-year-badge">2017</div>
-    <img src="https://cdn.myanimelist.net/images/anime/4/84177l.jpg" alt="Attack on Titan Season 2"
-      class="anime-poster" />
-    <div class="anime-title">Attack on Titan Season 2</div>
+    <div class="anime-year-badge">2013</div>
+    <img src="https://cdn.myanimelist.net/images/anime/9/59221l.jpg" alt="Attack on Titan OAD" class="anime-poster" />
+    <div class="anime-title">Attack on Titan OAD</div>
     <div class="anime-genres">
       <span class="genre-tag" data-genre="Action">Action</span>
       <span class="genre-tag" data-genre="Adventure">Drama</span>
@@ -516,17 +517,28 @@
   <div class="desc-card">
     <div class="desc-title">Overview</div>
     <div id="desc-text" class="desc-text">
-      For centuries, humanity has been hunted by giant, mysterious predators known as the Titans. Three mighty
-      walls—Wall Maria, Rose, and Sheena—provided peace and protection for humanity for over a hundred years. That
-      peace, however, was shattered when the Colossal Titan and Armored Titan appeared and destroyed the outermost wall,
-      Wall Maria. Forced to retreat behind Wall Rose, humanity waited with bated breath for the Titans to reappear and
-      destroy their safe haven once more.
+      Ilse no Techou: Aru Chousa Heidanin no Shuki
+      During the Survey Corps' 49th recon mission, Hange Zoë is determined to capture a titan specimen. Despite not
+      receiving clearance from Commander Erwin Smith, when a titan is spotted in nearby forestland, Hange rides out
+      alone to meet it. Recklessly luring it out, she asks the titan numerous questions and puts her life on the line
+      for the sake of her research. However, the behavior of this particular titan is far from normal. It quickly turns
+      back and enters the wood once again, leading Hange to somewhere specific. What Hange finds is the legacy of former
+      scout Ilse Langnar. In spite of her death, she provides a valuable piece of information that may serve to turn the
+      tide for titan research—a diary documenting her last moments.
 
-      In Shingeki no Kyojin Season 2, Eren Yeager and others of the 104th Training Corps have just begun to become full
-      members of the Survey Corps. As they ready themselves to face the Titans once again, their preparations are
-      interrupted by the invasion of Wall Rose—but all is not as it seems as more mysteries are unraveled. As the Survey
-      Corps races to save the wall, they uncover more about the invading Titans and the dark secrets of their own
-      members.
+      Totsuzen no Raihousha: Sainamareru Seishun no Noroi
+      Jean Kirstein would do anything to escape his boring home life and overbearing mother. After enlisting in the
+      military, it became his ultimate goal to join the Military Police regiment and live out in peace and luxury.
+      However, during his time with the 104th Training Corps, things never really go the way Jean wants them to.
+      Eventually, the stolen glory and condescending banter of his comrades become too much—and Jean challenges fellow
+      cadet Sasha Blouse to a battle, in order to determine which of them is strongest—but who will come out on top?
+
+      Konnan
+      The 104th Training Corps' most recent mission is a trek on horseback into the forest. Although a test of their
+      ability to stay alert even in non-threatening situations, the task is boring and can lead to in-fighting. This is
+      especially true for one of the groups, lead by Marco Bott. Some want to stay true to the mission they have been
+      tasked with, and the rest would rather slack off, occupying themselves with more exciting activities. But when
+      trouble strikes, they are completely unprepared.
     </div>
     <button id="show-more-btn" class="show-more-btn">Show more</button>
   </div>
@@ -596,22 +608,94 @@
     // Dynamically load related series (placeholder data)
     const relatedSeries = [
       {
-        title: 'Test: OVA',
-        img: 'https://cdn.myanimelist.net/images/anime/4/196844.jpg',
-        link: 'series2.html',
-        year: '2026'
-      },
-      {
-        title: 'Test: Second Season',
-        img: 'https://cdn.myanimelist.net/images/anime/3/19645.jpg',
+        title: 'Attack on Titan: Crimson Bow and Arrow',
+        img: 'https://cdn.myanimelist.net/images/anime/7/63283l.jpg',
         link: 'series3.html',
         year: '2027'
       },
       {
-        title: 'Test: Special',
-        img: 'https://cdn.myanimelist.net/images/anime/5/19646.jpg',
+        title: 'Attack on Titan: No Regrets',
+        img: 'https://cdn.myanimelist.net/images/anime/8/69497l.jpg',
         link: 'series4.html',
         year: '2028'
+      },
+      {
+        title: 'Attack on Titan: Wings of Freedom',
+        img: 'https://cdn.myanimelist.net/images/anime/2/72510l.jpg',
+        link: 'series5.html',
+        year: '2017'
+      },
+      {
+        title: 'Attack on Titan: Junior High',
+        img: 'https://cdn.myanimelist.net/images/anime/3/75467l.jpg',
+        link: 'series6.html',
+        year: '2018'
+      },
+      {
+        title: 'Attack on Titan Season 2',
+        img: 'https://cdn.myanimelist.net/images/anime/4/84177l.jpg',
+        link: 'series7.html',
+        year: '2020'
+      },
+      {
+        title: 'Attack on Titan: Lost Girls',
+        img: 'https://cdn.myanimelist.net/images/anime/3/89417l.jpg',
+        link: 'series8.html',
+        year: '2022'
+      },
+      {
+        title: 'Attack on Titan: The Roar of Awakening',
+        img: 'https://cdn.myanimelist.net/images/anime/1144/111704l.jpg',
+        link: 'series9.html',
+        year: '2023'
+      },
+      {
+        title: 'Attack on Titan Season 3',
+        img: 'https://cdn.myanimelist.net/images/anime/1173/92110l.jpg',
+        link: 'series10.html',
+        year: '2024'
+      },
+      {
+        title: 'Attack on Titan Season 3 Part 2',
+        img: 'https://cdn.myanimelist.net/images/anime/1517/100633l.jpg',
+        link: 'series11.html',
+        year: '2025'
+      },
+      {
+        title: 'Attack on Titan: Chronicle',
+        img: 'https://cdn.myanimelist.net/images/anime/1266/107765l.jpg',
+        link: 'series12.html',
+        year: '2026'
+      },
+      {
+        title: 'Attack on Titan: Final Season',
+        img: 'https://cdn.myanimelist.net/images/anime/1000/110531l.jpg',
+        link: 'series13.html',
+        year: '2027'
+      },
+      {
+        title: 'Attack on Titan: Final Season Part 2',
+        img: 'https://cdn.myanimelist.net/images/anime/1948/120625l.jpg',
+        link: 'series14.html',
+        year: '2028'
+      },
+      {
+        title: 'Attack on Titan: Final Season - The Final Chapters',
+        img: 'https://cdn.myanimelist.net/images/anime/1279/131078l.jpg',
+        link: 'series15.html',
+        year: '2029'
+      },
+      {
+        title: 'Attack on Titan: The Last Attack',
+        img: 'https://cdn.myanimelist.net/images/anime/1379/145452l.jpg',
+        link: 'series16.html',
+        year: '2030'
+      },
+      {
+        title: 'Attack on Titan',
+        img: 'https://cdn.myanimelist.net/images/anime/10/47347l.jpg',
+        link: 'series1.html',
+        year: '2013'
       }
     ];
     const relatedCards = document.getElementById('related-cards');
@@ -636,15 +720,33 @@
         mal: 'https://myanimelist.net/character/40882/Eren_Yeager'
       },
       {
+        name: 'Hange Zoë',
+        img: 'https://cdn.myanimelist.net/images/characters/2/213231.jpg',
+        role: 'Main',
+        mal: 'https://myanimelist.net/character/71121/Hange_Zo%C3%AB'
+      },
+      {
+        name: 'Jean Kirstein',
+        img: 'https://cdn.myanimelist.net/images/characters/14/216893.jpg',
+        role: 'Main',
+        mal: 'https://myanimelist.net/character/46498/Jean_Kirstein'
+      },
+      {
+        name: 'Ilse Langnar',
+        img: 'https://cdn.myanimelist.net/images/characters/6/229723.jpg',
+        role: 'Main',
+        mal: 'https://myanimelist.net/character/62487/Ilse_Langnar'
+      },
+      {
         name: 'Mikasa Ackerman',
         img: 'https://cdn.myanimelist.net/images/characters/6/370449.jpg',
-        role: 'Main',
+        role: 'Supporting',
         mal: 'https://myanimelist.net/character/40881/Mikasa_Ackerman'
       },
       {
         name: 'Armin Arlert',
         img: 'https://cdn.myanimelist.net/images/characters/5/249123.jpg',
-        role: 'Main',
+        role: 'Supporting',
         mal: 'https://myanimelist.net/character/46494/Armin_Arlert'
       },
       {
@@ -660,12 +762,6 @@
         mal: 'https://myanimelist.net/character/46496/Erwin_Smith'
       },
       {
-        name: 'Hange Zoë',
-        img: 'https://cdn.myanimelist.net/images/characters/2/213231.jpg',
-        role: 'Supporting',
-        mal: 'https://myanimelist.net/character/71121/Hange_Zo%C3%AB'
-      },
-      {
         name: 'Sasha Blouse',
         img: 'https://cdn.myanimelist.net/images/characters/13/206499.jpg',
         role: 'Supporting',
@@ -676,18 +772,6 @@
         img: 'https://cdn.myanimelist.net/images/characters/16/206489.jpg',
         role: 'Supporting',
         mal: 'https://myanimelist.net/character/46484/Reiner_Braun'
-      },
-      {
-        name: 'Jean Kirstein',
-        img: 'https://cdn.myanimelist.net/images/characters/14/216893.jpg',
-        role: 'Supporting',
-        mal: 'https://myanimelist.net/character/46498/Jean_Kirstein'
-      },
-      {
-        name: 'Annie Leonhart',
-        img: 'https://cdn.myanimelist.net/images/characters/9/206357.jpg',
-        role: 'Supporting',
-        mal: 'https://myanimelist.net/character/46490/Annie_Leonhart'
       }
     ];
     const charactersList = document.getElementById('characters-list');
@@ -734,7 +818,7 @@
     const trailerModal = document.getElementById('trailer-modal');
     const trailerIframe = document.getElementById('trailer-iframe');
     const trailerCloseBtn = document.getElementById('trailer-close-btn');
-    const trailerUrl = 'https://www.youtube.com/embed/r37i6fuajt4?autoplay=1';
+    const trailerUrl = '';
     posterImg.style.cursor = 'pointer';
     posterImg.addEventListener('click', function () {
       trailerIframe.src = trailerUrl;

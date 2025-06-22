@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Otherside Picnic</title>
+  <title>Shingeki no Kyojin: Ano Hi Kara</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css" />
@@ -160,6 +160,7 @@
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 3;
+      line-clamp: 3;
       -webkit-box-orient: vertical;
       transition: all 0.2s;
     }
@@ -168,6 +169,7 @@
       overflow: visible;
       display: block;
       -webkit-line-clamp: unset;
+      line-clamp: unset;
     }
 
     .show-more-btn {
@@ -497,15 +499,15 @@
 <body>
   <div id="block-overlay"></div>
   <div class="anime-card">
-    <div class="anime-year-badge">2021</div>
-    <img src="https://cdn.myanimelist.net/images/anime/1377/111097l.jpg" alt="The Beginning After the End Poster"
+    <div class="anime-year-badge">2013</div>
+    <img src="https://cdn.myanimelist.net/images/anime/1907/134102l.jpg" alt="Attack on Titan: Since That Day"
       class="anime-poster" />
-    <div class="anime-title">Otherside Picnic</div>
+    <div class="anime-title">Attack on Titan: Since That Day</div>
     <div class="anime-genres">
       <span class="genre-tag" data-genre="Action">Action</span>
-      <span class="genre-tag" data-genre="Adventure">Adventure</span>
-      <span class="genre-tag" data-genre="Fantasy">Fantasy</span>
-      <span class="genre-tag" data-genre="Isekai">Isekai</span>
+      <span class="genre-tag" data-genre="Adventure">Drama</span>
+      <span class="genre-tag" data-genre="Fantasy">Gore</span>
+      <span class="genre-tag" data-genre="Isekai">Survival</span>
     </div>
     <div class="anime-actions">
       <button class="anime-btn watch" onclick="window.location.href='../video.html?series=series-json/series1'">
@@ -516,18 +518,7 @@
   <div class="desc-card">
     <div class="desc-title">Overview</div>
     <div id="desc-text" class="desc-text">
-      The "Otherworld" is a vast and dangerous realm hidden from the knowledge of the common folk. It is also home to
-      many creatures that threaten any human who dare visit it. To witness its desolate yet oddly absorbing environment,
-      one must search for portals that could reside anywhere, from secret elevators to shrine entrances.
-
-      After a fateful encounter with a horrendous Otherworld denizen, Sorawo Kamikoshi ponders whether to keep going or
-      give up in life. Meanwhile, Toriko Nishina scours the Otherworld in hopes of finding her friend Satsuki, who she
-      believes is lost somewhere within the realm.
-
-      When the two cross paths, friendship blossoms. In order to acquire as much information about this obscure
-      dimension, the two travel back and forth from the real world to the other. Sorawo and Toriko's bodies are soon
-      influenced by the Otherworld, preparing them for the many horrors to come as both of them try to fulfill their
-      goals.
+      Recap of the events in Shingeki no Kyojin that happened prior to episode 14.
     </div>
     <button id="show-more-btn" class="show-more-btn">Show more</button>
   </div>
@@ -597,23 +588,95 @@
     // Dynamically load related series (placeholder data)
     const relatedSeries = [
       {
-        title: 'Attack on Titan Season 2',
-        img: 'https://cdn.myanimelist.net/images/anime/4/84177l.jpg',
+        title: 'Attack on Titan OAD',
+        img: 'https://cdn.myanimelist.net/images/anime/9/59221l.jpg',
         link: 'series2.html',
-        year: '2017'
+        year: '2013'
       },
       {
-        title: 'Test: Second Season',
-        img: 'https://cdn.myanimelist.net/images/anime/3/19645.jpg',
+        title: 'Attack on Titan: Crimson Bow and Arrow',
+        img: 'https://cdn.myanimelist.net/images/anime/7/63283l.jpg',
         link: 'series3.html',
         year: '2027'
       },
       {
-        title: 'Test: Special',
-        img: 'https://cdn.myanimelist.net/images/anime/5/19646.jpg',
+        title: 'Attack on Titan: No Regrets',
+        img: 'https://cdn.myanimelist.net/images/anime/8/69497l.jpg',
         link: 'series4.html',
         year: '2028'
-      }
+      },
+      {
+        title: 'Attack on Titan: Wings of Freedom',
+        img: 'https://cdn.myanimelist.net/images/anime/2/72510l.jpg',
+        link: 'series5.html',
+        year: '2017'
+      },
+      {
+        title: 'Attack on Titan: Junior High',
+        img: 'https://cdn.myanimelist.net/images/anime/3/75467l.jpg',
+        link: 'series6.html',
+        year: '2018'
+      },
+      {
+        title: 'Attack on Titan Season 2',
+        img: 'https://cdn.myanimelist.net/images/anime/4/84177l.jpg',
+        link: 'series7.html',
+        year: '2020'
+      },
+      {
+        title: 'Attack on Titan: Lost Girls',
+        img: 'https://cdn.myanimelist.net/images/anime/3/89417l.jpg',
+        link: 'series8.html',
+        year: '2022'
+      },
+      {
+        title: 'Attack on Titan: The Roar of Awakening',
+        img: 'https://cdn.myanimelist.net/images/anime/1144/111704l.jpg',
+        link: 'series9.html',
+        year: '2023'
+      },
+      {
+        title: 'Attack on Titan Season 3',
+        img: 'https://cdn.myanimelist.net/images/anime/1173/92110l.jpg',
+        link: 'series10.html',
+        year: '2024'
+      },
+      {
+        title: 'Attack on Titan Season 3 Part 2',
+        img: 'https://cdn.myanimelist.net/images/anime/1517/100633l.jpg',
+        link: 'series11.html',
+        year: '2025'
+      },
+      {
+        title: 'Attack on Titan: Chronicle',
+        img: 'https://cdn.myanimelist.net/images/anime/1266/107765l.jpg',
+        link: 'series12.html',
+        year: '2026'
+      },
+      {
+        title: 'Attack on Titan: Final Season',
+        img: 'https://cdn.myanimelist.net/images/anime/1000/110531l.jpg',
+        link: 'series13.html',
+        year: '2027'
+      },
+      {
+        title: 'Attack on Titan: Final Season Part 2',
+        img: 'https://cdn.myanimelist.net/images/anime/1948/120625l.jpg',
+        link: 'series14.html',
+        year: '2028'
+      },
+      {
+        title: 'Attack on Titan: Final Season - The Final Chapters',
+        img: 'https://cdn.myanimelist.net/images/anime/1279/131078l.jpg',
+        link: 'series15.html',
+        year: '2029'
+      },
+      {
+        title: 'Attack on Titan: The Last Attack',
+        img: 'https://cdn.myanimelist.net/images/anime/1379/145452l.jpg',
+        link: 'series16.html',
+        year: '2030'
+      },
     ];
     const relatedCards = document.getElementById('related-cards');
     relatedSeries.forEach(series => {
@@ -631,34 +694,64 @@
     // Add MAL links for each character
     const characters = [
       {
-        name: 'Sorawo Kamikoshi',
-        img: 'https://cdn.myanimelist.net/images/characters/2/402448.jpg',
+        name: 'Eren Yeager',
+        img: 'https://cdn.myanimelist.net/images/characters/9/206427.jpg',
         role: 'Main',
-        mal: 'https://myanimelist.net/character/170739/Sorawo_Kamikoshi'
+        mal: 'https://myanimelist.net/character/40882/Eren_Yeager'
       },
       {
-        name: 'Toriko Nishina',
-        img: 'https://cdn.myanimelist.net/images/characters/16/402449.jpg',
+        name: 'Mikasa Ackerman',
+        img: 'https://cdn.myanimelist.net/images/characters/6/370449.jpg',
         role: 'Main',
-        mal: 'https://myanimelist.net/character/170740/Toriko_Nishina'
+        mal: 'https://myanimelist.net/character/40881/Mikasa_Ackerman'
       },
       {
-        name: 'Kozakura',
-        img: 'https://cdn.myanimelist.net/images/characters/8/422433.jpg',
-        role: 'Supporting',
-        mal: 'https://myanimelist.net/character/188012/Kozakura'
+        name: 'Armin Arlert',
+        img: 'https://cdn.myanimelist.net/images/characters/5/249123.jpg',
+        role: 'Main',
+        mal: 'https://myanimelist.net/character/46494/Armin_Arlert'
       },
       {
-        name: 'Akari "Karateka" Seto',
-        img: 'https://cdn.myanimelist.net/images/characters/4/422434.jpg',
+        name: 'Levi',
+        img: 'https://cdn.myanimelist.net/images/characters/14/208635.jpg',
         role: 'Supporting',
-        mal: 'https://myanimelist.net/character/188013/Akari_Seto'
+        mal: 'https://myanimelist.net/character/45627/Levi'
       },
       {
-        name: 'Satsuki Uruma',
-        img: 'https://cdn.myanimelist.net/images/characters/8/461591.jpg',
+        name: 'Erwin Smith',
+        img: 'https://cdn.myanimelist.net/images/characters/14/559023.jpg',
         role: 'Supporting',
-        mal: 'https://myanimelist.net/character/188651/Satsuki_Uruma'
+        mal: 'https://myanimelist.net/character/46496/Erwin_Smith'
+      },
+      {
+        name: 'Hange Zoë',
+        img: 'https://cdn.myanimelist.net/images/characters/2/213231.jpg',
+        role: 'Supporting',
+        mal: 'https://myanimelist.net/character/71121/Hange_Zo%C3%AB'
+      },
+      {
+        name: 'Sasha Blouse',
+        img: 'https://cdn.myanimelist.net/images/characters/13/206499.jpg',
+        role: 'Supporting',
+        mal: 'https://myanimelist.net/character/45887/Sasha_Blouse'
+      },
+      {
+        name: 'Reiner Braun',
+        img: 'https://cdn.myanimelist.net/images/characters/16/206489.jpg',
+        role: 'Supporting',
+        mal: 'https://myanimelist.net/character/46484/Reiner_Braun'
+      },
+      {
+        name: 'Jean Kirstein',
+        img: 'https://cdn.myanimelist.net/images/characters/14/216893.jpg',
+        role: 'Supporting',
+        mal: 'https://myanimelist.net/character/46498/Jean_Kirstein'
+      },
+      {
+        name: 'Annie Leonhart',
+        img: 'https://cdn.myanimelist.net/images/characters/9/206357.jpg',
+        role: 'Supporting',
+        mal: 'https://myanimelist.net/character/46490/Annie_Leonhart'
       }
     ];
     const charactersList = document.getElementById('characters-list');
@@ -705,7 +798,7 @@
     const trailerModal = document.getElementById('trailer-modal');
     const trailerIframe = document.getElementById('trailer-iframe');
     const trailerCloseBtn = document.getElementById('trailer-close-btn');
-    const trailerUrl = 'https://www.youtube.com/embed/r37i6fuajt4?autoplay=1';
+    const trailerUrl = '';
     posterImg.style.cursor = 'pointer';
     posterImg.addEventListener('click', function () {
       trailerIframe.src = trailerUrl;
