@@ -1,198 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Series List</title>
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        background: #14161a;
-        color: #fff;
-      }
-      .container,
-      .container-fluid,
-      .container-lg,
-      .container-md,
-      .container-sm,
-      .container-xl,
-      .container-xxl {
-        background: #16181d;
-        border-radius: 12px;
-        padding: 24px 16px;
-      }
-      .az-nav-wrapper {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        margin-bottom: 24px;
-      }
-      /* Custom scrollbar for dark theme */
-      .az-nav-wrapper::-webkit-scrollbar {
-        height: 8px;
-        background: #16181d;
-      }
-      .az-nav-wrapper::-webkit-scrollbar-thumb {
-        background: #23252b;
-        border-radius: 4px;
-      }
-      .az-nav-wrapper::-webkit-scrollbar-thumb:hover {
-        background: #ff6685;
-      }
-      .az-nav-wrapper {
-        scrollbar-color: #23252b #16181d;
-        scrollbar-width: thin;
-      }
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Series List</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: #14161a;
+      color: #fff;
+    }
+
+    .container,
+    .container-fluid,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl,
+    .container-xxl {
+      background: #16181d;
+      border-radius: 12px;
+      padding: 24px 16px;
+    }
+
+    .az-nav-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 24px;
+    }
+
+    /* Custom scrollbar for dark theme */
+    .az-nav-wrapper::-webkit-scrollbar {
+      height: 8px;
+      background: #16181d;
+    }
+
+    .az-nav-wrapper::-webkit-scrollbar-thumb {
+      background: #23252b;
+      border-radius: 4px;
+    }
+
+    .az-nav-wrapper::-webkit-scrollbar-thumb:hover {
+      background: #ff6685;
+    }
+
+    .az-nav-wrapper {
+      scrollbar-color: #23252b #16181d;
+      scrollbar-width: thin;
+    }
+
+    .az-nav {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 6px;
+      min-width: 600px;
+      width: max-content;
+      padding-bottom: 4px;
+    }
+
+    .az-btn {
+      min-width: 36px;
+      text-align: center;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      font-size: 1.1em;
+      cursor: pointer;
+      border: 1px solid #23252b;
+      background: #16181d;
+      color: #fff;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .az-btn.active,
+    .az-btn:focus {
+      background: #ff6685;
+      color: #fff;
+      border-color: #ff6685;
+    }
+
+    .az-btn:active {
+      background: #ff6685;
+      color: #fff;
+    }
+
+    .az-btn:hover {
+      background: #23252b;
+    }
+
+    .series-list {
+      margin-top: 10px;
+    }
+
+    .list-group-item {
+      background: #16181d;
+      color: #fff;
+      border: 1px solid #23252b;
+    }
+
+    .list-group-item a {
+      color: #ff6685;
+      text-decoration: none;
+    }
+
+    .list-group-item a:hover {
+      text-decoration: underline;
+    }
+
+    .bd-badge {
+      font-size: 0.8em;
+      margin-left: 8px;
+      background: #23252b !important;
+      color: #ff6685 !important;
+      border: 1px solid #ff6685;
+    }
+
+    @media (max-width: 600px) {
       .az-nav {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 6px;
-        min-width: 600px;
-        width: max-content;
-        padding-bottom: 4px;
+        min-width: 500px;
       }
-      .az-btn {
-        min-width: 36px;
-        text-align: center;
-        border-radius: 0.375rem;
-        font-weight: 500;
-        font-size: 1.1em;
-        cursor: pointer;
-        border: 1px solid #23252b;
-        background: #16181d;
-        color: #fff;
-        transition: background 0.2s, color 0.2s;
-      }
-      .az-btn.active,
-      .az-btn:focus {
-        background: #ff6685;
-        color: #fff;
-        border-color: #ff6685;
-      }
-      .az-btn:active {
-        background: #ff6685;
-        color: #fff;
-      }
-      .az-btn:hover {
-        background: #23252b;
-      }
-      .series-list {
-        margin-top: 10px;
-      }
-      .list-group-item {
-        background: #16181d;
-        color: #fff;
-        border: 1px solid #23252b;
-      }
-      .list-group-item a {
-        color: #ff6685;
-        text-decoration: none;
-      }
-      .list-group-item a:hover {
-        text-decoration: underline;
-      }
-      .bd-badge {
-        font-size: 0.8em;
-        margin-left: 8px;
-        background: #23252b !important;
-        color: #ff6685 !important;
-        border: 1px solid #ff6685;
-      }
-      @media (max-width: 600px) {
-        .az-nav {
-          min-width: 500px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container py-4">
-      <h1 class="mb-4">Series Index</h1>
-      <div class="az-nav-wrapper">
-        <div class="az-nav" id="az-nav"></div>
-      </div>
-      <div id="series-list" class="series-list"></div>
+    }
+  </style>
+</head>
+
+<body>
+  <div id="logo"></div>
+  <div class="container py-4">
+    <h1 class="mb-4">Series Index</h1>
+    <div class="az-nav-wrapper">
+      <div class="az-nav" id="az-nav"></div>
     </div>
-    <script>
-      const AZ = [
-        "#",
-        ...Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)),
-      ];
-      let seriesGroups = {};
-      let currentLetter = "A";
-      // Render A-Z nav
-      function renderAZNav() {
-        const nav = document.getElementById("az-nav");
-        nav.innerHTML = "";
-        AZ.forEach((letter) => {
-          const btn = document.createElement("button");
-          btn.className =
-            "az-btn btn" + (letter === currentLetter ? " active" : "");
-          btn.textContent = letter;
-          btn.type = "button";
-          btn.onclick = () => {
-            currentLetter = letter;
-            renderAZNav();
-            renderSeriesList();
-          };
-          nav.appendChild(btn);
-        });
-      }
-      // Render series list for current letter
-      function renderSeriesList() {
-        const list = document.getElementById("series-list");
-        list.innerHTML = "";
-        let items = seriesGroups[currentLetter] || [];
-        if (currentLetter === "#") {
-          items = seriesGroups["#"] || [];
-        }
-        if (items.length === 0) {
-          list.innerHTML = '<div class="text-muted">No series found.</div>';
-          return;
-        }
-        const ul = document.createElement("ul");
-        ul.className = "list-group";
-        items.forEach((series) => {
-          const li = document.createElement("li");
-          li.className = "list-group-item d-flex align-items-center";
-          const link = document.createElement("a");
-          link.href = series.infoPage || "#";
-          link.textContent = series.title || series.name || "Untitled";
-          link.className = "me-2";
-          li.appendChild(link);
-          if (series.bd) {
-            const badge = document.createElement("span");
-            badge.className = "badge bd-badge";
-            badge.textContent = "BD";
-            li.appendChild(badge);
-          }
-          ul.appendChild(li);
-        });
-        list.appendChild(ul);
-      }
-      // Fetch and group series
-      fetch("serieslist.json")
-        .then((res) => res.json())
-        .then((seriesArr) => {
-          seriesGroups = {};
-          seriesArr.forEach((series) => {
-            let letter = (series.title || series.name || "")
-              .charAt(0)
-              .toUpperCase();
-            if (!/[A-Z]/.test(letter)) letter = "#";
-            if (!seriesGroups[letter]) seriesGroups[letter] = [];
-            seriesGroups[letter].push(series);
-          });
+    <div id="series-list" class="series-list"></div>
+  </div>
+  <script>
+    const AZ = [
+      "#",
+      ...Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)),
+    ];
+    let seriesGroups = {};
+    let currentLetter = "A";
+    // Render A-Z nav
+    function renderAZNav() {
+      const nav = document.getElementById("az-nav");
+      nav.innerHTML = "";
+      AZ.forEach((letter) => {
+        const btn = document.createElement("button");
+        btn.className =
+          "az-btn btn" + (letter === currentLetter ? " active" : "");
+        btn.textContent = letter;
+        btn.type = "button";
+        btn.onclick = () => {
+          currentLetter = letter;
           renderAZNav();
           renderSeriesList();
-        })
-        .catch(() => {
-          document.getElementById("series-list").textContent =
-            "Failed to load series list.";
+        };
+        nav.appendChild(btn);
+      });
+    }
+    // Render series list for current letter
+    function renderSeriesList() {
+      const list = document.getElementById("series-list");
+      list.innerHTML = "";
+      let items = seriesGroups[currentLetter] || [];
+      if (currentLetter === "#") {
+        items = seriesGroups["#"] || [];
+      }
+      if (items.length === 0) {
+        list.innerHTML = '<div class="text-muted">No series found.</div>';
+        return;
+      }
+      const ul = document.createElement("ul");
+      ul.className = "list-group";
+      items.forEach((series) => {
+        const li = document.createElement("li");
+        li.className = "list-group-item d-flex align-items-center";
+        const link = document.createElement("a");
+        link.href = series.infoPage || "#";
+        link.textContent = series.title || series.name || "Untitled";
+        link.className = "me-2";
+        li.appendChild(link);
+        if (series.bd) {
+          const badge = document.createElement("span");
+          badge.className = "badge bd-badge";
+          badge.textContent = "BD";
+          li.appendChild(badge);
+        }
+        ul.appendChild(li);
+      });
+      list.appendChild(ul);
+    }
+    // Fetch and group series
+    fetch("serieslist.json")
+      .then((res) => res.json())
+      .then((seriesArr) => {
+        seriesGroups = {};
+        seriesArr.forEach((series) => {
+          let letter = (series.title || series.name || "")
+            .charAt(0)
+            .toUpperCase();
+          if (!/[A-Z]/.test(letter)) letter = "#";
+          if (!seriesGroups[letter]) seriesGroups[letter] = [];
+          seriesGroups[letter].push(series);
         });
-    </script>
-  </body>
+        renderAZNav();
+        renderSeriesList();
+      })
+      .catch(() => {
+        document.getElementById("series-list").textContent =
+          "Failed to load series list.";
+      });
+  </script>
+  <script src="logo-inject.js"></script>
+</body>
+
 </html>
