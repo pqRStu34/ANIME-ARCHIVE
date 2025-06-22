@@ -1,5 +1,4 @@
 {
-  "season": "Season 1",
   "episodes": [
     {
       "title": "Episode 1: Awakening of the Villainess",
@@ -584,56 +583,6 @@
           "dubs": [
             {
               "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-2_DUB-1080p%2FAttack_on_Titan_Season_2-E12-1080p.mp4",
-              "type": "video/mp4",
-              "quality": "1080p"
-            },
-            {
-              "src": "",
-              "type": "video/mp4",
-              "quality": "720p"
-            },
-            {
-              "src": "",
-              "type": "video/mp4",
-              "quality": "480p"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Episode 13: Finale of Obsession",
-      "thumbnail": "https://bulma.io/images/placeholders/480x640.png",
-      "subtitles": [
-        {
-          "lang": "en",
-          "label": "English",
-          "src": ""
-        }
-      ],
-      "servers": [
-        {
-          "name": "Main Server",
-          "subs": [
-            {
-              "src": "",
-              "type": "video/mp4",
-              "quality": "1080p"
-            },
-            {
-              "src": "",
-              "type": "video/mp4",
-              "quality": "720p"
-            },
-            {
-              "src": "",
-              "type": "video/mp4",
-              "quality": "480p"
-            }
-          ],
-          "dubs": [
-            {
-              "src": "",
               "type": "video/mp4",
               "quality": "1080p"
             },
