@@ -677,27 +677,14 @@
   ],
   "seriesInfo": {
     "prequel": {
-      "title": "Attack on Titan Season 1",
+      "title": "Attack on Titan",
       "key": "series-json/series1",
-      "poster": "https://cdn.myanimelist.net/images/anime/1907/134102l.jpg"
+      "poster": "https://cdn.myanimelist.net/images/anime/10/47347l.jpg"
     },
     "sequel": {
       "title": "Attack on Titan Season 3",
       "key": "series-json/series3",
       "poster": "https://cdn.myanimelist.net/images/anime/1173/92110l.jpg"
-    },
-    "extra": [
-      {
-        "title": "OVA: Lost Girls",
-        "src": "ova1.mp4",
-        "type": "video/mp4"
-      },
-      {
-        "title": "Special: No Regrets",
-        "src": "special1.mp4",
-        "type": "video/mp4"
-      }
-    ],
-    "poster": "https://cdn.myanimelist.net/images/anime/4/84177l.jpg"
+    }
   }
 }

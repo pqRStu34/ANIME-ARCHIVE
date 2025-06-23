@@ -1,0 +1,69 @@
+{
+  "season": "Movie",
+  "episodes": [
+    {
+      "title": "Full Movie",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb1.jpg",
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/movie-4k.mp4",
+              "type": "video/mp4",
+              "quality": "4k",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/movie-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/movie-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/movie-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/movie-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/movie-en.vtt"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/movie-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p",
+              "vtt": "https://archive.org/download/otherside-picnic-e-1-1080p-english/movie-en.vtt"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fotherside-picnic-e-1-1080p-english%2FOtherside_Picnic-Movie-4k.mp4",
+              "type": "video/mp4",
+              "quality": "4k"
+            },
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fotherside-picnic-e-1-1080p-english%2FOtherside_Picnic-Movie-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fotherside-picnic-e-1-1080p-english%2FOtherside_Picnic-Movie-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p"
+            },
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fotherside-picnic-e-1-1080p-english%2FOtherside_Picnic-Movie-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "seriesInfo": {
+    "prequel": {
+      "title": "Attack on Titan: Final Season - The Final Chapters",
+      "key": "series-json/series15",
+      "poster": "https://cdn.myanimelist.net/images/anime/1279/131078l.jpg"
+    }
+  }
+}
