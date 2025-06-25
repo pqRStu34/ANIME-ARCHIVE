@@ -16,8 +16,7 @@
   <link rel="stylesheet" href="styles.css" />
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     body {
       background: #14161a !important;
@@ -85,6 +84,25 @@
       position: relative;
       display: inline-block;
       border: none !important;
+      transition: transform 0.18s cubic-bezier(0.4, 0.2, 0.2, 1), box-shadow 0.18s cubic-bezier(0.4, 0.2, 0.2, 1),
+        z-index 0.18s;
+      z-index: 1;
+    }
+
+    .series-card:hover {
+      transform: scale(1.08) translateY(-8px);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.28), 0 2px 8px 0 #00d1b2;
+      z-index: 10;
+    }
+
+    /* Blur background grid when a card is hovered */
+    .series-grid.card-hover-blur .series-card:not(:hover) {
+      filter: blur(3px) brightness(0.8) grayscale(0.2);
+      transition: filter 0.18s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+
+    .series-grid.card-hover-blur .series-card:hover {
+      filter: none;
     }
 
     .search-result {
@@ -93,11 +111,11 @@
     }
 
     .series-card .card-image figure.image {
-      height: 160px;
-      width: 110px;
-      border: 2px solid #abb1bf;
+      height: 200px;
+      width: 140px;
+      border: 2.5px solid #abb1bf;
       box-sizing: border-box;
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
       position: relative;
       margin: 0;
@@ -112,9 +130,9 @@
       bottom: 0;
       background: rgba(0, 19, 16, 0.547);
       color: #fff;
-      font-size: 0.98em;
+      font-size: 0.65em;
       font-weight: 600;
-      padding: 0.5em 0.2em;
+      padding: 0.7em 0.2em;
       text-align: center;
       border-bottom-left-radius: 10px;
       border-bottom-right-radius: 10px;
@@ -130,9 +148,9 @@
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       grid-auto-rows: min-content;
-      gap: 8px;
+      gap: 14px;
       justify-items: center;
-      min-width: 700px;
+      min-width: 900px;
       overflow-x: auto;
       max-width: 100%;
     }
@@ -140,14 +158,14 @@
     @media (max-width: 900px) {
       .series-grid {
         grid-template-columns: repeat(3, 1fr);
-        min-width: 350px;
+        min-width: 420px;
       }
     }
 
     @media (max-width: 600px) {
       .series-grid {
         grid-template-columns: repeat(2, 1fr);
-        min-width: 220px;
+        min-width: 260px;
       }
     }
 
@@ -289,6 +307,89 @@
       color: var(--bs-pagination-disabled-color) !important;
       border-color: var(--bs-pagination-border-color) !important;
     }
+
+    /* Loader card style */
+    #series-loader {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+      width: 140px;
+      margin: 0 auto 24px auto;
+      border-radius: 12px;
+      background: #23262c;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+      border: 2.5px solid #abb1bf;
+    }
+
+    .loader-spinner {
+      border: 6px solid #e3e6ee;
+      border-top: 6px solid #00d1b2;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Skeleton card loader */
+    .skeleton-card {
+      height: 200px;
+      width: 140px;
+      border-radius: 12px;
+      background: #23262c;
+      border: 2.5px solid #abb1bf;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+      animation: skeleton-pulse 1.2s infinite ease-in-out;
+    }
+
+    .skeleton-thumb {
+      width: 80%;
+      height: 70%;
+      background: #2e313a;
+      border-radius: 10px;
+      margin: 18px auto 8px auto;
+      animation: skeleton-pulse 1.2s infinite ease-in-out;
+    }
+
+    .skeleton-title {
+      width: 60%;
+      height: 18px;
+      background: #2e313a;
+      border-radius: 6px;
+      margin: 0 auto 18px auto;
+      animation: skeleton-pulse 1.2s infinite ease-in-out;
+    }
+
+    @keyframes skeleton-pulse {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 
@@ -348,6 +449,7 @@
         </div>
         <div id="search-predictions" class="neon-predictions position-absolute w-100"
           style="display: none; max-width: 400px; left: 0; right: 0; margin: 0 auto; z-index: 10;"></div>
+        <!-- Skeleton cards will be injected here by JS while loading -->
         <div id="series-grid" class="series-grid">
           <!-- Cards will be injected here by JS -->
         </div>
@@ -358,7 +460,7 @@
       <div class="container">
         <div class="content text-center py-4">
           <div class="mb-2">
-            <a href="https://x.com/pqRStu34" target="_blank" class="neon-icon" title="X (Twitter)">
+            <a href="https://x.com/pqRStu34" target="_blank" class="neon-icon me-3" title="X (Twitter)">
               <i class="fa-brands fa-x-twitter fa-2x"></i>
             </a>
             <a href="https://t.me/+BLX8lxcyiixjYmE9" target="_blank" class="neon-icon" title="Telegram">
@@ -397,34 +499,30 @@
       });
 
       // --- Skeleton loader logic ---
-      // Remove all skeleton loader logic
       const grid = document.getElementById("series-grid");
-      const searchBar =
-        document.getElementById("series-search").parentElement.parentElement;
-      // const predictionsSkeleton = document.getElementById(
-      //   "predictions-skeleton"
-      // );
-
-      // Show grid and search bar initially
-      grid.style.display = "none";
-      searchBar.style.display = "";
-      // predictionsSkeleton.style.display = "none";
-
+      const searchBar = document.getElementById("series-search").parentElement.parentElement;
+      // Show skeletons initially
+      function showSkeletonCards(count) {
+        grid.innerHTML = '';
+        for (let i = 0; i < count; i++) {
+          const skeleton = document.createElement('div');
+          skeleton.className = 'skeleton-card';
+          skeleton.innerHTML = '<div class="skeleton-thumb"></div><div class="skeleton-title"></div>';
+          grid.appendChild(skeleton);
+        }
+        grid.style.display = '';
+      }
+      showSkeletonCards(12); // Show 12 skeletons for initial load
       let allSeries = [];
-
       fetch("serieslist.json")
         .then((res) => res.json())
         .then((seriesList) => {
           allSeries = seriesList;
-          grid.style.display = "";
-          searchBar.style.display = "";
-          renderSeriesGrid(seriesList);
+          // Immediately render real cards after data loads
+          updateGridAndPagination();
         })
         .catch(() => {
-          grid.style.display = "";
-          grid.innerHTML =
-            '<div class="has-text-centered has-text-danger">Could not load series list.</div>';
-          searchBar.style.display = "";
+          grid.innerHTML = '<div class="has-text-centered has-text-danger">Could not load series list.</div>';
         });
 
       // --- Search, Sort, Pagination, and Prediction Logic ---
@@ -482,6 +580,7 @@
         grid.innerHTML = "";
         if (!seriesList.length) {
           grid.innerHTML = '<div class="text-center text-danger w-100">No series found.</div>';
+          grid.classList.remove('card-hover-blur');
           return;
         }
         seriesList.forEach((series) => {
@@ -508,6 +607,13 @@
             skeleton.style.display = "none";
             img.style.display = "";
             img.src = "https://bulma.io/images/placeholders/480x640.png";
+          });
+          // Add hover event listeners for blur effect
+          card.addEventListener('mouseenter', () => {
+            grid.classList.add('card-hover-blur');
+          });
+          card.addEventListener('mouseleave', () => {
+            grid.classList.remove('card-hover-blur');
           });
           grid.appendChild(card);
         });
