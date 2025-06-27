@@ -125,24 +125,6 @@
       border: 1px solid #ff6685;
     }
 
-    /* Overlay to block right-click and code inspection */
-    .anti-inspect-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 99999;
-      background: rgba(0, 0, 0, 0.01);
-      /* nearly transparent */
-      pointer-events: auto;
-      user-select: none;
-    }
-
-    body.anti-inspect {
-      overflow: hidden !important;
-    }
-
     @media (max-width: 600px) {
       .az-nav {
         min-width: 500px;
@@ -243,26 +225,6 @@
         document.getElementById("series-list").textContent =
           "Failed to load series list.";
       });
-    // Add anti-inspect overlay and disable right-click/long-press
-    function addAntiInspectOverlay() {
-      if (document.getElementById('anti-inspect-overlay')) return;
-      const overlay = document.createElement('div');
-      overlay.className = 'anti-inspect-overlay';
-      overlay.id = 'anti-inspect-overlay';
-      document.body.appendChild(overlay);
-      document.body.classList.add('anti-inspect');
-      // Prevent context menu
-      overlay.addEventListener('contextmenu', e => e.preventDefault());
-      overlay.addEventListener('mousedown', e => e.preventDefault());
-      overlay.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
-      overlay.addEventListener('selectstart', e => e.preventDefault());
-      overlay.addEventListener('pointerdown', e => e.preventDefault());
-      // Prevent context menu on document as fallback
-      document.addEventListener('contextmenu', e => e.preventDefault());
-      document.addEventListener('selectstart', e => e.preventDefault());
-      document.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
-    }
-    document.addEventListener('DOMContentLoaded', addAntiInspectOverlay);
   </script>
 </body>
 
