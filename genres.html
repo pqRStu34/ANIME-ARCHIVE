@@ -66,8 +66,8 @@
     }
 
     .badge-year.selected {
-      background: #66d1ff !important;
-      color: #4258ff !important;
+      background: #4258ff !important;
+      color: #fff !important;
       font-weight: 700;
     }
 
@@ -105,6 +105,18 @@
       margin-top: 1em;
       box-shadow: 0 0 8px #198754;
       transition: background 0.2s, color 0.2s;
+    }
+
+    .advanced-search-btn.btn-secondary {
+      background: #ff6685 !important;
+      color: #fff !important;
+      border: none;
+      box-shadow: 0 0 8px #ff6685;
+    }
+
+    .advanced-search-btn.btn-secondary:hover {
+      background: #e05575 !important;
+      color: #fff !important;
     }
 
     .advanced-search-btn:hover {
@@ -171,6 +183,9 @@
 <body>
   <section class="container py-5">
     <div id="advanced-search-card" class="advanced-search-card">
+      <div class="d-flex justify-content-center align-items-center mb-3">
+        <h3 class="fw-bold text-center mb-0" style="color:#00d1b2;">Advance Search</h3>
+      </div>
       <div class="mb-3">
         <label class="form-label text-primary">Select Genres</label>
         <div id="adv-genre-tags" class="d-flex flex-wrap gap-2"></div>
@@ -179,9 +194,14 @@
         <label class="form-label text-primary">Select Year</label>
         <div id="adv-year-tags" class="d-flex flex-wrap gap-2"></div>
       </div>
-      <button id="advanced-search-btn" class="advanced-search-btn btn btn-success">
-        Search
-      </button>
+      <div class="d-flex gap-2">
+        <button id="advanced-search-btn" class="advanced-search-btn btn btn-success flex-grow-1">
+          Search
+        </button>
+        <button id="advanced-reset-btn" class="advanced-search-btn btn btn-secondary flex-grow-1" type="button">
+          Reset
+        </button>
+      </div>
     </div>
 
     <!-- Genre Tags Card -->
@@ -326,14 +346,13 @@
       if (!advSelectedGenres[tag]) {
         advSelectedGenres[tag] = "selected";
         el.classList.add("selected");
-        el.classList.remove("discarded");
       } else if (advSelectedGenres[tag] === "selected") {
         advSelectedGenres[tag] = "discarded";
         el.classList.remove("selected");
         el.classList.add("discarded");
-      } else {
+      } else if (advSelectedGenres[tag] === "discarded") {
         delete advSelectedGenres[tag];
-        el.classList.remove("selected", "discarded");
+        el.classList.remove("discarded");
       }
     }
 
@@ -446,6 +465,18 @@
             }, 2000);
           }
         });
+      // Add reset button logic
+      document.getElementById("advanced-reset-btn").addEventListener("click", () => {
+        // Reset advanced search selections
+        advSelectedGenres = {};
+        advSelectedYear = null;
+        // Remove selected/discarded classes from genre tags
+        document.querySelectorAll("#adv-genre-tags .badge-genre").forEach(e => e.classList.remove("selected", "discarded"));
+        // Remove selected class from year tags
+        document.querySelectorAll("#adv-year-tags .badge-year").forEach(e => e.classList.remove("selected"));
+        // Optionally clear results
+        renderResults([]);
+      });
     });
   </script>
 </body>

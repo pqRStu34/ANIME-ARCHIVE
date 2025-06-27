@@ -566,6 +566,21 @@
       let searchTerm = "";
       let predictionIndex = -1;
 
+      // --- Pagination persistence ---
+      const PAGINATION_KEY = "anime-archive-current-page";
+      function saveCurrentPage(page) {
+        try {
+          localStorage.setItem(PAGINATION_KEY, String(page));
+        } catch (e) { }
+      }
+      function loadCurrentPage() {
+        try {
+          const val = localStorage.getItem(PAGINATION_KEY);
+          return val ? parseInt(val) : 1;
+        } catch (e) { return 1; }
+      }
+      currentPage = loadCurrentPage();
+
       function debounce(fn, delay) {
         let timer;
         return function (...args) {
@@ -662,6 +677,7 @@
         const paged = paginate(list, currentPage, pageSize);
         renderSeriesGrid(paged);
         renderPagination(list.length, currentPage, pageSize);
+        saveCurrentPage(currentPage);
       }
 
       function updatePredictions(val) {
