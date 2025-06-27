@@ -86,11 +86,13 @@
     }
 
     .advanced-search-card.collapsed {
-      max-height: 0;
-      opacity: 0;
-      padding-top: 0;
-      padding-bottom: 0;
-      margin-bottom: 0;
+      /* Completely remove collapsed state so it never applies */
+      display: block !important;
+      max-height: 1000px !important;
+      opacity: 1 !important;
+      padding-top: 1.5rem !important;
+      padding-bottom: 1rem !important;
+      margin-bottom: 2rem !important;
     }
 
     .advanced-search-btn {
@@ -139,24 +141,6 @@
       border: none;
     }
 
-    .is-skeleton {
-      background: #e0e0e0;
-      animation: skeleton-loading 1.5s infinite;
-    }
-
-    @keyframes skeleton-loading {
-      0% {
-        background-color: #e0e0e0;
-      }
-
-      50% {
-        background-color: #f0f0f0;
-      }
-
-      100% {
-        background-color: #e0e0e0;
-      }
-    }
 
     .advanced-search-card label,
     .advanced-search-card .form-label,
@@ -186,12 +170,7 @@
 
 <body>
   <section class="container py-5">
-    <!-- Advanced Search Hamburger Toggle -->
-    <div id="adv-search-toggle" class="adv-search-toggle mb-3">
-      <i class="bi bi-search"></i>
-      Advanced Search
-    </div>
-    <div id="advanced-search-card" class="advanced-search-card collapsed">
+    <div id="advanced-search-card" class="advanced-search-card">
       <div class="mb-3">
         <label class="form-label text-primary">Select Genres</label>
         <div id="adv-genre-tags" class="d-flex flex-wrap gap-2"></div>
@@ -204,12 +183,6 @@
         Search
       </button>
     </div>
-    <!-- Skeleton for Advanced Search -->
-    <div id="adv-search-skeleton" class="advanced-search-card" style="display: none">
-      <div class="is-skeleton mb-2" style="height: 2em; width: 60%;"></div>
-      <div class="is-skeleton mb-2" style="height: 2em; width: 40%;"></div>
-      <div class="is-skeleton mb-2" style="height: 2em; width: 80%;"></div>
-    </div>
 
     <!-- Genre Tags Card -->
     <div class="genre-card card mb-4">
@@ -218,12 +191,6 @@
           <i class="bi bi-tags"></i> Genres
         </h2>
         <div id="genre-tags" class="d-flex flex-wrap gap-2"></div>
-        <!-- Skeleton for Genre Tags -->
-        <div id="genre-tags-skeleton">
-          <span class="badge bg-secondary is-skeleton me-2" style="width: 4em; height: 2em"></span>
-          <span class="badge bg-secondary is-skeleton me-2" style="width: 4em; height: 2em"></span>
-          <span class="badge bg-secondary is-skeleton me-2" style="width: 4em; height: 2em"></span>
-        </div>
       </div>
     </div>
 
@@ -234,21 +201,11 @@
           <i class="bi bi-calendar-event"></i> Years
         </h2>
         <div id="year-tags" class="d-flex flex-wrap gap-2"></div>
-        <!-- Skeleton for Year Tags -->
-        <div id="year-tags-skeleton">
-          <span class="badge bg-secondary is-skeleton me-2" style="width: 3em; height: 2em"></span>
-          <span class="badge bg-secondary is-skeleton me-2" style="width: 3em; height: 2em"></span>
-        </div>
       </div>
     </div>
 
     <!-- Search Results -->
     <div id="search-results" class="search-results"></div>
-    <!-- Skeleton for Search Results -->
-    <div id="search-results-skeleton" class="search-results">
-      <div class="card is-skeleton mb-2" style="height: 4em;"></div>
-      <div class="card is-skeleton mb-2" style="height: 4em;"></div>
-    </div>
   </section>
 
   <!-- Bootstrap JS -->
@@ -298,28 +255,14 @@
       "search-results-skeleton"
     );
 
-    // Show skeletons initially
-    genreTags.style.display = "none";
-    genreTagsSkeleton.style.display = "";
-    yearTags.style.display = "none";
-    yearTagsSkeleton.style.display = "";
-    advSearchCard.style.display = "none";
-    advSearchSkeleton.style.display = "";
-    searchResults.style.display = "none";
-    searchResultsSkeleton.style.display = "";
-
     fetch("serieslist.json")
       .then((res) => res.json())
       .then((list) => {
         seriesList = list;
         // Hide skeletons, show real UI
-        genreTagsSkeleton.style.display = "none";
         genreTags.style.display = "";
-        yearTagsSkeleton.style.display = "none";
         yearTags.style.display = "";
-        advSearchSkeleton.style.display = "none";
         advSearchCard.style.display = "";
-        searchResultsSkeleton.style.display = "none";
         searchResults.style.display = "";
         renderTags("genre-tags", genres, "badge-genre", onGenreTagClick);
         renderTags("year-tags", years, "badge-year", onYearTagClick);
@@ -424,17 +367,45 @@
       });
     }
 
-    // --- Advanced Search Hamburger Toggle ---
-    document.addEventListener("DOMContentLoaded", () => {
-      const advToggle = document.getElementById("adv-search-toggle");
-      const advCard = document.getElementById("advanced-search-card");
-      let advOpen = false;
-      advToggle.addEventListener("click", () => {
-        advOpen = !advOpen;
-        advCard.classList.toggle("collapsed", !advOpen);
-        advToggle.classList.toggle("open", advOpen);
-      });
+    // --- Render results ---
+    function renderResults(results) {
+      const container = document.getElementById("search-results");
+      if (!results.length) {
+        container.innerHTML = "";
+        return;
+      }
+      container.innerHTML = results
+        .map(
+          (s) => `
+        <div class="card mb-3" style="background:#14161a; color:#fff;">
+          <div class="row g-0 align-items-center">
+            <div class="col-auto">
+              <img src="${s.poster || 'https://bulma.io/images/placeholders/480x640.png'}" alt="${s.title || s.name || ''}" class="img-fluid rounded-start" style="width:90px; height:130px; object-fit:cover; background:#23262c; border-radius:10px; border:2px solid #23262c;">
+            </div>
+            <div class="col ps-3">
+              <div class="d-flex align-items-center mb-1">
+                <h5 class="mb-0 me-2" style="color:#ff6685; font-weight:700;">${s.title || s.name || ''}</h5>
+                <span class="badge badge-year ms-1" style="background:#66d1ff; color:${s.year ? '#4258ff' : '#14161a'}; font-weight:700;">${s.year || ''}</span>
+              </div>
+              <div class="mb-1">
+                ${(Array.isArray(s.genres) ? s.genres : []).map(g => `<span class='badge badge-genre me-1 mb-1' style='background:#2e333d; color:#fff;'>${g}</span>`).join(' ')}
+              </div>
+              <div class="small text-light">${s.description ? s.description : ''}</div>
+            </div>
+          </div>
+        </div>
+      `
+        )
+        .join("");
+    }
 
+    document.addEventListener("DOMContentLoaded", () => {
+      // Remove the .collapsed class from the advanced search card on page load to ensure it is always open
+      const advSearchCard = document.getElementById("advanced-search-card");
+      if (advSearchCard && advSearchCard.classList.contains("collapsed")) {
+        advSearchCard.classList.remove("collapsed");
+      }
+      // Only add click event for the search button, not for toggling the card
       document
         .getElementById("advanced-search-btn")
         .addEventListener("click", () => {
@@ -476,38 +447,6 @@
           }
         });
     });
-
-    // --- Render results ---
-    function renderResults(results) {
-      const container = document.getElementById("search-results");
-      if (!results.length) {
-        container.innerHTML = "";
-        return;
-      }
-      container.innerHTML = results
-        .map(
-          (s) => `
-        <div class="card mb-3" style="background:#14161a; color:#fff;">
-          <div class="row g-0 align-items-center">
-            <div class="col-auto">
-              <img src="${s.poster || 'https://bulma.io/images/placeholders/480x640.png'}" alt="${s.title || s.name || ''}" class="img-fluid rounded-start" style="width:90px; height:130px; object-fit:cover; background:#23262c; border-radius:10px; border:2px solid #23262c;">
-            </div>
-            <div class="col ps-3">
-              <div class="d-flex align-items-center mb-1">
-                <h5 class="mb-0 me-2" style="color:#ff6685; font-weight:700;">${s.title || s.name || ''}</h5>
-                <span class="badge badge-year ms-1" style="background:#66d1ff; color:${s.year ? '#4258ff' : '#14161a'}; font-weight:700;">${s.year || ''}</span>
-              </div>
-              <div class="mb-1">
-                ${(Array.isArray(s.genres) ? s.genres : []).map(g => `<span class='badge badge-genre me-1 mb-1' style='background:#2e333d; color:#fff;'>${g}</span>`).join(' ')}
-              </div>
-              <div class="small text-light">${s.description ? s.description : ''}</div>
-            </div>
-          </div>
-        </div>
-      `
-        )
-        .join("");
-    }
   </script>
 </body>
 

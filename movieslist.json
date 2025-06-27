@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Your Name.",
+    "poster": "https://cdn.myanimelist.net/images/anime/1823/127994l.jpg",
+    "type": "movie",
+    "infoPage": "moviesinfo/movie1.html",
+    "jsonPage": "movies-json/movie1.json"
+  },
+  {
+    "title": "Suzume",
+    "poster": "https://cdn.myanimelist.net/images/anime/1457/122623l.jpg",
+    "type": "movie",
+    "infoPage": "moviesinfo/movie2.html",
+    "jsonPage": "movies-json/movie2.json"
+  },
+  {
+    "title": "A Silent Voice",
+    "poster": "https://cdn.myanimelist.net/images/anime/10/80797l.jpg",
+    "type": "movie",
+    "infoPage": "moviesinfo/movie3.html",
+    "jsonPage": "movies-json/movie3.json"
+  },
+  {
+    "title": "Weathering With You",
+    "poster": "https://cdn.myanimelist.net/images/anime/1880/101146l.jpg",
+    "type": "movie",
+    "infoPage": "moviesinfo/movie4.html",
+    "jsonPage": "movies-json/movie4.json"
+  },
+  {
+    "title": "The Garden of Words",
+    "poster": "https://cdn.myanimelist.net/images/anime/1597/112995l.jpg",
+    "type": "movie",
+    "infoPage": "moviesinfo/movie5.html",
+    "jsonPage": "movies-json/movie5.json"
+  }
+]

@@ -94,33 +94,6 @@
       position: relative;
     }
 
-    .mini-preview-pane {
-      position: absolute;
-      left: 110%;
-      top: 50%;
-      transform: translateY(-50%);
-      min-width: 260px;
-      max-width: 320px;
-      background: #23262c;
-      color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.22);
-      border: 2px solid #ff6685;
-      z-index: 100;
-      padding: 1rem;
-      display: none;
-      font-size: 0.98em;
-    }
-
-    .mini-preview-pane img {
-      width: 100%;
-      max-height: 180px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 0.7em;
-      background: #16181d;
-    }
-
     .list-group-item {
       background: #16181d;
       color: #fff;
@@ -130,10 +103,18 @@
     .list-group-item a {
       color: #ff6685;
       text-decoration: none;
+      transition: color 0.2s;
     }
 
-    .list-group-item a:hover {
-      text-decoration: underline;
+    .list-group-item a:hover,
+    .list-group-item a:focus,
+    .list-group-item a:active {
+      text-decoration: none;
+      color: #00d1b2;
+    }
+
+    .list-group-item a.clicked {
+      color: #00d1b2 !important;
     }
 
     .bd-badge {
@@ -144,17 +125,27 @@
       border: 1px solid #ff6685;
     }
 
+    /* Overlay to block right-click and code inspection */
+    .anti-inspect-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 99999;
+      background: rgba(0, 0, 0, 0.01);
+      /* nearly transparent */
+      pointer-events: auto;
+      user-select: none;
+    }
+
+    body.anti-inspect {
+      overflow: hidden !important;
+    }
+
     @media (max-width: 600px) {
       .az-nav {
         min-width: 500px;
-      }
-
-      .mini-preview-pane {
-        left: 0;
-        top: 110%;
-        transform: none;
-        min-width: 180px;
-        max-width: 98vw;
       }
     }
   </style>
@@ -214,34 +205,20 @@
         link.href = series.infoPage || "#";
         link.textContent = series.title || series.name || "Untitled";
         link.className = "me-2 series-title-link";
-        // Mini preview pane
-        const preview = document.createElement("div");
-        preview.className = "mini-preview-pane";
-        preview.innerHTML = `
-            <div style="position:relative;">
-              <span style="position:absolute;top:8px;left:8px;background:#ff6685;color:#fff;padding:2px 10px;border-radius:8px;font-size:0.98em;font-weight:600;z-index:2;">${series.year ? series.year : ''}</span>
-              <img src="${series.poster || 'https://bulma.io/images/placeholders/480x640.png'}" alt="${series.title || series.name || ''}">
-            </div>
-            <div><strong>${series.title || series.name || ''}</strong></div>
-          `;
+        // Remove mini preview pane
+        // Add click event to change color
+        link.addEventListener('click', function (e) {
+          // Remove 'clicked' from all links
+          document.querySelectorAll('.series-title-link').forEach(el => el.classList.remove('clicked'));
+          this.classList.add('clicked');
+        });
         li.appendChild(link);
-        li.appendChild(preview);
         if (series.bd) {
           const badge = document.createElement("span");
           badge.className = "badge bd-badge";
           badge.textContent = "BD";
           li.appendChild(badge);
         }
-        // Show/hide preview on hover
-        link.addEventListener('mouseenter', () => {
-          preview.style.display = 'block';
-        });
-        link.addEventListener('mouseleave', () => {
-          preview.style.display = 'none';
-        });
-        li.addEventListener('mouseleave', () => {
-          preview.style.display = 'none';
-        });
         ul.appendChild(li);
       });
       list.appendChild(ul);
@@ -266,6 +243,26 @@
         document.getElementById("series-list").textContent =
           "Failed to load series list.";
       });
+    // Add anti-inspect overlay and disable right-click/long-press
+    function addAntiInspectOverlay() {
+      if (document.getElementById('anti-inspect-overlay')) return;
+      const overlay = document.createElement('div');
+      overlay.className = 'anti-inspect-overlay';
+      overlay.id = 'anti-inspect-overlay';
+      document.body.appendChild(overlay);
+      document.body.classList.add('anti-inspect');
+      // Prevent context menu
+      overlay.addEventListener('contextmenu', e => e.preventDefault());
+      overlay.addEventListener('mousedown', e => e.preventDefault());
+      overlay.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
+      overlay.addEventListener('selectstart', e => e.preventDefault());
+      overlay.addEventListener('pointerdown', e => e.preventDefault());
+      // Prevent context menu on document as fallback
+      document.addEventListener('contextmenu', e => e.preventDefault());
+      document.addEventListener('selectstart', e => e.preventDefault());
+      document.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
+    }
+    document.addEventListener('DOMContentLoaded', addAntiInspectOverlay);
   </script>
 </body>
 

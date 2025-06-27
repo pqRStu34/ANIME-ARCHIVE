@@ -84,25 +84,31 @@
       position: relative;
       display: inline-block;
       border: none !important;
-      transition: transform 0.18s cubic-bezier(0.4, 0.2, 0.2, 1), box-shadow 0.18s cubic-bezier(0.4, 0.2, 0.2, 1),
-        z-index 0.18s;
+      transition: none;
+      box-shadow: none;
+      transform: none;
+      z-index: 1;
+    }
+
+    /* Remove hover and blur effects */
+
+    .series-card.active {
+      /* No pop effect */
+      transform: none;
+      box-shadow: none;
       z-index: 1;
     }
 
     .series-card:hover {
-      transform: scale(1.08) translateY(-8px);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.28), 0 2px 8px 0 #00d1b2;
-      z-index: 10;
+      /* No hover effect */
+      transform: none;
+      box-shadow: none;
     }
 
-    /* Blur background grid when a card is hovered */
-    .series-grid.card-hover-blur .series-card:not(:hover) {
-      filter: blur(3px) brightness(0.8) grayscale(0.2);
-      transition: filter 0.18s cubic-bezier(0.4, 0.2, 0.2, 1);
-    }
-
-    .series-grid.card-hover-blur .series-card:hover {
+    .series-grid.card-hover-blur .series-card:not(.active),
+    .series-grid.card-hover-blur .series-card.active {
       filter: none;
+      transition: none;
     }
 
     .search-result {
@@ -356,7 +362,7 @@
       position: relative;
       overflow: hidden;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
-      animation: skeleton-pulse 1.2s infinite ease-in-out;
+      animation: skeleton-pulse 2.2s infinite ease-in-out;
     }
 
     .skeleton-thumb {
@@ -365,7 +371,7 @@
       background: #2e313a;
       border-radius: 10px;
       margin: 18px auto 8px auto;
-      animation: skeleton-pulse 1.2s infinite ease-in-out;
+      animation: skeleton-pulse 2.2s infinite ease-in-out;
     }
 
     .skeleton-title {
@@ -374,7 +380,7 @@
       background: #2e313a;
       border-radius: 6px;
       margin: 0 auto 18px auto;
-      animation: skeleton-pulse 1.2s infinite ease-in-out;
+      animation: skeleton-pulse 2.2s infinite ease-in-out;
     }
 
     @keyframes skeleton-pulse {
@@ -389,6 +395,24 @@
       100% {
         opacity: 1;
       }
+    }
+
+    /* Overlay to block right-click and code inspection */
+    .anti-inspect-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 99999;
+      background: rgba(0, 0, 0, 0.01);
+      /* nearly transparent */
+      pointer-events: auto;
+      user-select: none;
+    }
+
+    body.anti-inspect {
+      overflow: hidden !important;
     }
   </style>
 </head>
@@ -411,8 +435,7 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="series.html">Series</a></li>
-            <li class="nav-item"><a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Movies</a>
-            </li>
+            <li class="nav-item"><a class="nav-link" href="movies.html">Movies</a></li>
             <li class="nav-item"><a class="nav-link" href="genres.html">Genres</a></li>
           </ul>
         </div>
@@ -514,16 +537,20 @@
       }
       showSkeletonCards(12); // Show 12 skeletons for initial load
       let allSeries = [];
-      fetch("serieslist.json")
-        .then((res) => res.json())
-        .then((seriesList) => {
-          allSeries = seriesList;
-          // Immediately render real cards after data loads
-          updateGridAndPagination();
-        })
-        .catch(() => {
-          grid.innerHTML = '<div class="has-text-centered has-text-danger">Could not load series list.</div>';
-        });
+      // Fetch both series and movies, then merge
+      Promise.all([
+        fetch("serieslist.json").then(res => res.json()),
+        fetch("movieslist.json").then(res => res.json()).catch(() => [])
+      ]).then(([seriesList, moviesList]) => {
+        // Add a type property for clarity if missing
+        seriesList = (seriesList || []).map(s => ({ ...s, type: s.type || 'series' }));
+        moviesList = (moviesList || []).map(m => ({ ...m, type: m.type || 'movie' }));
+        allSeries = [...seriesList, ...moviesList];
+        // Immediately render real cards after data loads
+        updateGridAndPagination();
+      }).catch(() => {
+        grid.innerHTML = '<div class="has-text-centered has-text-danger">Could not load series or movies list.</div>';
+      });
 
       // --- Search, Sort, Pagination, and Prediction Logic ---
       const searchInput = document.getElementById("series-search");
@@ -608,13 +635,7 @@
             img.style.display = "";
             img.src = "https://bulma.io/images/placeholders/480x640.png";
           });
-          // Add hover event listeners for blur effect
-          card.addEventListener('mouseenter', () => {
-            grid.classList.add('card-hover-blur');
-          });
-          card.addEventListener('mouseleave', () => {
-            grid.classList.remove('card-hover-blur');
-          });
+          // Remove all click/hover logic for pop effect
           grid.appendChild(card);
         });
       }
@@ -751,22 +772,26 @@
         });
       });
 
-      fetch("serieslist.json")
-        .then((res) => {
-          if (!res.ok) throw new Error('Network response was not ok');
-          return res.json();
-        })
-        .then((seriesList) => {
-          allSeries = seriesList;
-          filteredSeries = [];
-          currentPage = 1;
-          updateGridAndPagination();
-        })
-        .catch((err) => {
-          grid.innerHTML =
-            '<div class="has-text-centered has-text-danger">Could not load series list.<br>' + err + '</div>';
-          searchBar.style.display = "";
-        });
+      // Add anti-inspect overlay and disable right-click/long-press
+      function addAntiInspectOverlay() {
+        if (document.getElementById('anti-inspect-overlay')) return;
+        const overlay = document.createElement('div');
+        overlay.className = 'anti-inspect-overlay';
+        overlay.id = 'anti-inspect-overlay';
+        document.body.appendChild(overlay);
+        document.body.classList.add('anti-inspect');
+        // Prevent context menu
+        overlay.addEventListener('contextmenu', e => e.preventDefault());
+        overlay.addEventListener('mousedown', e => e.preventDefault());
+        overlay.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
+        overlay.addEventListener('selectstart', e => e.preventDefault());
+        overlay.addEventListener('pointerdown', e => e.preventDefault());
+        // Prevent context menu on document as fallback
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('selectstart', e => e.preventDefault());
+        document.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
+      }
+      document.addEventListener('DOMContentLoaded', addAntiInspectOverlay);
     });
   </script>
 </body>

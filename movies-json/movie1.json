@@ -1,0 +1,24 @@
+{
+  "title": "Your Name.",
+  "year": 2016,
+  "genres": ["Romance", "Drama", "Supernatural"],
+  "description": "Two teenagers share a profound, magical connection upon discovering they are swapping bodies. Things manage to become even more complicated when the boy and girl decide to meet in person.",
+  "poster": "https://cdn.myanimelist.net/images/anime/1823/127994l.jpg",
+  "video": [
+    {
+      "name": "Main Server",
+      "sources": [
+        {
+          "src": "https://example.com/yourname-1080p.mp4",
+          "type": "video/mp4",
+          "quality": "1080p"
+        },
+        {
+          "src": "https://example.com/yourname-720p.mp4",
+          "type": "video/mp4",
+          "quality": "720p"
+        }
+      ]
+    }
+  ]
+}
