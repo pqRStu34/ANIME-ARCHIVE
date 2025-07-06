@@ -39,10 +39,52 @@
 
     .adv-search-toggle {
       color: #6678ff;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      font-size: 1.2em;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      transition: color 0.2s;
     }
 
     .adv-search-toggle .bar {
       background: #6678ff;
+      display: block;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      border-radius: 2px;
+      opacity: 1;
+      left: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .adv-search-toggle .bar1 {
+      top: 4px;
+    }
+
+    .adv-search-toggle .bar2 {
+      top: 10px;
+    }
+
+    .adv-search-toggle .bar3 {
+      top: 16px;
+    }
+
+    .adv-search-toggle.open .bar1 {
+      transform: rotate(45deg);
+      top: 10px;
+    }
+
+    .adv-search-toggle.open .bar2 {
+      opacity: 0;
+    }
+
+    .adv-search-toggle.open .bar3 {
+      transform: rotate(-45deg);
+      top: 10px;
     }
 
     .btn-info,
@@ -123,64 +165,6 @@
         opacity: 1;
         transform: none;
       }
-    }
-
-    .adv-search-toggle {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      user-select: none;
-      font-size: 1.2em;
-      font-weight: 700;
-      color: #0dcaf0;
-      margin-bottom: 1rem;
-      transition: color 0.2s;
-    }
-
-    .adv-search-toggle .hamburger {
-      width: 24px;
-      height: 24px;
-      position: relative;
-      display: inline-block;
-      margin-right: 0.7em;
-    }
-
-    .adv-search-toggle .bar {
-      display: block;
-      position: absolute;
-      height: 3px;
-      width: 100%;
-      background: #0dcaf0;
-      border-radius: 2px;
-      opacity: 1;
-      left: 0;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .adv-search-toggle .bar1 {
-      top: 4px;
-    }
-
-    .adv-search-toggle .bar2 {
-      top: 10px;
-    }
-
-    .adv-search-toggle .bar3 {
-      top: 16px;
-    }
-
-    .adv-search-toggle.open .bar1 {
-      transform: rotate(45deg);
-      top: 10px;
-    }
-
-    .adv-search-toggle.open .bar2 {
-      opacity: 0;
-    }
-
-    .adv-search-toggle.open .bar3 {
-      transform: rotate(-45deg);
-      top: 10px;
     }
 
     .btn-subdub {
@@ -268,12 +252,6 @@
       color: #00fff0 !important;
     }
 
-    .vjs-default-skin .vjs-caption {
-      background: rgba(0, 255, 240, 0.15) !important;
-      color: #00fff0 !important;
-      text-shadow: 0 0 8px #00fff0;
-    }
-
     /* Do NOT color play/pause icons */
     .vjs-default-skin .vjs-control.vjs-control-overlaid,
     .vjs-default-skin .vjs-control[data-plyr="play"],
@@ -283,25 +261,7 @@
       border-color: #23252a !important;
     }
 
-    video::-webkit-media-text-track-display {
-      background: rgba(0, 0, 0, 0.0) !important;
-      /* Remove bottom offset to keep default position */
-    }
-
-    video::cue {
-      background: rgba(0, 0, 0, 0.0) !important;
-      color: #fff !important;
-      /* Only a clean black border for readability */
-      text-shadow:
-        -2px -2px 0 #000,
-        2px -2px 0 #000,
-        -2px 2px 0 #000,
-        2px 2px 0 #000;
-      border-radius: 6px;
-      padding: 0.2em 0.7em;
-      font-size: 1.25em;
-      line-height: 1.4;
-    }
+    /* Removed all custom subtitle/cue styles to use default browser subtitles */
 
     /* Highlight active episode button */
     .episode-btn.active {
@@ -417,8 +377,6 @@
       border-left: 14px solid transparent;
       border-right: 14px solid transparent;
       border-top: 18px solid #23252a;
-      /* Remove filter and border for seamless look */
-      /* No border here, just background color */
     }
 
     .message-card-preview::before {
@@ -440,7 +398,6 @@
 
     .btn-subdub.btn-subdub[title],
     .btn-subdub.btn-subdub[title] i {
-      /* Remove border and background for captions icon button */
       border: none !important;
       background: transparent !important;
       box-shadow: none !important;
@@ -565,12 +522,9 @@
     // --- Persist current state in localStorage ---
     function savePlayerState() {
       localStorage.setItem("videoPlayerState", JSON.stringify(current));
-      localStorage.setItem("captionsEnabled", window.captionsEnabled ? "1" : "0");
     }
     function loadPlayerState() {
       const state = localStorage.getItem("videoPlayerState");
-      let captions = localStorage.getItem("captionsEnabled");
-      window.captionsEnabled = captions === null ? true : captions === "1";
       if (state) {
         try {
           return JSON.parse(state);
@@ -611,9 +565,15 @@
 
     // Render playlist
     function renderPlaylist() {
+
       const playlist = document.getElementById("playlist");
       playlist.innerHTML = "";
-      const episodes = playlistData.episodes || [];
+      const episodes = Array.isArray(playlistData.episodes) ? playlistData.episodes : [];
+      // If there are no episodes, do not render the grid or pagination
+      if (!episodes.length) {
+        renderEpisodesPagination(0); // Clear pagination if present
+        return;
+      }
       const start = (episodesPage - 1) * EPISODES_PER_PAGE;
       const end = start + EPISODES_PER_PAGE;
       const pageEpisodes = episodes.slice(start, end);
@@ -898,22 +858,7 @@
       dubBtn.disabled = !hasDubs;
       dubBtn.onclick = () => hasDubs && playEpisode(current.episode, current.server, "dubs", 0);
       modeDiv.appendChild(dubBtn);
-      // Captions ON/OFF toggle button (icon only)
-      const captionsBtn = document.createElement("button");
-      captionsBtn.className = "btn btn-subdub btn-sm ms-2";
-      captionsBtn.title = window.captionsEnabled
-        ? "Hide Subtitles"
-        : "Show Subtitles";
-      captionsBtn.innerHTML = window.captionsEnabled
-        ? '<i class="bi bi-cc-circle-fill"></i>'
-        : '<i class="bi bi-cc-circle"></i>';
-      captionsBtn.onclick = () => {
-        window.captionsEnabled = !window.captionsEnabled;
-        setCaptions(window.captionsEnabled);
-        savePlayerState();
-        renderSwitchers();
-      };
-      modeDiv.appendChild(captionsBtn);
+      // Removed captions ON/OFF toggle button
       // Quality Switcher
       const qualityDiv = document.getElementById("quality-switcher");
       qualityDiv.innerHTML = "";
@@ -1027,8 +972,7 @@
           video.onended = () => playNextEpisode();
         }
       }
-      // Set captions state after loading video
-      setTimeout(() => setCaptions(window.captionsEnabled), 200);
+      // No custom captions logic
     }
     // Auto play next episode
     function playNextEpisode() {
@@ -1041,7 +985,6 @@
     window.addEventListener("DOMContentLoaded", () => {
       current = loadPlayerState();
       loadPlaylist();
-      setTimeout(() => setCaptions(window.captionsEnabled), 200);
     });
 
     // Hamburger for extra content
@@ -1111,14 +1054,7 @@
           hamburgerMenu.style.display = "none";
         }
       });
-    // Add this helper function after renderSwitchers
-    function setCaptions(enabled) {
-      const video = document.getElementById("player");
-      const tracks = video.textTracks;
-      for (let i = 0; i < tracks.length; i++) {
-        tracks[i].mode = enabled ? "showing" : "hidden";
-      }
-    }
+    // Removed setCaptions function and all related logic
   </script>
 </body>
 
