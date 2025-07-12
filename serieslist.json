@@ -2,81 +2,97 @@
   {
     "title": "Attack on Titan",
     "poster": "https://cdn.myanimelist.net/images/anime/10/47347l.jpg",
-    "infoPage": "seriesinfo/series1.html"
+    "infoPage": "seriesinfo/series1.html",
+    "year": 2013
   },
   {
     "title": "Attack on Titan OVA",
     "poster": "https://cdn.myanimelist.net/images/anime/9/59221l.jpg",
-    "infoPage": "seriesinfo/series2.html"
+    "infoPage": "seriesinfo/series2.html",
+    "year": 2013
   },
   {
     "title": "Attack on Titan: Crimson Bow and Arrow",
     "poster": "https://cdn.myanimelist.net/images/anime/7/63283l.jpg",
-    "infoPage": "seriesinfo/series3.html"
+    "infoPage": "seriesinfo/series3.html",
+    "year": 2014
   },
   {
     "title": "Attack on Titan: No Regrets",
     "poster": "https://cdn.myanimelist.net/images/anime/8/69497l.jpg",
-    "infoPage": "seriesinfo/series4.html"
+    "infoPage": "seriesinfo/series4.html",
+    "year": 2014
   },
   {
     "title": "Attack on Titan: Wings of Freedom",
     "poster": "https://cdn.myanimelist.net/images/anime/2/72510l.jpg",
-    "infoPage": "seriesinfo/series5.html"
+    "infoPage": "seriesinfo/series5.html",
+    "year": 2015
   },
   {
     "title": "Attack on Titan: Junior High",
     "poster": "https://cdn.myanimelist.net/images/anime/3/75467l.jpg",
-    "infoPage": "seriesinfo/series6.html"
+    "infoPage": "seriesinfo/series6.html",
+    "year": 2015
   },
   {
     "title": "Attack on Titan Season 2",
     "poster": "https://cdn.myanimelist.net/images/anime/4/84177l.jpg",
-    "infoPage": "seriesinfo/series7.html"
+    "infoPage": "seriesinfo/series7.html",
+    "year": 2017
   },
   {
     "title": "Attack on Titan: Lost Girls",
     "poster": "https://cdn.myanimelist.net/images/anime/3/89417l.jpg",
-    "infoPage": "seriesinfo/series8.html"
+    "infoPage": "seriesinfo/series8.html",
+    "year": 2017
   },
   {
     "title": "Attack on Titan: The Roar of Awakening",
     "poster": "https://cdn.myanimelist.net/images/anime/1144/111704l.jpg",
-    "infoPage": "seriesinfo/series9.html"
+    "infoPage": "seriesinfo/series9.html",
+    "year": 2018
   },
   {
     "title": "Attack on Titan Season 3",
     "poster": "https://cdn.myanimelist.net/images/anime/1173/92110l.jpg",
-    "infoPage": "seriesinfo/series10.html"
+    "infoPage": "seriesinfo/series10.html",
+    "year": 2018
   },
   {
     "title": "Attack on Titan Season 3 Part 2",
     "poster": "https://cdn.myanimelist.net/images/anime/1517/100633l.jpg",
-    "infoPage": "seriesinfo/series11.html"
+    "infoPage": "seriesinfo/series11.html",
+    "year": 2019
   },
   {
     "title": "Attack on Titan: Chronicle",
     "poster": "https://cdn.myanimelist.net/images/anime/1266/107765l.jpg",
-    "infoPage": "seriesinfo/series12.html"
+    "infoPage": "seriesinfo/series12.html",
+    "year": 2020
   },
   {
     "title": "Attack on Titan: Final Season",
     "poster": "https://cdn.myanimelist.net/images/anime/1000/110531l.jpg",
-    "infoPage": "seriesinfo/series13.html"
+    "infoPage": "seriesinfo/series13.html",
+    "year": 2020
   },
   {
     "title": "Attack on Titan: Final Season Part 2",
     "poster": "https://cdn.myanimelist.net/images/anime/1948/120625l.jpg",
-    "infoPage": "seriesinfo/series14.html"
+    "infoPage": "seriesinfo/series14.html",
+    "year": 2022
   },
   {
     "title": "Attack on Titan: Final Season - The Final Chapters",
     "poster": "https://cdn.myanimelist.net/images/anime/1279/131078l.jpg",
-    "infoPage": "seriesinfo/series15.html"
+    "infoPage": "seriesinfo/series15.html",
+    "year": 2023
   },
   {
     "title": "Attack on Titan: The Last Attack",
     "poster": "https://cdn.myanimelist.net/images/anime/1379/145452l.jpg",
-    "infoPage": "seriesinfo/series16.html"
+    "infoPage": "seriesinfo/series16.html",
+    "year": 2023
   }
 ]
