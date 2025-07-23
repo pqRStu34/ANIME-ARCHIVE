@@ -602,7 +602,22 @@
   <div class="desc-card">
     <div class="desc-title">Overview</div>
     <div id="desc-text" class="desc-text">
-      Recap of the events in Shingeki no Kyojin that happened prior to episode 14.
+      Centuries ago, mankind was slaughtered to near extinction by monstrous humanoid creatures called Titans, forcing
+      humans to hide in fear behind enormous concentric walls. What makes these giants truly terrifying is that their
+      taste for human flesh is not born out of hunger but what appears to be out of pleasure. To ensure their survival,
+      the remnants of humanity began living within defensive barriers, resulting in one hundred years without a single
+      titan encounter. However, that fragile calm is soon shattered when a colossal Titan manages to breach the
+      supposedly impregnable outer wall, reigniting the fight for survival against the man-eating abominations.
+
+      After witnessing a horrific personal loss at the hands of the invading creatures, <a href="#char-eren"
+        class="char-link" style="color:#ff6685;font-weight:bold;text-decoration:none;">Eren Yeager</a> dedicates his
+      life
+      to their eradication by enlisting into the Survey Corps, an elite military unit that combats the merciless
+      humanoids outside the protection of the walls. Eren, his adopted sister <a href="#char-mikasa" class="char-link"
+        style="color:#ff6685;font-weight:bold;text-decoration:none;">Mikasa Ackerman</a>, and his childhood friend
+      <a href="#char-armin" class="char-link" style="color:#ff6685;font-weight:bold;text-decoration:none;">Armin
+        Arlert</a> join the brutal war against the Titans and race to discover a way of defeating them before the last
+      walls are breached.
     </div>
     <button id="show-more-btn" class="show-more-btn">Show more</button>
   </div>
@@ -811,18 +826,21 @@
     // Add MAL links for each character
     const characters = [
       {
+        id: 'char-eren',
         name: 'Eren Yeager',
         img: 'https://cdn.myanimelist.net/images/characters/9/206427.jpg',
         role: 'Main',
         mal: 'https://myanimelist.net/character/40882/Eren_Yeager'
       },
       {
+        id: 'char-mikasa',
         name: 'Mikasa Ackerman',
         img: 'https://cdn.myanimelist.net/images/characters/6/370449.jpg',
         role: 'Main',
         mal: 'https://myanimelist.net/character/40881/Mikasa_Ackerman'
       },
       {
+        id: 'char-armin',
         name: 'Armin Arlert',
         img: 'https://cdn.myanimelist.net/images/characters/5/249123.jpg',
         role: 'Main',
@@ -879,6 +897,7 @@
       toShow.forEach(character => {
         const row = document.createElement('div');
         row.className = 'character-row';
+        if (character.id) row.id = character.id;
         row.innerHTML = `
           <img src="${character.img}" alt="${character.name}" class="character-pic" />
           <div class="character-info">
@@ -903,6 +922,56 @@
         showMoreBtn.onclick = function () {
           showAll = !showAll;
           renderCharacters();
+          // --- Character name highlight and scroll logic ---
+          function blinkAndScrollToChar(charId) {
+            const el = document.getElementById(charId);
+            const allRows = document.querySelectorAll('.character-row');
+            if (el) {
+              el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              allRows.forEach(row => {
+                if (row !== el) row.classList.add('char-blur');
+              });
+              el.classList.add('char-blink');
+              setTimeout(() => {
+                el.classList.remove('char-blink');
+                allRows.forEach(row => row.classList.remove('char-blur'));
+              }, 1000);
+            }
+          }
+          // Delegate click after DOMContentLoaded to ensure links are present
+          document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.char-link').forEach(link => {
+              link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const hash = this.getAttribute('href').replace('#', '');
+                blinkAndScrollToChar(hash);
+              });
+            });
+          });
+          // Add CSS for blinking effect
+          const style = document.createElement('style');
+          style.innerHTML = `
+      .char-blink {
+        animation: char-blink-anim 1s linear 1;
+        box-shadow: 0 0 0 4px #ff6685, 0 0 16px 8px #ff668588;
+        background: #282a3a !important;
+        z-index: 2;
+        position: relative;
+      }
+      .char-blur {
+        filter: blur(2px) grayscale(0.7) brightness(0.7);
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      @keyframes char-blink-anim {
+        0% { box-shadow: 0 0 0 4px #ff6685, 0 0 16px 8px #ff668588; }
+        50% { box-shadow: 0 0 0 8px #fff, 0 0 32px 16px #ff6685cc; }
+        100% { box-shadow: 0 0 0 4px #ff6685, 0 0 16px 8px #ff668588; }
+      }
+      .char-link { text-decoration: none !important; }
+      .char-link:hover { text-decoration: underline !important; }
+    `;
+          document.head.appendChild(style);
         };
         showMoreBtn.style.display = 'block';
       } else if (showMoreBtn) {
