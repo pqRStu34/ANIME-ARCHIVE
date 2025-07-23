@@ -109,7 +109,8 @@
       <div class="col-12 col-md-10 col-lg-8">
         <div class="card mb-0 border-0 bg-transparent">
           <div class="card-body p-0 bg-transparent">
-            <video id="player" controls playsinline crossorigin="anonymous" controlsList="nodownload"></video>
+            <video id="player" controls playsinline crossorigin="anonymous" controlsList="nodownload"
+              oncontextmenu="return false;"></video>
           </div>
         </div>
 
@@ -146,6 +147,24 @@
     </div>
   </div>
   <script>
+    // Prevent long-press download on video (mobile and desktop)
+    const preventVideoLongPress = () => {
+      const video = document.getElementById('player');
+      if (!video) return;
+      // Prevent context menu
+      video.addEventListener('contextmenu', e => e.preventDefault());
+      // Prevent long-press on mobile
+      let pressTimer = null;
+      video.addEventListener('touchstart', function (e) {
+        pressTimer = setTimeout(() => {
+          e.preventDefault();
+        }, 400);
+      }, { passive: false });
+      video.addEventListener('touchend', function () {
+        clearTimeout(pressTimer);
+      });
+    };
+    window.addEventListener('DOMContentLoaded', preventVideoLongPress);
     let playlistData = null;
     let current = { episode: 0, server: 0, mode: "subs", quality: 0 };
     const EPISODES_PER_PAGE = 100;

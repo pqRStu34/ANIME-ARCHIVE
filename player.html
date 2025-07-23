@@ -114,7 +114,7 @@
                     <div class="card-body p-0 bg-transparent">
                         <video id="player" class="movie-player" controls crossorigin="anonymous" playsinline
                             width="100%" height="100%" style="border-radius: 12px; background: #14161a; width: 100%"
-                            controlsList="nodownload"></video>
+                            controlsList="nodownload" oncontextmenu="return false;"></video>
                     </div>
                 </div>
                 <!-- Server/Mode/Quality Switchers -->
@@ -144,6 +144,24 @@
         </div>
     </div>
     <script>
+        // Prevent long-press download on video (mobile and desktop)
+        const preventVideoLongPress = () => {
+            const video = document.getElementById('player');
+            if (!video) return;
+            // Prevent context menu
+            video.addEventListener('contextmenu', e => e.preventDefault());
+            // Prevent long-press on mobile
+            let pressTimer = null;
+            video.addEventListener('touchstart', function (e) {
+                pressTimer = setTimeout(() => {
+                    e.preventDefault();
+                }, 400);
+            }, { passive: false });
+            video.addEventListener('touchend', function () {
+                clearTimeout(pressTimer);
+            });
+        };
+        window.addEventListener('DOMContentLoaded', preventVideoLongPress);
         // Get movie key from URL
         function getMovieKey() {
             const params = new URLSearchParams(window.location.search);

@@ -500,6 +500,10 @@
   <div id="block-overlay"></div>
   <div class="anime-card">
     <div class="anime-year-badge">2013</div>
+    <button id="share-btn" title="Share"
+      style="position:absolute;top:2px;right:18px;background:none;border:none;cursor:pointer;padding:0;z-index:3;">
+      <i class="fas fa-share-alt" style="color:#66d1ff;font-size:1.2em;"></i>
+    </button>
     <img src="https://cdn.myanimelist.net/images/anime/1907/134102l.jpg" alt="Attack on Titan" class="anime-poster" />
     <div class="anime-title">Attack on Titan</div>
     <div class="anime-genres">
@@ -540,6 +544,36 @@
     </div>
   </div>
   <script>
+    // Share button logic
+    document.getElementById('share-btn').addEventListener('click', async function () {
+      const shareData = {
+        title: document.title,
+        text: 'Check out this anime: ' + document.title,
+        url: window.location.href
+      };
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          // User cancelled or error
+        }
+      } else {
+        // Fallback: copy URL to clipboard
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          const btn = document.getElementById('share-btn');
+          const prevTitle = btn.title;
+          btn.title = 'Link copied!';
+          btn.querySelector('i').style.color = '#66d1ff';
+          setTimeout(() => {
+            btn.title = prevTitle;
+            btn.querySelector('i').style.color = '#66d1ff';
+          }, 1200);
+        } catch (err) {
+          alert('Could not copy link.');
+        }
+      }
+    });
     // Disable right-click context menu
     function showOverlay() {
       document.getElementById('block-overlay').style.display = 'block';
