@@ -400,8 +400,10 @@
       width: 100vw;
       height: 100vh;
       background: rgba(0, 0, 0, 0.85);
-      justify-content: center;
-      align-items: center;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 8vw 0 0 0;
+      box-sizing: border-box;
     }
 
     .trailer-modal-bg.active {
@@ -411,23 +413,102 @@
     .trailer-modal-content {
       position: relative;
       background: transparent;
-      border-radius: 16px;
-      max-width: 90vw;
-      max-height: 80vh;
-      box-shadow: 0 0 24px #000a;
+      border-radius: 0;
+      width: calc(100vw - 6vw);
+      margin: 0 auto;
+      box-shadow: none;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: flex-start;
+      padding: 0 0 2vw 0;
+      box-sizing: border-box;
+    }
+
+    .trailer-carousel {
+      width: 100%;
+      overflow-x: hidden;
+      display: flex;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 2vw;
+      margin-bottom: 1vw;
+      scrollbar-width: none;
+    }
+
+    .trailer-carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .trailer-slide {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      display: flex;
       justify-content: center;
+      align-items: center;
     }
 
     .trailer-modal-content iframe {
-      border-radius: 12px;
-      width: 70vw;
-      height: 40vw;
-      max-width: 720px;
-      max-height: 405px;
+      border-radius: 18px;
+      width: 100%;
+      height: 56vw;
+      max-width: 100%;
+      max-height: 56vw;
       background: #000;
+      display: block;
+      box-shadow: 0 4px 24px #000a;
+    }
+
+    .trailer-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.7em;
+      margin: 0.5em 0 0.2em 0;
+    }
+
+    .trailer-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #bfc6d1;
+      opacity: 0.5;
+      transition: background 0.2s, opacity 0.2s;
+      cursor: pointer;
+    }
+
+    .trailer-dot.active {
+      background: #66d1ff;
+      opacity: 1;
+    }
+
+    .trailer-modal-content iframe {
+      border-radius: 0;
+      width: 100%;
+      height: 56vw;
+      max-width: 100%;
+      max-height: 56vw;
+      background: #000;
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .trailer-modal-bg {
+        padding: 8vw 0 0 0;
+      }
+
+      .trailer-modal-content {
+        width: calc(100vw - 6vw);
+        padding: 0 0 2vw 0;
+      }
+
+      .trailer-modal-content iframe {
+        width: 100%;
+        height: 56vw;
+        max-width: 100%;
+        max-height: 56vw;
+        border-radius: 18px;
+      }
     }
 
     .trailer-modal-close {
@@ -540,7 +621,10 @@
   <div id="trailer-modal" class="trailer-modal-bg">
     <div class="trailer-modal-content">
       <button class="trailer-modal-close" id="trailer-close-btn" title="Close">&times;</button>
-      <iframe id="trailer-iframe" src="" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+      <div class="trailer-carousel" id="trailer-carousel">
+        <!-- Trailers will be inserted here -->
+      </div>
+      <div class="trailer-dots" id="trailer-dots"></div>
     </div>
   </div>
   <script>
@@ -827,19 +911,75 @@
     }
     renderCharacters();
     // --- Trailer Modal Logic ---
+    // Example trailers (replace with your own or load dynamically)
+    const trailers = [
+      {
+        url: 'https://www.youtube.com/embed/KKzmOh4SuBc',
+        title: 'Attack on Titan Trailer 1'
+      },
+      {
+        url: 'https://www.youtube.com/embed/LHtdKWJdif4',
+        title: 'Attack on Titan Trailer 2'
+      }
+    ];
     const posterImg = document.querySelector('.anime-poster');
     const trailerModal = document.getElementById('trailer-modal');
-    const trailerIframe = document.getElementById('trailer-iframe');
     const trailerCloseBtn = document.getElementById('trailer-close-btn');
-    const trailerUrl = '';
+    const trailerCarousel = document.getElementById('trailer-carousel');
+    const trailerDots = document.getElementById('trailer-dots');
+    let currentTrailer = 0;
+
+    function renderTrailers() {
+      trailerCarousel.innerHTML = '';
+      trailerDots.innerHTML = '';
+      trailers.forEach((trailer, idx) => {
+        const slide = document.createElement('div');
+        slide.className = 'trailer-slide';
+        const iframe = document.createElement('iframe');
+        iframe.src = idx === currentTrailer ? trailer.url : '';
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute('allow', 'autoplay; encrypted-media');
+        iframe.title = trailer.title;
+        slide.appendChild(iframe);
+        trailerCarousel.appendChild(slide);
+
+        const dot = document.createElement('span');
+        dot.className = 'trailer-dot' + (idx === currentTrailer ? ' active' : '');
+        dot.onclick = () => showTrailer(idx);
+        trailerDots.appendChild(dot);
+      });
+      // Scroll to current trailer
+      trailerCarousel.scrollTo({ left: currentTrailer * trailerCarousel.offsetWidth, behavior: 'smooth' });
+    }
+
+    function showTrailer(idx) {
+      currentTrailer = idx;
+      // Remove all iframes and re-add only the current one with src
+      Array.from(trailerCarousel.children).forEach((slide, i) => {
+        const iframe = slide.querySelector('iframe');
+        if (i === idx) {
+          iframe.src = trailers[i].url;
+        } else {
+          iframe.src = '';
+        }
+      });
+      Array.from(trailerDots.children).forEach((dot, i) => {
+        dot.classList.toggle('active', i === idx);
+      });
+      trailerCarousel.scrollTo({ left: idx * trailerCarousel.offsetWidth, behavior: 'smooth' });
+    }
+
     posterImg.style.cursor = 'pointer';
     posterImg.addEventListener('click', function () {
-      trailerIframe.src = trailerUrl;
+      currentTrailer = 0;
+      renderTrailers();
       trailerModal.classList.add('active');
     });
     function closeTrailerModal() {
       trailerModal.classList.remove('active');
-      trailerIframe.src = '';
+      // Remove all iframe srcs to stop playback
+      Array.from(trailerCarousel.querySelectorAll('iframe')).forEach(iframe => iframe.src = '');
     }
     trailerCloseBtn.addEventListener('click', closeTrailerModal);
     trailerModal.addEventListener('click', function (e) {
