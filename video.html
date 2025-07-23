@@ -2,17 +2,16 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anime Archive - Video Player</title>
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
-    crossorigin="anonymous" />
-  <!-- Bootstrap Icons -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime Series Player</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.7/dist/hls.min.js"></script>
   <style>
     body {
       background: #14161a !important;
+      color: #fff;
     }
 
     .card,
@@ -21,83 +20,25 @@
       border-color: #23252a !important;
     }
 
-    .video-js {
-      border-radius: 12px;
-      width: 100%;
-      background: #14161a;
+    .fw-semibold {
+      color: #00d1b2;
+      font-weight: 600;
     }
 
-    .vjs-control:focus {
-      outline: 2px solid #6678ff;
-    }
-
-    .switcher-label i,
-    .fw-semibold i,
-    .bi {
-      color: #6678ff !important;
-    }
-
-    .adv-search-toggle {
-      color: #6678ff;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      user-select: none;
-      font-size: 1.2em;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      transition: color 0.2s;
-    }
-
-    .adv-search-toggle .bar {
-      background: #6678ff;
-      display: block;
-      position: absolute;
-      height: 3px;
-      width: 100%;
-      border-radius: 2px;
-      opacity: 1;
-      left: 0;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .adv-search-toggle .bar1 {
-      top: 4px;
-    }
-
-    .adv-search-toggle .bar2 {
-      top: 10px;
-    }
-
-    .adv-search-toggle .bar3 {
-      top: 16px;
-    }
-
-    .adv-search-toggle.open .bar1 {
-      transform: rotate(45deg);
-      top: 10px;
-    }
-
-    .adv-search-toggle.open .bar2 {
-      opacity: 0;
-    }
-
-    .adv-search-toggle.open .bar3 {
-      transform: rotate(-45deg);
-      top: 10px;
-    }
-
+    .episode-btn.active,
+    .switcher-btns .btn.active,
     .btn-info,
-    .btn-outline-info,
-    .btn-info.text-white {
-      background-color: #6678ff !important;
-      border-color: #6678ff !important;
-      color: #fff !important;
+    .btn-info:focus {
+      background: rgba(0, 209, 178, 0.18) !important;
+      color: #00d1b2 !important;
+      border-color: #00d1b2 !important;
+      box-shadow: 0 0 0 2px #00d1b244;
     }
 
     .btn-outline-info {
-      background: transparent !important;
       color: #6678ff !important;
+      border-color: #6678ff !important;
+      background: transparent !important;
     }
 
     .btn-outline-info:hover,
@@ -105,16 +46,6 @@
       background: #6678ff !important;
       color: #fff !important;
       border-color: #6678ff !important;
-    }
-
-    .page-link {
-      color: #6678ff !important;
-    }
-
-    .page-item.active .page-link {
-      background-color: #6678ff !important;
-      border-color: #6678ff !important;
-      color: #fff !important;
     }
 
     .switcher-row {
@@ -133,313 +64,55 @@
       gap: 0.3em;
     }
 
+    .switcher-label i {
+      color: #ff6685 !important;
+    }
+
     .switcher-btns {
       display: flex;
       align-items: center;
       gap: 0.5em;
     }
 
-    .hamburger-card {
-      position: relative;
+    .episode-btn {
+      width: 2.5em;
+      margin: 0.15em;
+      font-weight: bold;
+      border-radius: 6px;
     }
 
-    .hamburger-menu {
-      position: absolute;
-      left: 0;
-      right: 0;
-      background: #fff;
-      box-shadow: 0 4px 24px #b5b5b5;
-      border-radius: 0 0 8px 8px;
-      z-index: 10;
-      padding: 0.5em 0.5em 0.7em 0.5em;
-      animation: fadeIn 0.2s;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    .btn-subdub {
-      border: 2px solid #ff6685;
-      background: transparent;
-      color: #ff6685;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .btn-subdub.active,
-    .btn-subdub:active {
-      background: #ff6685;
-      color: #fff;
-      border-color: #ff6685;
-    }
-
-    .btn-subdub:hover:not(:disabled) {
-      background: rgba(255, 102, 133, 0.15);
-      color: #ff6685;
-      border-color: #ff6685;
-    }
-
-    #playlist.list-group {
-      background: #16181d;
-      border-radius: 8px;
-    }
-
-    #playlist .list-group-item {
-      background: #16181d;
-      color: #fff;
-      border: 1px solid #23252a;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    #playlist .list-group-item.active,
-    #playlist .list-group-item:active {
-      background: #23252a;
-      color: #ff6685;
-      border-color: #ff6685;
-    }
-
-    #playlist .list-group-item:hover:not(.active) {
-      background: #23252a;
-      color: #6678ff;
-    }
-
-    .fw-semibold {
-      color: #00d1b2;
-      transition: text-shadow 0.2s, color 0.2s;
-    }
-
-    .fw-semibold:hover {
-      text-shadow: 0 0 8px #00d1b2, 0 0 16px #00d1b2;
-      color: #00fff0;
-    }
-
-    /* Video.js settings menu dropdown direction */
-    .vjs-menu {
-      top: 100% !important;
-      bottom: auto !important;
-    }
-
-    /* Video.js theme: change blue to cyan, but do NOT affect play/pause icons */
-    .vjs-default-skin .vjs-slider-thumb,
-    .vjs-default-skin .vjs-play-progress,
-    .vjs-default-skin .vjs-volume-panel .vjs-mute,
-    .vjs-default-skin .vjs-volume-panel .vjs-volume-level {
-      background: #00fff0 !important;
-      color: #00fff0 !important;
-      border-color: #00fff0 !important;
-    }
-
-    .vjs-default-skin .vjs-control.vjs-tab-focus,
-    .vjs-default-skin .vjs-control:hover,
-    .vjs-default-skin .vjs-control[aria-expanded="true"] {
-      background: #00d1b2 !important;
-      color: #fff !important;
-    }
-
-    .vjs-default-skin .vjs-menu {
-      border-color: #00fff0 !important;
-    }
-
-    .vjs-default-skin .vjs-menu .vjs-control.vjs-control-active {
-      color: #00fff0 !important;
-    }
-
-    /* Do NOT color play/pause icons */
-    .vjs-default-skin .vjs-control.vjs-control-overlaid,
-    .vjs-default-skin .vjs-control[data-plyr="play"],
-    .vjs-default-skin .vjs-control[data-plyr="pause"] {
-      background: #23252a !important;
-      color: #fff !important;
-      border-color: #23252a !important;
-    }
-
-    /* Removed all custom subtitle/cue styles to use default browser subtitles */
-
-    /* Highlight active episode button */
-    .episode-btn.active {
-      box-shadow: 0 0 0 3px #00ff99cc, 0 0 12px 2px #00ff99cc;
-      border-color: #00ff99;
-      background: rgba(0, 255, 153, 0.08);
-      color: #fff;
-      z-index: 2;
-    }
-
-    /* --- Message Card Style --- */
-    .message-card {
+    #playlist {
       display: flex;
-      align-items: center;
-      gap: 1em;
-      padding: 0.75em 1.25em;
-      background: #16181d;
-      border: 1px solid #23252a;
-      border-radius: 8px;
-      transition: background 0.2s;
-      position: relative;
-      min-width: 0;
-      overflow: visible;
-      cursor: pointer;
-      max-width: 100%;
+      flex-wrap: wrap;
+      gap: 0.2em;
     }
 
-    .message-card:hover {
-      background: #1e2126;
+    #extra-content {
+      margin-top: 1.5em;
     }
 
-    .message-card .card-body {
-      display: flex;
-      align-items: center;
-      padding: 0;
+    #extra-content .btn {
+      margin: 0.2em;
+    }
+
+    video {
       width: 100%;
-      min-width: 0;
-    }
-
-    .message-card img {
-      width: 70px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-right: 1em;
-      flex-shrink: 0;
-    }
-
-    .message-card .content {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-width: 0;
-      overflow: hidden;
-    }
-
-    .message-card .label {
-      font-weight: 600;
-      margin-bottom: 0.25em;
-      color: #6678ff;
-      font-size: 0.95em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100%;
-    }
-
-    .message-card .title {
-      font-weight: 500;
-      color: #fff;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100%;
-      font-size: 1.05em;
-    }
-
-    .message-card .btn {
-      align-self: flex-start;
-      margin-top: 0.3em;
-      white-space: nowrap;
-    }
-
-    /* Preview pane for full title and image */
-    .message-card-preview {
-      display: none;
-      position: absolute;
-      left: 0;
-      top: -140px;
-      z-index: 100;
-      background: #23252a;
-      border: 1px solid #00d1b2;
-      border-radius: 10px;
-      box-shadow: 0 4px 24px #000a;
-      padding: 1em;
-      min-width: 260px;
-      max-width: 350px;
-      color: #fff;
-      flex-direction: row;
-      align-items: center;
-      gap: 1em;
-      animation: fadeIn 0.15s;
-    }
-
-    .message-card-preview::after {
-      content: '';
-      position: absolute;
-      left: 32px;
-      bottom: -18px;
-      width: 0;
-      height: 0;
-      border-left: 14px solid transparent;
-      border-right: 14px solid transparent;
-      border-top: 18px solid #23252a;
-    }
-
-    .message-card-preview::before {
-      content: '';
-      position: absolute;
-      left: 31px;
-      bottom: -21px;
-      width: 0;
-      height: 0;
-      border-left: 15px solid transparent;
-      border-right: 15px solid transparent;
-      border-top: 21px solid #00d1b2;
-      z-index: -1;
-    }
-
-    .message-card:hover .message-card-preview {
-      display: flex;
-    }
-
-    .btn-subdub.btn-subdub[title],
-    .btn-subdub.btn-subdub[title] i {
-      border: none !important;
-      background: transparent !important;
-      box-shadow: none !important;
-    }
-
-    .btn-subdub.btn-subdub[title] i {
-      font-size: 1.6em !important;
-      vertical-align: middle;
+      border-radius: 12px;
+      background: #14161a;
     }
   </style>
 </head>
 
 <body>
-  <!-- Transparent overlay for safety -->
-  <div id="safety-overlay"
-    style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;pointer-events:none;background:rgba(0,0,0,0.01);">
-  </div>
-  <script>
-    // Disable right-click and long-press
-    document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
-    document.addEventListener('mousedown', function (e) {
-      if (e.button === 2) e.preventDefault();
-    });
-    let touchTimer;
-    document.addEventListener('touchstart', function (e) {
-      touchTimer = setTimeout(function () { e.preventDefault(); }, 500);
-    }, { passive: false });
-    document.addEventListener('touchend', function () {
-      clearTimeout(touchTimer);
-    });
-  </script>
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-12 col-md-10 col-lg-8">
         <div class="card mb-0 border-0 bg-transparent">
           <div class="card-body p-0 bg-transparent">
-            <!-- Video.js Player -->
-            <video id="player" controls crossorigin="anonymous" playsinline width="100%" height="100%"
-              style="border-radius: 12px; background: #14161a; width: 100%" controlsList="nodownload"></video>
+            <video id="player" controls playsinline crossorigin="anonymous" controlsList="nodownload"></video>
           </div>
         </div>
-        <!-- Server Switcher Card -->
+
         <div id="switcher-card" class="card mt-4 mb-4">
           <div class="card-body">
             <div class="mb-3 switcher-row">
@@ -450,7 +123,7 @@
             </div>
             <div class="mb-3 switcher-row">
               <span class="switcher-label">
-                <i class="bi bi-file-earmark-music-fill"></i>
+                <i class="bi bi-translate"></i>
               </span>
               <div id="mode-switcher" class="switcher-btns"></div>
             </div>
@@ -462,477 +135,141 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- Playlist Section (Episodes, paginated, NOT hamburger) -->
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-10 col-lg-8">
-        <div class="card">
-          <div class="card-body" style="padding: 0.5em 1em">
-            <div class="mb-2 fw-semibold">EPISODES</div>
-            <div id="playlist" class="list-group"></div>
-            <nav class="d-flex justify-content-center mt-3" aria-label="pagination">
-              <button class="btn btn-outline-secondary btn-sm me-2" id="episodes-prev" title="Previous">
-                <i class="bi bi-chevron-left"></i>
-              </button>
-              <ul class="pagination mb-0" id="episodes-pagination"></ul>
-              <button class="btn btn-outline-secondary btn-sm ms-2" id="episodes-next" title="Next">
-                <i class="bi bi-chevron-right"></i>
-              </button>
-            </nav>
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="fw-semibold mb-2">EPISODES</div>
+            <div id="playlist"></div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- Extra Content Section (OVA, Movies, etc.) as Hamburger/Collapsible -->
-    <div class="row justify-content-center" id="extra-content-row" style="display: none">
-      <div class="col-12 col-md-10 col-lg-8">
-        <div class="card">
-          <div class="card-body" style="padding: 0.5em 1em">
-            <div id="extra-content-hamburger" class="hamburger-card">
-              <div id="extra-content-hamburger-toggle" class="adv-search-toggle" style="margin-bottom: 0">
-                <span class="hamburger">
-                  <span class="bar bar1"></span>
-                  <span class="bar bar2"></span>
-                  <span class="bar bar3"></span>
-                </span>
-                <span class="fw-semibold"><i class="bi bi-film"></i> Extra Content (OVA, Movies,
-                  Specials)</span>
-              </div>
-              <div id="extra-content-hamburger-menu" class="hamburger-menu" style="display: none">
-                <div id="extra-content-buttons" class="d-flex justify-content-center flex-wrap gap-2"></div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div id="extra-content"></div>
       </div>
     </div>
   </div>
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-    crossorigin="anonymous"></script>
-  <!-- hls.js for HLS support in browsers without native HLS -->
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.7/dist/hls.min.js"></script>
   <script>
-    let playlistData = [];
+    let playlistData = null;
     let current = { episode: 0, server: 0, mode: "subs", quality: 0 };
-    let episodesPage = 1;
     const EPISODES_PER_PAGE = 100;
 
-    // --- Persist current state in localStorage ---
+    function getSeriesKey() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("series");
+    }
+
     function savePlayerState() {
       localStorage.setItem("videoPlayerState", JSON.stringify(current));
     }
     function loadPlayerState() {
       const state = localStorage.getItem("videoPlayerState");
       if (state) {
-        try {
-          return JSON.parse(state);
-        } catch (e) { }
+        try { return JSON.parse(state); } catch { }
       }
       return { episode: 0, server: 0, mode: "subs", quality: 0 };
     }
 
-    // Get series key from URL
-    function getSeriesKey() {
-      const params = new URLSearchParams(window.location.search);
-      return params.get("series") || "series-json/series1";
-    }
-
-    // Fetch playlist from JSON file
     async function loadPlaylist() {
+      const seriesKey = getSeriesKey();
+      if (!seriesKey) return;
       try {
-        const seriesKey = getSeriesKey();
         const res = await fetch(seriesKey + ".json");
         playlistData = await res.json();
-        // Set episodesPage so current.episode is visible
-        const episodes = playlistData.episodes || [];
-        episodesPage =
-          Math.floor((current.episode || 0) / EPISODES_PER_PAGE) + 1;
-        renderPlaylist();
-        playEpisode(
-          current.episode || 0,
-          current.server || 0,
-          current.mode || "subs",
-          current.quality || 0
-        );
-        renderExtraContent();
+        if (Array.isArray(playlistData.video)) {
+          renderMoviePlayer();
+        } else {
+          renderServerSwitcher();
+          renderModeSwitcher();
+          renderQualitySwitcher();
+          renderEpisodes();
+          renderExtraContent();
+          playEpisode(current.episode, current.server, current.mode, current.quality);
+        }
       } catch (e) {
-        document.getElementById("playlist").innerHTML =
-          '<p class="text-danger">Failed to load playlist.</p>';
+        document.getElementById("playlist").innerHTML = '<span class="text-danger">Failed to load playlist.</span>';
       }
     }
 
-    // Render playlist
-    function renderPlaylist() {
 
-      const playlist = document.getElementById("playlist");
-      playlist.innerHTML = "";
-      const episodes = Array.isArray(playlistData.episodes) ? playlistData.episodes : [];
-      // If there are no episodes, do not render the grid or pagination
-      if (!episodes.length) {
-        renderEpisodesPagination(0); // Clear pagination if present
-        return;
-      }
-      const start = (episodesPage - 1) * EPISODES_PER_PAGE;
-      const end = start + EPISODES_PER_PAGE;
-      const pageEpisodes = episodes.slice(start, end);
-
-      // Create a 5x20 grid for episode numbers (mobile friendly)
-      const grid = document.createElement("div");
-      grid.style.display = "grid";
-      grid.style.gridTemplateColumns = "repeat(5, 1fr)";
-      grid.style.gap = "0.25em";
-
-      for (let i = 0; i < 100; i++) {
-        const epIdx = start + i;
-        const ep = episodes[epIdx];
-        if (!ep) break; // Stop adding boxes if there are no more episodes
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className =
-          "btn btn-outline-info btn-xs p-1 episode-btn" +
-          (epIdx === current.episode ? " active" : "");
-        btn.style.width = "100%";
-        btn.style.height = "2em";
-        btn.style.fontWeight = "bold";
-        btn.style.fontSize = "0.95em";
-        btn.textContent = epIdx + 1;
-        btn.onclick = () => playEpisode(epIdx, 0, "subs", 0);
-        if (epIdx === current.episode) {
-          btn.style.boxShadow = "0 0 0 3px #00ff99cc, 0 0 12px 2px #00ff99cc";
-          btn.style.borderColor = "#00ff99";
-          btn.style.background = "rgba(0,255,153,0.08)";
-          btn.style.color = "#fff";
-          btn.style.zIndex = 2;
-        }
-        grid.appendChild(btn);
-      }
-      playlist.appendChild(grid);
-      renderEpisodesPagination();
-
-      // --- Prequel/Sequel Cards ---
-      const container = playlist.parentElement;
-      // Remove old nav/extra cards if present
-      const oldPreq = document.getElementById("prequel-card");
-      if (oldPreq) oldPreq.remove();
-      const oldSeq = document.getElementById("sequel-card");
-      if (oldSeq) oldSeq.remove();
-      const oldExtra = document.getElementById("extra-content-card");
-      if (oldExtra) oldExtra.remove();
-
-      const seriesInfo = playlistData.seriesInfo || {};
-      // Helper for message card layout
-      function createMessageCard({ id, label, poster, title, link, onClick, noPreview }) {
-        const card = document.createElement("div");
-        card.className = "card mt-3 message-card";
-        if (id) card.id = id;
-        const body = document.createElement("div");
-        body.className = "card-body d-flex align-items-center p-2";
-        // Poster image
-        let img = null;
-        if (poster) {
-          img = document.createElement("img");
-          img.src = poster;
-          img.alt = title || label;
-          body.appendChild(img);
-        }
-        // Content (label, title, button)
-        const content = document.createElement("div");
-        content.className = "content";
-        // Label
-        const labelDiv = document.createElement("div");
-        labelDiv.className = "label";
-        labelDiv.textContent = label;
-        content.appendChild(labelDiv);
-        // Title (truncated)
-        const titleDiv = document.createElement("div");
-        titleDiv.className = "title";
-        titleDiv.textContent = title;
-        content.appendChild(titleDiv);
-        // Button or link (always 'Watch')
-        const btn = document.createElement(link ? "a" : "button");
-        btn.className = "btn btn-outline-info btn-sm mt-1";
-        btn.textContent = "Watch";
-        if (link) {
-          btn.href = link;
-        } else if (onClick) {
-          btn.onclick = onClick;
-        }
-        content.appendChild(btn);
-        body.appendChild(content);
-        card.appendChild(body);
-        // Preview pane (hidden by default, shown on hover) - only if noPreview is not set
-        if (!noPreview) {
-          const preview = document.createElement("div");
-          preview.className = "message-card-preview";
-          if (poster) {
-            const previewImg = document.createElement("img");
-            previewImg.src = poster;
-            previewImg.alt = title || label;
-            preview.appendChild(previewImg);
-          }
-          const previewTitle = document.createElement("div");
-          previewTitle.className = "preview-title";
-          previewTitle.textContent = title;
-          preview.appendChild(previewTitle);
-          card.appendChild(preview);
-          // Show preview pane above card on hover
-          card.addEventListener('mouseenter', function () {
-            preview.style.display = 'flex';
-            preview.style.top = '-130px'; // show above the card
-          });
-          card.addEventListener('mouseleave', function () {
-            preview.style.display = 'none';
-          });
-        }
-        return card;
-      }
-      // Prequel card
-      if (seriesInfo.prequel) {
-        const preqCard = createMessageCard({
-          id: "prequel-card",
-          label: "PREQUEL",
-          poster: seriesInfo.prequel.poster,
-          title: seriesInfo.prequel.title || "Previous Season",
-          link: `video.html?series=${encodeURIComponent(seriesInfo.prequel.key)}`,
-          noPreview: true
-        });
-        container.appendChild(preqCard);
-      }
-      // Sequel card
-      if (seriesInfo.sequel) {
-        const seqCard = createMessageCard({
-          id: "sequel-card",
-          label: "SEQUEL",
-          poster: seriesInfo.sequel.poster,
-          title: seriesInfo.sequel.title || "Next Season",
-          link: `video.html?series=${encodeURIComponent(seriesInfo.sequel.key)}`,
-          noPreview: true
-        });
-        container.appendChild(seqCard);
-      }
-      // Extra content (OVA, Side Story, Specials, etc.)
-      if (seriesInfo.extra && Array.isArray(seriesInfo.extra) && seriesInfo.extra.length > 0) {
-        const extraCard = document.createElement("div");
-        extraCard.className = "card mt-3";
-        extraCard.id = "extra-content-card";
-        const extraBody = document.createElement("div");
-        extraBody.className = "card-body d-flex flex-column gap-2";
-        const title = document.createElement("div");
-        title.className = "fw-semibold mb-2";
-        title.textContent = "EXTRA CONTENT";
-        extraBody.appendChild(title);
-        seriesInfo.extra.forEach((item, idx) => {
-          const card = createMessageCard({
-            poster: item.poster,
-            title: item.title,
-            label: item.type ? item.type.toUpperCase() : "EXTRA",
-            onClick: () => playExtraContent(idx),
-            noPreview: true
-          });
-          extraBody.appendChild(card);
-        });
-        extraCard.appendChild(extraBody);
-        container.appendChild(extraCard);
-      }
-    }
-
-    // Render episodes pagination
-    function renderEpisodesPagination() {
-      const episodes = playlistData.episodes || [];
-      const totalPages = Math.ceil(episodes.length / EPISODES_PER_PAGE);
-      const prev = document.getElementById("episodes-prev");
-      const next = document.getElementById("episodes-next");
-      const pagelist = document.getElementById("episodes-pagination");
-      prev.disabled = episodesPage === 1;
-      next.disabled = episodesPage === totalPages;
-      prev.onclick = () => {
-        if (episodesPage > 1) {
-          episodesPage--;
-          renderPlaylist();
-        }
-      };
-      next.onclick = () => {
-        if (episodesPage < totalPages) {
-          episodesPage++;
-          renderPlaylist();
-        }
-      };
-      pagelist.innerHTML = "";
-      for (let i = 1; i <= totalPages; i++) {
-        const li = document.createElement("li");
-        li.className = "page-item" + (i === episodesPage ? " active" : "");
-        const a = document.createElement("button");
-        a.className = "page-link";
-        a.textContent = i;
-        a.onclick = () => {
-          episodesPage = i;
-          renderPlaylist();
-        };
-        li.appendChild(a);
-        pagelist.appendChild(li);
-      }
-    }
-
-    // Highlight active episode
-    function highlightActiveEpisode() {
-      document
-        .querySelectorAll("#playlist .episode-btn")
-        .forEach((btn, idx) => {
-          if (idx === current.episode % EPISODES_PER_PAGE) {
-            btn.classList.add("active");
-            btn.style.boxShadow = "0 0 0 3px #00ff99cc, 0 0 12px 2px #00ff99cc";
-            btn.style.borderColor = "#00ff99";
-            btn.style.background = "rgba(0,255,153,0.08)";
-            btn.style.color = "#fff";
-            btn.style.zIndex = 2;
-          } else {
-            btn.classList.remove("active");
-            btn.style.boxShadow = "";
-            btn.style.borderColor = "";
-            btn.style.background = "";
-            btn.style.color = "";
-            btn.style.zIndex = "";
-          }
-        });
-    }
-
-    // Render switchers
-    function renderSwitchers() {
+    function renderServerSwitcher() {
       const ep = (playlistData.episodes || [])[current.episode];
       if (!ep) return;
-      // Server Switcher
-      const serverDiv = document.getElementById("server-switcher");
-      serverDiv.innerHTML = "";
-      // Always show Main Server and Server 2, never disabled
-      const serverNames = ["Main Server", "Server 2"];
-      for (let i = 0; i < 2; i++) {
+      const div = document.getElementById("server-switcher");
+      div.innerHTML = "";
+      (ep.servers || []).forEach((srv, i) => {
         const btn = document.createElement("button");
-        btn.className =
-          "btn btn-sm" +
-          (i === current.server ? " btn-info text-white" : " btn-outline-info");
-        btn.textContent = serverNames[i];
-        btn.disabled = false; // Never disabled
-        btn.onclick = () => playEpisode(current.episode, i, current.mode, 0);
-        serverDiv.appendChild(btn);
-      }
-      // Add any additional servers from JSON (if present)
-      for (let i = 2; i < ep.servers.length; i++) {
-        const btn = document.createElement("button");
-        btn.className =
-          "btn btn-sm" +
-          (i === current.server ? " btn-info text-white" : " btn-outline-info");
-        btn.textContent = ep.servers[i].name || `Server ${i + 1}`;
-        // Disable if this server has no sources for this episode
-        const hasSources =
-          (ep.servers[i].subs && ep.servers[i].subs.length > 0) ||
-          (ep.servers[i].dubs && ep.servers[i].dubs.length > 0);
-        btn.disabled = !hasSources;
-        btn.onclick = () => playEpisode(current.episode, i, current.mode, 0);
-        serverDiv.appendChild(btn);
-      }
-      // Mode Switcher (SUB/DUB)
-      const modeDiv = document.getElementById("mode-switcher");
-      modeDiv.innerHTML = "";
-      const server = ep.servers[current.server];
-      const hasSubs = server.subs && server.subs.length > 0;
-      const hasDubs = server.dubs && server.dubs.length > 0;
-      // SUB button
-      const subBtn = document.createElement("button");
-      subBtn.className =
-        "btn btn-subdub btn-sm" +
-        (current.mode === "subs" ? " active" : "") +
-        (hasSubs ? "" : " disabled");
-      subBtn.textContent = "SUB";
-      subBtn.disabled = !hasSubs;
-      subBtn.onclick = () => hasSubs && playEpisode(current.episode, current.server, "subs", 0);
-      modeDiv.appendChild(subBtn);
-      // DUB button
-      const dubBtn = document.createElement("button");
-      dubBtn.className =
-        "btn btn-subdub btn-sm" +
-        (current.mode === "dubs" ? " active" : "") +
-        (hasDubs ? "" : " disabled");
-      dubBtn.textContent = "DUB";
-      dubBtn.disabled = !hasDubs;
-      dubBtn.onclick = () => hasDubs && playEpisode(current.episode, current.server, "dubs", 0);
-      modeDiv.appendChild(dubBtn);
-      // Removed captions ON/OFF toggle button
-      // Quality Switcher
-      const qualityDiv = document.getElementById("quality-switcher");
-      qualityDiv.innerHTML = "";
-      // Always show 480p, 720p, 1080p
-      const standardQualities = ["480p", "720p", "1080p"];
-      const qualities = server[current.mode] || [];
-      // Map available qualities for quick lookup (only if src is non-empty)
-      const availableQualities = {};
-      qualities.forEach((q, i) => {
-        if (q.src && q.src.trim() !== "") {
-          availableQualities[q.quality] = i;
-        }
-      });
-      standardQualities.forEach((qLabel) => {
-        const isAvailable = availableQualities.hasOwnProperty(qLabel);
-        const btn = document.createElement("button");
-        btn.className =
-          "btn btn-sm" +
-          (isAvailable && availableQualities[qLabel] === current.quality
-            ? " btn-info text-white"
-            : " btn-outline-info");
-        btn.textContent = qLabel;
-        btn.disabled = !isAvailable;
-        btn.onclick = () => {
-          if (isAvailable) {
-            playEpisode(
-              current.episode,
-              current.server,
-              current.mode,
-              availableQualities[qLabel]
-            );
-          }
-        };
-        qualityDiv.appendChild(btn);
+        btn.className = "btn btn-sm btn-outline-info";
+        if (i === current.server) btn.classList.add("active");
+        btn.textContent = srv.name || `Server ${i + 1}`;
+        btn.onclick = () => { current.server = i; current.quality = 0; renderServerSwitcher(); renderModeSwitcher(); renderQualitySwitcher(); playEpisode(current.episode, i, current.mode, 0); };
+        div.appendChild(btn);
       });
     }
 
-    // Play episode
-    function playEpisode(
-      episodeIdx = 0,
-      serverIdx = 0,
-      mode = "subs",
-      qualityIdx = 0
-    ) {
-      current = {
-        episode: episodeIdx,
-        server: serverIdx,
-        mode,
-        quality: qualityIdx,
-      };
+    function renderModeSwitcher() {
+      const ep = (playlistData.episodes || [])[current.episode];
+      if (!ep) return;
+      const server = ep.servers[current.server];
+      const div = document.getElementById("mode-switcher");
+      div.innerHTML = "";
+      ["subs", "dubs"].forEach(mode => {
+        if (server[mode] && server[mode].length > 0) {
+          const btn = document.createElement("button");
+          btn.className = "btn btn-sm btn-subdub btn-outline-info";
+          if (current.mode === mode) btn.classList.add("active");
+          btn.textContent = mode.toUpperCase();
+          btn.onclick = () => { current.mode = mode; current.quality = 0; renderModeSwitcher(); renderQualitySwitcher(); playEpisode(current.episode, current.server, mode, 0); };
+          div.appendChild(btn);
+        }
+      });
+    }
+
+    function renderQualitySwitcher() {
+      const ep = (playlistData.episodes || [])[current.episode];
+      if (!ep) return;
+      const server = ep.servers[current.server];
+      const qualities = server[current.mode] || [];
+      const div = document.getElementById("quality-switcher");
+      div.innerHTML = "";
+      ["480p", "720p", "1080p"].forEach(q => {
+        const idx = qualities.findIndex(s => s.quality === q);
+        if (idx !== -1) {
+          const btn = document.createElement("button");
+          btn.className = "btn btn-sm btn-outline-info";
+          if (current.quality === idx) btn.classList.add("active");
+          btn.textContent = q;
+          btn.onclick = () => { current.quality = idx; renderQualitySwitcher(); playEpisode(current.episode, current.server, current.mode, idx); };
+          div.appendChild(btn);
+        }
+      });
+    }
+
+    function renderEpisodes() {
+      const playlist = document.getElementById("playlist");
+      playlist.innerHTML = "";
+      const episodes = playlistData.episodes || [];
+      episodes.forEach((ep, i) => {
+        const btn = document.createElement("button");
+        btn.className = "btn btn-outline-info btn-sm episode-btn";
+        if (i === current.episode) btn.classList.add("active");
+        btn.textContent = (i + 1).toString();
+        btn.onclick = () => { current.episode = i; current.server = 0; current.mode = "subs"; current.quality = 0; renderServerSwitcher(); renderModeSwitcher(); renderQualitySwitcher(); renderEpisodes(); playEpisode(i, 0, "subs", 0); };
+        playlist.appendChild(btn);
+      });
+    }
+
+    function playEpisode(episodeIdx, serverIdx, mode, qualityIdx) {
       savePlayerState();
-      highlightActiveEpisode();
-      renderSwitchers();
       const ep = (playlistData.episodes || [])[episodeIdx];
       if (!ep) return;
       const server = ep.servers[serverIdx];
       const sources = server[mode] || [];
       const source = sources[qualityIdx];
       const video = document.getElementById("player");
-
-      // Remove previous ended event
-      video.onended = null;
-      // Remove all previous subtitle tracks
-      while (video.firstChild) {
-        if (video.firstChild.tagName === "TRACK") {
-          video.removeChild(video.firstChild);
-        } else {
-          break;
-        }
-      }
-      // Add subtitle tracks from episode data
+      // Remove all tracks
+      while (video.firstChild) video.removeChild(video.firstChild);
+      // Add subtitles (track)
+      let enTrack = null;
       if (ep.subtitles && Array.isArray(ep.subtitles)) {
-        ep.subtitles.forEach((sub) => {
-          if (sub.src && sub.src.trim() !== "") {
+        ep.subtitles.forEach(sub => {
+          if (sub.src) {
             const track = document.createElement("track");
             track.kind = "subtitles";
             track.label = sub.label || sub.lang || "Subtitles";
@@ -940,28 +277,23 @@
             track.src = sub.src;
             track.default = true;
             video.appendChild(track);
+            if ((sub.lang || "en").toLowerCase() === "en") enTrack = track;
           }
         });
       }
       // Set video source
       if (source) {
         if (source.type === "application/x-mpegURL") {
-          if (Hls.isSupported()) {
-            const hls = new Hls();
-            hls.loadSource(source.src);
-            hls.attachMedia(video);
-            hls.on(Hls.Events.MANIFEST_PARSED, function () {
-              video.play();
-            });
-            // Auto play next episode for HLS
-            hls.on(Hls.Events.MEDIA_ATTACHED, function () {
-              video.onended = () => playNextEpisode();
-            });
+          if (window.Hls && Hls.isSupported()) {
+            if (window.hlsInstance) { window.hlsInstance.destroy(); }
+            window.hlsInstance = new Hls();
+            window.hlsInstance.loadSource(source.src);
+            window.hlsInstance.attachMedia(video);
+            window.hlsInstance.on(Hls.Events.MANIFEST_PARSED, function () { video.play(); });
+            video.onended = () => playNextEpisode();
           } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
             video.src = source.src;
-            video.addEventListener("loadedmetadata", function () {
-              video.play();
-            });
+            video.addEventListener("loadedmetadata", function () { video.play(); });
             video.onended = () => playNextEpisode();
           }
         } else {
@@ -972,64 +304,82 @@
           video.onended = () => playNextEpisode();
         }
       }
-      // No custom captions logic
+
     }
-    // Auto play next episode
+
     function playNextEpisode() {
       const episodes = playlistData.episodes || [];
       if (current.episode + 1 < episodes.length) {
-        playEpisode(current.episode + 1, 0, "subs", 0);
+        current.episode++;
+        current.server = 0;
+        current.mode = "subs";
+        current.quality = 0;
+        renderServerSwitcher();
+        renderModeSwitcher();
+        renderQualitySwitcher();
+        renderEpisodes();
+        playEpisode(current.episode, 0, "subs", 0);
       }
     }
-    // Load state and playlist on page load
-    window.addEventListener("DOMContentLoaded", () => {
-      current = loadPlayerState();
-      loadPlaylist();
-    });
 
-    // Hamburger for extra content
-    function renderExtraContent() {
-      const extra = playlistData.extra || [];
-      const row = document.getElementById("extra-content-row");
-      if (extra.length === 0) {
-        row.style.display = "none";
-        return;
+    function renderMoviePlayer() {
+      document.getElementById("switcher-card").style.display = "none";
+      document.getElementById("playlist").innerHTML = "<span class='text-secondary'>This is a movie.</span>";
+      const video = document.getElementById("player");
+      // Find best quality source
+      let best = null;
+      (playlistData.video || []).forEach(srv => {
+        if (Array.isArray(srv.sources)) {
+          const found = srv.sources.find(q => q.quality === "1080p") || srv.sources.find(q => q.quality === "720p") || srv.sources[0];
+          if (found && !best) best = found;
+        }
+      });
+      if (best) {
+        if (best.type === "application/x-mpegURL" && window.Hls && Hls.isSupported()) {
+          if (window.hlsInstance) { window.hlsInstance.destroy(); }
+          window.hlsInstance = new Hls();
+          window.hlsInstance.loadSource(best.src);
+          window.hlsInstance.attachMedia(video);
+          window.hlsInstance.on(Hls.Events.MANIFEST_PARSED, function () { video.play(); });
+        } else {
+          window.addEventListener("DOMContentLoaded", () => {
+            current = loadPlayerState();
+            loadPlaylist();
+          });
+        }
       }
-      row.style.display = "";
-      const btnsDiv = document.getElementById("extra-content-buttons");
-      btnsDiv.innerHTML = "";
+    }
+
+    function renderExtraContent() {
+      const div = document.getElementById("extra-content");
+      div.innerHTML = "";
+      const extra = playlistData.extra || [];
+      if (extra.length === 0) return;
+      const title = document.createElement("div");
+      title.className = "fw-semibold mb-2";
+      title.textContent = "EXTRA CONTENT";
+      div.appendChild(title);
       extra.forEach((item, idx) => {
         const btn = document.createElement("button");
         btn.className = "btn btn-outline-info btn-sm";
-        btn.textContent = item.title;
-        btn.onclick = () => {
-          // Play extra content (assume same structure as episodes)
-          playExtraContent(idx);
-        };
-        btnsDiv.appendChild(btn);
+        btn.textContent = item.title || item.type || `Extra ${idx + 1}`;
+        btn.onclick = () => playExtra(idx);
+        div.appendChild(btn);
       });
     }
 
-    function playExtraContent(idx) {
+    function playExtra(idx) {
       const extra = playlistData.extra || [];
       const item = extra[idx];
       if (!item) return;
-      playEpisode(0, 0, "subs", 0);
       const video = document.getElementById("player");
-      if (item.type === "application/x-mpegURL") {
-        if (Hls.isSupported()) {
-          const hls = new Hls();
-          hls.loadSource(item.src);
-          hls.attachMedia(video);
-          hls.on(Hls.Events.MANIFEST_PARSED, function () {
-            video.play();
-          });
-        } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-          video.src = item.src;
-          video.addEventListener("loadedmetadata", function () {
-            video.play();
-          });
-        }
+      while (video.firstChild) video.removeChild(video.firstChild);
+      if (item.type === "application/x-mpegURL" && window.Hls && Hls.isSupported()) {
+        if (window.hlsInstance) { window.hlsInstance.destroy(); }
+        window.hlsInstance = new Hls();
+        window.hlsInstance.loadSource(item.src);
+        window.hlsInstance.attachMedia(video);
+        window.hlsInstance.on(Hls.Events.MANIFEST_PARSED, function () { video.play(); });
       } else {
         video.src = item.src;
         video.type = item.type;
@@ -1038,23 +388,10 @@
       }
     }
 
-    // Hamburger toggle logic
-    const hamburgerToggle = document.getElementById(
-      "extra-content-hamburger-toggle"
-    );
-    const hamburgerMenu = document.getElementById(
-      "extra-content-hamburger-menu"
-    );
-    hamburgerToggle &&
-      hamburgerToggle.addEventListener("click", function () {
-        this.classList.toggle("open");
-        if (hamburgerMenu.style.display === "none") {
-          hamburgerMenu.style.display = "";
-        } else {
-          hamburgerMenu.style.display = "none";
-        }
-      });
-    // Removed setCaptions function and all related logic
+    window.addEventListener("DOMContentLoaded", () => {
+      current = loadPlayerState();
+      loadPlaylist();
+    });
   </script>
 </body>
 

@@ -9,16 +9,116 @@
       "name": "Main Server",
       "sources": [
         {
-          "src": "https://example.com/yourname-1080p.mp4",
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fyour_name_2016%2FYour_Name-E1-4k.mp4",
           "type": "video/mp4",
-          "quality": "1080p"
+          "quality": "4k",
+          "mode": "sub"
         },
         {
-          "src": "https://example.com/yourname-720p.mp4",
+          "src": "https://example.com/yourname-1080p-sub.mp4",
           "type": "video/mp4",
-          "quality": "720p"
+          "quality": "1080p",
+          "mode": "sub"
+        },
+        {
+          "src": "https://example.com/yourname-720p-sub.mp4",
+          "type": "video/mp4",
+          "quality": "720p",
+          "mode": "sub"
+        },
+        {
+          "src": "https://example.com/yourname-480p-sub.mp4",
+          "type": "video/mp4",
+          "quality": "480p",
+          "mode": "sub"
+        },
+        {
+          "src": "https://example.com/yourname-4k-dub.mp4",
+          "type": "video/mp4",
+          "quality": "4k",
+          "mode": "dub"
+        },
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fyour_name_2016%2FYour_Name-E1-1080p.mp4",
+          "type": "video/mp4",
+          "quality": "1080p",
+          "mode": "dub"
+        },
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fyour_name_2016%2FYour_Name-E1-720p.mp4",
+          "type": "video/mp4",
+          "quality": "720p",
+          "mode": "dub"
+        },
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fyour_name_2016%2FYour_Name-E1-360p.mp4",
+          "type": "video/mp4",
+          "quality": "480p",
+          "mode": "dub"
         }
       ]
+    },
+    {
+      "name": "Server 2",
+      "sources": [
+        {
+          "src": "https://example.com/server2-4k-sub.mp4",
+          "type": "video/mp4",
+          "quality": "4k",
+          "mode": "sub"
+        },
+        {
+          "src": "https://example.com/server2-1080p-sub.mp4",
+          "type": "video/mp4",
+          "quality": "1080p",
+          "mode": "sub"
+        },
+        {
+          "src": "https://example.com/server2-720p-sub.mp4",
+          "type": "video/mp4",
+          "quality": "720p",
+          "mode": "sub"
+        },
+        {
+          "src": "https://example.com/server2-480p-sub.mp4",
+          "type": "video/mp4",
+          "quality": "480p",
+          "mode": "sub"
+        },
+        {
+          "src": "https://example.com/server2-4k-dub.mp4",
+          "type": "video/mp4",
+          "quality": "4k",
+          "mode": "dub"
+        },
+        {
+          "src": "https://example.com/server2-1080p-dub.mp4",
+          "type": "video/mp4",
+          "quality": "1080p",
+          "mode": "dub"
+        },
+        {
+          "src": "https://example.com/server2-720p-dub.mp4",
+          "type": "video/mp4",
+          "quality": "720p",
+          "mode": "dub"
+        },
+        {
+          "src": "https://example.com/server2-480p-dub.mp4",
+          "type": "video/mp4",
+          "quality": "480p",
+          "mode": "dub"
+        }
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "kind": "subtitles",
+      "label": "English",
+      "srclang": "en",
+      "src": "https://example.com/yourname-en.vtt",
+      "default": true
     }
   ]
 }
