@@ -1,0 +1,737 @@
+{
+  "season": "Season 1",
+  "episodes": [
+    {
+      "title": "Episode 1",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb1.jpg",
+      "subtitles": [
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fhikaru-ga-shinda-natsu%2Fseason-1_SUB%2Fsubtitles%2FThe_Summer_Hikaru_Died-E1-1080p-English.vtt",
+          "lang": "en",
+          "label": "English"
+        }
+      ],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fhikaru-ga-shinda-natsu%2Fseason-1_SUB%2F1080p%2FThe_Summer_Hikaru_Died-E1-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fhikaru-ga-shinda-natsu%2Fseason-1_SUB%2F720p%2FThe_Summer_Hikaru_Died-E1-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p"
+            },
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fhikaru-ga-shinda-natsu%2Fseason-1_SUB%2F480p%2FThe_Summer_Hikaru_Died-E1-360p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_DUB-1080p%2FAttack_on_Titan-E1-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/09/e6875ab7b9ab251afc4021001c6108acddca767954cd637cde681afcf2d222aa/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode1-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/08/f3bca22e866665a10e6eb8310ac7fb6eca1acd4280f46e83a4030a301e38da90/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
+        }
+      ]
+    },
+    {
+      "title": "Episode 2",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb2.jpg",
+      "subtitles": [
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_subtitles%2FAttack_on_Titan-E2-1080p-English.vtt",
+          "lang": "en",
+          "label": "English"
+        }
+      ],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode2-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode2-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode2-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_DUB-1080p%2FAttack_on_Titan-E2-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/3aeffc36b2219e5472a76c845bb95f548f340fd1592a7850ad2330452d883bf1/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode2-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/f0054e45e915d6f134a8375ad2f78885c7b1b77795d168d5e97c22facc4fa5dd/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
+        }
+      ]
+    },
+    {
+      "title": "Episode 3",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb3.jpg",
+      "subtitles": [
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_subtitles%2FAttack_on_Titan-E3-1080p-English.vtt",
+          "lang": "en",
+          "label": "English"
+        }
+      ],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode3-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode3-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode3-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_DUB-1080p%2FAttack_on_Titan-E3-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/d8fbfa50fdddcb806b74410af3730a4ec7645ff79451e6d4229af43fe5801621/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode3-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/09/6d47d68b9edfecd220ed61615d11f8765b886f7c54b5840e421053ad75cfbb90/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
+        }
+      ]
+    },
+    {
+      "title": "Episode 4",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb4.jpg",
+      "subtitles": [
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_subtitles%2FAttack_on_Titan-E4-1080p-English.vtt",
+          "lang": "en",
+          "label": "English"
+        }
+      ],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode4-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode4-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode4-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_DUB-1080p%2FAttack_on_Titan-E4-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/08/61076546a49aabf5662a9de3266ca0fbb4a3ed3cc929d82ad6aac73e8230c139/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode4-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/cc2b84c3f1cb1bc355c9f54f264a3ea9427e64d6d269772cccb3ff28704cdfc4/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
+        }
+      ]
+    },
+    {
+      "title": "Episode 5",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb5.jpg",
+      "subtitles": [
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_subtitles%2FAttack_on_Titan-E5-1080p-English.vtt",
+          "lang": "en",
+          "label": "English"
+        }
+      ],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode5-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode5-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode5-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_DUB-1080p%2FAttack_on_Titan-E5-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/07/c083c38d2a808a696957d214b1aa0d36ca764ccf57ebdda83da5a6f76cf62b68/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode5-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/ffed200be32052af92bcff4becb79bbda6e9c63f0b60196d7f08678b8de4eb23/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
+        }
+      ]
+    },
+    {
+      "title": "Episode 6",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb6.jpg",
+      "subtitles": [
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_subtitles%2FAttack_on_Titan-E6-1080p-English.vtt",
+          "lang": "en",
+          "label": "English"
+        }
+      ],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode6-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode6-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode6-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_DUB-1080p%2FAttack_on_Titan-E6-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-03.padorupado.ru/stream/03/08/d5749e1f5325e1195be10904601e9be2afcaf066a266955971b736261b190f01/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode6-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-02.padorupado.ru/stream/02/12/88f2b3c89b81d3a5c7b0075d93daf754296abd694ec3f71230f0a80cd9b75615/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
+        }
+      ]
+    },
+    {
+      "title": "Episode 7",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb7.jpg",
+      "subtitles": [
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_subtitles%2FAttack_on_Titan-E7-1080p-English.vtt",
+          "lang": "en",
+          "label": "English"
+        }
+      ],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode7-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode7-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode7-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_DUB-1080p%2FAttack_on_Titan-E7-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/09/1f2978e7827711ac2f1582b7d85475b28ca5116fba9b4d576835d2e116ce6db9/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode7-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/07/2c808cbceb975054fb063b46e51e5f6ab3d1c36367191886df6c546fd08bf2cd/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
+        }
+      ]
+    },
+    {
+      "title": "Episode 8",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb8.jpg",
+      "subtitles": [
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_subtitles%2FAttack_on_Titan-E8-1080p-English.vtt",
+          "lang": "en",
+          "label": "English"
+        }
+      ],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode8-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode8-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode8-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_DUB-1080p%2FAttack_on_Titan-E8-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/08/c2b1dc1f1f21735a4603e938f0b0b77ec8a94aa3090b265b8d906d7ea2f9ef4e/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode8-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/4eb4ba61a509119d59c5738ff999b77ee07592f695278a6e51e82b19a92de932/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
+        }
+      ]
+    },
+    {
+      "title": "Episode 9",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb9.jpg",
+      "subtitles": [
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_subtitles%2FAttack_on_Titan-E9-1080p-English.vtt",
+          "lang": "en",
+          "label": "English"
+        }
+      ],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode9-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode9-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode9-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_DUB-1080p%2FAttack_on_Titan-E9-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/7f0fa75e9e6bf51210d98b7be4beac9dcbdea367eedabefd97c7e1123c2a1837/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode9-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/09/692a30cf19f23834090cd6576095ed26aeaf0c1c962b01c7387a7240b7720f96/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
+        }
+      ]
+    },
+    {
+      "title": "Episode 10",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb10.jpg",
+      "subtitles": [
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_subtitles%2FAttack_on_Titan-E10-1080p-English.vtt",
+          "lang": "en",
+          "label": "English"
+        }
+      ],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode10-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode10-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode10-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_DUB-1080p%2FAttack_on_Titan-E10-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/09/37b0a5679e7a77aa45a2a1abad6408f21e2fbe8bd556d097cad70de35625f659/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode10-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/4eb4ba61a509119d59c5738ff999b77ee07592f695278a6e51e82b19a92de932/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
+        }
+      ]
+    },
+    {
+      "title": "Episode 11",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb11.jpg",
+      "subtitles": [
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_subtitles%2FAttack_on_Titan-E11-1080p-English.vtt",
+          "lang": "en",
+          "label": "English"
+        }
+      ],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode11-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode11-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode11-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_DUB-1080p%2FAttack_on_Titan-E11-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/06/bde48b9e7dac22fd35aea7c8ff9cdc8984cf9dd9b968a772c6b8ed3dc0096cdb/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode11-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/06/3fd84613bfb4f3e92389daac4e7f7d1e0c627c56ca423334d2d4b93008a64e30/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
+        }
+      ]
+    },
+    {
+      "title": "Episode 12",
+      "thumbnail": "https://archive.org/download/otherside-picnic-e-1-1080p-english/thumb12.jpg",
+      "subtitles": [
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_subtitles%2FAttack_on_Titan-E12-1080p-English.vtt",
+          "lang": "en",
+          "label": "English"
+        }
+      ],
+      "servers": [
+        {
+          "name": "Main Server",
+          "subs": [
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode12-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode12-720p.mp4",
+              "type": "video/mp4",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode12-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ],
+          "dubs": [
+            {
+              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fshingeki-no-kyojin_aot%2Fseason-1_DUB-1080p%2FAttack_on_Titan-E12-1080p.mp4",
+              "type": "video/mp4",
+              "quality": "1080p"
+            },
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/06/fa695e91e67ffc9aa5c51f3060b8cb90323bf1b7dafc9b879be6cb6b1c42d451/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "720p"
+            },
+            {
+              "src": "https://archive.org/download/otherside-picnic-e-1-1080p-english/episode12-dub-480p.mp4",
+              "type": "video/mp4",
+              "quality": "480p"
+            }
+          ]
+        },
+        {
+          "name": "Server 2",
+          "subs": [
+            {
+              "src": "https://vault-08.padorupado.ru/stream/08/10/cc2b84c3f1cb1bc355c9f54f264a3ea9427e64d6d269772cccb3ff28704cdfc4/uwu.m3u8",
+              "type": "application/x-mpegURL",
+              "quality": "1080p"
+            }
+          ],
+          "dubs": []
+        }
+      ]
+    }
+  ]
+}
