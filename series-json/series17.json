@@ -16,7 +16,7 @@
           "name": "Main Server",
           "subs": [
             {
-              "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fhikaru-ga-shinda-natsu%2Fseason-1_SUB%2F1080p%2FThe_Summer_Hikaru_Died-E1-1080p.mp4",
+              "src": "https://archive.org/download/hikaru-ga-shinda-natsu/season-1_SUB/1080p/The_Summer_Hikaru_Died-E1-1080p.mp4",
               "type": "video/mp4",
               "quality": "1080p"
             },
