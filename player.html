@@ -136,7 +136,70 @@
                 </div>
             </div>
         </div>
+        <!-- Live Comments Section -->
+        <div class="row justify-content-center mt-5">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title text-center mb-4" style="color: #00d1b2; font-weight: 600;">Live Comments</h3>
+                        <div id="comments-container" class="mb-3" style="max-height: 400px; overflow-y: auto; background: #14161a; border: 1px solid #23252a; border-radius: 8px; padding: 10px;">
+                            <!-- Comments will be appended here -->
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="comment-input" class="form-control" placeholder="Enter your anonymous comment..." style="background: #1f2229; color: #fff; border: 1px solid #425277;" maxlength="200">
+                            <button class="btn" id="send-comment" style="background: #00d1b2; color: #14161a; border: none;">Send</button>
+                        </div>
+                        <small class="text-muted mt-2 d-block" style="color: #ccc;">Comments are anonymous and moderated.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script>
+        // Live Comments with Socket.IO
+        const socket = io(); // Connect to Socket.IO server
+
+        const commentsContainer = document.getElementById('comments-container');
+        const commentInput = document.getElementById('comment-input');
+        const sendButton = document.getElementById('send-comment');
+
+        // Function to add a comment to the UI
+        function addComment(comment) {
+            const commentDiv = document.createElement('div');
+            commentDiv.className = 'comment mb-2 p-2';
+            commentDiv.style.background = '#23252a';
+            commentDiv.style.borderRadius = '6px';
+            commentDiv.style.color = '#fff';
+            commentDiv.innerHTML = `<small style="color: #00d1b2;">Anonymous:</small> ${comment}`;
+            commentsContainer.appendChild(commentDiv);
+            commentsContainer.scrollTop = commentsContainer.scrollHeight;
+        }
+
+        // Listen for new comments
+        socket.on('new-comment', (comment) => {
+            addComment(comment);
+        });
+
+        // Send comment
+        sendButton.addEventListener('click', sendComment);
+        commentInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendComment();
+        });
+
+        function sendComment() {
+            const comment = commentInput.value.trim();
+            if (comment) {
+                socket.emit('send-comment', comment);
+                commentInput.value = '';
+            }
+        }
+
+        // Load existing comments
+        socket.on('load-comments', (comments) => {
+            comments.forEach(addComment);
+        });
+    </script>
     <script>
         // Prevent long-press download on video (mobile and desktop)
         const preventVideoLongPress = () => {
@@ -275,7 +338,7 @@
                 currentSelection.quality = currentSelection.quality || source.quality || null;
             }
             if (source) {
-                video.src = source.src;
+                video.src = source.src.replace(/,([a-z]{3})$/, '');
                 video.type = source.type;
                 // Load subtitles dynamically if lang in src
                 const langMatch = source.src.match(/,([a-z]{3})$/);
