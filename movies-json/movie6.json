@@ -1,0 +1,124 @@
+{
+  "title": "Your Name.",
+  "year": 2016,
+  "genres": ["Romance", "Drama", "Supernatural"],
+  "description": "Two teenagers share a profound, magical connection upon discovering they are swapping bodies. Things manage to become even more complicated when the boy and girl decide to meet in person.",
+  "poster": "https://cdn.myanimelist.net/images/anime/1823/127994l.jpg",
+  "video": [
+    {
+      "name": "Main Server",
+      "sources": [
+        {
+          "src": "https://ia-video-proxy.thrajsingha11.workers.dev/https://archive.org/download/unconformed_download/pahearchived/IILWTV/010001000101010101000010/10000111000/01001001_01001001_01001100_01010111_01010100_01010110_%281%29_p0801.mp4",
+          "type": "video/mp4",
+          "quality": "4k",
+          "mode": "sub"
+        },
+        {
+          "src": "https://example.com/yourname-1080p-sub.mp4",
+          "type": "video/mp4",
+          "quality": "1080p",
+          "mode": "sub"
+        },
+        {
+          "src": "https://example.com/yourname-720p-sub.mp4",
+          "type": "video/mp4",
+          "quality": "720p",
+          "mode": "sub"
+        },
+        {
+          "src": "https://example.com/yourname-480p-sub.mp4",
+          "type": "video/mp4",
+          "quality": "480p",
+          "mode": "sub"
+        },
+        {
+          "src": "https://example.com/yourname-4k-dub.mp4",
+          "type": "video/mp4",
+          "quality": "4k",
+          "mode": "dub"
+        },
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fyour_name_2016%2FYour_Name-E1-1080p.mp4",
+          "type": "video/mp4",
+          "quality": "1080p",
+          "mode": "dub"
+        },
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fyour_name_2016%2FYour_Name-E1-720p.mp4",
+          "type": "video/mp4",
+          "quality": "720p",
+          "mode": "dub"
+        },
+        {
+          "src": "https://ia-cloud.thrajsingha11.workers.dev/?url=https%3A%2F%2Farchive.org%2Fdownload%2Fyour_name_2016%2FYour_Name-E1-360p.mp4",
+          "type": "video/mp4",
+          "quality": "480p",
+          "mode": "dub"
+        }
+      ]
+    },
+    {
+      "name": "Server 2",
+      "sources": [
+        {
+          "src": "https://example.com/server2-4k-sub.mp4",
+          "type": "video/mp4",
+          "quality": "4k",
+          "mode": "sub"
+        },
+        {
+          "src": "https://example.com/server2-1080p-sub.mp4",
+          "type": "video/mp4",
+          "quality": "1080p",
+          "mode": "sub"
+        },
+        {
+          "src": "https://example.com/server2-720p-sub.mp4",
+          "type": "video/mp4",
+          "quality": "720p",
+          "mode": "sub"
+        },
+        {
+          "src": "https://example.com/server2-480p-sub.mp4",
+          "type": "video/mp4",
+          "quality": "480p",
+          "mode": "sub"
+        },
+        {
+          "src": "https://example.com/server2-4k-dub.mp4",
+          "type": "video/mp4",
+          "quality": "4k",
+          "mode": "dub"
+        },
+        {
+          "src": "https://example.com/server2-1080p-dub.mp4",
+          "type": "video/mp4",
+          "quality": "1080p",
+          "mode": "dub"
+        },
+        {
+          "src": "https://example.com/server2-720p-dub.mp4",
+          "type": "video/mp4",
+          "quality": "720p",
+          "mode": "dub"
+        },
+        {
+          "src": "https://example.com/server2-480p-dub.mp4",
+          "type": "video/mp4",
+          "quality": "480p",
+          "mode": "dub"
+        }
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "kind": "subtitles",
+      "label": "English",
+      "srclang": "en",
+      "src": "https://example.com/yourname-en.vtt",
+      "default": true
+    }
+  ]
+}
