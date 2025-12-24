@@ -13,11 +13,8 @@
             color: #ff6685 !important;
         }
 
-        .switcher-btns .btn.active {
-            background: rgba(0, 209, 178, 0.18) !important;
-            color: #00d1b2 !important;
-            border-color: #00d1b2 !important;
-            box-shadow: 0 0 0 2px #00d1b244;
+        .like-btn.active, .dislike-btn.active {
+            font-weight: bold;
         }
 
         body {
@@ -136,69 +133,272 @@
                 </div>
             </div>
         </div>
-        <!-- Live Comments Section -->
+        <!-- Comments Section -->
         <div class="row justify-content-center mt-5">
-            <div class="col-12 col-md-8 col-lg-6">
+            <div class="col-12 col-md-10 col-lg-8">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title text-center mb-4" style="color: #00d1b2; font-weight: 600;">Live Comments</h3>
-                        <div id="comments-container" class="mb-3" style="max-height: 400px; overflow-y: auto; background: #14161a; border: 1px solid #23252a; border-radius: 8px; padding: 10px;">
+                        <h3 class="card-title mb-4" style="color: #00d1b2; font-weight: 600;">Comments</h3>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-start mb-3">
+                                <div class="flex-grow-1">
+                                    <textarea id="comment-input" class="form-control mb-2" placeholder="Add a comment..." rows="3" style="background: #1f2229; color: #fff; border: 1px solid #425277; border-radius: 8px;" maxlength="500"></textarea>
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn btn-sm me-2" id="cancel-comment" style="color: #ccc; background: none; border: none;">Cancel</button>
+                                        <button class="btn btn-sm" id="post-comment" style="background: #00d1b2; color: #14161a; border: none; border-radius: 20px; padding: 6px 16px;">Comment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="comments-container" style="max-height: 600px; overflow-y: auto;">
                             <!-- Comments will be appended here -->
                         </div>
-                        <div class="input-group">
-                            <input type="text" id="comment-input" class="form-control" placeholder="Enter your anonymous comment..." style="background: #1f2229; color: #fff; border: 1px solid #425277;" maxlength="200">
-                            <button class="btn" id="send-comment" style="background: #00d1b2; color: #14161a; border: none;">Send</button>
-                        </div>
-                        <small class="text-muted mt-2 d-block" style="color: #ccc;">Comments are anonymous and moderated.</small>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
-    <script>
-        // Live Comments with Socket.IO
-        const socket = io(); // Connect to Socket.IO server
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js';
+        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js';
+        import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, query, orderBy, where } from 'https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js';
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCDOsplwwR1I70Il5g1t7WbD4MHxxy29to",
+            authDomain: "fire999999.firebaseapp.com",
+            projectId: "fire999999",
+            storageBucket: "fire999999.firebasestorage.app",
+            messagingSenderId: "126475351718",
+            appId: "1:126475351718:web:2bcfb7d4d3659230f0e667",
+            measurementId: "G-5B9TQKZV58"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+
+        // Custom Comments System with Firebase
+        let currentMovieKey = '';
+        let comments = [];
+        let userInteractions = {}; // Track user interactions per comment: 'like', 'dislike', or null
 
         const commentsContainer = document.getElementById('comments-container');
         const commentInput = document.getElementById('comment-input');
-        const sendButton = document.getElementById('send-comment');
+        const postButton = document.getElementById('post-comment');
+        const cancelButton = document.getElementById('cancel-comment');
 
-        // Function to add a comment to the UI
-        function addComment(comment) {
-            const commentDiv = document.createElement('div');
-            commentDiv.className = 'comment mb-2 p-2';
-            commentDiv.style.background = '#23252a';
-            commentDiv.style.borderRadius = '6px';
-            commentDiv.style.color = '#fff';
-            commentDiv.innerHTML = `<small style="color: #00d1b2;">Anonymous:</small> ${comment}`;
-            commentsContainer.appendChild(commentDiv);
-            commentsContainer.scrollTop = commentsContainer.scrollHeight;
-        }
-
-        // Listen for new comments
-        socket.on('new-comment', (comment) => {
-            addComment(comment);
-        });
-
-        // Send comment
-        sendButton.addEventListener('click', sendComment);
-        commentInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendComment();
-        });
-
-        function sendComment() {
-            const comment = commentInput.value.trim();
-            if (comment) {
-                socket.emit('send-comment', comment);
-                commentInput.value = '';
+        // Load comments for the movie
+        async function loadComments() {
+            currentMovieKey = getMovieKey();
+            if (!currentMovieKey) return;
+            // Load user interactions
+            const storedInteractions = sessionStorage.getItem('interactions_' + currentMovieKey);
+            userInteractions = storedInteractions ? JSON.parse(storedInteractions) : {};
+            try {
+                // Load all comments and filter in code to avoid index issues
+                const querySnapshot = await getDocs(collection(db, 'comments'));
+                comments = [];
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    if (data.movieKey === currentMovieKey) {
+                        comments.push({ id: doc.id, ...data });
+                    }
+                });
+                // Sort by timestamp desc
+                comments.sort((a, b) => {
+                    const aTime = a.timestamp.toMillis ? a.timestamp.toMillis() : a.timestamp;
+                    const bTime = b.timestamp.toMillis ? b.timestamp.toMillis() : b.timestamp;
+                    return bTime - aTime;
+                });
+                renderComments();
+            } catch (error) {
+                console.error('Error loading comments:', error);
             }
         }
 
-        // Load existing comments
-        socket.on('load-comments', (comments) => {
-            comments.forEach(addComment);
+        // Save comment to Firebase
+        async function saveComment(comment) {
+            try {
+                const docRef = await addDoc(collection(db, 'comments'), comment);
+                comment.id = docRef.id;
+                comments.unshift(comment);
+                renderComments();
+            } catch (error) {
+                console.error('Error saving comment:', error);
+            }
+        }
+
+        // Update likes/dislikes
+        async function updateInteraction(commentId, action) {
+            try {
+                const commentRef = doc(db, 'comments', commentId);
+                const comment = comments.find(c => c.id === commentId);
+                if (!comment) return;
+
+                const current = userInteractions[commentId];
+                let likesChange = 0;
+                let dislikesChange = 0;
+
+                if (current === action) {
+                    // Toggle off
+                    if (action === 'like') likesChange = -1;
+                    else dislikesChange = -1;
+                    userInteractions[commentId] = null;
+                } else {
+                    // Switch or set
+                    if (current === 'like') likesChange = -1;
+                    else if (current === 'dislike') dislikesChange = -1;
+                    if (action === 'like') likesChange = 1;
+                    else dislikesChange = 1;
+                    userInteractions[commentId] = action;
+                }
+
+                comment.likes = (comment.likes || 0) + likesChange;
+                comment.dislikes = (comment.dislikes || 0) + dislikesChange;
+
+                await updateDoc(commentRef, {
+                    likes: comment.likes,
+                    dislikes: comment.dislikes
+                });
+                sessionStorage.setItem('interactions_' + currentMovieKey, JSON.stringify(userInteractions));
+                renderComments();
+            } catch (error) {
+                console.error('Error updating interaction:', error);
+            }
+        }
+
+        // Render comments (threaded)
+        function renderComments() {
+            commentsContainer.innerHTML = '';
+            comments.forEach(comment => renderComment(comment, 0));
+        }
+
+        function renderComment(comment, depth) {
+            const commentDiv = document.createElement('div');
+            commentDiv.className = 'comment mb-3';
+            commentDiv.style.marginLeft = depth * 40 + 'px';
+            commentDiv.style.borderLeft = depth > 0 ? '2px solid #425277' : 'none';
+            commentDiv.style.paddingLeft = depth > 0 ? '10px' : '0';
+
+            const timeAgo = getTimeAgo(comment.timestamp);
+
+            commentDiv.innerHTML = `
+                <div class="d-flex align-items-start mb-2">
+                    <div class="flex-grow-1">
+                        <div class="d-flex align-items-center mb-1">
+                            <span style="color: #00d1b2; font-weight: 500;">Anonymous</span>
+                            <span style="color: #ccc; font-size: 0.9em; margin-left: 8px;">${timeAgo}</span>
+                        </div>
+                        <p style="color: #fff; margin: 0; line-height: 1.4;">${comment.text}</p>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-sm me-3 like-btn ${userInteractions[comment.id] === 'like' ? 'active' : ''}" data-id="${comment.id}" style="color: ${userInteractions[comment.id] === 'like' ? '#00d1b2' : '#ccc'}; background: none; border: none; padding: 0;">
+                        <i class="bi bi-hand-thumbs-up"></i> ${comment.likes || 0}
+                    </button>
+                    <button class="btn btn-sm me-3 dislike-btn ${userInteractions[comment.id] === 'dislike' ? 'active' : ''}" data-id="${comment.id}" style="color: ${userInteractions[comment.id] === 'dislike' ? '#ff6b6b' : '#ccc'}; background: none; border: none; padding: 0;">
+                        <i class="bi bi-hand-thumbs-down"></i> ${comment.dislikes || 0}
+                    </button>
+                    ${depth < 2 ? `<button class="btn btn-sm reply-btn" data-id="${comment.id}" style="color: #ccc; background: none; border: none; padding: 0;">Reply</button>` : ''}
+                </div>
+                <div class="reply-form mt-2" style="display: none;">
+                    <textarea class="form-control mb-2" placeholder="Reply..." rows="2" style="background: #1f2229; color: #fff; border: 1px solid #425277; border-radius: 8px;" maxlength="500"></textarea>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-sm me-2 cancel-reply" style="color: #ccc; background: none; border: none;">Cancel</button>
+                        <button class="btn btn-sm post-reply" data-parent="${comment.id}" style="background: #00d1b2; color: #14161a; border: none; border-radius: 20px; padding: 4px 12px;">Reply</button>
+                    </div>
+                </div>
+            `;
+
+            commentsContainer.appendChild(commentDiv);
+
+            // Render replies
+            if (comment.replies) {
+                comment.replies.forEach(reply => renderComment(reply, depth + 1));
+            }
+        }
+
+        // Get time ago
+        function getTimeAgo(timestamp) {
+            const now = Date.now();
+            const diff = now - timestamp.toMillis ? timestamp.toMillis() : timestamp;
+            const minutes = Math.floor(diff / 60000);
+            const hours = Math.floor(diff / 3600000);
+            const days = Math.floor(diff / 86400000);
+            if (minutes < 1) return 'just now';
+            if (minutes < 60) return `${minutes}m`;
+            if (hours < 24) return `${hours}h`;
+            return `${days}d`;
+        }
+
+        // Post comment
+        postButton.addEventListener('click', () => {
+            const text = commentInput.value.trim();
+            if (text) {
+                const newComment = {
+                    movieKey: currentMovieKey,
+                    text: text,
+                    timestamp: new Date(),
+                    likes: 0,
+                    dislikes: 0,
+                    replies: []
+                };
+                saveComment(newComment);
+                commentInput.value = '';
+            }
         });
+
+        // Cancel comment
+        cancelButton.addEventListener('click', () => {
+            commentInput.value = '';
+        });
+
+        // Handle like/dislike/reply
+        commentsContainer.addEventListener('click', (e) => {
+            const id = e.target.closest('button')?.dataset.id || e.target.closest('button')?.dataset.parent;
+            if (!id) return;
+
+            if (e.target.closest('.like-btn')) {
+                updateInteraction(id, 'like');
+            } else if (e.target.closest('.dislike-btn')) {
+                updateInteraction(id, 'dislike');
+            } else if (e.target.closest('.reply-btn')) {
+                const replyForm = e.target.closest('.comment').querySelector('.reply-form');
+                replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
+            } else if (e.target.closest('.cancel-reply')) {
+                e.target.closest('.reply-form').style.display = 'none';
+                e.target.closest('.reply-form').querySelector('textarea').value = '';
+            } else if (e.target.closest('.post-reply')) {
+                const parentId = e.target.dataset.parent;
+                const text = e.target.closest('.reply-form').querySelector('textarea').value.trim();
+                if (text) {
+                    const reply = {
+                        id: Date.now().toString(),
+                        text: text,
+                        timestamp: new Date(),
+                        likes: 0,
+                        dislikes: 0,
+                        replies: []
+                    };
+                    // For simplicity, replies are not saved to Firebase separately; they could be stored as subcollections
+                    const parent = comments.find(c => c.id === parentId);
+                    if (parent) {
+                        parent.replies = parent.replies || [];
+                        parent.replies.push(reply);
+                        // Update parent in Firebase
+                        const parentRef = doc(db, 'comments', parentId);
+                        updateDoc(parentRef, { replies: parent.replies });
+                        renderComments();
+                    }
+                }
+            }
+        });
+
+        // Load comments when movie loads
+        window.addEventListener('load', loadComments);
     </script>
     <script>
         // Prevent long-press download on video (mobile and desktop)
