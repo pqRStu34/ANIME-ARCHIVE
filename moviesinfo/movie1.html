@@ -190,6 +190,96 @@
             margin-top: 1.2em;
             text-align: center;
         }
+
+        .characters-section {
+            max-width: 900px;
+            margin: 2.5rem auto 1.5rem auto;
+            background: #181b20;
+            border-radius: 16px;
+            box-shadow: 0 0 8px #209cee33;
+            padding: 1.3rem 1.2rem 1.1rem 1.2rem;
+        }
+
+        .characters-title {
+            color: #ff6685;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.1rem;
+            text-align: left;
+        }
+
+        .characters-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            padding: 0;
+        }
+
+        .character-row {
+            display: flex;
+            align-items: center;
+            background: transparent;
+            border-radius: 16px;
+            padding: 0.5rem 0.8rem;
+            margin-bottom: 0.1rem;
+            min-height: 56px;
+        }
+
+        .character-pic {
+            width: 44px;
+            height: 44px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 1rem;
+            background: #181b20;
+            border: 1.5px solid #ffb6d5;
+            flex-shrink: 0;
+            display: block;
+        }
+
+        .character-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0;
+            width: 100%;
+        }
+
+        .character-name {
+            font-size: 1em;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.1em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            max-width: 100vw;
+            text-decoration: none !important;
+            transition: color 0.18s;
+        }
+
+        .character-name:hover {
+            text-decoration: none !important;
+            color: #00d1b2 !important;
+        }
+
+        .character-role {
+            font-size: 0.85em;
+            color: #b6f7ff;
+            background: #282a3a;
+            border-radius: 7px;
+            padding: 0.1em 0.7em;
+            border: 1px solid #3be3e3;
+            font-weight: 500;
+            margin-top: 0.2em;
+            display: inline-block;
+            align-self: flex-start;
+        }
+
+        .character-role.supporting {
+            color: #ffb70f !important;
+        }
     </style>
 </head>
 
@@ -212,10 +302,25 @@
     <div class="desc-card">
         <div class="desc-title">Overview</div>
         <div id="desc-text" class="desc-text">
-            Two teenagers share a profound, magical connection upon discovering they are swapping bodies. Things manage
-            to become even more complicated when the boy and girl decide to meet in person.
+            Mitsuha Miyamizu, a high school girl, yearns to live the life of a boy in the bustling city of Tokyo—a dream
+            that stands in stark contrast to her present life in the countryside. Meanwhile in the city, Taki Tachibana
+            lives a busy life as a high school student while juggling his part-time job and hopes for a future in
+            architecture.
+
+            One day, Mitsuha awakens in a room that is not her own and suddenly finds herself living the dream life in
+            Tokyo—but in Taki's body! Elsewhere, Taki finds himself living Mitsuha's life in the humble countryside. In
+            pursuit of an answer to this strange phenomenon, they begin to search for one another.
+
+            Kimi no Na wa. revolves around Mitsuha and Taki's actions, which begin to have a dramatic impact on each
+            other's lives, weaving them into a fabric held together by fate and circumstance.
         </div>
         <button id="show-more-btn" class="show-more-btn">Show more</button>
+    </div>
+    <div class="characters-section">
+        <div class="characters-title">Characters</div>
+        <div class="characters-list" id="characters-list">
+            <!-- Characters will be loaded here dynamically -->
+        </div>
     </div>
     <script>
         // Show more/less for description
@@ -241,6 +346,94 @@
                 }
             });
         });
+
+        // Dynamically load characters (compact row style)
+        const characters = [
+            {
+                name: 'Mitsuha Miyamizu',
+                img: 'https://cdn.myanimelist.net/images/characters/9/310187.jpg',
+                role: 'Main',
+                mal: 'https://myanimelist.net/character/128171/Mitsuha_Miyamizu'
+            },
+            {
+                name: 'Taki Tachibana',
+                img: 'https://cdn.myanimelist.net/images/characters/16/310188.jpg',
+                role: 'Main',
+                mal: 'https://myanimelist.net/character/128172/Taki_Tachibana'
+            },
+            {
+                name: 'Katsuhiko Teshigawara',
+                img: 'https://cdn.myanimelist.net/images/characters/14/310189.jpg',
+                role: 'Supporting',
+                mal: 'https://myanimelist.net/character/128173/Katsuhiko_Teshigawara'
+            },
+            {
+                name: 'Sayaka Miyamizu',
+                img: 'https://cdn.myanimelist.net/images/characters/7/310190.jpg',
+                role: 'Supporting',
+                mal: 'https://myanimelist.net/character/128174/Sayaka_Miyamizu'
+            },
+            {
+                name: 'Tsukasa Fujii',
+                img: 'https://cdn.myanimelist.net/images/characters/10/310191.jpg',
+                role: 'Supporting',
+                mal: 'https://myanimelist.net/character/128175/Tsukasa_Fujii'
+            },
+            {
+                name: 'Yotsuha Miyamizu',
+                img: 'https://cdn.myanimelist.net/images/characters/13/310192.jpg',
+                role: 'Supporting',
+                mal: 'https://myanimelist.net/character/128176/Yotsuha_Miyamizu'
+            },
+            {
+                name: 'Hitoha Miyamizu',
+                img: 'https://cdn.myanimelist.net/images/characters/6/310193.jpg',
+                role: 'Supporting',
+                mal: 'https://myanimelist.net/character/128177/Hitoha_Miyamizu'
+            },
+            {
+                name: 'Toshiki Miyamizu',
+                img: 'https://cdn.myanimelist.net/images/characters/3/310194.jpg',
+                role: 'Supporting',
+                mal: 'https://myanimelist.net/character/128178/Toshiki_Miyamizu'
+            }
+        ];
+        const charactersList = document.getElementById('characters-list');
+        let showAll = false;
+        function renderCharacters() {
+            charactersList.innerHTML = '';
+            const toShow = showAll ? characters : characters.slice(0, 5);
+            toShow.forEach(character => {
+                const row = document.createElement('div');
+                row.className = 'character-row';
+                row.innerHTML = `
+                    <img src="${character.img}" alt="${character.name}" class="character-pic" />
+                    <div class="character-info">
+                        <a href="${character.mal}" class="character-name" target="_blank" rel="noopener noreferrer">${character.name}</a>
+                        <span class="character-role${character.role === 'Supporting' ? ' supporting' : ''}">${character.role}</span>
+                    </div>
+                `;
+                charactersList.appendChild(row);
+            });
+            // Show more/less button
+            let showMoreBtn = document.getElementById('show-more-characters-btn');
+            if (characters.length > 5) {
+                if (!showMoreBtn) {
+                    showMoreBtn = document.createElement('button');
+                    showMoreBtn.id = 'show-more-characters-btn';
+                    showMoreBtn.className = 'show-more-btn';
+                    showMoreBtn.style.display = 'block';
+                    showMoreBtn.style.margin = '0.7em auto 0 auto';
+                    charactersList.parentNode.appendChild(showMoreBtn);
+                }
+                showMoreBtn.textContent = showAll ? 'Show less' : 'Show more';
+                showMoreBtn.onclick = function () {
+                    showAll = !showAll;
+                    renderCharacters();
+                };
+            }
+        }
+        renderCharacters();
     </script>
 </body>
 
