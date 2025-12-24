@@ -38,5 +38,13 @@
     "infoPage": "moviesinfo/movie5.html",
     "jsonPage": "movies-json/movie5.json",
     "year": 2013
+  },
+  {
+    "title": "Chainsaw Man – The Movie: Reze Arc",
+    "poster": "https://cdn.myanimelist.net/images/anime/1211/140419l.jpg",
+    "type": "movie",
+    "infoPage": "moviesinfo/movie6.html",
+    "jsonPage": "movies-json/movie6.json",
+    "year": 2025
   }
 ]
