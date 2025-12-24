@@ -117,20 +117,14 @@
                             controlsList="nodownload" oncontextmenu="return false;"></video>
                     </div>
                 </div>
-                <!-- Server/Mode/Quality Switchers -->
+                <!-- Language/Quality Switchers -->
                 <div id="switcher-card" class="card mt-4 mb-4">
                     <div class="card-body">
                         <div class="mb-3 switcher-row">
                             <span class="switcher-label">
-                                <i class="bi bi-hdd-network-fill"></i>
-                            </span>
-                            <div id="server-switcher" class="switcher-btns"></div>
-                        </div>
-                        <div class="mb-3 switcher-row">
-                            <span class="switcher-label">
                                 <i class="bi bi-translate"></i>
                             </span>
-                            <div id="mode-switcher" class="switcher-btns"></div>
+                            <div id="language-switcher" class="switcher-btns"></div>
                         </div>
                         <div class="mb-1 switcher-row">
                             <span class="switcher-label">
@@ -188,73 +182,56 @@
 
         // Setup player with best quality and populate switchers
         // Track current selection
-        let currentSelection = { server: 0, mode: null, quality: null };
+        let currentSelection = { lang: null, quality: null };
         function setupPlayer(movie) {
-            setupServerAndQualitySwitchers(movie);
+            setupLanguageAndQualitySwitchers(movie);
             playMovie(movie);
         }
 
-        // Populate server and quality switchers
-        function setupServerAndQualitySwitchers(movie) {
-            const servers = Array.isArray(movie.video) ? movie.video : [];
-            const serverSwitcher = document.getElementById("server-switcher");
+        // Populate language and quality switchers
+        function setupLanguageAndQualitySwitchers(movie) {
+            const sources = Array.isArray(movie.video) ? movie.video : [];
+            const languageSwitcher = document.getElementById("language-switcher");
             const qualitySwitcher = document.getElementById("quality-switcher");
-            const modeSwitcher = document.getElementById("mode-switcher");
-            serverSwitcher.innerHTML = '';
+            languageSwitcher.innerHTML = '';
             qualitySwitcher.innerHTML = '';
-            if (modeSwitcher) modeSwitcher.innerHTML = '';
-            if (servers.length === 0) return;
+            if (sources.length === 0) return;
 
-            // Find all available modes (sub/dub) across all servers
-            let allModes = new Set();
-            servers.forEach(server => {
-                if (Array.isArray(server.sources)) {
-                    server.sources.forEach(src => {
-                        if (src.mode) allModes.add(src.mode);
-                    });
-                }
-            });
-            allModes = Array.from(allModes);
-
-            // Server buttons
-            servers.forEach((server, sIdx) => {
-                const btn = document.createElement("button");
-                btn.className = "btn btn-outline-info btn-sm";
-                btn.textContent = server.name || `Server ${sIdx + 1}`;
-                if (currentSelection.server === sIdx) btn.classList.add('active');
-                btn.onclick = () => {
-                    currentSelection.server = sIdx;
-                    playMovie(movie, sIdx, null, currentSelection.mode, currentSelection.quality);
-                    setupServerAndQualitySwitchers(movie);
-                };
-                serverSwitcher.appendChild(btn);
-            });
-
-            // Mode buttons (sub/dub)
-            if (modeSwitcher && allModes.length > 0) {
-                allModes.forEach((mode, mIdx) => {
-                    const btn = document.createElement("button");
-                    btn.className = "btn btn-outline-info btn-sm";
-                    btn.textContent = mode.charAt(0).toUpperCase() + mode.slice(1);
-                    if (currentSelection.mode === mode) btn.classList.add('active');
-                    btn.onclick = () => {
-                        currentSelection.mode = mode;
-                        playMovie(movie, currentSelection.server, null, mode, currentSelection.quality);
-                        setupServerAndQualitySwitchers(movie);
-                    };
-                    modeSwitcher.appendChild(btn);
+            let allLangs = new Set();
+            if (Array.isArray(sources)) {
+                sources.forEach(src => {
+                    const langMatch = src.src.match(/,([a-z]{3})$/);
+                    if (langMatch) {
+                        allLangs.add(langMatch[1]);
+                    }
                 });
             }
+            allLangs = Array.from(allLangs);
 
-            // Quality buttons (show all unique qualities across all servers)
-            let allQualities = [];
-            servers.forEach(server => {
-                if (Array.isArray(server.sources)) {
-                    server.sources.forEach(src => {
-                        if (src.quality && !allQualities.includes(src.quality)) allQualities.push(src.quality);
-                    });
-                }
+            // Language buttons
+            allLangs.forEach((lang) => {
+                const btn = document.createElement("button");
+                btn.className = "btn btn-outline-info btn-sm";
+                btn.textContent = lang.toUpperCase();
+                if (currentSelection.lang === lang) btn.classList.add('active');
+                btn.onclick = () => {
+                    currentSelection.lang = lang;
+                    playMovie(movie);
+                    setupLanguageAndQualitySwitchers(movie);
+                };
+                languageSwitcher.appendChild(btn);
             });
+
+            // Quality buttons
+            let qualitySources = sources;
+            if (currentSelection.lang) {
+                qualitySources = qualitySources.filter(s => s.src.endsWith(',' + currentSelection.lang));
+            }
+            let allQualities = new Set();
+            qualitySources.forEach(src => {
+                if (src.quality) allQualities.add(src.quality);
+            });
+            allQualities = Array.from(allQualities);
             allQualities.forEach((quality) => {
                 const btn = document.createElement("button");
                 btn.className = "btn btn-outline-info btn-sm";
@@ -262,57 +239,57 @@
                 if (currentSelection.quality === quality) btn.classList.add('active');
                 btn.onclick = () => {
                     currentSelection.quality = quality;
-                    playMovie(movie, currentSelection.server, null, currentSelection.mode, quality);
-                    setupServerAndQualitySwitchers(movie);
+                    playMovie(movie);
+                    setupLanguageAndQualitySwitchers(movie);
                 };
                 qualitySwitcher.appendChild(btn);
             });
         }
 
-        // Play best quality or selected server/mode/quality
-        function playMovie(movie, serverIdx = 0, qualityIdx = null, mode = null, quality = null) {
+        // Play best quality or selected lang/quality
+        function playMovie(movie) {
             const video = document.getElementById("player");
             if (!video) return;
             while (video.firstChild) video.removeChild(video.firstChild);
-            // Add captions/subtitles tracks if present
-            if (Array.isArray(movie.tracks)) {
-                movie.tracks.forEach(track => {
-                    const trackEl = document.createElement('track');
-                    trackEl.kind = track.kind || 'subtitles';
-                    trackEl.label = track.label || '';
-                    trackEl.srclang = track.srclang || '';
-                    trackEl.src = track.src;
-                    if (track.default) trackEl.default = true;
-                    video.appendChild(trackEl);
-                });
-            }
-            const servers = Array.isArray(movie.video) ? movie.video : [];
+            const sources = Array.isArray(movie.video) ? movie.video : [];
             let source = null;
-            if (servers.length > 0) {
-                const server = servers[serverIdx] || servers[0];
-                if (Array.isArray(server.sources)) {
-                    let filtered = server.sources;
-                    if (mode) filtered = filtered.filter(s => s.mode === mode);
-                    if (quality) filtered = filtered.filter(s => s.quality === quality);
-                    if (qualityIdx !== null && filtered[qualityIdx]) {
-                        source = filtered[qualityIdx];
-                    } else {
-                        // Prefer 4k, then 1080p, 720p, 480p, then first
-                        source = filtered.find(s => s.quality === "4k") ||
-                            filtered.find(s => s.quality === "1080p") ||
-                            filtered.find(s => s.quality === "720p") ||
-                            filtered.find(s => s.quality === "480p") ||
-                            filtered[0];
-                    }
+            if (sources.length > 0) {
+                let filtered = sources;
+                if (currentSelection.lang) {
+                    filtered = filtered.filter(s => s.src.endsWith(',' + currentSelection.lang));
                 }
+                if (currentSelection.quality) {
+                    filtered = filtered.filter(s => s.quality === currentSelection.quality);
+                }
+                // Prefer 4k, then 1080p, 720p, 480p, then first
+                source = filtered.find(s => s.quality === "4k") ||
+                    filtered.find(s => s.quality === "1080p") ||
+                    filtered.find(s => s.quality === "720p") ||
+                    filtered.find(s => s.quality === "480p") ||
+                    filtered[0];
             }
             // Update currentSelection to reflect the actual source used
-            currentSelection.server = serverIdx;
-            currentSelection.mode = mode || (source && source.mode) || null;
-            currentSelection.quality = quality || (source && source.quality) || null;
+            if (source) {
+                const langMatch = source.src.match(/,([a-z]{3})$/);
+                currentSelection.lang = currentSelection.lang || (langMatch ? langMatch[1] : null);
+                currentSelection.quality = currentSelection.quality || source.quality || null;
+            }
             if (source) {
                 video.src = source.src;
                 video.type = source.type;
+                // Load subtitles dynamically if lang in src
+                const langMatch = source.src.match(/,([a-z]{3})$/);
+                if (langMatch) {
+                    const lang = langMatch[1];
+                    const subtitleSrc = source.src.replace(/,([a-z]{3})$/, `_${lang}.vtt`);
+                    const trackEl = document.createElement('track');
+                    trackEl.kind = 'subtitles';
+                    trackEl.label = lang.toUpperCase();
+                    trackEl.srclang = lang;
+                    trackEl.src = subtitleSrc;
+                    trackEl.default = true;
+                    video.appendChild(trackEl);
+                }
                 video.load();
                 video.play();
             } else {
